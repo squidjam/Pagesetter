@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+
+<components>
+
+ <component name="mail" kind="card" title="_PGSENDPUBLICATION">
+  <fields>
+    <field name="mailTo"   title="_PGMAILTO"       type="string" mandatory="yes"/>
+    <field name="nameTo"   title="_PGMAILNAMETO"   type="string" mandatory="yes"/>
+    <field name="mailFrom" title="_PGMAILFROM"     type="string" mandatory="yes"/>
+    <field name="nameFrom" title="_PGMAILNAMEFROM" type="string" mandatory="yes"/>
+    <field name="subject"  title="_PGMAILSUBJECT"  type="string"/>
+    <field name="text"     title="_PGMAILTEXT"     type="string"/>
+  </fields>
+  <actions>
+    <action name="send"   kind="submit" title="_PGMAILSEND"/>
+    <action name="cancel" kind="cancel" title="_PGBTCANCEL"/>
+  </actions>
+ </component>
+
+</components>

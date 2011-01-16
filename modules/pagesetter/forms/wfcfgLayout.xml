@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+
+<layout>
+
+  <row>
+    <component name="wfcfg">
+      <layout>
+        <row>
+          <island title="_PGWFWORKFLOW" colspan="2">
+            <row><field name="pubType"/></row>
+            <row><field name="workflow"/></row>
+          </island>
+        </row>
+      </layout>
+      <buttonsBottom>
+        <button name="save"/>
+        <button name="cancel"/>
+      </buttonsBottom>
+    </component>
+  </row>
+
+</layout>

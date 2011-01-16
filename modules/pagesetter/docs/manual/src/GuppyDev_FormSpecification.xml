@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+"http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd">
+<chapter id="chap_introduction">
+  <!-- $Id: GuppyDev_FormSpecification.xml,v 1.1 2004/12/08 00:29:30 jornlind Exp $ -->
+
+  <title>Form Specification</title>
+
+  <para>To be written ... this will descript how a Guppy form is specified
+  (without layout information).</para>
+</chapter>

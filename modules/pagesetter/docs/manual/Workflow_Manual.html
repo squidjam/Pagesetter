@@ -1,0 +1,249 @@
+<html>
+
+<head>
+<title>Pagesetter Workflow Specifications</title>
+<meta NAME="Generator" CONTENT="EditPlus" />
+<meta NAME="Author" CONTENT="Jorn Lind-Nielsen" />
+<meta NAME="Description" CONTENT="Pagesetter Workflow Specifications" />
+<link rel="StyleSheet" href="./manual.css" type="text/css" />
+</head>
+
+<body>
+<div class="frontpageTitle">Pagesetter Workflow Specifications</div>
+<p>(C) Tony Jensen and J&oslash;rn Lind-Nielsen 2003-2004</p>
+
+<!-- ======================================================================================================= -->
+
+<h1>Contents</h1>
+
+<ul>
+ <li><a href="#secIntroduction">Introduction</a></li>
+ <li><a href="#secQuick">Quick Start Guide</a></li>
+ <li><a href="#secStructure">Pagesetter Workflow Structure</a></li>
+ <li><a href="#secWorkflowDef">How to Define a Workflow</a></li>
+ <li><a href="#secOperations">Workflow Operations</a></li>
+</ul>
+
+<h1><a name="secIntroduction">Introduction</a></h1>
+
+<p>The online Encyclopedia "Wikipedia" describes a workflow like this:</p>
+
+<blockquote>
+Workflow is the operational aspect of a work procedure: how tasks are structured, who performs them,
+what their relative order is, how they are synchronized, how information flows to support the tasks and how tasks are being tracked.
+[<cite>WikiPedia <a href="http://www.wikipedia.org">www.wikipedia.org</a></cite>]
+</blockquote>
+
+<p>In Pagesetter we can control where in the workflow a publication is located, what kind of actions you can perform on
+it, when it can be done, and who can do it. The location is defined by the publication's <em>state</em>, which for instance
+can be "Preview" for something in preview for an editor. The state is something visible and can always be seen on the
+editor's list. The actions can be things like "Submit", "Accept", or "Reject", all of which triggers some code that modifies
+the publication. A publication can <em>only</em> change state as a result of a workflow action. You never edit the
+state directly.</p>
+
+<p>Each of the workflows may have some <em>configuration settings</em> that can be set through the menu Configuration::Workflow.
+The standard settings are things related to notification mails to be sent when a publication changes state during the workflow.
+The most obvious of these are the mail addresses of the editors and moderators that should be informed of new content arrivals.</p>
+
+<p>The workflow system has been designed to let the administrator add his own workflow without modifying the existing ones.
+This is done through an XML file in the "workflows/custom" directory.</p>
+
+<p class="notification">
+Remember that, no matter how clever a workflow you might create, everything begins and ends with your editors. The workflow
+in it self is only a technology, it is not and will never be a substitute for good writers.
+</p>
+
+
+<!-- ======================================================================================================= -->
+
+<h1><a name="secQuick">Quick Start Guide</a></h1>
+
+<p>This will answer the question "How do I get my existing Publication Types working with Workflow?".  The reason for this is that every publication type now needs a workflow attached to it.  If it does not, you will receive an error.</p>
+
+<h2>The Steps</h2>
+<ul>
+	<li>Edit your publication type and assign a workflow to it.  If you are not sure which one to use, use the Standard workflow.
+  It mimics the Postnuke News module which most people should be familiar with. Check also the workflow list in the normal 
+  Pagesetter manual.</li>
+	<li>Go to Configuration::Workflow and edit your publication type.  This allows you to set up the needed workflow information specific to your publication type.</li>
+	<li>Start using it.  Play around with it.  Create a new publication.  Work with a few that already exist.  It should start making sense quickly.</li>
+</ul>
+
+
+<!-- ======================================================================================================= -->
+
+<h1><a name="secStructure">Background</a></h1>
+
+<h2>Files and directories</h2>
+
+<p>In the <span class="filename">pagesetter/workflows</span> directory, there are two subdirectories. 
+Each of these have the same structure.</p>
+
+The <em>standard</em> directory contains workflow information that comes standard with Pagesetter.  The <em>custom</em> directory
+contains workflow information that you create.  Because the Pagesetter workflows are stored in a different directory than 
+what you develop, you will never have to worry about an upgrade to Pagesetter overwriting your workflow information.</p>
+
+<p>In the root of the directories are the xml files that define each workflow. Under that is an <em>operations</em>
+subdirectory. This directory contains one file for each operation that can be used in a workflow action.</p>
+
+
+<h2>Depot</h2>
+
+<p>Old revisions of a publication is stored in the <em>depot</em>. This revision control means you can always go back and 
+view the content of an earlier version of a publication. Deleted publications are actually not deleted, but marked deleted and
+then moved to the depot.</p>
+
+<p>If you really want to delete a document then you can do that while browsing the history of a publication, assuming you have
+admin access.</p>
+
+<h2>States</h2>
+
+<p>The state of a publication marks the location of it in the workflow process (or rather&mdash;the state machine that the workflow
+is based upon.</p>
+
+<h2>Actions</h2>
+
+<p>Actions are business functions like Submit, Approve, Reject, and Delete.  They are verbs that can perform operations as well as move a document from one state to another. Actions are composed of <em>operations</em>.</p>
+
+<h2>Operations</h2>
+
+<p>If Actions are business functions then Operations are technical functions.</p>
+
+<p>An operation is a unit of work.  Examples are: sending an email, deleting a document (moving it to the depot), creating a new revision, update publication.</p>
+
+<p>Operations are individual PHP files that represent one task.  Any number of these Operations can be used to perform an Action.</p>
+
+<p>Operations are called from Actions and can be passed parameters if necessary.</p>
+
+
+<!-- ======================================================================================================= -->
+
+<h1><a name="secWorkflowDef">Structure of the XML Workflow Definition</a></h1>
+
+<p>This section describes the XML elements used in a workflow definition.  This definition will reside in an XML file in the workflows/custom directory.</p>
+
+<h3>Title</h3>
+<p>A short title for the workflow.  This will be used in drop-down selection boxes.  It will probably be a capitalized version of the xml filename.</p>
+
+<h3>Description</h3>
+<p>A detailed description of what the workflow is and what it does.  It should explain under what circumstances someone would want to use this workflow.</p>
+
+<h3>Configuration Settings</h3>
+<p>Any information required within this workflow.  You will need to define this information for each publication type that uses this workflow.  Examples of configuration settings are notification email addresses. The configuration tag includes any number of setting tags.  The setting tags are defined with an id, title, type, width and height. The possible values for the type are "bool", "int", "real", "string", "text" (long string), "html" (long string with editor), "date", and "time".</p>
+
+<h3>States</h3>
+<p>A list of all possible states in this workflow.  A state is defined with an id attribute and the following children.
+   All workflows should at least include an 'approved' state with that exact ID.</p>
+
+<dl class="marginText">
+  <dt>Title</dt>
+  <dd>A short title for the state (ex: Waiting, Approved).  It is usually a capitalized version of the state id.</dd>
+  <dt>Description</dt>
+  <dd>A sentence description of what action was taken to get to this state and what action is being waited on (ex: Content has been submitted and is waiting for acceptance).</dd>
+</dl>
+
+<h3>Actions</h3>
+<p>A list of all actions that are possible in each state of the workflow.  An action is defined with an id attribute and the following children.</p>
+
+<dl class="marginText">
+  <dt>Title</dt>
+  <dd>This title will be used on buttons or in action drop-down lists.  It is usually a capitalized version of the action id.</dd>
+  <dt>Description</dt>
+  <dd>The action description. This will be available to the user as a title (mouse over) text on the action button in the publication edit window.</dd>
+  <dt>Permission</dt>
+  <dd><p>A boolean expression (predicate) that must evaluate to true in order to enable the action. You can refer to the lowest 
+  Pagesetter permission that is required in order to perform the action ("author", "editor", or "moderator"), and you can refer to the
+  predicate "owner" which is true or false depending on whether or not the current user owns the pubication.</p>
+  <p>A simple permission could be <span class="code">&lt;permission&gt;editor&lt;/permission&gt;</span> whereas a more advanced 
+  one could be <span class="code">&lt;permission&gt;(author and owner) or editor&lt;/permission&gt;</span>. The last one
+  is used in the MyWiki workflow and states that you must either have at least "editor" access or have author access and be
+  the owner of the publication.</p>
+  <p>It is possible to combine permission requirements with the usual boolean connectors "and" and "or", use "!" for negation, and
+  group expressions with parenthetes.</p></dd>
+  <dt>State</dt>
+  <dd>This action is only available when a publication is in this state.  This is the state id, not the state name.</dd>
+  <dt>Operation</dt>
+  <dd>This is a list of the Operations that need to take place in order to fulfill the requirements of this Action.  Parameters can be passed to the operation as attributes of the operation's xml element.</dd>
+  <dt>Online</dt>
+  <dd>The online element is used to change the online flag in the document that was edited.  It does not affect any new versions of the document that are created due to the editing process.  To affect a new version, use the online="1" attribute when calling the operation that creates the new version.</dd>
+</dl>
+
+
+<!-- ======================================================================================================= -->
+
+<h1><a name="Operations">Workflow Operations</a></h1>
+
+<p>Workflow operations are the technical bits of the workflow actions. In the workflow specification file actions refers
+to various opearations to get things done. An action like "approve" may for instance refer to the operations
+<em>createNewRevision</em> and <em>mailToAuthor</em>. Each of these individual operations matches precisely one PHP file
+in the <span class="filename">operations</span> directory. The PHP operation file is included and after that an interface
+function in that file is called by Pagesetter. If the operation is named <em>createNewRevision</em> then the PHP
+file must be named the same&mdash;<span class="filename">createNewRevision.php</span> and contain the function
+<span class="code">pagesetter_operation_createNewRevision</span>.</p>
+
+<p>The interface function is passed a reference to the publication user data, a reference to some core data, and the
+arguments (attributes) of the XML operation element in the workflow specification.</p>
+
+<p>As an example we can take a look at the <em>mailNewContentMessage</em> operation:</p>
+
+<div class="codeBlock"><pre>
+function pagesetter_operation_mailNewContentMessage(&$publication, $core, $args)
+{
+    // Standard PN-API call that creates a URL to the publication
+  $editURL = pnModUrl('pagesetter', 'user', 'pubedit',
+                      array('tid'    => $core['tid'],
+                            'id'     => $core['id'],
+                            'action' => 'edit'));
+
+    // Similar URL creation
+  $viewURL = pnModUrl('pagesetter', 'user', 'viewpub',
+                      array('tid'    => $core['tid'],
+                            'pid'    => $core['pid'],
+                            'id'     => $core['id']));
+
+    // Select the arguments specified in the operation tag:
+    // &lt;operation message="..." subject="..." recipient="..."&gt;mailNewContentMessage&lt;/operation&gt;
+  $message = $args['MESSAGE'] . "\n\nEdit: $editURL\nView: $viewURL";
+  $subject = $args['SUBJECT'];
+  $mailTo  = $args['RECIPIENT'];
+
+  if (!empty($mailTo))
+  {
+    $ok = mail($mailTo, $subject, $message);
+
+    if (!$ok)
+      return pagesetterWarningWorkflow("Mailing new content to '$mailTo' failed.");
+  }
+
+  return pagesetterWFOperationOk;
+}
+</pre></div>
+
+
+<h2>The publication Object</h2>
+<p>The passed publication object contains the same data as the normal templates, except that core values are
+referred to as <span class="code">core_xxx</span> instead of <span class="code">core.xxx</span>.</p>
+
+
+<h2>The core Object</h2>
+<p>The core object is not exactly the same as the core object used in the templates. For workflows it only contains
+the tid, pid, id, and creatorId values.</p>
+
+<h2>Return Values</h2>
+<p>Workflow operations must return one of three values used to inform Pagesetter of the result:</p>
+<dl>
+ <dt>pagesetterWFOperationOk</dt>
+ <dd>Everything went okay, continue with the workflow action.</dd>
+ <dt>pagesetterWFOperationWarning</dt>
+ <dd>Something went wrong, but it was not critial, continue with the workflow action. Could for instance be that a
+     mail was not sent.</dd>
+ <dt>pagesetterWFOperationError</dt>
+ <dd>Something went so wrong that the workflow action should be aborted.</dd>
+</dl>
+
+<p>In addition to this the operation can call <span class="code">pagesetterWarningWorkflow</span> as illustrated
+in the mail example above. This function sets a warning message and returns pagesetterWFOperationWarning.
+The same goes for a call to <span class="code">pagesetterErrorAPI</span> which sets an error message.</p>
+
+</body>
+</html>

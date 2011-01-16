@@ -1,0 +1,49 @@
+<!--[* Smarty *]-->
+<table style="border: 1px solid #cccccc;" cellspacing="0" width="500px">
+ <tr>
+  <td style="background-color: #f0f0f0;">
+   <table width="100%" border=0>
+    <tr>
+     <td width="75%">
+      <a class="pn-title" style="text-decoration: none;" href="<!--[$core.fullURL]-->"><!--[$title]--></a>
+     </td>
+     <td width="25%" align="right">
+      <!--[nocache]--><!--[$core.hitCount]--><!--[/nocache]--> hits
+     </td>
+    </tr>
+   </table>
+  </td>
+ </tr>
+ <tr>
+  <td style="padding: 5px;">
+   <!--[if $image != "" ]-->
+    <!--[if $image|substr:0:10 == "mediashare"]-->
+     <img src="<!--[$image|regex_replace:"/-(pre|org).+/":"-tmb.png"]-->" alt="<!--[$imageText]-->" title="<!--[$imageText]-->" align="left"/>
+    <!--[else]-->
+     <img src="<!--[$image]-->&thumbnail=1" alt="<!--[$imageText]-->" title="<!--[$imageText]-->" align="left"/>
+    <!--[/if]-->
+   <!--[elseif $core.topic.image != "" ]-->
+     <a href="index.php?topic=<!--[$core.topic.id]-->">
+     <img src="images/topics/<!--[$core.topic.image]-->" alt="<!--[$core.topic.text]-->" title="<!--[$core.topic.text]-->" align="left">
+     </a>
+   <!--[/if]-->
+   <!--[$teaser]-->
+  </td>
+ </tr>
+ <tr>
+  <td style="background-color: #f0f0f0;">
+   <table width="100%" border=0>
+    <tr>
+     <td class="pn-sub">
+      Written by: <!--[$core.author]--><br>
+      <!--[$core.created|date_format:"%A, %B %d, %Y"]-->
+     </td>
+     <td align="right" class="pn-sub" valign="bottom">
+      <!--[$core.printThis]-->
+     </td>
+    </tr>
+   </table>
+  </td>
+ </tr>
+</table>
+<p>

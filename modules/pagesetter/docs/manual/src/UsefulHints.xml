@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE appendix PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+"http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd"
+[
+<!ENTITY mdash "&#x2014;">
+<!ENTITY hellip "&#x2026;">
+]>
+
+<appendix id="chap_credits">
+  <!-- $Id: UsefulHints.xml,v 1.4 2005/01/15 17:10:58 jornlind Exp $ -->
+
+  <title>Useful Hints</title>
+
+  <para>It is our hope that this manual some day becomes available on the
+  internet with the ability to comment on the individual chapters. 
+  This appendix is meant for collecting all those comments that does not
+  fit elsewhere.</para>
+
+</appendix>

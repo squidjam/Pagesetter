@@ -1,0 +1,55 @@
+/*=========================================================================
+  Document manager
+=========================================================================*/
+
+table.docman td
+{
+  padding: 0px 20px 0px 0px;
+}
+
+dl.docman
+{
+  list-style-type: none;
+  margin: 0px;
+}
+
+ul.docman
+{
+  margin-top: 0px;
+  margin-left: 0em;
+  list-style: none;
+}
+
+ul.docman ul
+{
+  margin-left: 1em;
+  list-style: none;
+}
+
+ul.docman li
+{
+  margin-top: 4px;
+}
+
+ul.docman span.current
+{
+  font-weight: bold;
+}
+
+ul.docman li a
+{
+  text-decoration: none;
+}
+
+dl.docman dt
+{
+  margin-top: 4px;
+}
+
+
+dl.docman dd
+{
+  margin: 0px 0px 6px 15px;
+}
+
+

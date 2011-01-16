@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+
+<layout>
+
+  <row>
+    <component name="pubedit">
+      <layout>
+        <row>
+          <cell title="_FGFTPUBLICATION" colspan="2">
+          </cell>
+        </row>
+        <row>
+          <island title="_PGFTPUBLISH">
+            <row>
+              <field name="core_approvalTitle"/>
+              <field name="core_revision" width="20"/>
+            </row>
+            <row><field name="core_online" colspan="4"/></row>
+            <row><field name="core_publishDate" colspan="4"/></row>
+            <row><field name="core_expireDate" colspan="4"/></row>
+          </island>
+          <island title="_PGFTLOCATION">
+            <row><field name="core_topic"/></row>
+            <row><field name="core_showInList"/></row>
+            <row><field name="core_language"/></row>
+          </island>
+        </row>
+        <row>
+          <island title="_PGAUTHORINFO">
+            <row><field name="core_creator"/></row>
+            <row><field name="core_author"/></row>
+            <row><field name="core_created"/></row>
+            <row><field name="core_lastUpdated"/></row>
+          </island>
+        </row>
+      </layout>
+      <buttonsBottom>
+        <button name="corePreview"/>
+        <button name="coreCancel"/>
+      </buttonsBottom>
+    </component>
+  </row>
+
+</layout>

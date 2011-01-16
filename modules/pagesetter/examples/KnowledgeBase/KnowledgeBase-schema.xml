@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<publicationSchema xmlns="www.postnuke.com/pagesetter" version="1.0">
+ <category id="5">
+  <title>KB Category</title>
+  <description>Categories for knowledge base</description>
+  <items>
+   <item id="17">
+    <title>Pagesetter</title>
+    <fullTitle>Pagesetter</fullTitle>
+    <value>Pagesetter</value>
+    <description></description>
+    <indent>0</indent>
+   </item>
+   <item id="19">
+    <title>Permissions</title>
+    <fullTitle>Pagesetter:Permissions</fullTitle>
+    <value>Permissions</value>
+    <description></description>
+    <indent>1</indent>
+   </item>
+   <item id="20">
+    <title>Lists</title>
+    <fullTitle>Pagesetter:Lists</fullTitle>
+    <value>Lists</value>
+    <description></description>
+    <indent>1</indent>
+   </item>
+   <item id="21">
+    <title>Filtering</title>
+    <fullTitle>Pagesetter:Filtering</fullTitle>
+    <value>Filtering</value>
+    <description></description>
+    <indent>1</indent>
+   </item>
+   <item id="18">
+    <title>Photoshare</title>
+    <fullTitle>Photoshare</fullTitle>
+    <value>Photoshare</value>
+    <description></description>
+    <indent>0</indent>
+   </item>
+   <item id="137">
+    <title>Image upload</title>
+    <fullTitle>Photoshare:Image upload</fullTitle>
+    <value>ImageUpload</value>
+    <description></description>
+    <indent>1</indent>
+   </item>
+  </items>
+ </category>
+ <publication>
+  <title>KnowledgeBase</title>
+  <template>KnowledgeBase</template>
+  <description>A knowledge base with categorization and searching</description>
+  <author>Admin</author>
+  <created>2004-01-01</created>
+  <listCount>4</listCount>
+  <sortField1>pg_field141</sortField1>
+  <sortDesc1>0</sortDesc1>
+  <sortField2></sortField2>
+  <sortDesc2>0</sortDesc2>
+  <sortField3></sortField3>
+  <sortDesc3>0</sortDesc3>
+  <enableHooks>0</enableHooks>
+  <workflow>standard</workflow>
+  <fields>
+   <field id="141">
+    <name>title</name>
+    <title>Title</title>
+    <description></description>
+    <type>0</type>
+    <isTitle>1</isTitle>
+    <isPageable>0</isPageable>
+    <isSearchable>1</isSearchable>
+   </field>
+   <field id="142">
+    <name>keywords</name>
+    <title>Keywords</title>
+    <description></description>
+    <type>0</type>
+    <isTitle>0</isTitle>
+    <isPageable>0</isPageable>
+    <isSearchable>1</isSearchable>
+   </field>
+   <field id="144">
+    <name>category</name>
+    <title>Category</title>
+    <description></description>
+    <type>105</type>
+    <isTitle>0</isTitle>
+    <isPageable>0</isPageable>
+    <isSearchable>0</isSearchable>
+   </field>
+   <field id="143">
+    <name>text</name>
+    <title>Text</title>
+    <description></description>
+    <type>2</type>
+    <isTitle>0</isTitle>
+    <isPageable>1</isPageable>
+    <isSearchable>1</isSearchable>
+   </field>
+  </fields>
+ </publication>
+</publicationSchema>

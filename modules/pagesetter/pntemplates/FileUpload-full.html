@@ -1,0 +1,19 @@
+<h1><!--[$title]--></h1>
+<p><!--[pnml name=_PGFTCREATEDDATE]--> <!--[$core.created|date_format:"%Y.%m.%d"]--> <!--[pnml name=_BY]--> <!--[$core.author]--> 
+(<!--[pnml name=_PGFTMODIFIEDDATE]--> <!--[$core.lastUpdated|date_format:"%Y.%m.%d"]-->)</p>
+
+
+<p><em><!--[$description]--></em></p>
+
+<p><a href="<!--[$file.url]-->"><!--[pnml name=_FILEUPLOADDOWNLOADDOC]--></a></p>
+
+<p>
+  <!--[pnml name=_FILEUPLOADHITS]-->: <!--[nocache]--><!--[$core.hitCount]--><!--[/nocache]--> 
+  <br/><br/>
+  <!--[nocache]--><!--[$core.editInfo]--><!--[/nocache]-->
+</p>
+
+<!--[if $core.useDisplayHooks]-->
+<!--[pnmodurl modname=pagesetter func=viewpub tid=$core.tid pid=$core.pid assign=viewUrl]-->
+<!--[pnmodcallhooks hookobject=item hookaction=display hookid=$core.uniqueId module=pagesetter returnurl=$viewUrl]-->
+<!--[/if]-->

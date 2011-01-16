@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+"http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd"
+[
+<!ENTITY mdash "&#x2014;">
+<!ENTITY hellip "&#x2026;">
+]>
+
+<chapter id="chap_postnukefeatures">
+  <!-- $Id: PostNukeFeatures.xml,v 1.13 2006/05/03 17:28:00 jornlind Exp $ -->
+
+  <title>PostNuke Features</title>
+
+  <section id="pnfeatureswaiting">
+    <title>Waiting Block</title>
+
+    <para>This block displays submitted publications waiting for approval.
+    Since "waiting for approval" is a term that cannot be hardwired into the
+    system, due to the flexible workflow system, you must configure which
+    workflow states that should be considered "waiting". For each publication
+    type you will find a list of checkboxes representing workflow
+    states&mdash;each of these can be checked to mark that state as a
+    "waiting" state.</para>
+
+    <para>You can create multiple Waiting blocks with different definitions of
+    waiting states. By using PostNuke's permission system for the blocks you
+    can then have different Waiting block setups for different groups of
+    users.</para>
+
+    <para>Besides checking the normal permissions for Pagesetter, this block
+    also checks for read access to the component "pagesetter:Waitingblock:"
+    and instance "Block title:Block Id:Type Id". The "Type Id" is the
+    publication type Id.</para>
+  </section>
+
+  <section id="pnfeatureslistblock">
+    <title>List Block</title>
+
+    <para>This block shows the title of the top N publications of a specific
+    type&mdash;for instance the last ten News items. The list is the same as
+    shown when using Pagesetter as the frontpage module and the ordering as
+    well as number of items depends on the publication type.</para>
+
+    <para>The List block uses the template named 
+    <filename>TypeName-block-list.html</filename> (for instance 
+    <filename>News-block-list.html</filename>) to render each of the publications.
+    If this template does not exist then <filename>Default-block-list.html</filename>
+    is tried and if even this is non-existent then
+    <filename>Default.html</filename> is used.</para>
+
+    <important>
+      <para>The list block cannot yet handle single template lists and <emphasis>must</emphasis> have both
+      a header and a footer.</para>
+      
+      <para>By default, for a publication with the template set to "News", the block looks 
+      for <filename>News-block-list.html</filename>. If you don't write anything then this is the file 
+      you must create. You must also supply <filename>News-block-list-header.html</filename> and 
+      <filename>News-block-list-footer.html</filename> in this case.</para>
+
+      <para>If you want something different then you must write a "format" name&mdash;for 
+      instance "other". Then the block will look for <filename>News-other.html</filename>, 
+      <filename>News-other-header.html</filename> and <filename>News-other-footer.html</filename>.
+      </para>
+    </important>
+
+    <para>Besides checking the normal permissions for Pagesetter, this block
+    also checks for read access to the component "pagesetter:Listblock:" and
+    instance "Block title:Block Id:Type Id". The "Type Id" is the publication
+    type Id.</para>
+
+    <para>The list block supplies the header and footer templates with a simplfied
+    <varname>$core</varname> template variable. This variable contains <varname>tid</varname>
+    as the publication type ID, <varname>title</varname> as the title of the publication type, and 
+    <varname>blockTitle</varname> as the title of the block.
+    </para>
+  </section>
+
+  <section id="pnfeaturesoldstories">
+    <title>Old Stories Block</title>
+
+    <para>You can setup a block for "old stories" using the "List" block
+    described above. The idea is that the front page normaly shows N items, so
+    the "old stories" block should show the next X items after N. To do so you
+    set the field "First publication number" to N and "Number of publications"
+    to X. To style the list closer to the original PostNuke "old stories"
+    block, you can specify the template to use as <filename>list-old-block</filename>,
+    which is a
+    supplied Pagesetter template for PN-News publications.</para>
+  </section>
+
+  <section id="pnfeaturespubblock">
+    <title>Publication Block</title>
+
+    <para>This block shows a specific publication using a template of your own
+    choice. You need to select a publication type to show and then write the
+    publication type ID yourself (so far no point-and-click selection). The
+    template name must not include publication name and .html extension. So
+    for a "News" publication you should just write "full" to use the
+    "News-full.html" template.</para>
+
+    <para>Besides checking the normal permissions for Pagesetter, this block
+    also checks for read access to the component "pagesetter:Pubblock:" and
+    instance "Block title:Block Id:Publication Id". The "Publication Id" is
+    what is normaly referred to as "pid".</para>
+  </section>
+
+  <section id="pnfeaturesrandomblock">
+    <title>Random Publication Block</title>
+
+    <para>This block displays a randomly selected publication on each page load. All
+    you have to do is to select a publication type and a template. Then Pagesetter
+    selectes random publications from the type you have chosen.</para>
+  </section>
+
+  <section id="pnfeaturescatbased">
+    <title>Category Based Menu Block</title>
+
+    <para>The category based menu block generates a nested list of menu
+    entries based on the items in a specific category. Clicking on a menu item
+    takes the user to a list of all publications associated with that category
+    item <emphasis>or any sub-category item</emphasis>. Besides checking the
+    normal permissions for Pagesetter, this block also checks for read access
+    to the component "pagesetter:Listmenublock:" and instance "Block
+    title:Block Id:Type Id". The "Type Id" is the publication type Id.</para>
+
+    <figure>
+      <title>Example menu block based on a category setup</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="img/categoryBlock.jpg" />
+        </imageobject>
+      </mediaobject>
+    </figure>
+
+    <para>Configuring To set up the menu you need to specify the following
+    attributes</para>
+    
+    <variablelist>
+        <varlistentry>
+          <term>Publication type</term>
+
+          <listitem>
+            The publication type that this menu should show items
+            from.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Category field to base menu on</term>
+
+          <listitem>
+            This is the name of the publication field that this menu is
+            based on. The field must be an existing field and be associated
+            with some category. No error checking is done on this
+            input.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Top item ID</term>
+
+          <listitem>
+            If you consider the nested category structure as a tree then
+            this is the ID of the category item that will be used as the root
+            item for the menu. This allows you to only show a sub-set of the
+            items. No error checking is done on this input. Leave it empty to
+            get all items.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Maximum numbers of sub-levels to show</term>
+
+          <listitem>
+            This specify how deep a nesting into the category structure
+            the menu will show items from.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>CSS class name for list</term>
+
+          <listitem>
+            Any CSS class name of your choice. It will only be added to
+            the top level <markup>&lt;ul&gt;</markup> HTML tag. You can find sample CSS rules
+            in <filename>pagesetter/examples/News/styles.css</filename>.
+          </listitem>
+        </varlistentry>
+      </variablelist>
+  </section>
+
+  <section id="pnfeatureshooks">
+    <title>PostNuke Hooks</title>
+
+    <para>Pagesetter is fully hook aware (with hooks for both display,
+    transformation, create and delete). This means you can enable auto links,
+    comments, rating and other nice hooks for your publications. To enable
+    hooks you must do three things:</para>
+    
+    <orderedlist>
+      <listitem>First hooks must be enabled for Pagesetter
+      in general. This can be done in the standard Admin::Modules section where
+      you click "edit" for Pagesetter. This will bring you to the hooks
+      enabling.</listitem>
+      <listitem>The next thing is to enable hooks for your publication type.
+      This is done in the checkbox "PN-Hooks" found in the publication type
+      configuration.</listitem>
+      <listitem><para>The last thing to do is to insert a little code-snippet in your templates:</para>
+<programlisting>
+<![CDATA[<!--[if $core.useDisplayHooks]-->
+<!--[pnmodurl modname=pagesetter func=viewpub tid=$core.tid pid=$core.pid assign=viewUrl]-->
+<!--[pnmodcallhooks hookobject=item hookaction=display hookid=$core.uniqueId module=pagesetter returnurl=$viewUrl]-->
+<!--[/if]-->
+]]></programlisting>
+      <para>This code-snippet is inserted automatically when generating templates from Pagesetter.</para>
+      </listitem>
+    </orderedlist>
+
+    <important>
+      <para>Hooks are <emphasis>not</emphasis> applied to publication lists! If they
+      were then we would end up having comments applied to the various
+      overview lists. Unfortunately this also means we don't get other
+      interesting hooks applied.</para>
+      <para>I do although assume that it can be done with proper use of the pnmodcallhooks plugin.</para>
+    </important>
+  </section>
+
+  <section id="pnfeaturessearch">
+    <title>PostNuke Searching</title>
+
+    <para>Pagesetter complies to the standard interface for PostNuke
+    searching, which means you can search any of your publication fields for
+    "all" words in a query as well as "any" word in a query. You may have to
+    install the search file yourself (this depends on the zip-file structure).
+    Copy the file <filename>html/modules/pagesetter/pnsearch/pagesetter.php</filename> into
+    <filename>html/includes/search</filename> and you are ready to use the standard 
+    search module.</para>
+
+    <para>Search expressions may contain quotes to specify sentenses. You can for instance
+    search for either &gt;the yellow dog&lt; or &gt;"the yellow dog"&lt;. The first 
+    version will find any publication that contains one or more of the words, whereas the second
+    version looks for the exact sentence "the yellow dog".</para>
+
+    <para>One of the things you often see in a PostNuke theme is a small search
+    input field in the top bar. If you want to enable Pagesetter in this you
+    must add a (hidden) input field in the web form with the properties type
+    set to "hidden", name set to "active_pagesetter", and value set to
+    "1".</para>
+
+    <example>
+      <title>Example of search form taken from the standard PostNukeSilver theme.</title>
+        <programlisting>echo  '&lt;form action="modules.php" method="post"&gt;'
+       .'&lt;input type="hidden" name="name" value="Search"&gt;'
+       .'&lt;input type="hidden" name="file" value="index"&gt;'
+       .'&lt;input type="hidden" name="op" value="modload"&gt;'
+       .'&lt;input type="hidden" name="action" value="search"&gt;'
+       .'&lt;input type="hidden" name="overview" value="1"&gt;'
+       .'&lt;input type="hidden" name="active_stories" value="1"&gt;'
+       .'&lt;input type="hidden" name="active_pagesetter" value="1"&gt;'
+       .'&lt;input type="hidden" name="bool" value="AND"&gt;'
+       .'&lt;input name="q" type="text" size="15"&gt;'
+       .'&lt;/form&gt;';</programlisting>
+     </example>
+  </section>
+
+  <section id="pnfeaturesshorturls">
+    <title>Short URLs</title>
+
+    <para>It can be a bit difficult to get HTMLArea working with short URLs since
+    it's popups are refering directly to the directories on the web server. For
+    instance <filename>modules/pagesetter/guppy/HTMLArea/plugins/link.html</filename>.</para>
+
+    <para>To avoid this problem you must tell the URL rewwriter that the HTMLArea URLs
+    should be ignored. This can be done with the following rewrite rule:</para>
+
+    <programlisting>
+    RewriteRule ^(.+)guppy/HTMLArea30beta(.+)$ - [L,NC,NS]
+    </programlisting>
+
+    <para>The use of filters in the URL can also be a bit troublesome since the colons of
+    the filter expressions ruins the browser's interpration of the URL. For this reason
+    both hats (^) and colons (:) can be used in filters. Hopefully this helps.</para>
+  </section>
+
+
+  <section id="pnfeaturescaching">
+    <title>Caching in pnRender</title>
+
+    <para>If you want improved performance from Pagesetter then make sure caching is enabled
+    in pnRender. Go to "Admin - pnRender" and enable caching.</para>
+  </section>
+
+  <section id="pnfeaturesfolder">
+    <title>Organizing Publications</title>
+
+    <para>With the help of a separate module "Folder", found on elfisk.dk, you
+    can organize your publications in a hierarchical folder structure. It is further
+    more possible to import all of your existing Pagesetter publications into
+    that module.</para>
+
+    <para>To import your publications you must first define folders and sub-folders
+    for each of the publication types. <emphasis>Then make sure you have spelled the
+    sub-folder template correctly</emphasis>&mdash;for instance by creating a few
+    publications from within Pagesetter and verifying that they end up in the
+    expected sub-folders. After that go to Pagesetter's admin page :: Tools ::
+    Export Data and transfer all the items.</para>
+  </section>
+
+</chapter>

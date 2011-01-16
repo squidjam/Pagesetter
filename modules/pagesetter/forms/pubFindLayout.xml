@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+
+<layout>
+
+  <row>
+    <component name="pubListHeader">
+      <layout>
+        <row>
+          <field kind="title" name="tid"/>
+          <field kind="title" name="title"/>
+          <field kind="title" name="author"/>
+          <field kind="title" name="topic"/>
+        </row>
+        <row>
+          <field name="tid"    title="no"/>
+          <field name="title"  title="no"/>
+          <field name="author" title="no"/>
+          <field name="topic"  title="no"/>
+        </row>
+      </layout>
+      <buttonsBottom>
+        <button name="update"/>
+        <button name="clear"/>
+        <button name="cancel"/>
+      </buttonsBottom>
+    </component>
+  </row>
+
+  <row>
+    <component name="pubList">
+      <columns>
+        <field name="id" width="25"/>
+        <field name="title" width="200"/>
+        <field name="approvalState"/>
+        <field name="author"/>
+        <field name="topic"/>
+        <field name="insert" kind="action"/>
+      </columns>
+      <buttonsBottom>
+        <button name="prev"/>
+        <button name="next"/>
+      </buttonsBottom>
+    </component>
+  </row>
+
+</layout>

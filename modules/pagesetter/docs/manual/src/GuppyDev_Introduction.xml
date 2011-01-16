@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+"http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd"
+[
+<!ENTITY mdash "&#x2014;">
+<!ENTITY hellip "&#x2026;">
+]>
+
+<chapter id="chap_introduction">
+  <!-- $Id: GuppyDev_Introduction.xml,v 1.2 2005/01/15 21:30:37 jornlind Exp $ -->
+
+  <title>Introduction</title>
+
+  <section id="guppyintrostart">
+    <title>Introduction</title>
+
+    <para>The Guppy framework is a web forms handling system that adds a few
+    extra features to the standard HTML forms handling. It allows the
+    programmer to specify a web form using a few XML files&mdash;two for each
+    form (plus an additional PHP handler file). The use of a relatively simple
+    XML specification removes the burden of creating a lot of complex HTML and
+    JavaScript from the programmer at the cost of design flexibility.</para>
+
+    <para>With Guppy one can design different <emphasis>components</emphasis>:
+    <emphasis>cards</emphasis> that show a single record,
+    <emphasis>tables</emphasis> that show multiple records, and
+    <emphasis>trees</emphasis> that shows multiple nested records. Each kind
+    of component may contain one or more <emphasis>fields</emphasis> of
+    different kinds. Fields can currently only be <emphasis>input</emphasis>
+    fields with support for booleans (checkboxes), integers, reals, dates,
+    times, strings, html, and selectors. Most of the input fields can be
+    marked as mandatory which forces the user to enter something in the
+    field.</para>
+
+    <para>The benefits of Guppy are:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>Simpler code generation at the cost of design flexibility. There
+        is although some overhead when creating a new form. It does require
+        the programmer to create three new files for each form.</para>
+      </listitem>
+
+      <listitem>
+        <para>Automatic input validation.</para>
+      </listitem>
+
+      <listitem>
+        <para>Automatic handling of multi-record entries with insertion and
+        deletion af new rows.</para>
+      </listitem>
+
+      <listitem>
+        <para>Automatic handling of multi-record nested entries in a tree
+        structure.</para>
+      </listitem>
+
+      <listitem>
+        <para>Wysiwyg HTML input using HtmlArea.</para>
+      </listitem>
+
+      <listitem>
+        <para>Date selection using a nice little JavaScript date
+        picker.</para>
+      </listitem>
+
+      <listitem>
+        <para>Separation of form specification and layout enabling "untrusted"
+        users to change the layout without being able to influence the actual
+        functionality.</para>
+      </listitem>
+
+      <listitem>
+        <para>Consistent look and feel in all web forms.</para>
+      </listitem>
+    </itemizedlist>
+  </section>
+</chapter>

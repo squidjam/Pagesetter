@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+"http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd">
+<chapter id="chap_introduction">
+  <!-- $Id: GuppyDev_Internals.xml,v 1.1 2004/12/08 00:29:30 jornlind Exp $ -->
+
+  <title>Internals</title>
+
+  <para>Parsing of the XML files for forms specification and layout is handled
+  in guppy_parser.php. The code here creates a large associative array that
+  describes the form. The data is stored in a PHP session variable. New
+  attributes for the XML structure must be parsed here.</para>
+
+  <para>Rendering of the HTML and handling of user input is done in guppy.php.
+  New attributes returned from the XML parser must be handled here.</para>
+
+  <para>99% of the stuff that is PostNuke related is implemented in
+  guppy_postnuke.php in the hope that this makes it possible to reuse Guppy in
+  another framework.</para>
+</chapter>

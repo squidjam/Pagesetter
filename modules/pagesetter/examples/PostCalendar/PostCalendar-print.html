@@ -1,0 +1,38 @@
+<!--[pagesetter_title title=$core.title]-->
+
+<div class="pgcalendar">
+
+<div class="header">
+  <img src="images/topics/<!--[$core.topic.image]-->" align="left"/>
+  <h1><!--[$core.title]--></h1>
+  <strong>Start</strong>: <!--[$startDate|date_format:"%d. %B %Y %H:%M"]--><br/>
+  <strong>End</strong>: <!--[$endDate|date_format:"%d. %B %Y %H:%M"]--><br/>
+  <br clear="both"/>
+</div>
+
+<div class="content" style="width: 100%">
+  <table>
+    <tr>
+
+    <td class="description">
+      <!--[$text]-->
+    </td>
+
+    <td class="information">
+      <h3>Location</h3>
+      <!--[$location]--><br/>
+      <!--[$address1]--><br/>
+      <!--[$address2]--><br/>
+      <!--[$postalcode]--> <!--[$city]--><br/>
+
+      <h3>Contact</h3>
+      <!--[$name]--><br/>
+      Telephone: <!--[$phonenumber]--><br/>
+      E-mail: <a href="mailto:<!--[$email]-->"><!--[$email]--></a><br/>
+      <br/>
+      Fee: <!--[$fee]-->.
+    </td>
+
+    </tr>
+  </table>
+</div>

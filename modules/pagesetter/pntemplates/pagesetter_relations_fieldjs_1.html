@@ -1,0 +1,27 @@
+<!-- Javascript for relations field (style 1) -->
+
+<script language="JavaScript" type="text/javascript">
+function SubmitIt()
+{
+	var selector = document.getElementById('<!--[$id]-->_to');
+	var textfield = document.getElementById('<!--[$id]-->_text');
+	textfield.value = selectorGetText(selector);
+}
+  
+function selectorGetText(src)
+{
+  var srcSize = src.length;
+  var result = "";
+
+  for (var i=0; i<srcSize; ++i)
+  {
+    if (result == "")
+      result += src.options[i].text;
+    else
+      result += ", " + src.options[i].text;
+  }
+  return result;
+}
+
+</script>
+  

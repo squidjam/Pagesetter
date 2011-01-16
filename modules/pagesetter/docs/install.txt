@@ -1,0 +1,231 @@
+KNOWN PROBLEMS
+--------------
+
+*** Failing to lock database tables when saving a publication ***
+
+  Pagesetter requires database access to lock the tables it depends on. This is 
+  used to guarantee the integrity of the data, especially various counters used
+  by Pageseter.
+
+  If you have admin access to MySQL you can grante "LOCK TABLES" access to your
+  users. Look up "Lock_Tables_Priv" or "LOCK TABLES" in your MySQL manual.
+
+  If you cannot get lock access then search for "pagesetterLockTables" in 
+  "common-edit.php" and comment out the lines mentioned in the source code. This
+  will disable locking at the cost of a slightly less stable system (in the
+  face of simultaneous editors).
+
+
+*** Failing to initialize, upgrade or remove the module ***
+
+  Pagesetter cannot initialize, upgrade or be removed in PostNuke versions
+  prior til .75. This is due to a problem with a core API function that
+  disallows modules to use their own API's during the process. The problem
+  has been fixed in PostNuke .75. If you are not using this or a proper
+  release candidate (I cannot remember which) then you can hack the function
+  yourself:
+
+    1) Edit "html/includes/pnMod.php"
+
+    2.1) Find:
+    
+           function pnModAPILoad($modname, $type = 'user')
+
+    2.2) Change it to:
+    
+           function pnModAPILoad($modname, $type = 'user', $force = false)
+
+    3.1) A few lines below you find:
+
+           // check the modules state
+           if (!pnModAvailable($modname)) {
+             return false;
+           }
+
+    3.2) Change it to:
+
+           // check the modules state
+           if (!$force && !pnModAvailable($modname)) {
+             return false;
+           }
+
+
+*** Failing to load list templates (after upgrading 4 -> 5) ***
+
+  Pagesetter can display a list of publications through either a combination
+  of header/footer/item templates or through a single template. The choice is
+  based on the existence of the header template - if it exists then the 
+  combination is used, otherwise the single template is used.
+
+  A side effect of this is that your lists won't work if you are displaying
+  lists without a header template. Solve this problem by adding an empty
+  header template.
+
+
+INSTALLING PAGESETTER
+---------------------
+
+1) Install pnRender (see http://mods.postnuke.com/modules.php?op=modload&name=News&file=article&sid=2053).
+   This is a *must* for pre-.750 PostNuke systems, since Pagesetter depends on pnRender instead of 
+   Smarty's own distribution. Make sure everything works (however that is done ;-).
+   if you are using a multi-site installation then you might want to check:
+   http://www.elfisk.dk/modules.php?op=modload&name=XForum&file=viewthread&tid=462 and
+   http://noc.postnuke.com/forum/forum.php?thread_id=854&forum_id=2
+
+2) Copy the "pagesetter" directory and all it's sub-directories into
+   the PostNuke "modules" directory.
+
+3) In order to enable searching the file "pnsearch/pagesetter.php" should be 
+   moved to "/includes/search".
+
+4) Go to PostNuke's admin page and find the "modules" setup. Here you
+   regenerate the module list and then initialize and activate Pagesetter.
+
+5) Read the manual in docs/manual/... - please! There's a lot of information about
+   permissions and Pagesetter setup.
+
+6) Add all the styles in file docs/pagesetter.css to your PostNuke theme 
+   style sheet (themes/your-theme/styles/style.css):
+
+   This will ensure the "edit this" popup looks as expected as well as a couple of
+   other things. Feel free to modify the styles as much as you want.
+
+7) For improved performance, make sure pnRender caching is enabled.
+   Go to "Admin - pnRender" and enable caching.
+
+
+UPGRADING 6.2.0 - 6.3.0
+-----------------------
+
+You need to upgrade your own templates to include hooks functionality.
+See http://www.pndevs.com/index.php?module=blogs&func=viewpub&tid=1&pid=5
+and read the manual (hooks section).
+
+Due to the changed hook handling you should also clear the pnRender cache folders
+pnTemp/pnRender_cache and pnTemp/pnRender_compiled.
+
+
+UPGRADING 6.1.0 - 6.2.0
+-----------------------
+
+Nothing special.
+
+
+UPGRADING 6.0.x - 6.1.0
+-----------------------
+
+1) You must change your CSS definition for the "EditThis" popups. Change:
+
+    #pubInfoBox
+    {
+     ...
+    }
+
+   To:
+
+    table.pubInfoBox
+    {
+     ...
+    }
+
+2) Change $editThis$ in your templates to:
+
+       <!--[nocache]--><!--[$core.editThis]--><!--[/nocache]--> 
+   OR  <!--[nocache]--><!--[$core.editInfo]--><!--[/nocache]-->
+
+
+3) Change $hitCount$ in your templates to:
+
+   <!--[nocache]--><!--[$core.hitCount]--><!--[/nocache]-->
+
+
+UPGRADING 5.2 - 6.0.0
+---------------------
+
+Nothing special, just copy into your PostNuke directories and upgrade/activate.
+
+
+UPGRADING 5.X -> 5.2.0
+----------------------
+
+Nothing special, just copy into your PostNuke directories and upgrade/activate.
+
+
+UPGRADING 4.0.0.0 -> 5.0.0.0
+----------------------------
+
+*) Add the following to your PostNuke theme style sheet 
+  (themes/your-theme/styles/style.css):
+
+    #pubInfoBox
+    {
+      border: 1px solid black;
+      font: arial, sans-serif;
+      font-size: 10pt;
+      background-color: #E0E0E0;
+      padding: 4px;
+    }
+
+   This will ensure the "edit this" popup looks as expected. Feel free to modify the
+   styles as much as you want.
+
+
+
+UPGRADING 3.0.0.0 -> 4.0.0.0
+----------------------------
+
+Nothing special, just copy into your PostNuke directories and upgrade/activate.
+
+In order to enable searching the file "pnsearch/pagesetter.php" should be 
+moved to "html/includes/search".
+
+
+UPGRADING 2.0.0.0 -> 3.0.0.0
+----------------------------
+
+Nothing special, just copy into your PostNuke directories and upgrade/activate.
+
+
+UPGRADING 1.0.0.0 -> 2.0.0.0
+----------------------------
+
+1) Backup everything - both database and files.
+
+2) If you skipped step 1 then at least backup your template files!
+
+3) Install pnRender (see http://mods.postnuke.com/modules.php?op=modload&name=News&file=article&sid=2053).
+   This is a *must* since Pagesetter now depends on pnRender instead of 
+   Smarty's own distribution. Make sure everything works.
+
+3) Remove whole pagesetter directory structure. A couple of things have 
+   changed or moved and this is probably the easist way to fix everything.
+   Did you backup your templates?
+
+1) Copy the "pagesetter" directory and all it's sub-directories into
+   the PostNuke "modules" directory.
+
+2) Go to PostNuke's admin page and find the "modules" setup. Here you
+   regenerate the module list and then upgrade and activate Pagesetter.
+
+
+) Rename your existing template files from "*.tpl" to "*.html". Then copy them
+  into the pntemplates directory.
+
+
+CVS Upgrade 1.x -> 2.0.0.0
+--------------------------
+If upgrade fails then remove the list tables from your database
+(_pagesetter_list*), reset Pagesetter version number in modules database to 
+1.1.0.0 and retry upgrade.
+
+If you have created lists and are using them, then you may need to delete all
+list fields in your publication type setup and then re-insert them to force an 
+update of the database schema. After that you need to re-edit all publications
+that uses list fields.
+
+
+Translating Pagesetter
+----------------------
+  * Copy and edit the normal PostNuke language files.
+  * Copy and edit the language files in "pagesetter/guppy/lang/..."
+

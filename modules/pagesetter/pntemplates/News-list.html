@@ -1,0 +1,46 @@
+<!--[* Smarty *]-->
+<table style="border: 1px solid #cccccc;" cellspacing="0">
+ <tr>
+  <td style="background-color: #f0f0f0;">
+   <table width="100%" border=0>
+    <tr>
+     <td width="75%">
+      <a class="pn-title" style="text-decoration: none;" href="<!--[$core.fullURL]-->"><!--[$headline]--></a>
+     </td>
+     <td width="25%" align="right">
+      <!--[nocache]--><!--[$core.hitCount]--><!--[/nocache]--> hits
+     </td>
+    </tr>
+   </table>
+  </td>
+ </tr>
+ <tr>
+  <td style="padding: 5px;">
+   <!--[if $image != "" ]-->
+     <img src="<!--[$image]-->&thumbnail=1" alt="<!--[$imagetext]-->" title="<!--[$imagetext]-->" align="top">
+   <!--[/if]-->
+   <!--[$teaser]-->
+  </td>
+ </tr>
+ <tr>
+  <td style="background-color: #f0f0f0;">
+   <table width="100%" border=0>
+    <tr>
+     <td class="pn-sub">
+      Written by: <!--[$core.author]--><br>
+      <!--[$core.created|date_format:"%A, %B %d, %Y"]-->
+     </td>
+     <td align="right" class="pn-sub" valign="bottom">
+      <!--[pagesetter_ezcommentsCount assign="ezCount"]-->
+      <!--[if $ezCount > 0 ]-->
+       <!--[$ezCount]--> comments
+      <!--[/if]-->
+      <br>
+      <!--[$core.printThis]-->
+     </td>
+    </tr>
+   </table>
+  </td>
+ </tr>
+</table>
+<p>

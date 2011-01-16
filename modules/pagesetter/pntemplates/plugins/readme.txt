@@ -1,0 +1,1 @@
+This directory is for Smarty cache plugin files.

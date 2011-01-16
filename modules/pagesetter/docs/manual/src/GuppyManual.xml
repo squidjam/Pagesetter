@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+"http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd"
+[
+<!ENTITY mdash "&#151;">
+]>
+
+<book lang="en-US" status="draft">
+  <!-- $Id: GuppyManual.xml,v 1.2 2005/01/16 10:38:59 jornlind Exp $ -->
+
+  <title>Guppy Manual</title>
+
+  <bookinfo>
+    <authorgroup>
+      <author>
+        <firstname>Jørn</firstname>
+        <surname>Lind-Nielsen</surname>
+      </author>
+
+      <othercredit>
+        <firstname>Axel</firstname>
+        <surname>Guckelsberger</surname>
+        <contrib>DocBook conversion</contrib>
+      </othercredit>
+    </authorgroup>
+
+    <abstract>
+      <para>This manual documents how the web forms system Guppy can be configured and used in Pagesetter.</para>
+    </abstract>
+
+    <copyright>
+      <year>2005</year>
+      <holder>The Pagesetter Development Team</holder>
+    </copyright>
+
+    <releaseinfo>Version 6.0-1</releaseinfo>
+
+    <date>$Date: 2005/01/16 10:38:59 $</date>
+
+    <legalnotice>
+      <para>Permission is granted to copy, distribute and/or modify this
+      document under the terms of the GNU Free Documentation License, Version
+      1.2 or any later version published by the Free Software Foundation, with
+      no Invariant Sections, no Front-Cover Texts and no Back-Cover Texts. A
+      copy of the license can be obtained from the <ulink
+      url="http://www.gnu.org/licenses/fdl.txt">Free Software
+      foundation</ulink></para>
+    </legalnotice>
+
+    <keywordset>
+      <keyword>Pagesetter</keyword>
+      <keyword>PostNuke</keyword>
+      <keyword>Web forms</keyword>
+    </keywordset>
+  </bookinfo>
+
+    <xi:include href="GuppyDev_Introduction.xml"
+                xmlns:xi="http://www.w3.org/2003/XInclude" />
+
+    <xi:include href="GuppyDev_ProgrammingModel.xml"
+                xmlns:xi="http://www.w3.org/2003/XInclude" />
+
+    <xi:include href="GuppyDev_FormSpecification.xml"
+                xmlns:xi="http://www.w3.org/2003/XInclude" />
+
+    <xi:include href="GuppyDev_FormLayout.xml"
+                xmlns:xi="http://www.w3.org/2003/XInclude" />
+
+    <xi:include href="GuppyDev_EventHandling.xml"
+                xmlns:xi="http://www.w3.org/2003/XInclude" />
+
+    <xi:include href="GuppyDev_Plugins.xml"
+                xmlns:xi="http://www.w3.org/2003/XInclude" />
+
+    <xi:include href="GuppyDev_Internals.xml"
+                xmlns:xi="http://www.w3.org/2003/XInclude" />
+
+</book>

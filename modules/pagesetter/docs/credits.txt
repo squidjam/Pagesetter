@@ -1,0 +1,16 @@
+Pagesetter (C) 2003 Jorn Wildt
+==============================
+
+Thanks to Carsten Kollmeier, Tony Jensen, Sebastian Schurmann, Jorg Napp, 
+Thomas Smiatek, jmvedrine, Drak, and Claus Parkhoi for various code snippets 
+as well as complete functions and blocks - and tons of inspiration. Without
+these people Pagesetter wouldn't be what it is today.
+
+Many thanks to the guys at www.interactivetools.com who made the HTML editor "htmlArea" - it's a very cool product.
+Further more also thanks to those behind Xinha - the next version htmlArea.
+
+Also lots of thanks to the guys at smarty.php.net who made the Smarty templating engine. The same does of course
+also apply to those that extended Smarty to pnRender, which then again includes, more or less, all the people
+behind PostNuke.
+
+Thanks goes also to Mihai Bazon (at //dynarch.com/mishoo/home.epl) who made the realy nice date picker.

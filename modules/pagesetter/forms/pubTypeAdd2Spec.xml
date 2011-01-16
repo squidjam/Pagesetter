@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+
+<components>
+
+ <component name="publicationType" kind="card" title="_PGPUBLICATIONTYPEEDIT">
+  <fields>
+    <field name="title"             title="_PGPUBTYPETITLE"         type="string" mandatory="true"/>
+    <field name="filename"          title="_PGPUBTYPEFILENAME"      type="string"/>
+    <field name="formname"          title="_PGPUBTYPEFORMNAME"      type="string"/>
+    <field name="listGenerate"      title="_PGPUBTYPELISTGENERATE"  type="bool"/>
+    <field name="listTemplate"      title="_PGPUBTYPELISTTEMPLATE"  type="string"/>
+    <field name="fullGenerate"      title="_PGPUBTYPEFULLGENERATE"  type="bool"/>
+    <field name="fullTemplate"      title="_PGPUBTYPEFULLTEMPLATE"  type="string"/>
+    <field name="printGenerate"     title="_PGPUBTYPEPRINTGENERATE" type="bool"/>
+    <field name="printTemplate"     title="_PGPUBTYPEPRINTTEMPLATE" type="string"/>
+    <field name="rssGenerate"       title="_PGPUBTYPERSSGENERATE"   type="bool"/>
+    <field name="rssTemplate"       title="_PGPUBTYPERSSTEMPLATE"   type="string"/>
+    <field name="blockGenerate"     title="_PGPUBTYPEBLOCKGENERATE" type="bool"/>
+    <field name="blockTemplate"     title="_PGPUBTYPEBLOCKTEMPLATE" type="string"/>
+    <field name="listCount"         title="_PGLISTSHOWCOUNT"        type="int"/>
+    <field name="sortField1"        title="_PGSORTFIELD1"           type="select" options="pubFields"/>
+    <field name="sortDesc1"         title="_PGSORTDESC"             type="bool"/>
+    <field name="sortField2"        title="_PGSORTFIELD2"           type="select" options="pubFields"/>
+    <field name="sortDesc2"         title="_PGSORTDESC"             type="bool"/>
+    <field name="sortField3"        title="_PGSORTFIELD3"           type="select" options="pubFields"/>
+    <field name="sortDesc3"         title="_PGSORTDESC"             type="bool"/>
+  </fields>
+  <actions>
+    <action name="cancel" kind="cancel" title="_PGBTCANCEL"/>
+    <action name="commit" kind="submit" title="_PGCOMMIT"/>
+  </actions>
+ </component>
+
+</components>

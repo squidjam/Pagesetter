@@ -1,0 +1,26 @@
+<!--[* Smarty *]-->
+
+<div style="width: 500px;">
+
+<div class="pn-title"><!--[$headline]--></div>
+<div class="pn-sub">By: <!--[$core.author]--> (<!--[$core.creator]-->) <!--[$core.lastUpdated|date_format:"%Y.%m.%d"]--></div><p>
+
+<table>
+ <tr>
+  <td valign="top"><!--[$text[$core.page]]--></td>
+  <td valign="top">
+   <!--[if $image != "" ]-->
+     <img src="<!--[$image]-->" width="200" alt="<!--[$imagetext]-->" title="<!--[$imagetext]-->"><br>
+     <i><!--[$imagetext]--></i>
+   <!--[/if]-->
+  </td>
+ </tr>
+</table>
+
+</div>
+<p>
+
+<!--[$core.printThis]--> | <!--[$core.sendThis]--> | Hits: <!--[nocache]--><!--[$core.hitCount]--><!--[/nocache]--> | <!--[nocache]--><!--[$core.editThis]--><!--[/nocache]-->
+
+<!--[pnmodurl modname=pagesetter func=viewpub tid=$core.tid pid=$core.pid assign=viewUrl]-->
+<!--[pnmodcallhooks hookobject=item hookaction=display hookid=$ module=pagesetter returnurl=$viewUrl]-->

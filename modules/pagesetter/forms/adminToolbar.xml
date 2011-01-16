@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+
+<toolbar>
+
+  <menu>
+    <subMenu title="_PGMENUPUB">
+      <item title="_PGMENUPUBTYPESLIST" action="pubTypesList"/>
+      <item title="_PGMENUPUBTYPESNEW" action="pubTypesNew"/>
+      <item title="_PGMENUPUBTEMPLATES" action="pubTemplates"/>
+      <item title="_PGMENUCLEARCACHE" action="cacheClear"/>
+    </subMenu>
+    <subMenu title="_PGMENULISTS">
+      <item title="_PGMENULISTLIST" action="lists"/>
+      <item title="_PGMENULISTNEW" action="listNew"/>
+    </subMenu>
+    <subMenu title="_PGMENUCONFIG">
+      <item title="_PGMENUCONFIGGENERAL"  action="configGeneral"/>
+      <item title="_PGMENUCONFIGWORKFLOW" action="configWorkflow"/>
+    </subMenu>
+    <subMenu title="_PGMENUTOOLS">
+      <item title="_PGMENUTOOLSIMPORT" action="toolsImport"/>
+      <item title="_PGMENUTOOLSEXPORTSTRUCTURE" action="toolsExport"/>
+      <item title="_PGMENUTOOLSSETUPFOLDER" action="toolsSetupFolder"/>
+      <item title="_PGMENUTOOLSDATABASE" action="toolsDatabase"/>
+    </subMenu>
+  </menu>
+
+  <tools>
+    <tool img="" title="" action=""/>    
+  </tools>
+
+</toolbar>

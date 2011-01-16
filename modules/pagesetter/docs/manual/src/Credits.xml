@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE appendix PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+"http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd"
+[
+<!ENTITY mdash "&#x2014;">
+<!ENTITY hellip "&#x2026;">
+]>
+
+<appendix id="chap_credits">
+  <!-- $Id: Credits.xml,v 1.6 2006/03/29 21:39:22 jornlind Exp $ -->
+
+  <title>Credits</title>
+
+  <itemizedlist>
+    <listitem>
+      Thanks to Carsten Kollmeier, Tony Jensen, Jörg Napp, Sebastian Schürmann, Thomas
+      Smiatek, Claus Parkhoi for lots of ideas, help, and code snippets.
+    </listitem>
+
+    <listitem>
+      Thanks to Axel Guckelsberger for conversion of the original plain HTML
+      manual to DocBook XML.
+    </listitem>
+
+    <listitem>
+      Many thanks to the guys at <ulink
+      url="http://www.interactivetools.com/">interactivetools.com</ulink> who
+      made the HTML editor "htmlArea"&mdash;it's a very cool product.
+    </listitem>
+
+    <listitem>
+      Also lots of thanks to the guys at <ulink
+      url="http://smarty.php.net/">smarty.php.net</ulink> who made the Smarty
+      templating engine.
+    </listitem>
+
+    <listitem>
+      Thanks goes also to <ulink
+      url="http://dynarch.com/mishoo/home.epl">Mihai Bazon</ulink> who made
+      the really nice date picker.
+    </listitem>
+
+    <listitem>
+      I have of course also been looking at <ulink
+      url="http://www.xexpress.org/">ContentExpress</ulink> and <ulink
+      url="http://canvas.anubix.net/">PagEd</ulink> as well as scores
+      of other programs for inspiration.
+    </listitem>
+  </itemizedlist>
+</appendix>

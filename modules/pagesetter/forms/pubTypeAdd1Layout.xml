@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+
+<layout>
+
+  <row>
+    <text>$_PGPUBTYPEEDITADDSTEP1$</text>
+  </row>
+
+  <row>
+    <component name="publicationType" title="_PGPUBLICATIONTYPEADD1">
+      <layout>
+        <row><field name="title" initialFocus="true"/></row>
+        <row><field name="description" width="400" colspan="3"/></row>
+      </layout>
+      <buttonsBottom>
+        <button name="commit" title="_PGNEXT"/>
+        <button name="cancel"/>
+      </buttonsBottom>
+    </component>
+  </row>
+
+</layout>

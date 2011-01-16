@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+
+<layout>
+
+  <row>
+    <component name="publicationType" title="_PGPUBLICATIONTYPEADD2">
+      <layout>
+        <row><field name="title" readOnly="true"/></row>
+        <row>
+          <field name="filename" readOnly="true"/>
+          <field name="formname" readOnly="true"/>
+        </row>
+        <row>
+          <island title="_PGPUBTYPETEMPLATES" colspan="4">
+            <row>
+              <field name="listGenerate"/><field name="listTemplate" readOnly="true"/>
+            </row>
+            <row>
+              <field name="fullGenerate"/><field name="fullTemplate" readOnly="true"/>
+            </row>
+            <row>
+              <field name="printGenerate"/><field name="printTemplate" readOnly="true"/>
+            </row>
+            <row>
+              <field name="rssGenerate"/><field name="rssTemplate" readOnly="true"/>
+            </row>
+            <row>
+              <field name="blockGenerate"/><field name="blockTemplate" readOnly="true"/>
+            </row>
+          </island>
+        </row>
+        <row>
+          <island title="_PGLISTSETUP" colspan="4">
+            <row><field name="listCount"/></row>
+            <row><field name="sortField1"/><field name="sortDesc1"/></row>
+            <row><field name="sortField2"/><field name="sortDesc2"/></row>
+            <row><field name="sortField3"/><field name="sortDesc3"/></row>
+          </island>
+        </row>
+      </layout>
+      <buttonsBottom>
+        <button name="commit"/>
+        <button name="cancel"/>
+      </buttonsBottom>
+    </component>
+  </row>
+
+</layout>

@@ -1,0 +1,4 @@
+SetEnvIf Request_URI "\.(htm|html|gif|css|js)$" object_is_ok=1
+Order deny,allow
+Deny from all
+Allow from env=object_is_ok

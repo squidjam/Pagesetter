@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+
+<components>
+
+<component name="pubListHeader" kind="card" title="_PGPUBLISTHEADER">
+  <fields>
+    <field name="tid"     title="_PGPUBTYPE"    type="select" options="pubTypes" mandatory="yes"/>
+    <field name="title"   title="_PGFTPUBTITLE" type="string"/>
+    <field name="author"  title="_PGAUTHOR"     type="string"/>
+    <field name="topic"   title="_PGFTTOPIC"    type="select" options="topics"/>
+    <field name="approvalState" title="_PGAPPROVALSTATE" type="select" options="approvalStates"/>
+    <field name="language"      title="_PGFTLANGUAGE"    type="select" options="language"/>
+    <field name="showDeleted"   title="_PGSHOWALL" type="bool"/>
+  </fields>
+  <actions>
+    <action name="update" kind="submit" title="_PGBTUPDATE"/>
+    <action name="clear"  kind="submit" title="_PGBTCLEAR"/>
+    <action name="new"    kind="submit" title="_PGBTNEWPUB"/>
+  </actions>
+</component>
+
+ <component name="pubList" kind="table" title="_PGPUBLIST" clickOnHeaders="true">
+  <fields>
+    <field name="title"         title="_PGFTPUBTITLE"      kind="input" type="string" readonly="yes"/>
+    <field name="approvalState" title="_PGAPPROVALSTATE"   kind="input" type="string" readonly="yes"/>
+    <field name="online"        title="_PGFTONLINE"        kind="input" type="bool"   readonly="yes"/>
+    <field name="author"        title="_PGAUTHOR"          kind="input" type="string" readonly="yes"/>
+    <field name="topic"         title="_PGFTTOPIC"         kind="input" type="string" readonly="yes"/>
+    <field name="pid"           title="_PGID"              kind="input" type="int"    readonly="yes"/>
+    <field name="revision"      title="_PGREVISION"        kind="input" type="int"    readonly="yes"/>
+  </fields>
+  <actions>
+    <action name="edit"    kind="submit" title="_PGBTEDIT"/>
+    <action name="view"    kind="submit" title="_PGBTVIEW"/>
+    <action name="history" kind="submit" title="_PGBTHISTORY"/>
+    <action name="move"    kind="submit" title="_PGBTMOVETODEPOT"/>
+    <action name="next"    kind="submit" title="_PGNEXT"/>
+    <action name="prev"    kind="submit" title="_PGPREV"/>
+  </actions>
+  <rowOperations insert="no" delete="no"/>
+ </component>
+
+</components>

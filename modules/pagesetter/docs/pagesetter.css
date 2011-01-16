@@ -1,0 +1,16 @@
+
+table.pubInfoBox
+{
+  border: 1px solid black;
+  font: arial, sans-serif;
+  font-size: 10pt;
+  background-color: #E0E0E0;
+  padding: 4px;
+}
+
+div.pagesetter-helptext
+{
+  border: 1px solid black;
+  margin: 10px 40px;
+  padding: 4px;
+}

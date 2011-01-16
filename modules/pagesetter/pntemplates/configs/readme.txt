@@ -1,0 +1,1 @@
+This directory is for Smarty cache config files.

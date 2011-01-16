@@ -1,0 +1,916 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+"http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd"
+[
+<!ENTITY mdash "&#x2014;">
+<!ENTITY hellip "&#x2026;">
+]>
+
+<chapter id="chap_linking">
+  <!-- $Id: Linking.xml,v 1.13 2007/02/08 21:30:42 jornlind Exp $ -->
+
+  <title>Linking</title>
+
+  <section id="linkingintro">
+    <title>Linking</title>
+
+    <para>Here is a list of the various Pagesetter URLs you can
+    use:</para>
+    
+    <variablelist>
+        <varlistentry>
+          <term>List: .../index.php?module=pagesetter</term>
+
+          <listitem>
+            The basic link used for Pagesetter on the frontpage. This
+            link shows the Pagesetter default publication list.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>List:
+          .../index.php?module=pagesetter&amp;tid=T&amp;topic=P&amp;lang=L</term>
+
+          <listitem>
+            The same as the above link but with various extra modifiers.
+            You can specify which publication type you want to show the list
+            for by setting tid to the type ID. In the same way you can specify
+            the topic ID as well as language (otherwise the current language
+            is used to filter the list). All the modifiers are optional and
+            can be mixed as necessary.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>View: .../index.php?module=pagesetter&amp;func=viewpub&amp;tid=T&amp;pid=P</term>
+
+          <listitem>
+            This is the link for viewing a specific publication of a
+            specific type. You need to set tid to the publication type ID and
+            pid to the publication ID.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Print:
+          .../index.php?module=pagesetter&amp;func=printpub&amp;tid=T&amp;pid=P</term>
+
+          <listitem>
+            This is the link for showing a publication as
+            "printable"&mdash;which means without the PostNuke frameset and
+            with a special template. The tid and pid parameters works as
+            above.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Edit:
+          .../index.php?module=pagesetter&amp;func=pubedit&amp;tid=T</term>
+
+          <listitem>
+            This is the link for the creation of a new publication of
+            the publication type specified in tid. You can use this link for a
+            "Submit Publication" menu entry like the standard PostNuke "Submit
+            News" link.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Edit:
+          .../index.php?module=pagesetter&amp;func=pubedit&amp;tid=T&amp;goback=1</term>
+
+          <listitem>
+            Edit link as above but redirect user to refering page after
+            edit is completed.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Edit list:
+          .../index.php?module=pagesetter&amp;func=pubList&amp;tid=T</term>
+
+          <listitem>
+            This is the link for the editor's list of publications and
+            is used for managing all the publications. As usual the tid
+            parameter identifies the publication type ID.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Inline display of uploaded file:
+          .../index.php?module=pagesetter&amp;type=file&amp;func=get&amp;tid=T&amp;pid=P&amp;fid=F</term>
+
+          <listitem>
+            This is the link for inline display of an uploaded file or image. Use T and P for type ID
+            and publication ID as in the previous examples, and F for the field name of the 
+            upload field. With this URL Pagesetter utilizes the Content-Disposition HTTP header
+            for marking the data as "inline".
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Download of uploaded file:
+          .../index.php?module=pagesetter&amp;type=file&amp;func=get&amp;tid=T&amp;pid=P&amp;fid=F&amp;download=1</term>
+
+          <listitem>
+            This is the link for download of an uploaded file or image. Use T and P for type ID
+            and publication ID as in the previous examples, and F for the field name of the 
+            upload field. With this URL Pagesetter utilizes the Content-Disposition HTTP header
+            for marking the data as "attachment".
+          </listitem>
+        </varlistentry>
+
+      </variablelist>
+
+    <para>Here is a short description of the various URL
+    parameters:</para>
+    
+    <variablelist>
+        <varlistentry>
+          <term>tid</term>
+
+          <listitem>
+            Publication type ID.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>pid</term>
+
+          <listitem>
+            Publication instance ID.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>topic</term>
+
+          <listitem>
+            PostNuke topic ID.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>lang</term>
+
+          <listitem>
+            PostNuke language ID.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>fid</term>
+
+          <listitem>
+            Pagesetter field name for display of uploaded file.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>download</term>
+
+          <listitem>
+            Request download of uploaded file instead of displaying it inline.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>tpl</term>
+
+          <listitem>
+            Template format for overriding default. Use for instance "tpl=RSS" to access a template
+            file named <filename>News-RSS.html</filename>. The template name "News" is always 
+            derived from the publication type and cannot be changed. If used with a list display
+            then Pagesetter will look for <filename>News-RSS-header.html</filename> and
+            <filename>News-RSS-footer.html</filename> also. If <filename>News-RSS-header.html</filename>
+            cannot be found then <filename>News-RSS.html</filename> is assumed to be a
+            single template list without header/footer.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>pubcnt</term>
+
+          <listitem>
+            The number of publications to show on one page. If left out
+            then the publication type default is used. If set to zero then all
+            publications are shown.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>goback</term>
+
+          <listitem>
+            Used to redirect the user back to refering page after
+            editing. Set it to 1 to enforce this redirection. If this
+            parameter is not set the user is redirected to the editors list of
+            publications.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>backurl</term>
+
+          <listitem>
+            Used to redirect the user back to a specific page after
+            editing. Set it to the complete URL (http://...) to enforce this redirection.
+            You do not need to set <varname>goback</varname> when using <varname>backurl</varname>.
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+    <para>Here you can see which parameters you can use for the different
+    functions (with less used functions included):</para>
+
+    <table>
+      <title>URL parameters</title>
+      <tgroup cols="8">
+        <tbody>
+          <row>
+            <entry><emphasis role="bold">Function</emphasis></entry>
+
+            <entry><emphasis role="bold">tid</emphasis></entry>
+
+            <entry><emphasis role="bold">pid</emphasis></entry>
+
+            <entry><emphasis role="bold">topic</emphasis></entry>
+
+            <entry><emphasis role="bold">lang</emphasis></entry>
+
+            <entry><emphasis role="bold">tpl</emphasis></entry>
+
+            <entry><emphasis role="bold">pubcnt</emphasis></entry>
+
+            <entry><emphasis role="bold">Description</emphasis></entry>
+          </row>
+
+          <row>
+            <entry><emphasis>None</emphasis></entry>
+
+            <entry>x</entry>
+
+            <entry></entry>
+
+            <entry>x</entry>
+
+            <entry>x</entry>
+
+            <entry>x</entry>
+
+            <entry>x</entry>
+
+            <entry>Normal publication list</entry>
+          </row>
+
+          <row>
+            <entry>viewpub</entry>
+
+            <entry>x</entry>
+
+            <entry>x</entry>
+
+            <entry></entry>
+
+            <entry></entry>
+
+            <entry>x</entry>
+
+            <entry></entry>
+
+            <entry>Full publication display</entry>
+          </row>
+
+          <row>
+            <entry>printpub</entry>
+
+            <entry>x</entry>
+
+            <entry>x</entry>
+
+            <entry></entry>
+
+            <entry></entry>
+
+            <entry>x</entry>
+
+            <entry></entry>
+
+            <entry>Full publication display, no frames</entry>
+          </row>
+
+          <row>
+            <entry>dumppub</entry>
+
+            <entry>x</entry>
+
+            <entry>x</entry>
+
+            <entry></entry>
+
+            <entry></entry>
+
+            <entry>x</entry>
+
+            <entry></entry>
+
+            <entry>Full publication display, no surrounding html tags</entry>
+          </row>
+
+          <row>
+            <entry>xmlpub</entry>
+
+            <entry>x</entry>
+
+            <entry>x</entry>
+
+            <entry></entry>
+
+            <entry></entry>
+
+            <entry>x</entry>
+
+            <entry></entry>
+
+            <entry>Full publication display, adds content-type
+            text/xml</entry>
+          </row>
+
+          <row>
+            <entry>pubedit</entry>
+
+            <entry>x</entry>
+
+            <entry>x</entry>
+
+            <entry></entry>
+
+            <entry></entry>
+
+            <entry></entry>
+
+            <entry></entry>
+
+            <entry>Edit publication</entry>
+          </row>
+
+          <row>
+            <entry>publist</entry>
+
+            <entry>x</entry>
+
+            <entry></entry>
+
+            <entry></entry>
+
+            <entry></entry>
+
+            <entry></entry>
+
+            <entry></entry>
+
+            <entry>Editor's list of publiations</entry>
+          </row>
+
+          <row>
+            <entry>printlist</entry>
+
+            <entry>x</entry>
+
+            <entry></entry>
+
+            <entry>x</entry>
+
+            <entry>x</entry>
+
+            <entry>x</entry>
+
+            <entry>x</entry>
+
+            <entry>Display list of publications, no frames</entry>
+          </row>
+
+          <row>
+            <entry>dumplist</entry>
+
+            <entry>x</entry>
+
+            <entry></entry>
+
+            <entry>x</entry>
+
+            <entry>x</entry>
+
+            <entry>x</entry>
+
+            <entry>x</entry>
+
+            <entry>Display list of publications, no surrounding html
+            tags</entry>
+          </row>
+
+          <row>
+            <entry>xmllist</entry>
+
+            <entry>x</entry>
+
+            <entry></entry>
+
+            <entry>x</entry>
+
+            <entry>x</entry>
+
+            <entry>x</entry>
+
+            <entry>x</entry>
+
+            <entry>Display list of publications, adds content-type
+            text/xml</entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
+
+    <para>Here is a list of the templates required for the various
+    options:</para>
+
+    <table>
+      <title>Template overview by URL function</title>
+      <tgroup cols="4">
+        <tbody>
+          <row>
+            <entry><emphasis role="bold">Function</emphasis></entry>
+
+            <entry><emphasis role="bold">Header / footer</emphasis></entry>
+
+            <entry><emphasis role="bold">Def. Template</emphasis></entry>
+
+            <entry><emphasis role="bold">Description</emphasis></entry>
+          </row>
+
+          <row>
+            <entry><emphasis>None</emphasis></entry>
+
+            <entry>x</entry>
+
+            <entry>list</entry>
+
+            <entry>Normal publication list</entry>
+          </row>
+
+          <row>
+            <entry>viewpub</entry>
+
+            <entry></entry>
+
+            <entry>full</entry>
+
+            <entry>Full publication display</entry>
+          </row>
+
+          <row>
+            <entry>printpub</entry>
+
+            <entry></entry>
+
+            <entry>print</entry>
+
+            <entry>Full publication display, no frames</entry>
+          </row>
+
+          <row>
+            <entry>dumppub</entry>
+
+            <entry></entry>
+
+            <entry>print</entry>
+
+            <entry>Full publication display, no surrounding html tags</entry>
+          </row>
+
+          <row>
+            <entry>xmlpub</entry>
+
+            <entry></entry>
+
+            <entry>xml</entry>
+
+            <entry>Full publication display, adds content-type
+            text/xml</entry>
+          </row>
+
+          <row>
+            <entry>pubedit</entry>
+
+            <entry></entry>
+
+            <entry>-</entry>
+
+            <entry>Edit publication</entry>
+          </row>
+
+          <row>
+            <entry>publist</entry>
+
+            <entry></entry>
+
+            <entry>-</entry>
+
+            <entry>Editor's list of publiations</entry>
+          </row>
+
+          <row>
+            <entry>printlist</entry>
+
+            <entry>x</entry>
+
+            <entry>list</entry>
+
+            <entry>Display list of publications, no frames</entry>
+          </row>
+
+          <row>
+            <entry>dumplist</entry>
+
+            <entry>x</entry>
+
+            <entry>list</entry>
+
+            <entry>Display list of publications, no surrounding html
+            tags</entry>
+          </row>
+
+          <row>
+            <entry>xmllist</entry>
+
+            <entry>x</entry>
+
+            <entry>list</entry>
+
+            <entry>Display list of publications, adds content-type
+            text/xml</entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
+  </section>
+
+  <section id="linkingsorting">
+    <title>Sorting</title>
+
+    <para>With Pagesetter you can sort the various lists of publications via
+    restrictions in URL. To do so you specify "orderby=field-list". The list
+    of fields is separated by commas and you refer to the field names as you
+    would do in a template. Either as <varname>fieldName</varname> or as 
+    <varname>core.fieldName</varname>. The default sorting direction is ascending, 
+	   but descending can be specified with a ":desc" appended to a field name.</para>
+
+	<example>
+  	<title>Ordering by core fields</title>
+  	<variablelist>
+  		<varlistentry>
+            <term>orderby=core.author,title</term>
+            <listitem>Order by author and title.</listitem>
+  		</varlistentry>
+
+  		<varlistentry>
+            <term>orderby=core.hitCount:desc</term>
+            <listitem>Order by hitCount descending, neat for displaying a &quot;most read
+  					articles&quot; box.</listitem>
+  		</varlistentry>
+    </variablelist>
+	</example>
+
+	<example>
+  	<title>Ordering by category fields and category field properties</title>
+
+  	<variablelist>
+  		<varlistentry>
+            <term>orderby=category</term>
+            <listitem>Order by the sequence defined in the category list.</listitem>
+  		</varlistentry>
+
+  		<varlistentry>
+            <term>orderby=category.value</term>
+            <listitem>Order by the value defined in the category list.</listitem>
+  		</varlistentry>
+
+  		<varlistentry>
+            <term>orderby=category.title</term>
+            <listitem>Order by the title defined in the category list. </listitem>
+  		</varlistentry>
+
+  		<varlistentry>
+            <term>orderby=category.fullTitle</term>
+            <listitem>Order by the full title (e.g. Books:Art:Painting).</listitem>
+  		</varlistentry>
+
+  		<varlistentry>
+            <term>orderby=category,core.created</term>
+            <listitem>Order by the sequence defined in the category list and by the date
+  						and time the publication was created.</listitem>
+  		</varlistentry>
+  	</variablelist>
+	</example>
+
+  </section>
+
+  <section id="linkingfiltering">
+    <title>Filtering</title>
+
+    <para>It is also possible to filter the various lists of publications via
+    restrictions in the URL. To add a filter you simply specify "filter=expr" in
+    the URL where expr is a filter expression. Filter expressions are written
+    as comma-separated lists of filter terms where each term consists of a
+    field name, an operator, and an operand separated by colons or hats (^). A single
+    filter combines all it's expressions using an AND-operator (making it a
+    conjunction). The possible filter operators are:</para>
+    
+    <variablelist>
+        <varlistentry>
+          <term>eq</term>
+
+          <listitem>
+            Equal.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>ne</term>
+
+          <listitem>
+            Not equal.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>lt</term>
+
+          <listitem>
+            Less than.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>le</term>
+
+          <listitem>
+            Less than or equal.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>gt</term>
+
+          <listitem>
+            Greater than.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>ge</term>
+
+          <listitem>
+            Greater than or equal.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>like</term>
+
+          <listitem>
+            Using database's LIKE operator to match operand as
+            '%operand%'.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>null</term>
+
+          <listitem>
+            Test for field being NULL. Should be used without an
+            operand&mdash;like filter=FieldName:null.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>nottnull</term>
+
+          <listitem>
+            Test for field being NOT NULL. Should be used without an
+            operand&mdash;like filter=FieldName:notnull.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>sub</term>
+
+          <listitem>
+            Test for a list field being equal to or an descendant of the
+            operand. Only valid for category fields.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>rel</term>
+
+          <listitem>
+            "Related to"&mdash;Test for a relationship field being related to a specific publication item ID.
+            For instance "department:rel:PID", where <varname>PID</varname> is a
+            publication ID. The "department" field would normally be a field in publication
+            type T1 (for instance an "Employee", whereas the PID would be from another 
+            publication type T2 (for instance a "Department").
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>nrel</term>
+
+          <listitem>
+            "Not related to"&mdash;The opposite of the "rel" operator (what ever that means).
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+    <para>The right hand side operands in a filter expression may contain
+    "@now" which will expand to the current date. This may although not be
+    that usefull since there is no support yet for plus or minus
+    operators.</para>
+
+    <caution>Beware that URL variables are separated with ampersands "&amp;".
+    Ampersands are therefore also used to separate different filters on the
+    URL. But multiple filters are OR-ed together <emphasis>which is opposite
+    the usual interpretation of the ampersand!</emphasis></caution>
+
+    <para>Multiple filters can be combined on the URL using "filterN=expr"
+    where N is an integer starting from 1. Multiple filters are combined using
+    an OR-operator (putting the whole filter language in a disjunctive normal
+    form).</para>
+    
+    <example>
+      <title>Filtering</title>
+      <variablelist>
+        <varlistentry>
+          <term>filter=title:like:pagesetter</term>
+
+          <listitem>
+            Find all the publications where the title field contains the
+            word "pagesetter".
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>filter=age:ge:18</term>
+
+          <listitem>
+            Find all the publications where the age field is greater
+            than or equal to 18.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>filter=age:ge:18,country:eq:DK</term>
+
+          <listitem>
+            Find all the publications where the age field is greater
+            than or equal to 18 and the country is equal to "DK".
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>filter1=age:ge:18,country:eq:DK&amp;filter2=country:eq:NO</term>
+
+          <listitem>
+            Find all the publications where (1) the age field is greater
+            than or equal to 18 and the country is equal to "DK", or (2) the
+            country is equal to "NO".
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </example>
+
+    <para>Now assume we have a book category as shown in the following image
+    and use this in a book review publication with a field named "category"
+    (using the category type of course).</para>
+    
+      <figure>
+        <title>Example categories used for books</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="img/bookGenres.jpg" />
+          </imageobject>
+        </mediaobject>
+      </figure>
+
+    <para>Then we can select various sub-sets of the reviews with the following
+    examples.</para>
+
+    <example>
+      <title>Filtering by category fields</title>
+      <variablelist>
+        <varlistentry>
+          <term>filter=category:eq:8</term>
+
+          <listitem>
+            Find all the reviews of category "Fiction"&mdash;but not
+            sub-sets of that. <emphasis>The value to compare with is
+            the category ID!</emphasis>.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>filter=category:sub:8</term>
+
+          <listitem>
+            Find all the reviews of category "Fiction" and any sub-sets
+            of that (Science Fiction and Classics). <emphasis>The value 
+            to compare with is the category ID!</emphasis>.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>filter1=category:sub:11&amp;filter2=category:eq:23</term>
+
+          <listitem>
+            Find all the art(11) and drinks(23) reviews, but not
+            non-alcoholic drinks (since we use the eq operator instead of sub
+            operator). <emphasis>The value to compare with is
+            the category ID!</emphasis>.
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </example>
+
+    <para>It is furthermore possible to match all items using the special list
+    value "top", for instance in a filter like
+    "filter=category:sub:top".</para>
+
+    <section>
+    <title>Indirect Operands</title>
+
+    <para>The above setup is fine as long as you are using hard-coded URLs.
+    But when you want to let the user enter something in a form and then
+    filter by that, you need to refer to other URL variables in the filter.
+    Assume for instance you want to filter a keywords field using the like
+    operator based on something the user enters in a form. The user input is
+    entered in a HTML input field named "keyword". Now we can refer to the URL
+    variable as "$keyword" in a filter like
+    "filter=keywordField:like:$keyword".</para>
+
+    <figure>
+      <title>Indirect operands used in input formular</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="img/filter1.jpg" />
+        </imageobject>
+      </mediaobject>
+    </figure>
+
+    <para>An example template using this feature could look like this for the
+    list-header template of a knowledge base:</para>
+
+    <programlisting>&lt;div class="pn-pagetitle"&gt;Knowledge Base&lt;/div&gt;
+
+&lt;form action="&lt;!--[pnmodurl modname="pagesetter" tid=$core.tid]--&gt;" method="POST"&gt;
+ &lt;table&gt;
+  &lt;tr&gt;&lt;td&gt;Keyword:&lt;/td&gt;&lt;td&gt;&lt;input type="text" name="keyword"&gt;&lt;/td&gt;&lt;tr&gt;
+  &lt;tr&gt;&lt;td&gt;&lt;input type="submit" value="Update"&gt;&lt;/td&gt;&lt;tr&gt;
+ &lt;/table&gt;
+ &lt;input type="hidden" name="filter"
+        value="keywordField:like:$keyword"&gt;
+&lt;/form&gt;
+
+&lt;ul&gt;</programlisting>
+    </section>
+  </section>
+
+  <section id="linkingsettingdefaults">
+    <title>Setting Defaults for Editor</title>
+
+    <para>You can assign default values to the editor when creating a new
+    publication. Simply add "set_xxx=yyy" to the URL and the user defined
+    variable <varname>xxx</varname> will be set to the default value yyy instead of being empty.
+    Use category ID for category fields. Example: assume you have a News
+    publication and a Project publication. The News publication can be
+    categorized by some category. The same goes for your projects. On each
+    project page you can now add a "Submit Related News" link that presets the
+    category of the News item to that of the current project. To do so your
+    Project template must contain something like this:</para>
+    
+    <programlisting>&lt;div class="pn-pagetitle"&gt;Projects&lt;/div&gt;
+
+...
+
+&lt;a href="&lt;!--[modurl module=pagesetter func=pubedit tid=T
+                     set_category=$category.id]--&gt;"&gt;...&lt;/a&gt;
+
+...</programlisting>
+
+    <section id="linkingsettingtopic">
+      <title>Setting Default Topic</title>
+      <para>The default topic is, for no really good reason, handled specially. You can set the topic
+      via the URL variable <varname>topicid</varname>. The value must be a topic id.</para>
+    </section>
+
+  </section>
+</chapter>

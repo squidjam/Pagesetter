@@ -1,0 +1,5 @@
+Pagesetter (C) 2003 Jorn Wildt
+==============================
+
+KNOWN BUGS
+Please read the appendix in the manual.

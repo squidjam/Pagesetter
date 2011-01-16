@@ -1,0 +1,11 @@
+<!--[* Smarty *]-->
+<!--[if $core.title != '' ]-->
+ You are trying to view the publication titled "<!--[$core.title]-->", but no template has been created for publication type
+ <!--[$core.tid]--> (format '<!--[$core.format]-->').
+<br>
+Please ask administrator to create a template for this publication type.<p>
+<!--[else]-->
+ No template found
+<!--[/if]-->
+<br/><br/>
+Expected template filename: <strong><!--[$core.templateFilename]--></strong>

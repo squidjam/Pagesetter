@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+
+<layout>
+
+  <row>
+    <component name="publicationType" title="_PGPUBLICATIONTYPEADD1">
+      <layout>
+        <row><field name="title" readonly="true"/></row>
+        <row><field name="description" width="400" colspan="3" readonly="true"/></row>
+      </layout>
+    </component>
+  </row>
+
+  <row>
+    <text>$_PGPUBTYPEEDITADDSTEP2$</text>
+  </row>
+
+  <row>
+    <text>$_PGPUBTYPEEDITADDSTEP2NOTE$</text>
+  </row>
+  
+  <row>
+    <component name="publicationFields">
+      <columns>
+        <field name="name"         width="65"/>
+        <field name="title"        width="65"/>
+        <field name="description"  width="250"/>
+        <field name="type"         width="100"/>
+        <field name="isTitle"      width="60"/>
+        <field name="isMandatory"  width="60"/>
+        <field name="isSearchable" width="60"/>
+        <field name="isPageable"   width="60"/>
+      </columns>
+
+      <buttonsBottom>
+        <button name="commit" title="_PGNEXT"/>
+        <button name="cancel"/>
+      </buttonsBottom>
+    </component>
+  </row>
+
+  <row>
+    <text>$_PGPUBTYPEEDITCOLINFO$</text>
+  </row>
+
+</layout>

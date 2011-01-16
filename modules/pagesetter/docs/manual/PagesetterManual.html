@@ -1,0 +1,1704 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Pagesetter 6.3 manual</title><link rel="stylesheet" href="docbook.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.67.2"><meta name="description" content="This manual documents how the web publishing tool Pagesetter for PostNuke works. Pagesetter is a publishing
+      module that allows the PostNuke users to create web pages from structured data, with the data structure
+      and output templates defined by the PostNuke administrator."><meta name="keywords" content="Pagesetter, PostNuke, Publishing"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="book" lang="en-US"><div class="titlepage"><div><div><h1 class="title"><a name="id4482096"></a>Pagesetter 6.3 manual</h1></div><div><div class="authorgroup"><div class="author"><h3 class="author"><span class="firstname">Jørn</span> <span class="surname">Wildt</span></h3></div><p class="othercredit"><span class="contrib">DocBook conversion</span>: <span class="firstname">Axel</span> <span class="surname">Guckelsberger</span></p></div></div><div><p class="releaseinfo">Version 6.3-1</p></div><div><p class="copyright">Copyright © 2004 The Pagesetter Development Team</p></div><div><div class="legalnotice"><a name="id4699241"></a><p>Permission is granted to copy, distribute and/or modify this
+      document under the terms of the GNU Free Documentation License, Version
+      1.2 or any later version published by the Free Software Foundation, with
+      no Invariant Sections, no Front-Cover Texts and no Back-Cover Texts. A
+      copy of the license can be obtained from the <a href="http://www.gnu.org/licenses/fdl.txt" target="_top">Free Software
+      foundation</a></p></div></div><div><div class="abstract"><p class="title"><b>Abstract</b></p><p>This manual documents how the web publishing tool Pagesetter for PostNuke works. Pagesetter is a publishing
+      module that allows the PostNuke users to create web pages from structured data, with the data structure
+      and output templates defined by the PostNuke administrator.</p></div></div></div><hr></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="chapter"><a href="#chap_introduction">1. Introduction</a></span></dt><dd><dl><dt><span class="section"><a href="#introductionstart">Introduction</a></span></dt><dt><span class="section"><a href="#introductionfeatures">Features</a></span></dt><dt><span class="section"><a href="#introductioninstallation">Installation</a></span></dt><dt><span class="section"><a href="#introductionfolder">Organizing Publications</a></span></dt><dt><span class="section"><a href="#introductionprinting">Printing This Manual</a></span></dt></dl></dd><dt><span class="chapter"><a href="#chap_tutorial">2. Tutorial</a></span></dt><dd><dl><dt><span class="section"><a href="#tutstart">Tutorial</a></span></dt><dt><span class="section"><a href="#tutcreatinst">Creating a Publication Instance</a></span></dt><dt><span class="section"><a href="#tuttemplates">Templates</a></span></dt><dt><span class="section"><a href="#tutfrontpage">Putting the News on the Frontpage</a></span></dt></dl></dd><dt><span class="chapter"><a href="#chap_permissions">3. Permissions</a></span></dt><dd><dl><dt><span class="section"><a href="#permissionsintro">Permissions</a></span></dt><dt><span class="section"><a href="#permissionstopic">Topic Based Permissions</a></span></dt><dt><span class="section"><a href="#permissionssingle">Permissions for Single Publications</a></span></dt></dl></dd><dt><span class="chapter"><a href="#chap_editingpubs">4. Editing Publications</a></span></dt><dd><dl><dt><span class="section"><a href="#editpubsintro">Editing Publications</a></span></dt><dd><dl><dt><span class="section"><a href="#editpubsinformation">Publish information</a></span></dt><dt><span class="section"><a href="#editpubslocation">Location</a></span></dt><dt><span class="section"><a href="#editpubsauthor">Author Information</a></span></dt><dt><span class="section"><a href="#editpubssetting">Setting Editor Defaults</a></span></dt></dl></dd></dl></dd><dt><span class="chapter"><a href="#chap_pubtypes">5. Publication Types</a></span></dt><dd><dl><dt><span class="section"><a href="#pubtypesstart">Publication Types</a></span></dt><dt><span class="section"><a href="#pubtypesfieldtypes">Field Types</a></span></dt><dd><dl><dt><span class="section"><a href="#id4702522">Upload handling</a></span></dt></dl></dd><dt><span class="section"><a href="#pubtypespubsetup">Publication Setup</a></span></dt><dt><span class="section"><a href="#pubtypescategories">Categories</a></span></dt></dl></dd><dt><span class="chapter"><a href="#chap_linking">6. Linking</a></span></dt><dd><dl><dt><span class="section"><a href="#linkingintro">Linking</a></span></dt><dt><span class="section"><a href="#linkingsorting">Sorting</a></span></dt><dt><span class="section"><a href="#linkingfiltering">Filtering</a></span></dt><dd><dl><dt><span class="section"><a href="#id4704975">Indirect Operands</a></span></dt></dl></dd><dt><span class="section"><a href="#linkingsettingdefaults">Setting Defaults for Editor</a></span></dt><dd><dl><dt><span class="section"><a href="#linkingsettingtopic">Setting Default Topic</a></span></dt></dl></dd></dl></dd><dt><span class="chapter"><a href="#chap_templates">7. Templates</a></span></dt><dd><dl><dt><span class="section"><a href="#templatesintro">Templates</a></span></dt><dt><span class="section"><a href="#templatesvarstart">Template Variables</a></span></dt><dd><dl><dt><span class="section"><a href="#templatesvarlistitems">Using Categories</a></span></dt><dt><span class="section"><a href="#templatesvarpageable">Using Pageable Fields</a></span></dt><dt><span class="section"><a href="#id4703438">Using upload fields</a></span></dt></dl></dd><dt><span class="section"><a href="#templatesvarhitcounts">Showing Hit Counts</a></span></dt><dt><span class="section"><a href="#templatesvaredit">Showing "Edit This" Link</a></span></dt><dt><span class="section"><a href="#templatessinglemultiplestart">Single and Multiple List Templates</a></span></dt><dd><dl><dt><span class="section"><a href="#templatessingle">Single Template</a></span></dt><dt><span class="section"><a href="#templatesmultiple">Multiple Templates</a></span></dt></dl></dd><dt><span class="section"><a href="#templatesthemespecific">Theme Specific Templates</a></span></dt><dt><span class="section"><a href="#templatesoperations">Template Operations</a></span></dt><dt><span class="section"><a href="#templatesauto">Auto Generated Templates</a></span></dt><dt><span class="section"><a href="#templatespnrenderplugins">pnRender Plugins</a></span></dt><dt><span class="section"><a href="#templatesrelations">Relating Items to Each Other</a></span></dt><dt><span class="section"><a href="#templatesfolder">Folder Templates</a></span></dt></dl></dd><dt><span class="chapter"><a href="#chap_relations">8. Publication Relations</a></span></dt><dd><dl><dt><span class="section"><a href="#relationsintro"></a></span></dt><dt><span class="section"><a href="#relationspublication">Parent-Child Relations&#8212;The Publication Field</a></span></dt><dt><span class="section"><a href="#relationsrelation">Relating to multiple publication instances</a></span></dt><dt><span class="section"><a href="#relationsbrief">Some pitfalls concerning the relationship feature</a></span></dt></dl></dd><dt><span class="chapter"><a href="#chap_postnukefeatures">9. PostNuke Features</a></span></dt><dd><dl><dt><span class="section"><a href="#pnfeatureswaiting">Waiting Block</a></span></dt><dt><span class="section"><a href="#pnfeatureslistblock">List Block</a></span></dt><dt><span class="section"><a href="#pnfeaturesoldstories">Old Stories Block</a></span></dt><dt><span class="section"><a href="#pnfeaturespubblock">Publication Block</a></span></dt><dt><span class="section"><a href="#pnfeaturesrandomblock">Random Publication Block</a></span></dt><dt><span class="section"><a href="#pnfeaturescatbased">Category Based Menu Block</a></span></dt><dt><span class="section"><a href="#pnfeatureshooks">PostNuke Hooks</a></span></dt><dt><span class="section"><a href="#pnfeaturessearch">PostNuke Searching</a></span></dt><dt><span class="section"><a href="#pnfeaturesshorturls">Short URLs</a></span></dt><dt><span class="section"><a href="#pnfeaturescaching">Caching in pnRender</a></span></dt><dt><span class="section"><a href="#pnfeaturesfolder">Organizing Publications</a></span></dt></dl></dd><dt><span class="chapter"><a href="#chap_extrafeatures">10. Extra Features</a></span></dt><dd><dl><dt><span class="section"><a href="#extrafeaturesrssfeeds">RSS Feeds</a></span></dt><dt><span class="section"><a href="#extrafeaturestitlehack">Title-Hack</a></span></dt><dt><span class="section"><a href="#extrafeaturesfeproc">FEProc Integration</a></span></dt><dd><dl><dt><span class="section"><a href="#extrafeaturesfeprocstart">FEProc Integration</a></span></dt><dt><span class="section"><a href="#extrafeaturesfeprochandler">Pagesetter FEProc Handler</a></span></dt><dt><span class="section"><a href="#extrafeaturesfeexample">Example - An Event Registration Setup</a></span></dt></dl></dd></dl></dd><dt><span class="chapter"><a href="#chap_extratools">11. Extra Tools</a></span></dt><dd><dl><dt><span class="section"><a href="#extraimport">Importing Data</a></span></dt><dd><dl><dt><span class="section"><a href="#importnews">Importing From PostNuke News</a></span></dt><dt><span class="section"><a href="#extraimportce">Importing From ContentExpress</a></span></dt><dt><span class="section"><a href="#extraimportpc">Importing From PostCalendar</a></span></dt><dt><span class="section"><a href="#extraimporting">Importing Pagesetter Publication Types</a></span></dt></dl></dd><dt><span class="section"><a href="#extraexporting">Exporting Pagesetter Publication Types</a></span></dt></dl></dd><dt><span class="chapter"><a href="#chap_workflows">12. Workflows</a></span></dt><dd><dl><dt><span class="section"><a href="#wfdefinition">Definition</a></span></dt><dt><span class="section"><a href="#wfstandardwfstart">Standard workflows</a></span></dt></dl></dd><dt><span class="chapter"><a href="#chap_customisation">13. Customisation</a></span></dt><dd><dl><dt><span class="section"><a href="#custcss">Style Sheets</a></span></dt><dt><span class="section"><a href="#custinputforms">Input Forms Layout</a></span></dt><dt><span class="section"><a href="#customplugin">Input plugins</a></span></dt><dt><span class="section"><a href="#custhtmlarea">HTMLArea Editor</a></span></dt><dt><span class="section"><a href="#id4707674">Internal templates</a></span></dt><dt><span class="section"><a href="#custpostsubmit">Post Submit Handler</a></span></dt></dl></dd><dt><span class="part"><a href="#appendix">I. Appendix</a></span></dt><dd><dl><dt><span class="appendix"><a href="#chap_credits">A. Useful Hints</a></span></dt><dt><span class="appendix"><a href="#chap_credits">B. Credits</a></span></dt><dt><span class="appendix"><a href="#gfdl">C. GNU Free Documentation License</a></span></dt><dd><dl><dt><span class="section"><a href="#gfdl-0">PREAMBLE</a></span></dt><dt><span class="section"><a href="#gfdl-1">APPLICABILITY AND DEFINITIONS</a></span></dt><dt><span class="section"><a href="#gfdl-2">VERBATIM COPYING</a></span></dt><dt><span class="section"><a href="#gfdl-3">COPYING IN QUANTITY</a></span></dt><dt><span class="section"><a href="#gfdl-4">MODIFICATIONS</a></span></dt><dt><span class="section"><a href="#gfdl-5">COMBINING DOCUMENTS</a></span></dt><dt><span class="section"><a href="#gfdl-6">COLLECTIONS OF DOCUMENTS</a></span></dt><dt><span class="section"><a href="#gfdl-7">AGGREGATION WITH INDEPENDENT WORKS</a></span></dt><dt><span class="section"><a href="#gfdl-8">TRANSLATION</a></span></dt><dt><span class="section"><a href="#gfdl-9">TERMINATION</a></span></dt><dt><span class="section"><a href="#gfdl-10">FUTURE REVISIONS OF THIS LICENSE</a></span></dt><dt><span class="section"><a href="#gfdl-addendum">ADDENDUM: How to use this License for
+  your documents</a></span></dt></dl></dd></dl></dd></dl></div><div class="list-of-figures"><p><b>List of Figures</b></p><dl><dt>1.1. <a href="#id4698997">Screenshot illustrating a News item constructed with Pagesetter</a></dt><dt>4.1. <a href="#id4698730">Editing publications - user data</a></dt><dt>4.2. <a href="#id4698757">Editing publications - meta data</a></dt><dt>5.1. <a href="#id4701203">Publication type editing.</a></dt><dt>5.2. <a href="#id4702669">Editing categories</a></dt><dt>6.1. <a href="#id4704877">Example categories used for books</a></dt><dt>6.2. <a href="#id4704993">Indirect operands used in input formular</a></dt><dt>9.1. <a href="#id4706572">Example menu block based on a category setup</a></dt><dt>11.1. <a href="#id4699705">Various import tools.</a></dt></dl></div><div class="list-of-tables"><p><b>List of Tables</b></p><dl><dt>3.1. <a href="#id4700275">Permission levels</a></dt><dt>3.2. <a href="#id4700516">Examples for permission setups</a></dt><dt>3.3. <a href="#id4698430">Permission setup for access to a single publication item.</a></dt><dt>6.1. <a href="#id4702898">URL parameters</a></dt><dt>6.2. <a href="#id4701989">Template overview by URL function</a></dt></dl></div><div class="list-of-examples"><p><b>List of Examples</b></p><dl><dt>2.1. <a href="#id4700042">Example template for News item.</a></dt><dt>6.1. <a href="#id4704482">Ordering by core fields</a></dt><dt>6.2. <a href="#id4704518">Ordering by category fields and category field properties</a></dt><dt>6.3. <a href="#id4704803">Filtering</a></dt><dt>6.4. <a href="#id4704902">Filtering by category fields</a></dt><dt>7.1. <a href="#id4703514">Example template with upload field (named "document").</a></dt><dt>7.2. <a href="#id4706217">Relating items by topic.</a></dt><dt>7.3. <a href="#id4706242">Parent/child relations.</a></dt><dt>7.4. <a href="#templatemanytomanyexample">Many-to-Many relations.</a></dt><dt>9.1. <a href="#id4705314">Example of search form taken from the standard PostNukeSilver theme.</a></dt><dt>13.1. <a href="#id4707661">Adding a CSS class selector to HTMLArea's right-click
+    context menu.</a></dt></dl></div><div class="chapter" lang="en-US"><div class="titlepage"><div><div><h2 class="title"><a name="chap_introduction"></a>Chapter 1. Introduction</h2></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#introductionstart">Introduction</a></span></dt><dt><span class="section"><a href="#introductionfeatures">Features</a></span></dt><dt><span class="section"><a href="#introductioninstallation">Installation</a></span></dt><dt><span class="section"><a href="#introductionfolder">Organizing Publications</a></span></dt><dt><span class="section"><a href="#introductionprinting">Printing This Manual</a></span></dt></dl></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="introductionstart"></a>Introduction</h2></div></div></div><p>Pagesetter is a publishing
+    module that allows the PostNuke users to create web pages from structured data, with the data structure
+    and output templates defined by the PostNuke administrator. The goal is
+    ultimately to be able to define all the kinds of publications that
+    normally require different PostNuke modules. The list includes:</p><div class="itemizedlist"><ul type="disc"><li><span class="emphasis"><em>News</em></span> items with a headline, teaser text,
+        news text, and an associated image.
+      </li><li><span class="emphasis"><em>FAQ</em></span> items consisting of a question and an
+        answer.
+      </li><li><span class="emphasis"><em>Recipes</em></span> with a title, a list of
+        ingredients, and instructions.
+      </li><li><span class="emphasis"><em>Task lists</em></span></li><li><span class="emphasis"><em>Course descriptions</em></span></li><li><span class="emphasis"><em>Music collections</em></span></li><li><p>&#8230; and so on.</p></li></ul></div><div class="figure"><a name="id4698997"></a><p class="title"><b>Figure 1.1. Screenshot illustrating a News item constructed with Pagesetter</b></p><div class="mediaobject"><img src="img/pubTemplate.jpg" alt="Screenshot illustrating a News item constructed with Pagesetter"></div></div><p>See the <code class="filename">readme.txt</code> for installation instructions.</p></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="introductionfeatures"></a>Features</h2></div></div></div><div class="itemizedlist"><ul type="disc"><li>
+        User defined publication types with a variable number of input
+        fields of many different kinds.
+      </li><li>
+        Templatable output lets the adminstrator layout the publications
+        in almost any way he want using PostNuke's pnRender system.
+      </li><li>
+        The what-you-see-is-what-you-get (WYSIWYG) editor htmlArea
+        simplifies input&#8212;no need for knowing HTML codes.
+      </li><li>
+        Multiple nested categories can be created and used for input fields.
+      </li><li>
+        Multi-page entries.
+      </li><li>
+        Flexible workflow system with plugins to extend it.
+      </li><li>
+        Revision control&#8212;Pagesetter stores the complete history of
+        all changes to any publication.
+      </li><li>
+        File uploads can be associated with all publications. With this
+        feature you can design your own document management system,
+        complete with workflows and revision control, or just upload
+        images with your News items.
+      </li><li>
+        Dates can be selected with a built-in date picker.
+      </li><li>
+        Top performance with cached output.
+      </li><li>
+        Two level approval control of publishing.
+      </li><li>
+        Publications can be timed with a start and end date.
+      </li><li>
+        PostNuke homepage can be set to show any list of publications
+        you want.
+      </li><li>
+        Pagesetter is PostNuke hooks compatible which means you can
+        enable comments, scoring, Auto-links and many other features with just
+        a few clicks.
+      </li></ul></div></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="introductioninstallation"></a>Installation</h2></div></div></div><p>Please read the "install.txt" file for instructions.</p></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="introductionfolder"></a>Organizing Publications</h2></div></div></div><p>Pagesetter publications can be organized in a folder structure with the
+    help of another module "Folder" from www.elfisk.dk. Without this module you
+    can browse through linear lists of publications with Pagesetter itself.</p><a href="#pnfeaturesfolder" title="Organizing Publications">Read more in the PostNuke Features chapter</a>.
+  </div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="introductionprinting"></a>Printing This Manual</h2></div></div></div><p>The CSS styles in the HTML version has been carefully selected to generate
+    a nicely formatted printout. This has although only been tested on the
+    Internet Explorer 6.0. If you choose to print the manual then please
+    remember to set the paper format to A4 portrait. You should have left and
+    right margins set to 5mm.</p></div></div><div class="chapter" lang="en-US"><div class="titlepage"><div><div><h2 class="title"><a name="chap_tutorial"></a>Chapter 2. Tutorial</h2></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#tutstart">Tutorial</a></span></dt><dt><span class="section"><a href="#tutcreatinst">Creating a Publication Instance</a></span></dt><dt><span class="section"><a href="#tuttemplates">Templates</a></span></dt><dt><span class="section"><a href="#tutfrontpage">Putting the News on the Frontpage</a></span></dt></dl></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="tutstart"></a>Tutorial</h2></div></div></div><p>Let us start with a quick tutorial showing how to setup your very
+    first Pagesetter publication. For this we use a News type as an example.
+    With this publication type we will be able to write News with a title,
+    a short header, full text, and an associated image selected from Mediashare</p><p>Make sure you have admin rights on your PostNuke site and then goto
+    the Pagesetter administration page. Here you will see a list of
+    publication types. It should look like this:</p><div class="informalfigure"><div class="mediaobject"><img src="img/pubTypeList.jpg"></div></div><p>Pagesetter has, as you can see, created a PN-News publication type
+    for you already. You can ignore this or use it as a reference for this tutorial.
+    When you are finished with the tutorial you should have a publication type more or
+    less identical to the predefined.</p><p>Now click "New Publication Type" which will bring you to this
+    window where you give a name to your new publication type and then create it:</p><div class="informalfigure"><div class="mediaobject"><img src="img/pubTypeCreate1.jpg"></div></div><p>Click "Next" which will bring you to the window below where you can start adding
+    the input fields you want for your publication type:</p><div class="informalfigure"><div class="mediaobject"><img src="img/pubTypeCreate2.jpg"></div></div><p>Use the green and red +/- symbols to add and delete fields. Make
+    sure you name everything exactly as you see it in the image (description
+    text is unimportant).</p><div class="itemizedlist"><ul type="disc"><li>The <span class="emphasis"><em>title</em></span> radio button indicates which field to
+    use as title field in the various Pagesetter lists.</li><li>The <span class="emphasis"><em>mandatory (M)</em></span> checkbox indicates that the user
+      <span class="emphasis"><em>must</em></span> enter something in the data field.</li><li>The <span class="emphasis"><em>Searchable (S)</em></span>
+    checkbox selectes which fields to use when searching for something on your
+    website.</li><li>The <span class="emphasis"><em>multiple
+    pages (MP)</em></span> checkbox allows you to define which field the user may
+    insert page breaks in. <span class="emphasis"><em>Only one field may be selected for
+    multiple pages, but none need to be so.</em></span> Page breaks can be
+    inserted using the editor button for it or inserted manually with a &lt;hr
+    class="pagebreak"/&gt; tag. The templating system then ensures the field
+    is split into pages separated by that tag.</li></ul></div><p>Click "Next" again and you will get to the last screen where you can select which
+    templates you want to create:</p><div class="informalfigure"><div class="mediaobject"><img src="img/pubTypeCreate3.jpg"></div></div><div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3>UNCHECK ALL TEMPLATE CHECKBOXES (for this tutorial)!
+    Otherwise the nice default PN-News templates will be overwritten with boring autocreated
+    ones!</div><p>The "List Setup" settings
+    specify sorting order and such like for this publication type when an
+    overview is requested&#8212;for instance when Pagesetter is chosen as the
+    frontpage module in PostNuke's admin settings. The sequence of the fields
+    does also define the sequence in which they are presented when creating a
+    new publication instance. Now you are ready to submit the publication type
+    to the database. Press "Commit" and you are done.</p></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="tutcreatinst"></a>Creating a Publication Instance</h2></div></div></div><p>Now that we have a publication type available (News) we should start
+    publishing something. Select the "New" link in the publication types
+    window:</p><div class="informalfigure"><div class="mediaobject"><img src="img/pubTypeList_new.jpg"></div></div><p>This will bring you to the "Publication Edit" window:</p><div class="informalfigure"><div class="mediaobject"><img src="img/pubEditData.jpg"></div></div><p>Entering the text should be straight forward. The image URL can be
+    selected from Mediashare (if installed) by clicking the "..." button. Now
+    press "Save" and you are done and will be brought to the publication
+    list:</p><div class="informalfigure"><div class="mediaobject"><img src="img/pubList.jpg"></div></div><p>If you have named all your fields correctly then you should be able
+    to view your new publication through the pre-installed templates. Click
+    the <span class="emphasis"><em>view</em></span> action and you should see:</p><div class="informalfigure"><div class="mediaobject"><img src="img/publication.jpg"></div></div><div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3><p>You must enable images (with attributes!) and other HTML tags in PostNuke's setup
+      before you can display any images. If you forget this then you will only see the text "&lt;img ...&gt;"
+      instead of the actual image.</p><p>You must also enable popups for your site if you have any popup blockers installed, otherwise
+      HTMLArea and previewing won't work.</p><p>You must also have EZComments installed to get the News example running with the
+      templates in the examples directory.</p></div></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="tuttemplates"></a>Templates</h2></div></div></div><p>The template used to display your data is named
+    <code class="filename">PN-News-full.html</code> and is located in the <code class="filename">pntemplates</code>
+    directory. As you can see the name consists of the
+    publication name concatenated with a dash and a template format name (in
+    this case "full"). If you open the file you will see something
+    like:</p><div class="example"><a name="id4700042"></a><p class="title"><b>Example 2.1. Example template for News item.</b></p><pre class="programlisting">
+// (the html presented is not the most correct with respect
+// to accessibility and xhtml compliancy)
+&lt;div style="width: 500px;"&gt;
+
+&lt;div class="pn-title"&gt;&lt;!--[$title]--&gt;&lt;/div&gt;
+&lt;div class="pn-sub"&gt;By: &lt;!--[$core.author]--&gt; 
+(&lt;!--[$core.creator]--&gt;) 
+&lt;!--[$core.lastUpdated|date_format:"%Y.%m.%d"]--&gt;&lt;/div&gt;&lt;p&gt;
+
+&lt;table&gt;
+ &lt;tr&gt;
+  &lt;td valign="top"&gt;
+   &lt;!--[$text[$core.page]]--&gt;&lt;br&gt;
+   &lt;!--[if $core.pageCount &gt; 1 ]--&gt;
+    Page: &lt;!--[pagesetter_pager]--&gt;
+   &lt;!--[/if]--&gt;
+  &lt;/td&gt;
+  &lt;td valign="top"&gt;
+   &lt;!--[if $image != "" ]--&gt;
+     &lt;img src="&lt;!--[$image]--&gt;" width="200" 
+          alt="&lt;!--[$imagetext]--&gt;" 
+          title="&lt;!--[$imagetext]--&gt;"&gt;&lt;br&gt;
+     &lt;i&gt;&lt;!--[$imagetext]--&gt;&lt;/i&gt;
+   &lt;!--[/if]--&gt;
+  &lt;/td&gt;
+ &lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;p&gt;
+
+&lt;table width="100%"&gt;&lt;tr&gt;
+&lt;td&gt;&lt;!--[$core.printThis]--&gt; | &lt;!--[$core.sendThis]--&gt; 
+| Hits: &lt;!--[nocache]--&gt;&lt;!--[$core.hitCount]--&gt;&lt;!--[/nocache]--&gt;
+| &lt;!--[nocache]--&gt;&lt;!--[$core.editInfo]--&gt;&lt;!--[/nocache]--&gt;&lt;/td&gt;
+&lt;!--[if $core.pageCount &gt; 1 ]--&gt;
+ &lt;td align="right"&gt;(Page &lt;!--[$core.page+1]--&gt; 
+ of &lt;!--[$core.pageCount]--&gt;)&lt;/td&gt;
+&lt;!--[/if]--&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;/div&gt;</pre></div><p>The &lt;!--[ ]--&gt; HTML
+    comments contain code for the pnRender templating system. Basically you
+    can put $fieldName into them to show your publication fields, but more
+    complex stuff like switching statements and for-loops can be added too.
+    The variable name $core is predefined by Pagesetter and contains core
+    information about the publication like author and creation date.
+    <span class="emphasis"><em>Do not edit the template directly. Copy it instead to a theme
+    specific template and put it into your themes directory as described in
+    the template chapter.</em></span> Read more about templates in the <a href="#chap_templates" title="Chapter 7. Templates">Template chapter</a>.</p></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="tutfrontpage"></a>Putting the News on the Frontpage</h2></div></div></div><p>If you want to show your News items on the frontpage of your
+    PostNuke installation, you need to find the admin section of PostNuke and
+    then go into the settings section. Here you find a dropdown somewhere
+    where you can select Pagesetter as the frontpage module. But before that
+    you need to tell Pagesetter which publication type to show on the
+    frontpage. Go to the general settings of Pagesetter:</p><div class="informalfigure"><div class="mediaobject"><img src="img/menuGeneral.jpg"></div></div><p>and select the News publication type for the frontpage:</p><div class="informalfigure"><div class="mediaobject"><img src="img/configuration.jpg"></div></div><p>If everything goes as expected you should be able to see the News
+    list on the frontpage (thanks to <a href="http://www.postnuke.dk" target="_top">www.postnuke.dk</a> for design
+    inspiration):</p><div class="informalfigure"><div class="mediaobject"><img src="img/publications.jpg"></div></div></div></div><div class="chapter" lang="en-US"><div class="titlepage"><div><div><h2 class="title"><a name="chap_permissions"></a>Chapter 3. Permissions</h2></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#permissionsintro">Permissions</a></span></dt><dt><span class="section"><a href="#permissionstopic">Topic Based Permissions</a></span></dt><dt><span class="section"><a href="#permissionssingle">Permissions for Single Publications</a></span></dt></dl></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="permissionsintro"></a>Permissions</h2></div></div></div><p>Pagesetter works with five different access levels:</p><div class="variablelist"><dl><dt><span class="term">Readers</span></dt><dd>
+            Users who are allowed to read Pagesetter
+            publications.
+          </dd><dt><span class="term">Authors</span></dt><dd>
+            Users who are allowed to submit new publications but do not
+            have access to the list of existing publications.
+          </dd><dt><span class="term">Editors</span></dt><dd>
+            Users who are allowed to submit new publications and have
+            access to the list of publications.
+          </dd><dt><span class="term">Moderators</span></dt><dd>
+            Users who are allowed to submit and delete publications, as
+            well as moving them back and forth to the depot.
+          </dd><dt><span class="term">Administrators</span></dt><dd>
+            Users who are allowed to create new publication types as
+            well as performing other administrative Pagesetter tasks.
+          </dd></dl></div><p>On top of the raw PostNuke
+    permission system, Pagesetter adds it's own <span class="emphasis"><em>workflow</em></span> system.
+    Through this it is possible to specify who has access to what and when.
+    The workflow system is able to handle such diverse setups as a <a href="http://en.wikipedia.org/wiki/Wiki" target="_top">Wiki</a> framework (well,
+    something that simulates it to a certain degree) and an enteprise level
+    workflow with authors, editors and moderators. Read more in the <a href="#chap_workflows" title="Chapter 12. Workflows">workflow chapter</a>.</p><p>The Pagesetter permission levels are mapped into the PostNuke
+    permissions like this:</p><div class="table"><a name="id4700275"></a><p class="title"><b>Table 3.1. Permission levels</b></p><table summary="Permission levels" border="1"><colgroup><col><col><col><col></colgroup><tbody><tr><td><span class="bold"><strong>Group</strong></span></td><td><span class="bold"><strong>Component</strong></span></td><td><span class="bold"><strong>Instance</strong></span></td><td><span class="bold"><strong>Permission</strong></span></td></tr><tr><td>readers</td><td>pagesetter::</td><td><span class="emphasis"><em>tid:pid:</em></span></td><td>Read</td></tr><tr><td>authors</td><td>pagesetter::</td><td><span class="emphasis"><em>tid:pid:</em></span></td><td>Edit</td></tr><tr><td>editors</td><td>pagesetter::</td><td><span class="emphasis"><em>tid:pid:</em></span></td><td>Add</td></tr><tr><td>moderators</td><td>pagesetter::</td><td><span class="emphasis"><em>tid:pid:</em></span></td><td>Delete</td></tr><tr><td>admins</td><td>pagesetter::</td><td><span class="emphasis"><em>tid:pid:</em></span></td><td>Admin</td></tr></tbody></table></div><p>In the table <span class="emphasis"><em>tid</em></span> is used as the publication
+    type ID and <span class="emphasis"><em>pid</em></span> as the publication (instance) ID. You
+    can use these to give access to specific subsets of the publications. The
+    special instance is '::' which matches <span class="emphasis"><em>both</em></span> all
+    publications <span class="emphasis"><em>and</em></span> the generic test for access to the
+    Pagesetter module. Here is a few examples:</p><div class="table"><a name="id4700516"></a><p class="title"><b>Table 3.2. Examples for permission setups</b></p><table summary="Examples for permission setups" border="1"><colgroup><col><col><col><col><col></colgroup><tbody><tr><td><span class="bold"><strong>Group</strong></span></td><td><span class="bold"><strong>Component</strong></span></td><td><span class="bold"><strong>Instance</strong></span></td><td><span class="bold"><strong>Permission</strong></span></td><td><span class="bold"><strong>Result</strong></span></td></tr><tr><td>All groups</td><td>pagesetter::</td><td>::</td><td>Read</td><td>Read access for all groups to all publications.</td></tr><tr><td>Unregistered</td><td>pagesetter::</td><td>4::</td><td>None</td><td>Deny access for unregistered users to all publications of
+            type 4</td></tr><tr><td>Group A</td><td>pagesetter::</td><td>3::</td><td>Edit</td><td>Edit access to publication type 3 for all in group
+            A</td></tr><tr><td>Group B</td><td>pagesetter::</td><td>2:(1|5|19):</td><td>Edit</td><td>Edit access to publications 1,5 and 19 of type 2 for all in
+            group B</td></tr><tr><td>My page admin</td><td>pagesetter::</td><td>1::</td><td>Admin</td><td>Admin access for "My page admin" group to publication type
+            1</td></tr></tbody></table></div><div class="caution" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Caution</h3>Remember that the order of the permission
+    items is significant. PostNuke reads permissions from the top and
+    downwards until it finds a match. Permission instances are specified with
+    regular expressions!</div></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="permissionstopic"></a>Topic Based Permissions</h2></div></div></div><p>Pagesetter supports topic based access control through the stand-alone
+    module "TopicAccess" which you can download from <a href="http://www.elfisk.dk" target="_top">
+    www.elfisk.dk</a>. The TopicAccess module lets the administrator define
+    read/write access to Pagesetter based on the topic selected for a
+    publication.</p><p>Topic based permission control follows these rules:</p><div class="itemizedlist"><ul type="disc"><li>Users can only select from those topics they have write access to
+      when writing a new publication.</li><li>Users can only edit a publication if they have write access to
+      the topic it is associated with.</li><li>Users can only view a publication if they have read access to
+      the topic it is associated with.</li></ul></div></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="permissionssingle"></a>Permissions for Single Publications</h2></div></div></div><p>The way that Pagesetter (and most other modules) uses the permission
+    system can in some instances make it quite difficult to figure out a way
+    to grant access to one single publication. For a publication ID
+    <span class="emphasis"><em>P</em></span> of type <span class="emphasis"><em>T</em></span> you would expect to
+    be able to match "pagesetter::" and "T:P:" for <span class="emphasis"><em>read</em></span>
+    and then follow it by a "pagesetter::" and "T::" for
+    <span class="emphasis"><em>none</em></span>, meaning "grant read access to specific
+    publication and deny access to the remaining". This could for instance be
+    a News publication (item 7 og type 1) where you want a specific welcome
+    message on the front page available for all unregistered users. But you do
+    not want them to be able to read the rest. For this one would think of the
+    following:</p><div class="informaltable"><table border="1"><colgroup><col><col><col><col></colgroup><tbody><tr><td><span class="bold"><strong>Group</strong></span></td><td><span class="bold"><strong>Component</strong></span></td><td><span class="bold"><strong>Instance</strong></span></td><td><span class="bold"><strong>Permission</strong></span></td></tr><tr><td>Unregistered</td><td>pagesetter::</td><td>1:7:</td><td>Read</td></tr><tr><td>Unregistered</td><td>pagesetter::</td><td>1::</td><td>None</td></tr></tbody></table></div><p>But this would <span class="emphasis"><em>not</em></span> work! Pagesetter first
+    checks with an empty publication item for access to the publication type
+    as a whole. This means it tries to match "pagesetter::" and "1::" before
+    any thing else. This does not match the first line, so access is denied
+    even before we check for access to the single item. What you must do
+    is:</p><div class="table"><a name="id4698430"></a><p class="title"><b>Table 3.3. Permission setup for access to a single publication item.</b></p><table summary="Permission setup for access to a single publication item." border="1"><colgroup><col><col><col><col></colgroup><tbody><tr><td><span class="bold"><strong>Group</strong></span></td><td><span class="bold"><strong>Component</strong></span></td><td><span class="bold"><strong>Instance</strong></span></td><td><span class="bold"><strong>Permission</strong></span></td></tr><tr><td>Unregistered</td><td>pagesetter::</td><td>1:7:</td><td>Read</td></tr><tr><td>Unregistered</td><td>pagesetter::</td><td>1:.+:</td><td>None</td></tr><tr><td>Unregistered</td><td>pagesetter::</td><td>1::</td><td>Read</td></tr></tbody></table></div><p>The third line ensures access to the publication type as a whole.
+    The second line denies access to all item specific checks (those with
+    something in between the colons). The first line grants access to the
+    specific item.</p></div></div><div class="chapter" lang="en-US"><div class="titlepage"><div><div><h2 class="title"><a name="chap_editingpubs"></a>Chapter 4. Editing Publications</h2></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#editpubsintro">Editing Publications</a></span></dt><dd><dl><dt><span class="section"><a href="#editpubsinformation">Publish information</a></span></dt><dt><span class="section"><a href="#editpubslocation">Location</a></span></dt><dt><span class="section"><a href="#editpubsauthor">Author Information</a></span></dt><dt><span class="section"><a href="#editpubssetting">Setting Editor Defaults</a></span></dt></dl></dd></dl></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="editpubsintro"></a>Editing Publications</h2></div></div></div><p>Instances of a publication type, for instance News items as shown in the
+    tutorial, are created and edited in the Edit window. This window consists
+    of two main parts&#8212;the publication specific fields, as defined by the
+    system administrator, and the meta data defined by Pagesetter. The
+    publication fields part looks somewhat like this:</p><div class="figure"><a name="id4698730"></a><p class="title"><b>Figure 4.1. Editing publications - user data</b></p><div class="mediaobject"><img src="img/pubEditData.jpg" alt="Editing publications - user data"></div></div><p>What you see is three different fields defined by the administrator
+    of the web site. It is up to you to write whatever you find fitting for
+    your kind of publication&#8212;in this case a News item describing some of
+    the pleasantries of hiking Bornholm.</p><p>The meta data fields looks like below.</p><div class="figure"><a name="id4698757"></a><p class="title"><b>Figure 4.2. Editing publications - meta data</b></p><div class="mediaobject"><img src="img/pubEditMetaData.jpg" alt="Editing publications - meta data"></div></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h3 class="title"><a name="editpubsinformation"></a>Publish information</h3></div></div></div><div class="variablelist"><dl><dt><span class="term">Approval state</span></dt><dd>
+          The approval state is an information about where the
+          publication is located in the associated workflow. The possible
+          states depends on the workflow setup, but the standard workflows
+          uses states like "Preview" and "Approved" to denote the fact that
+          the publication is ready for preview (by an editor) or actually
+          approved by the moderator. The approval state can only be changed by
+          one of the workflow actions available at the bottom of the
+          page.
+        </dd><dt><span class="term">Online setting</span></dt><dd>
+          This field indicates whether the publication is online or not,
+          and thereby if it is visible on any of the publication lists or can
+          be found by searching.
+        </dd><dt><span class="term">Publish Date</span></dt><dd><p>This setting specifies the first day a publication goes
+          online. Normally this value is left empty, but you can get Pagesetter
+          to insert the current date for you. This feature is enabled in the
+          general configuration section ("Auto fill publish date").</p></dd><dt><span class="term">Expire Date</span></dt><dd><p>This setting specifies the day a publication goes offline (it
+          will not be available at the specified day).</p></dd></dl></div></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h3 class="title"><a name="editpubslocation"></a>Location</h3></div></div></div><p>These settings categorizes the publication and defines where to find
+    it.</p><div class="variablelist"><dl><dt><span class="term">Topic</span></dt><dd><p>The PostNuke topic in which the publication belongs.</p></dd><dt><span class="term">Show in lists</span></dt><dd><p>Specifies whether or not the publication should be shown in
+            the general list of this publication type. This can be usefull if
+            you want some publications to be accessible through a menu or
+            handcrafted URL only.</p></dd><dt><span class="term">Language</span></dt><dd><p>The language in which the publication is written. The
+            language influences when the publication shows up in the various
+            lists and menus. The language must match the user's language in
+            order to show up&#8212;or be set to "All".</p></dd></dl></div></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h3 class="title"><a name="editpubsauthor"></a>Author Information</h3></div></div></div><p>These settings holds who has written the publication and
+    when.</p><div class="variablelist"><dl><dt><span class="term">Publisher</span></dt><dd><p>The PostNuke user name of the user who created the
+            publication. This name cannot be changed.</p></dd><dt><span class="term">Author</span></dt><dd><p>The name of the publication author. The creator's real name
+            is inserted here - but may at any later time be changed to
+            something else.</p></dd><dt><span class="term">Created</span></dt><dd><p>The date of creation.</p></dd><dt><span class="term">Last updated</span></dt><dd><p>Last updated date.</p></dd></dl></div></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h3 class="title"><a name="editpubssetting"></a>Setting Editor Defaults</h3></div></div></div><p>It is possible to assign defaults for new publications via the URL
+    as shown in the <a href="#chap_linking" title="Chapter 6. Linking">linking
+    chapter</a>.</p></div></div></div><div class="chapter" lang="en-US"><div class="titlepage"><div><div><h2 class="title"><a name="chap_pubtypes"></a>Chapter 5. Publication Types</h2></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#pubtypesstart">Publication Types</a></span></dt><dt><span class="section"><a href="#pubtypesfieldtypes">Field Types</a></span></dt><dd><dl><dt><span class="section"><a href="#id4702522">Upload handling</a></span></dt></dl></dd><dt><span class="section"><a href="#pubtypespubsetup">Publication Setup</a></span></dt><dt><span class="section"><a href="#pubtypescategories">Categories</a></span></dt></dl></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="pubtypesstart"></a>Publication Types</h2></div></div></div><p>Everything in Pagesetter begins with the declaration of a
+    <span class="emphasis"><em>publication type</em></span>. The publication type defines the
+    set of fields that a publication may have, the name of the publication
+    type, and a bunch of other things.</p><p>Pagesetter comes without any publication types pre-installed, so you
+    will have to create your own. But a set of output templates for a News
+    type is supplied&#8212;see the <a href="#chap_tutorial" title="Chapter 2. Tutorial">tutorial</a>.</p><p>The publication type setup window looks like this:</p><div class="figure"><a name="id4701203"></a><p class="title"><b>Figure 5.1. Publication type editing.</b></p><div class="mediaobject"><img src="img/pubTypeEdit.jpg" alt="Publication type editing."></div><div class="mediaobject"><img src="img/pubTypeEditFields.jpg" alt="Publication type editing."></div></div><p>The upper part lets you configure various things about the
+    publication type as a whole. The lower part lets you add one or more
+    fields to store publication data in. The fields in the upper part
+    are:</p><div class="variablelist"><dl><dt><span class="term">Publisher</span></dt><dd>
+           The name of the user who created this publication type. 
+        </dd><dt><span class="term">Title</span></dt><dd>
+           The name of this publication type.
+        </dd><dt><span class="term">Template</span></dt><dd>
+           The template base name for this publication type. 
+           It is used to locate output templates that contains the name as part of the template file name.
+           For this reason you must select a name that can be used as a file name. 
+           It will default to the publication type title.
+        </dd><dt><span class="term">Form name</span></dt><dd>
+          Name of the directory to look into for customized input forms. Leave it empty if you do not expect
+          to create your own forms. It will default to the publication template value.
+          See the <a href="#chap_customisation" title="Chapter 13. Customisation">customization chapter</a> for further information.
+        </dd><dt><span class="term">Description</span></dt><dd>
+           A short description of the publication type. It is not used for any but a note on this window. 
+        </dd><dt><span class="term">Enable PN-Hooks</span></dt><dd>
+           Checking this checkbox will force Pagesetter to run it's output through PostNuke's hooks system. This enables commenting, scoring and other hook based features. Unfortunately you cannot specify which hooks to apply. 
+        </dd><dt><span class="term">Workflow</span></dt><dd>
+           The workflow configuration lets you define how complex a process you need for proof reading and approval of your publications. Pagesetter comes with three predefined workflows: "None", "Standard", and "Enterprise". The "None" workflow has no proofing or anything&#8212;publications are simply approved immediately upon submission. The "Standard" workflow is a two-step procedure with a moderator, and the "Enterprise" workflow is a three-step procedure with both editors and moderators. You can read more on workflows in the <a href="#chap_workflows" title="Chapter 12. Workflows">workflow chapter</a>. 
+        </dd><dt><span class="term">Number of publications to show in list</span></dt><dd>
+           This lets you define how many publications you want to show up when this publication type is displayed on your PostNuke frontpage. It also applies to various blocks used by Pagesetter. 
+        </dd><dt><span class="term">Sorting keys</span></dt><dd>
+           These lets you define the default sorting order and direction of the publication lists. You must have committed your choice of fields before they are available in the key selections. 
+        </dd><dt><span class="term">Default filter</span></dt><dd>
+           This is a filter expression to be used when no other filter is supplied on the URL.
+           For instance "category:eq:5" to display all items with the field "category" set to category item ID 5.
+           Se <a href="#linkingfiltering" title="Filtering">Filtering</a>.
+        </dd><dt><span class="term">Default folder</span></dt><dd>To use this field you must first install the "Folder" module separately.
+        This field indicates where new publications should be located in the folder structure. If you do not select
+        a folder then Pagesetter won't use the Folder module.</dd><dt><span class="term">Default sub-folder</span></dt><dd><p>To use this field you must first install the "Folder" module separately.
+        If you want more control over the location of new publications then specify a sub-folder name here. The name
+        may include references to values in the publication which means you can create sub-folders on the fly by, for
+        instance, including either topic name, created date or even both in the sub-folder name!</p><p>The syntax is whatever Smarty uses (just like the templates) except that you <span class="emphasis"><em>must</em></span> use curly braces
+        to indicate Smarty variables. Besides that you can refer to any publication data in exactly the same way
+        as you would do in a template. The sub-folder name can include slashes to indicate sub-sub-...-sub-folders.
+        None of the sub-folders need to exist prior to creating a publication.</p><p>Example: to create a sub-folder based on the topic name and current year and month you could write
+        <code class="filename">{$core.topic.name}/{$core.created|date_format:"%Y/%m"}</code>. In this case you would
+        get a sub-folder named <code class="filename">Linux/2005/06</code> for a publication created in June 2005.</p></dd><dt><span class="term">Default topic</span></dt><dd>This is the topic which will be assigned to any dynamically created sub-folders.</dd></dl></div></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="pubtypesfieldtypes"></a>Field Types</h2></div></div></div><p>Each field in a publication must have a type associated with it.
+    Field types can be any of the following kinds:</p><div class="variablelist"><dl><dt><span class="term">string</span></dt><dd>
+           A simple text string with no formatting. Text is entered in a one-line input field. 
+        </dd><dt><span class="term">text</span></dt><dd>
+           A simple text string with no formatting. Text is entered in a multi-line input field. 
+        </dd><dt><span class="term">html</span></dt><dd>
+           An HTML formatted text input. Text is entered via a what-you-see-is-what-you-get editor (on the Internet Explorer and Mozilla). 
+        </dd><dt><span class="term">bool</span></dt><dd>
+           A checkbox. 
+        </dd><dt><span class="term">int</span></dt><dd>
+           Text field with validation for integers. 
+        </dd><dt><span class="term">real</span></dt><dd>
+           Text field with validation for real numbers. 
+        </dd><dt><span class="term">time</span></dt><dd>
+           Text field with validation for time (HH:MM). 
+        </dd><dt><span class="term">date</span></dt><dd>
+           Text field with validation for dates (YYYY-MM-DD). Uses a JavaScript date picker. 
+        </dd><dt><span class="term">User defined category</span></dt><dd>
+           Dropdown field with the items from the category. 
+        </dd><dt><span class="term">image (url)</span></dt><dd>
+           The URL to a Photoshare image. The URL may either be entered manually or selected from any of Photoshare's albums. 
+        </dd><dt><span class="term">Image (HTML)</span></dt><dd>The complete HTML for a Photoshare image. The HTML may either be edited manually or
+        inserted from Photoshare with a popup button.</dd><dt><span class="term">Image upload</span></dt><dd>
+           Field for uploading an image. Pagesetter automatically generates 
+           thumbnails and download/display links for use in the templates. 
+        </dd><dt><span class="term">Any upload</span></dt><dd>
+           Field for uploading of any kind of file (also images). 
+           Pagesetter automatically generates download links for use in the templates. 
+        </dd><dt><span class="term">Media (url)</span></dt><dd>
+           The URL to a multimedia file from Mediashare. The URL may either be entered manually or selected from any of 
+           Mediashare's albums. 
+        </dd><dt><span class="term">E-Mail</span></dt><dd>Text field with validation for E-mails and "mailto:" link in
+        input formular.</dd><dt><span class="term">Hyperlink</span></dt><dd>Text field with facilities for verifying URL when editing.</dd><dt><span class="term">Currency</span></dt><dd>Text field validation for numbers (identical to "real" but future versions
+        may add more semantics to this type.</dd><dt><span class="term">Publication</span></dt><dd><p>Dropdown field that allows you to select a publication from a specific
+        publication type. Can be used to make related publications, like company
+        departments with related employees. For that example you could use a Publication
+        field on the employee to select among the different departments, thereby
+        linking the employee to the department.</p><p>The Publication input requires you to specify what publication type
+        to choose from. <span class="emphasis"><em>This is done by clicking on the popup button next to the
+        field type selector.</em></span>. Please read the <a href="#chap_relations" title="Chapter 8. Publication Relations">Relations</a>
+        chapter for further information.</p></dd><dt><span class="term">Relation</span></dt><dd>A field that allows you to relate different publications to each other. Unlike
+        the Publication field mentioned above, you can make many-to-many relationships with this
+        kind of input field. Please read the <a href="#chap_relations" title="Chapter 8. Publication Relations">Relations</a>
+        chapter for further information.</dd></dl></div><p>Some examples of fields could be a headline (text), some
+    instructions (html), payment (real), the starting date of some event
+    (date) and so on. There is no restriction to how many fields you may
+    choose to use.</p><div class="section" lang="en-US"><div class="titlepage"><div><div><h3 class="title"><a name="id4702522"></a>Upload handling</h3></div></div></div><p>Upload fields are just, from an abstract point of view, data
+      fields like all the other ones&#8212;you can have as many upload fields you
+      want in one publication and uploads are also handled correctly by the
+      revision control system.</p><p>When editing a publication with upload fields, you only need to
+      upload your files <span class="emphasis"><em>once</em></span>&#8212;even when editing and
+      previewing your input. Any uploaded file is stored temporarily until you
+      submit your publication, after which the uploaded file is permanently
+      stored with the publication.</p><p>Uploads are stored as files on the web server and only references
+      to these files are stored in the upload fields. You must configure the
+      location of the files in Pagesetter's admin panel (goto
+      administration::configuration::general). The upload directory must be
+      writable by the webserver for this to work.</p><p>Uploaded files are accessed via PostNuke's standard <code class="filename">index.php</code>
+      file and thereby through Pagesetter. This has two implications 1) files
+      are <span class="emphasis"><em>always</em></span> subject to the same access control as the publication
+      it is stored with, and 2) data must be streamed through PHP, generating
+      a performance overhead comparing to linking directly to the files.
+      <span class="emphasis"><em>It is the developers opinion that complete access control 
+      is more important than performance in this case.</em></span></p><div class="caution" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Caution</h3>
+        You should <span class="emphasis"><em>never</em></span> store your uploads in a directory
+        accessible through the web server since this makes it possible to 
+        download the files without access control. Unfortunately this cannot
+        be avoided in some hosting environments, in which case you should name
+        your upload directory something unguessable.
+      </div><div class="section" lang="en-US"><div class="titlepage"><div><div><h4 class="title"><a name="id4702592"></a>Changing or deleting upload fields</h4></div></div></div><p>Pagesetter does not automatically delete uploads
+        associated with a publication type when an upload field is either
+        changed to another type or deleted.</p><p>Therefore you must manually delete the uploaded files
+        when you decide they are not in use anymore.</p><p>Uploaded files are named <code class="filename">TxPxRxF.dat</code> where
+        T is publication type, P is publication ID, R is revision and F
+        is field name. So if you remove field "document" on publication type 5
+        then you should delete all files named <code class="filename">5x*document.dat</code>.
+        </p></div></div></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="pubtypespubsetup"></a>Publication Setup</h2></div></div></div><p>See the <a href="#chap_tutorial" title="Chapter 2. Tutorial">tutorial</a>.</p></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="pubtypescategories"></a>Categories</h2></div></div></div><p>It is possible to define categories to be used as dropdown elements
+    in the input. An example of a category could be a selection of music
+    media, for instance "CD", "DVD", "Tape", or "LP". A categorization could
+    also be book genres: "Fiction", "Art", "History", and so on. Categories
+    can even be nested, so for instance you can define sub-genres for books
+    "Fiction:Science Fiction" and "Fiction:Fantasy". The categories are
+    defined in this window:</p><div class="figure"><a name="id4702669"></a><p class="title"><b>Figure 5.2. Editing categories</b></p><div class="mediaobject"><img src="img/listEdit.jpg" alt="Editing categories"></div></div><p>It should be relatively simple; create a new category and then add
+    the items you want in it. When all is as expected you commit the setup to
+    the database. The category fields are:</p><div class="variablelist"><dl><dt><span class="term">Title</span></dt><dd>
+             A displayable value that can be shown to the user. 
+          </dd><dt><span class="term">Value</span></dt><dd>
+             Any text string for your own use. The value field need not to be used, but can for instance help with sorting or selecting category items. 
+          </dd><dt><span class="term">Description</span></dt><dd>
+             Help field which can be displayed as extra information about the category. Currently not used, but may in a future version of Pagesetter be used to generate automatic online help. 
+          </dd></dl></div><p>The category can afterwards be used for one or more fields in the
+    publication types. Just select the category from the field type dropdown
+    in the publication setup window.</p></div></div><div class="chapter" lang="en-US"><div class="titlepage"><div><div><h2 class="title"><a name="chap_linking"></a>Chapter 6. Linking</h2></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#linkingintro">Linking</a></span></dt><dt><span class="section"><a href="#linkingsorting">Sorting</a></span></dt><dt><span class="section"><a href="#linkingfiltering">Filtering</a></span></dt><dd><dl><dt><span class="section"><a href="#id4704975">Indirect Operands</a></span></dt></dl></dd><dt><span class="section"><a href="#linkingsettingdefaults">Setting Defaults for Editor</a></span></dt><dd><dl><dt><span class="section"><a href="#linkingsettingtopic">Setting Default Topic</a></span></dt></dl></dd></dl></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="linkingintro"></a>Linking</h2></div></div></div><p>Here is a list of the various Pagesetter URLs you can
+    use:</p><div class="variablelist"><dl><dt><span class="term">List: .../index.php?module=pagesetter</span></dt><dd>
+            The basic link used for Pagesetter on the frontpage. This
+            link shows the Pagesetter default publication list.
+          </dd><dt><span class="term">List:
+          .../index.php?module=pagesetter&amp;tid=T&amp;topic=P&amp;lang=L</span></dt><dd>
+            The same as the above link but with various extra modifiers.
+            You can specify which publication type you want to show the list
+            for by setting tid to the type ID. In the same way you can specify
+            the topic ID as well as language (otherwise the current language
+            is used to filter the list). All the modifiers are optional and
+            can be mixed as necessary.
+          </dd><dt><span class="term">View: .../index.php?module=pagesetter&amp;func=viewpub&amp;tid=T&amp;pid=P</span></dt><dd>
+            This is the link for viewing a specific publication of a
+            specific type. You need to set tid to the publication type ID and
+            pid to the publication ID.
+          </dd><dt><span class="term">Print:
+          .../index.php?module=pagesetter&amp;func=printpub&amp;tid=T&amp;pid=P</span></dt><dd>
+            This is the link for showing a publication as
+            "printable"&#8212;which means without the PostNuke frameset and
+            with a special template. The tid and pid parameters works as
+            above.
+          </dd><dt><span class="term">Edit:
+          .../index.php?module=pagesetter&amp;func=pubedit&amp;tid=T</span></dt><dd>
+            This is the link for the creation of a new publication of
+            the publication type specified in tid. You can use this link for a
+            "Submit Publication" menu entry like the standard PostNuke "Submit
+            News" link.
+          </dd><dt><span class="term">Edit:
+          .../index.php?module=pagesetter&amp;func=pubedit&amp;tid=T&amp;goback=1</span></dt><dd>
+            Edit link as above but redirect user to refering page after
+            edit is completed.
+          </dd><dt><span class="term">Edit list:
+          .../index.php?module=pagesetter&amp;func=pubList&amp;tid=T</span></dt><dd>
+            This is the link for the editor's list of publications and
+            is used for managing all the publications. As usual the tid
+            parameter identifies the publication type ID.
+          </dd><dt><span class="term">Inline display of uploaded file:
+          .../index.php?module=pagesetter&amp;type=file&amp;func=get&amp;tid=T&amp;pid=P&amp;fid=F</span></dt><dd>
+            This is the link for inline display of an uploaded file or image. Use T and P for type ID
+            and publication ID as in the previous examples, and F for the field name of the 
+            upload field. With this URL Pagesetter utilizes the Content-Disposition HTTP header
+            for marking the data as "inline".
+          </dd><dt><span class="term">Download of uploaded file:
+          .../index.php?module=pagesetter&amp;type=file&amp;func=get&amp;tid=T&amp;pid=P&amp;fid=F&amp;download=1</span></dt><dd>
+            This is the link for download of an uploaded file or image. Use T and P for type ID
+            and publication ID as in the previous examples, and F for the field name of the 
+            upload field. With this URL Pagesetter utilizes the Content-Disposition HTTP header
+            for marking the data as "attachment".
+          </dd></dl></div><p>Here is a short description of the various URL
+    parameters:</p><div class="variablelist"><dl><dt><span class="term">tid</span></dt><dd>
+            Publication type ID.
+          </dd><dt><span class="term">pid</span></dt><dd>
+            Publication instance ID.
+          </dd><dt><span class="term">topic</span></dt><dd>
+            PostNuke topic ID.
+          </dd><dt><span class="term">lang</span></dt><dd>
+            PostNuke language ID.
+          </dd><dt><span class="term">fid</span></dt><dd>
+            Pagesetter field name for display of uploaded file.
+          </dd><dt><span class="term">download</span></dt><dd>
+            Request download of uploaded file instead of displaying it inline.
+          </dd><dt><span class="term">tpl</span></dt><dd>
+            Template format for overriding default. Use for instance "tpl=RSS" to access a template
+            file named <code class="filename">News-RSS.html</code>. The template name "News" is always 
+            derived from the publication type and cannot be changed. If used with a list display
+            then Pagesetter will look for <code class="filename">News-RSS-header.html</code> and
+            <code class="filename">News-RSS-footer.html</code> also. If <code class="filename">News-RSS-header.html</code>
+            cannot be found then <code class="filename">News-RSS.html</code> is assumed to be a
+            single template list without header/footer.
+          </dd><dt><span class="term">pubcnt</span></dt><dd>
+            The number of publications to show on one page. If left out
+            then the publication type default is used. If set to zero then all
+            publications are shown.
+          </dd><dt><span class="term">goback</span></dt><dd>
+            Used to redirect the user back to refering page after
+            editing. Set it to 1 to enforce this redirection. If this
+            parameter is not set the user is redirected to the editors list of
+            publications.
+          </dd><dt><span class="term">backurl</span></dt><dd>
+            Used to redirect the user back to a specific page after
+            editing. Set it to the complete URL (http://...) to enforce this redirection.
+            You do not need to set <code class="varname">goback</code> when using <code class="varname">backurl</code>.
+          </dd></dl></div><p>Here you can see which parameters you can use for the different
+    functions (with less used functions included):</p><div class="table"><a name="id4702898"></a><p class="title"><b>Table 6.1. URL parameters</b></p><table summary="URL parameters" border="1"><colgroup><col><col><col><col><col><col><col><col></colgroup><tbody><tr><td><span class="bold"><strong>Function</strong></span></td><td><span class="bold"><strong>tid</strong></span></td><td><span class="bold"><strong>pid</strong></span></td><td><span class="bold"><strong>topic</strong></span></td><td><span class="bold"><strong>lang</strong></span></td><td><span class="bold"><strong>tpl</strong></span></td><td><span class="bold"><strong>pubcnt</strong></span></td><td><span class="bold"><strong>Description</strong></span></td></tr><tr><td><span class="emphasis"><em>None</em></span></td><td>x</td><td> </td><td>x</td><td>x</td><td>x</td><td>x</td><td>Normal publication list</td></tr><tr><td>viewpub</td><td>x</td><td>x</td><td> </td><td> </td><td>x</td><td> </td><td>Full publication display</td></tr><tr><td>printpub</td><td>x</td><td>x</td><td> </td><td> </td><td>x</td><td> </td><td>Full publication display, no frames</td></tr><tr><td>dumppub</td><td>x</td><td>x</td><td> </td><td> </td><td>x</td><td> </td><td>Full publication display, no surrounding html tags</td></tr><tr><td>xmlpub</td><td>x</td><td>x</td><td> </td><td> </td><td>x</td><td> </td><td>Full publication display, adds content-type
+            text/xml</td></tr><tr><td>pubedit</td><td>x</td><td>x</td><td> </td><td> </td><td> </td><td> </td><td>Edit publication</td></tr><tr><td>publist</td><td>x</td><td> </td><td> </td><td> </td><td> </td><td> </td><td>Editor's list of publiations</td></tr><tr><td>printlist</td><td>x</td><td> </td><td>x</td><td>x</td><td>x</td><td>x</td><td>Display list of publications, no frames</td></tr><tr><td>dumplist</td><td>x</td><td> </td><td>x</td><td>x</td><td>x</td><td>x</td><td>Display list of publications, no surrounding html
+            tags</td></tr><tr><td>xmllist</td><td>x</td><td> </td><td>x</td><td>x</td><td>x</td><td>x</td><td>Display list of publications, adds content-type
+            text/xml</td></tr></tbody></table></div><p>Here is a list of the templates required for the various
+    options:</p><div class="table"><a name="id4701989"></a><p class="title"><b>Table 6.2. Template overview by URL function</b></p><table summary="Template overview by URL function" border="1"><colgroup><col><col><col><col></colgroup><tbody><tr><td><span class="bold"><strong>Function</strong></span></td><td><span class="bold"><strong>Header / footer</strong></span></td><td><span class="bold"><strong>Def. Template</strong></span></td><td><span class="bold"><strong>Description</strong></span></td></tr><tr><td><span class="emphasis"><em>None</em></span></td><td>x</td><td>list</td><td>Normal publication list</td></tr><tr><td>viewpub</td><td> </td><td>full</td><td>Full publication display</td></tr><tr><td>printpub</td><td> </td><td>print</td><td>Full publication display, no frames</td></tr><tr><td>dumppub</td><td> </td><td>print</td><td>Full publication display, no surrounding html tags</td></tr><tr><td>xmlpub</td><td> </td><td>xml</td><td>Full publication display, adds content-type
+            text/xml</td></tr><tr><td>pubedit</td><td> </td><td>-</td><td>Edit publication</td></tr><tr><td>publist</td><td> </td><td>-</td><td>Editor's list of publiations</td></tr><tr><td>printlist</td><td>x</td><td>list</td><td>Display list of publications, no frames</td></tr><tr><td>dumplist</td><td>x</td><td>list</td><td>Display list of publications, no surrounding html
+            tags</td></tr><tr><td>xmllist</td><td>x</td><td>list</td><td>Display list of publications, adds content-type
+            text/xml</td></tr></tbody></table></div></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="linkingsorting"></a>Sorting</h2></div></div></div><p>With Pagesetter you can sort the various lists of publications via
+    restrictions in URL. To do so you specify "orderby=field-list". The list
+    of fields is separated by commas and you refer to the field names as you
+    would do in a template. Either as <code class="varname">fieldName</code> or as 
+    <code class="varname">core.fieldName</code>. The default sorting direction is ascending, 
+	   but descending can be specified with a ":desc" appended to a field name.</p><div class="example"><a name="id4704482"></a><p class="title"><b>Example 6.1. Ordering by core fields</b></p><div class="variablelist"><dl><dt><span class="term">orderby=core.author,title</span></dt><dd>Order by author and title.</dd><dt><span class="term">orderby=core.hitCount:desc</span></dt><dd>Order by hitCount descending, neat for displaying a "most read
+  					articles" box.</dd></dl></div></div><div class="example"><a name="id4704518"></a><p class="title"><b>Example 6.2. Ordering by category fields and category field properties</b></p><div class="variablelist"><dl><dt><span class="term">orderby=category</span></dt><dd>Order by the sequence defined in the category list.</dd><dt><span class="term">orderby=category.value</span></dt><dd>Order by the value defined in the category list.</dd><dt><span class="term">orderby=category.title</span></dt><dd>Order by the title defined in the category list. </dd><dt><span class="term">orderby=category.fullTitle</span></dt><dd>Order by the full title (e.g. Books:Art:Painting).</dd><dt><span class="term">orderby=category,core.created</span></dt><dd>Order by the sequence defined in the category list and by the date
+  						and time the publication was created.</dd></dl></div></div></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="linkingfiltering"></a>Filtering</h2></div></div></div><p>It is also possible to filter the various lists of publications via
+    restrictions in the URL. To add a filter you simply specify "filter=expr" in
+    the URL where expr is a filter expression. Filter expressions are written
+    as comma-separated lists of filter terms where each term consists of a
+    field name, an operator, and an operand separated by colons or hats (^). A single
+    filter combines all it's expressions using an AND-operator (making it a
+    conjunction). The possible filter operators are:</p><div class="variablelist"><dl><dt><span class="term">eq</span></dt><dd>
+            Equal.
+          </dd><dt><span class="term">ne</span></dt><dd>
+            Not equal.
+          </dd><dt><span class="term">lt</span></dt><dd>
+            Less than.
+          </dd><dt><span class="term">le</span></dt><dd>
+            Less than or equal.
+          </dd><dt><span class="term">gt</span></dt><dd>
+            Greater than.
+          </dd><dt><span class="term">ge</span></dt><dd>
+            Greater than or equal.
+          </dd><dt><span class="term">like</span></dt><dd>
+            Using database's LIKE operator to match operand as
+            '%operand%'.
+          </dd><dt><span class="term">null</span></dt><dd>
+            Test for field being NULL. Should be used without an
+            operand&#8212;like filter=FieldName:null.
+          </dd><dt><span class="term">nottnull</span></dt><dd>
+            Test for field being NOT NULL. Should be used without an
+            operand&#8212;like filter=FieldName:notnull.
+          </dd><dt><span class="term">sub</span></dt><dd>
+            Test for a list field being equal to or an descendant of the
+            operand. Only valid for category fields.
+          </dd><dt><span class="term">rel</span></dt><dd>
+            "Related to"&#8212;Test for a relationship field being related to a specific publication item ID.
+            For instance "department:rel:PID", where <code class="varname">PID</code> is a
+            publication ID. The "department" field would normally be a field in publication
+            type T1 (for instance an "Employee", whereas the PID would be from another 
+            publication type T2 (for instance a "Department").
+          </dd><dt><span class="term">nrel</span></dt><dd>
+            "Not related to"&#8212;The opposite of the "rel" operator (what ever that means).
+          </dd></dl></div><p>The right hand side operands in a filter expression may contain
+    "@now" which will expand to the current date. This may although not be
+    that usefull since there is no support yet for plus or minus
+    operators.</p><div class="caution" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Caution</h3>Beware that URL variables are separated with ampersands "&amp;".
+    Ampersands are therefore also used to separate different filters on the
+    URL. But multiple filters are OR-ed together <span class="emphasis"><em>which is opposite
+    the usual interpretation of the ampersand!</em></span></div><p>Multiple filters can be combined on the URL using "filterN=expr"
+    where N is an integer starting from 1. Multiple filters are combined using
+    an OR-operator (putting the whole filter language in a disjunctive normal
+    form).</p><div class="example"><a name="id4704803"></a><p class="title"><b>Example 6.3. Filtering</b></p><div class="variablelist"><dl><dt><span class="term">filter=title:like:pagesetter</span></dt><dd>
+            Find all the publications where the title field contains the
+            word "pagesetter".
+          </dd><dt><span class="term">filter=age:ge:18</span></dt><dd>
+            Find all the publications where the age field is greater
+            than or equal to 18.
+          </dd><dt><span class="term">filter=age:ge:18,country:eq:DK</span></dt><dd>
+            Find all the publications where the age field is greater
+            than or equal to 18 and the country is equal to "DK".
+          </dd><dt><span class="term">filter1=age:ge:18,country:eq:DK&amp;filter2=country:eq:NO</span></dt><dd>
+            Find all the publications where (1) the age field is greater
+            than or equal to 18 and the country is equal to "DK", or (2) the
+            country is equal to "NO".
+          </dd></dl></div></div><p>Now assume we have a book category as shown in the following image
+    and use this in a book review publication with a field named "category"
+    (using the category type of course).</p><div class="figure"><a name="id4704877"></a><p class="title"><b>Figure 6.1. Example categories used for books</b></p><div class="mediaobject"><img src="img/bookGenres.jpg" alt="Example categories used for books"></div></div><p>Then we can select various sub-sets of the reviews with the following
+    examples.</p><div class="example"><a name="id4704902"></a><p class="title"><b>Example 6.4. Filtering by category fields</b></p><div class="variablelist"><dl><dt><span class="term">filter=category:eq:8</span></dt><dd>
+            Find all the reviews of category "Fiction"&#8212;but not
+            sub-sets of that. <span class="emphasis"><em>The value to compare with is
+            the category ID!</em></span>.
+          </dd><dt><span class="term">filter=category:sub:8</span></dt><dd>
+            Find all the reviews of category "Fiction" and any sub-sets
+            of that (Science Fiction and Classics). <span class="emphasis"><em>The value 
+            to compare with is the category ID!</em></span>.
+          </dd><dt><span class="term">filter1=category:sub:11&amp;filter2=category:eq:23</span></dt><dd>
+            Find all the art(11) and drinks(23) reviews, but not
+            non-alcoholic drinks (since we use the eq operator instead of sub
+            operator). <span class="emphasis"><em>The value to compare with is
+            the category ID!</em></span>.
+          </dd></dl></div></div><p>It is furthermore possible to match all items using the special list
+    value "top", for instance in a filter like
+    "filter=category:sub:top".</p><div class="section" lang="en-US"><div class="titlepage"><div><div><h3 class="title"><a name="id4704975"></a>Indirect Operands</h3></div></div></div><p>The above setup is fine as long as you are using hard-coded URLs.
+    But when you want to let the user enter something in a form and then
+    filter by that, you need to refer to other URL variables in the filter.
+    Assume for instance you want to filter a keywords field using the like
+    operator based on something the user enters in a form. The user input is
+    entered in a HTML input field named "keyword". Now we can refer to the URL
+    variable as "$keyword" in a filter like
+    "filter=keywordField:like:$keyword".</p><div class="figure"><a name="id4704993"></a><p class="title"><b>Figure 6.2. Indirect operands used in input formular</b></p><div class="mediaobject"><img src="img/filter1.jpg" alt="Indirect operands used in input formular"></div></div><p>An example template using this feature could look like this for the
+    list-header template of a knowledge base:</p><pre class="programlisting">&lt;div class="pn-pagetitle"&gt;Knowledge Base&lt;/div&gt;
+
+&lt;form action="&lt;!--[pnmodurl modname="pagesetter" tid=$core.tid]--&gt;" method="POST"&gt;
+ &lt;table&gt;
+  &lt;tr&gt;&lt;td&gt;Keyword:&lt;/td&gt;&lt;td&gt;&lt;input type="text" name="keyword"&gt;&lt;/td&gt;&lt;tr&gt;
+  &lt;tr&gt;&lt;td&gt;&lt;input type="submit" value="Update"&gt;&lt;/td&gt;&lt;tr&gt;
+ &lt;/table&gt;
+ &lt;input type="hidden" name="filter"
+        value="keywordField:like:$keyword"&gt;
+&lt;/form&gt;
+
+&lt;ul&gt;</pre></div></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="linkingsettingdefaults"></a>Setting Defaults for Editor</h2></div></div></div><p>You can assign default values to the editor when creating a new
+    publication. Simply add "set_xxx=yyy" to the URL and the user defined
+    variable <code class="varname">xxx</code> will be set to the default value yyy instead of being empty.
+    Use category ID for category fields. Example: assume you have a News
+    publication and a Project publication. The News publication can be
+    categorized by some category. The same goes for your projects. On each
+    project page you can now add a "Submit Related News" link that presets the
+    category of the News item to that of the current project. To do so your
+    Project template must contain something like this:</p><pre class="programlisting">&lt;div class="pn-pagetitle"&gt;Projects&lt;/div&gt;
+
+...
+
+&lt;a href="&lt;!--[modurl module=pagesetter func=pubedit tid=T
+                     set_category=$category.id]--&gt;"&gt;...&lt;/a&gt;
+
+...</pre><div class="section" lang="en-US"><div class="titlepage"><div><div><h3 class="title"><a name="linkingsettingtopic"></a>Setting Default Topic</h3></div></div></div><p>The default topic is, for no really good reason, handled specially. You can set the topic
+      via the URL variable <code class="varname">topicid</code>. The value must be a topic id.</p></div></div></div><div class="chapter" lang="en-US"><div class="titlepage"><div><div><h2 class="title"><a name="chap_templates"></a>Chapter 7. Templates</h2></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#templatesintro">Templates</a></span></dt><dt><span class="section"><a href="#templatesvarstart">Template Variables</a></span></dt><dd><dl><dt><span class="section"><a href="#templatesvarlistitems">Using Categories</a></span></dt><dt><span class="section"><a href="#templatesvarpageable">Using Pageable Fields</a></span></dt><dt><span class="section"><a href="#id4703438">Using upload fields</a></span></dt></dl></dd><dt><span class="section"><a href="#templatesvarhitcounts">Showing Hit Counts</a></span></dt><dt><span class="section"><a href="#templatesvaredit">Showing "Edit This" Link</a></span></dt><dt><span class="section"><a href="#templatessinglemultiplestart">Single and Multiple List Templates</a></span></dt><dd><dl><dt><span class="section"><a href="#templatessingle">Single Template</a></span></dt><dt><span class="section"><a href="#templatesmultiple">Multiple Templates</a></span></dt></dl></dd><dt><span class="section"><a href="#templatesthemespecific">Theme Specific Templates</a></span></dt><dt><span class="section"><a href="#templatesoperations">Template Operations</a></span></dt><dt><span class="section"><a href="#templatesauto">Auto Generated Templates</a></span></dt><dt><span class="section"><a href="#templatespnrenderplugins">pnRender Plugins</a></span></dt><dt><span class="section"><a href="#templatesrelations">Relating Items to Each Other</a></span></dt><dt><span class="section"><a href="#templatesfolder">Folder Templates</a></span></dt></dl></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="templatesintro"></a>Templates</h2></div></div></div><p>The output templating system uses a set of template files for each
+    publication type and depends on the PostNuke .75 pnRender system (see
+    installation guide).</p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3>
+      You can read a lot more about the Smarty templating system (that pnRender
+      builds on, and thereby Pagesetter) on 
+      <a href="http://smarty.php.net/" target="_top">smarty.php.net</a>.
+    </div><p>The template files are stored in <code class="filename">pagesetter/pntemplates/...</code>
+    and they are named after the publication template name
+    like "<span class="emphasis"><em>template</em></span>-<span class="emphasis"><em>format</em></span>.html" where
+    <span class="emphasis"><em>template</em></span> is specified in the publication setup and
+    <span class="emphasis"><em>format</em></span> depends on the situation.</p><p>Pagesetter uses the
+    following formats in various situations (here an example filename is shown in the
+    parenthesis):</p><div class="variablelist"><dl><dt><span class="term">list (News-list.html)</span></dt><dd>
+            The compact view of a publication when shown in a list.
+          </dd><dt><span class="term">list-header (News-list-header.html)</span></dt><dd>
+            A template shown before a list.
+          </dd><dt><span class="term">list-footer (News-list-footer.html)</span></dt><dd>
+            A template shown after a list.
+          </dd><dt><span class="term">list-single (News-list-single.html)</span></dt><dd>
+            This single template takes the place of list, list-header,
+            and list-footer in case no list-header template is found. This
+            kind of list templates gives you more control over the layout,
+            but disables caching of the list output.
+          </dd><dt><span class="term">full (News-full.html)</span></dt><dd>
+            The full view of a publication.
+          </dd><dt><span class="term">print (News-print.html)</span></dt><dd>
+            The full view of a publication when shown as "Print this"
+            without PostNuke frames.
+          </dd><dt><span class="term">xml (News-xml.html)</span></dt><dd>
+            Full view of publication as XML. Used for the xmllist and
+            xmlpub functions that adds a "Content-Type: text/xml" to the HTTP
+            header.
+          </dd></dl></div><div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3><p>1) Remember to make <code class="filename">pagesetter/pntemplates</code> writeable
+      by the webserver if you want to use Pagesetter automatic generation of templates.</p><p>2) You always specify a format (like "RSS") when asked to supply a template in a block
+      or URL. <span class="emphasis"><em>You do not specify a full filename!</em></span></p><p>3) If a list display cannot find a template header, for instance 
+      <code class="filename">News-list-header.html</code> then it assumes a
+      single template list is used and looks for the format "list-single" instead,
+      for instance <code class="filename">News-list-single.html</code>.</p></div></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="templatesvarstart"></a>Template Variables</h2></div></div></div><p>The templates may refer to all of the user defined fields and most
+    of the core meta data (author etc.). Template variables are inserted using
+    {$name} or &lt;!--[$name]--&gt; where "name" is the name of a variable. The
+    braces can be used for simplicity but the best solution is to use the
+    HTML comments style since this is compatible with various HTML editors.
+    The user defined fields are simply refered to by their field name, whereas
+    the meta data is refered to through the "core" object as {$core.name}
+    where "name" may be any of the following core fields:</p><div class="variablelist"><dl><dt><span class="term">id</span></dt><dd>
+            A unique integer value identifying the publication.
+          </dd><dt><span class="term">tid*</span></dt><dd>
+            The publication type ID.
+          </dd><dt><span class="term">format*</span></dt><dd>
+            The template format name, e.g., "list" in
+            <code class="filename">News-list-header.html</code>.
+          </dd><dt><span class="term">author</span></dt><dd>
+            Name of the author as set in the publication editor.
+          </dd><dt><span class="term">title</span></dt><dd>
+            Copy of the value from the specified title field.
+          </dd><dt><span class="term">topic</span></dt><dd>
+            Associated topic description. This is a struct with the
+            following fields: id, name, text, and image. Use for instance like
+            <span class="markup">&lt;!--[$core.topic.name]--&gt;</span>.
+          </dd><dt><span class="term">creator</span></dt><dd>
+            Name of the person who actually created the
+            publication.
+          </dd><dt><span class="term">created</span></dt><dd>
+            The time stamp of when the publication was created. Time stamps
+            are stored as seconds since 1970 (or what ever internal format the
+            SQL servers uses) and needs to be formatted for printing. For this
+            you can write <span class="markup">&lt;--[$core.created|date_format:"%d/%m/%Y"]--&gt;.</span>
+            as an example format that generates DD/MM/YYYY.
+          </dd><dt><span class="term">lastUpdated</span></dt><dd>
+            The time stamp of when the publication was last updated. Check
+            <code class="varname">created</code> for a description of time stamps.
+          </dd><dt><span class="term">fullURL</span></dt><dd>
+            The URL to the full display of the publication.
+          </dd><dt><span class="term">printThis</span></dt><dd>
+            A complete link to "Print this" with description.
+          </dd><dt><span class="term">printThisURL</span></dt><dd>
+            The URL to "Print this".
+          </dd><dt><span class="term">sendThis</span></dt><dd>
+            A complete link to "Send this" with description.
+          </dd><dt><span class="term">sendThisURL</span></dt><dd>
+            The URL to "Send this".
+          </dd><dt><span class="term">listItemNo</span></dt><dd>
+            This variable indicates the item number in the list template. The first publication will have
+            this set to 0, the next 1 and so on.
+          </dd></dl></div><p>The items marked with * are also available in list headers and
+    footers.</p><div class="section" lang="en-US"><div class="titlepage"><div><div><h3 class="title"><a name="templatesvarlistitems"></a>Using Categories</h3></div></div></div><p>When refering to a category item you must further specify
+    which property of the item you want. You can choose between the
+    title, the qualified title (with parent items prefixed), the value, or the
+    description. The properties are accessed as sub-values of the field (just
+    like the properties of the core variable or a topic field). The possible category properties
+    are:</p><div class="variablelist"><dl><dt><span class="term">title</span></dt><dd>
+            Item title.
+          </dd><dt><span class="term">fullTitle</span></dt><dd>
+            Qualified item title. The parent item titles are prefixed
+            with colon as separator. For instance Fiction:Fantasy.
+          </dd><dt><span class="term">value</span></dt><dd>
+            Item value.
+          </dd><dt><span class="term">description</span></dt><dd>
+            Item description.
+          </dd></dl></div><p>For instance, say you have a category field in your publication type
+    called bookType. It is defined as a category called typesOfBooks. To add the
+    title of the category field to your template use
+    <span class="markup">&lt;!--[$bookType.title]--&gt;</span>.</p><p>If you need to generate a select-box for a specific category field then
+    you can use the <code class="function">pagesetter_listSelector</code> Smarty plugin 
+    like this:</p><pre class="programlisting">&lt;form action="..."&gt;
+ Select Category: &lt;!--[pagesetter_listSelector 
+ name="categoryInput" field="category"]--&gt;
+ ...
+&lt;/form&gt;</pre><p>This will produce an HTML "select" input with the name "categoryInput" based
+    on the field "category". The select input will show item titles and use
+    item IDs as values.</p></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h3 class="title"><a name="templatesvarpageable"></a>Using Pageable Fields</h3></div></div></div><p>A field that has been enabled for multiple pages is accessed as an
+    array of pages, so you will have to specify which page to show. The page
+    number is passed in the URL as the query variable <code class="varname">page</code> 
+    which can be accessed like <code class="varname">$core.page</code>. You can get the 
+    number of pages as <code class="varname">$core.pageCount</code>. The template system 
+    offers a "pager" generator function
+    named <code class="function">pagesetter_pager</code>. The pnRender module already offers different kinds
+    of pagers, but I never got them to work with Pagesetter. Besides that this
+    one is easier to use with Pagesetter items. To insert the pager you add
+    <span class="markup">&lt;!--[pagesetter_pager]--&gt;</span> to the template. The function accepts the
+    following parameters:</p><div class="variablelist"><dl><dt><span class="term">page</span></dt><dd>
+            The current page number&#8212;zero based for look-up in page
+            array. If left out then <code class="varname">$core.page</code> is used.
+          </dd><dt><span class="term">pageCount</span></dt><dd>
+            The number of pages available. If left out then
+            <code class="varname">$core.pageCount</code> is used.
+          </dd><dt><span class="term">baseURL</span></dt><dd>
+            The base URL of the view (link to page). If left out then
+            <code class="varname">$core.baseURL</code> is used.
+          </dd><dt><span class="term">next</span></dt><dd>
+            A piece of HTML to insert as the "Next page" link. Default
+            is "&gt;"
+          </dd><dt><span class="term">prev</span></dt><dd>
+            A piece of HTML to insert as the "Prev page" link. Default
+            is "&lt;"
+          </dd><dt><span class="term">separator</span></dt><dd>
+            A piece of HTML to insert as the separator between page
+            number. Default is &amp;nbsp;
+          </dd><dt><span class="term">pageClass</span></dt><dd>
+            A CSS class name to include in the anchors of the prev/next
+            links.
+          </dd><dt><span class="term">thisPageClass</span></dt><dd>
+            A CSS class name to put the current page number into using a
+            &lt;span&gt; tag.
+          </dd></dl></div><p>Example template:</p><pre class="programlisting">Page &lt;!--[$core.page+1]--&gt;&lt;br&gt;
+&lt;!--[pagesetter_pager]--&gt;</pre><p>and a bit more advanced
+    example:</p><pre class="programlisting">Page &lt;!--[$core.page+1]--&gt; of &lt;!--[$core.pageCount]--&gt;&lt;br&gt;
+&lt;!--[pagesetter_pager prev="&lt;img src='leftArrow.gif'&gt;"
+                      next="&lt;img src='rightArrow.gif'&gt;"]--&gt;</pre></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h3 class="title"><a name="id4703438"></a>Using upload fields</h3></div></div></div><p>When refering to upload fields you must specify one of the following
+      properties:</p><div class="variablelist"><dl><dt><span class="term">url</span></dt><dd>Complete URL for inline display of document/image.
+          </dd><dt><span class="term">downloadUrl</span></dt><dd>Complete URL for downloading of document/image.
+          </dd><dt><span class="term">thumbnailUrl</span></dt><dd>Complete URL to thumbnail of image (only available for
+          image uploads).</dd><dt><span class="term">size</span></dt><dd>Size of document in bytes.
+          </dd><dt><span class="term">type</span></dt><dd>MIME type of document.
+          </dd></dl></div><div class="example"><a name="id4703514"></a><p class="title"><b>Example 7.1. Example template with upload field (named "document").</b></p><pre class="programlisting">
+        
+&lt;dt&gt;
+  &lt;a href="&lt;!--[$document.url]--&gt;"&gt;&lt;!--[$core.title]--&gt;&lt;/a&gt;
+  (&lt;!--[$document.size]--&gt; bytes)
+&lt;/dt&gt;
+&lt;dd&gt;
+  &lt;!--[$description]--&gt;
+  &lt;span class="pn-sub"&gt;
+  [&lt;a href="&lt;!--[$core.fullURL]--&gt;"&gt;details&lt;/a&gt;]&lt;/span&gt;
+&lt;/dd&gt;
+        
+        </pre></div></div></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="templatesvarhitcounts"></a>Showing Hit Counts</h2></div></div></div><p>Hit counts can be displayed in your publications by inserting
+    <code class="varname">&lt;!--[$core.hitCount]--&gt;</code>. But you need to do something to avoid caching
+    of the output, otherwise the value would always stay the same (even though
+    the actual hit count is incremented anyway). For this purpose Smarty adds
+    the "nocache" tag. So the complete piece of code you need to insert is:</p><pre class="programlisting">
+    &lt;!--[nocache]--&gt;&lt;!--[$core.hitCount]--&gt;&lt;!--[/nocache]--&gt;
+    
+    </pre></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="templatesvaredit"></a>Showing "Edit This" Link</h2></div></div></div><p>Such a link can be added by inserting <code class="varname">&lt;!--[$core.editThis]--&gt;</code> 
+    or <code class="varname">&lt;!--[$core.editInfo]--&gt;</code>, where the
+    first one takes you directly to the edit page, whereas the second adds
+    a little popup with some publication info and links to editing and
+    creation of new publications. As with the hit counts you must add
+    a "nocache" tag around the code:</p><pre class="programlisting">
+    &lt;!--[nocache]--&gt;&lt;!--[$core.editThis]--&gt;&lt;!--[/nocache]--&gt;
+    
+    </pre>
+    or
+    <pre class="programlisting">
+    &lt;!--[nocache]--&gt;&lt;!--[$core.editInfo]--&gt;&lt;!--[/nocache]--&gt;
+    
+    </pre></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="templatessinglemultiplestart"></a>Single and Multiple List Templates</h2></div></div></div><p>The list view used in Pagesetter allows you to display a set of
+    publications through a template. This can be done with either a single
+    template, in which you must iterate through the elements yourself, or with
+    a header/list/footer combination of templates that allows you to display
+    one publication alone in a template, which is then invoked by Pagesetter
+    multiple times.</p><div class="section" lang="en-US"><div class="titlepage"><div><div><h3 class="title"><a name="templatessingle"></a>Single Template</h3></div></div></div><p>If a template named <code class="filename">x-list-header.html</code> can be found then
+    <code class="filename">x-list-single.html</code> will be used instead. This template will be passed an
+    array named <code class="varname">publications</code> which contains one entry for each publication in
+    the list. Each array entry contains exactly the same variables as the ones
+    passed to the multiple list template. This allows you to fine tune the
+    exact positioning of the publications, at the cost of some performance
+    since the complete list output cannot be cached. Checking on existence of
+    <code class="filename">x-list-header.html</code> instead <code class="filename">of x-list-single.html</code>
+    makes it possible to
+    specify different template formats than "single".</p><p>Example:</p><pre class="programlisting">&lt;h1&gt;My Frontpage&lt;/h1&gt;
+
+&lt;table style="width: 70%"&gt;
+  &lt;tr&gt;
+    &lt;td style="width: 50%"&gt;
+      &lt;h2&gt;&lt;!--[$publications[0].core.title]--&gt;&lt;/h2&gt;
+      &lt;!--[$publications[0].teaser]--&gt;
+    &lt;/td&gt;
+    &lt;td style="width: 50%"&gt;
+      &lt;h2&gt;&lt;!--[$publications[1].core.title]--&gt;&lt;/h2&gt;
+      &lt;!--[$publications[1].teaser]--&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td style="width: 50%"&gt;
+      &lt;h2&gt;&lt;!--[$publications[2].core.title]--&gt;&lt;/h2&gt;
+      &lt;!--[$publications[2].teaser]--&gt;
+    &lt;/td&gt;
+    &lt;td style="width: 50%"&gt;
+      &lt;h2&gt;&lt;!--[$publications[3].core.title]--&gt;&lt;/h2&gt;
+      &lt;!--[$publications[3].teaser]--&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</pre></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h3 class="title"><a name="templatesmultiple"></a>Multiple Templates</h3></div></div></div><p>If a template named <code class="filename">x-list-header.html</code> can be found then this will
+    be displayed first. After this the template named <code class="filename">x-list.html</code> will be
+    displayed one time for each publication in the list. At last the template
+    named <code class="filename">x-list-footer.html</code> will be displayed. This reduces the possibilities
+    for finetuning the layout, but it improves performance since the output of
+    each of the publications can be cached.</p></div></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="templatesthemespecific"></a>Theme Specific Templates</h2></div></div></div><p>With the pnRender system it is possible to specifiy theme specific
+    templates. Just place your templates in the structure shown here (the top
+    theme directory is PostNuke's main theme directory):</p><div class="mediaobject"><img src="img/ThemeDirectoryStructure.gif"></div></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="templatesoperations"></a>Template Operations</h2></div></div></div><p>You can do a bunch of stuff with the Smarty template system. Please
+    read the documentation at <a href="http://smarty.php.net/" target="_top">smarty.php.net</a> as well as the
+    pnRender documentation when it becomes available.</p><p>Here's anyway a few examples:</p><pre class="programlisting">  &lt;!-- Uppercase the title --&gt;
+&lt;h2&gt;&lt;!--[$title|upper]--&gt;&lt;/h2&gt;
+
+  &lt;!-- Truncate the topic to 40 characters 
+       use ... at the end --&gt;
+Topic: &lt;!--[$topic|truncate:40:"..."]--&gt;
+
+  &lt;!-- Produce category bread crumbs using "separator.png"
+       image as separator instead of colons in the qualified
+       title of a list item --&gt;
+Genre: &lt;!--[$genre.fullTitle|replace:":":" 
+            &lt;img src='separator.png'&gt; "]--&gt;
+
+  &lt;!-- format a literal string --&gt;
+&lt;!--[$"now"|date_format:"%Y/%m/%d"]--&gt; </pre></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="templatesauto"></a>Auto Generated Templates</h2></div></div></div><p>It is possible to auto generate missing templates. Go to
+    "Publications:Create Templates" in the menu. Here you find a list of your
+    publications and the possibility to mark which templates to generate. The
+    new templates are based on the templates named __template-... so you can
+    modify these to suite your own needs.</p><div class="caution" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Caution</h3>You need to make the pntemplates directory writable by all
+    for this to work!</div></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="templatespnrenderplugins"></a>pnRender Plugins</h2></div></div></div><p>If you look into the pagesetter/pntemplates/plugins directory you
+    will find a set of predefined plugins for Pagesetter. You will have to
+    read the PHP code to get the documentation so far. But here's a short
+    list:</p><div class="variablelist"><dl><dt><span class="term">pagesetter_pager</span></dt><dd>
+            Generates a "&lt;&lt; 1,2,3, ..., &gt;&gt;" set of links for
+            selecting a page in a multipaged publication.
+          </dd><dt><span class="term">pagesetter_ezcommentsCount</span></dt><dd>
+            Counts associated EZComments items.
+          </dd><dt><span class="term">pagesetter_listBrowser</span></dt><dd>
+            Generates a tree based on a category field. Just like the
+            category based menu block. A more correct name would be
+            "categoryBrowser".
+          </dd><dt><span class="term">pagesetter_inlinePubList</span></dt><dd>
+            Creates a templated list of publications to be inserted on
+            your page.
+          </dd><dt><span class="term">pagesetter_listSelector</span></dt><dd>
+            Generates a HTML select tag for selection of items from a
+            category field.
+          </dd><dt><span class="term">pagesetter_pubPager</span></dt><dd>
+            Generates a prev/next link set for browsing through a list
+            of publications.
+          </dd><dt><span class="term">pagesetter_createFilter</span></dt><dd>
+            Creates a filter for input to the Pagesetter API function
+            getPubList.
+          </dd><dt><span class="term">var</span></dt><dd>
+            Internally used to auto-create templates.
+          </dd><dt><span class="term">bool_format</span></dt><dd>
+            Formats a bool value as one of two strings.
+          </dd></dl></div></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="templatesrelations"></a>Relating Items to Each Other</h2></div></div></div><p>You can relate publications to each other in different ways, but common
+    for them all is that you use the pnRender plugin 
+    <code class="varname">pagesetter_inlinePubList</code> to display the related items
+    inside the template. You can relate publications by topic, category and much
+    more, as well as making parent/child relations using a "Publication" field
+    to specify the parent publication when editing. You can even make
+    many-to-many relations with the Relation input field.</p><p>The <code class="varname">pagesetter_inlinePubList</code> is typically used like this:</p><div class="example"><a name="id4706217"></a><p class="title"><b>Example 7.2. Relating items by topic.</b></p><pre class="programlisting">
+      
+&lt;!--[nocache]--&gt;
+&lt;!--[pagesetter_createFilter filter=topic:eq:`$core.topic`
+                             assign=filter]--&gt;
+&lt;!--[pagesetter_inlinePubList tid=18 filter=$filter]--&gt;
+&lt;!--[/nocache]--&gt;
+      
+      </pre></div><p>First you create a filter and then you apply this to the inline list as well
+    as you specify which publication type ID to select from.</p><p>Parent/child relations can be made in exactly the same way:</p><div class="example"><a name="id4706242"></a><p class="title"><b>Example 7.3. Parent/child relations.</b></p><pre class="programlisting">
+      
+&lt;!--[nocache]--&gt;
+&lt;!--[pagesetter_createFilter filter=parent:eq:`$core.pid`
+                             assign=filter]--&gt;
+&lt;!--[pagesetter_inlinePubList tid=T filter=$filter]--&gt;
+&lt;!--[/nocache]--&gt;
+      
+      </pre></div><p>In this example you apply a filter that selects all the publications that
+    has the current publication set as their parent ("T" is a publication type ID).
+    </p><p>Many-to-many relations are displayed using the filter operator "rel"
+    (relates-to):</p><div class="example"><a name="templatemanytomanyexample"></a><p class="title"><b>Example 7.4. Many-to-Many relations.</b></p><pre class="programlisting">
+      
+&lt;!--[nocache]--&gt;
+&lt;!--[pagesetter_createFilter filter="department:rel:`$core.pid`" assign=filter]--&gt;
+&lt;!--[pagesetter_inlinePubList tid=T filter=$filter]--&gt;&lt;br/&gt;
+&lt;!--[/nocache]--&gt;
+      
+      </pre></div><p>In this example we show all publications of type "T" that relates to the
+    current publication through the "department" field.</p></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="templatesfolder"></a>Folder Templates</h2></div></div></div><p>If you choose to organize your Pagesetter publications with the Folder
+    module then you might want to create your own templates for this purpose. If you
+    do not create any templates then the default templates <code class="filename">folder.view.html</code>
+    and <code class="filename">folder.select.html</code> will be used for displaying items in the
+    folder system and selecting items in the folder system respectively.</p><p>You can design your own templates and name them 
+    <code class="filename"><span class="emphasis"><em>PubTypeName</em></span>-folder.view.html</code> and
+    <code class="filename"><span class="emphasis"><em>PubTypeName</em></span>-folder.select.html</code> respectively.
+    You can use <code class="filename">Image-folder.view.html</code> or 
+    <code class="filename">FileUpload.view.html</code> for inspiration.</p></div></div><div class="chapter" lang="en-US"><div class="titlepage"><div><div><h2 class="title"><a name="chap_relations"></a>Chapter 8. Publication Relations</h2></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#relationsintro"></a></span></dt><dt><span class="section"><a href="#relationspublication">Parent-Child Relations&#8212;The Publication Field</a></span></dt><dt><span class="section"><a href="#relationsrelation">Relating to multiple publication instances</a></span></dt><dt><span class="section"><a href="#relationsbrief">Some pitfalls concerning the relationship feature</a></span></dt></dl></div><div class="section" lang="en-US"><div class="titlepage"></div><p>In some cases you may want to relate different publications to each other. The simplest example
+    is to arrange songs in albums. In this case you would have one publication type
+    specifying albums and one publication type for the songs. Then you create a set of songs
+    and an album, and tell Pagesetter that these songs belong to that album. We call this for
+    parent-child relations. Parent-Child relations can also be used to describe employees relationships
+    to departments.</p><p>A more complex example is to arrange members in groups where each member can belong to more
+    than one group. We call this NxM relations (because N elements can be related to M other elements).</p><p>For this purpose Pagesetter implements two different input field 
+    types: <span class="emphasis"><em>Publication</em></span> and <span class="emphasis"><em>Relation</em></span>. The first is an input field
+    for parent-child relations that allows you to select a single publication instance from a 
+    specific publication type, and then second NxM input allows you to select multiple instances.</p></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="relationspublication"></a>Parent-Child Relations&#8212;The Publication Field</h2></div></div></div><p>This is the simplest type. You just add a field of the type "publication" to your publication 
+  	type and then you tell pagesetter which publication type this field should point to.</p><p>Let us use a company where every employee works in a specific department as an example. You will need 
+    two publication types: 
+  	One for the <span class="emphasis"><em>Department</em></span>and one for the <span class="emphasis"><em>Employee</em></span>. First add the publication type 
+  	<span class="emphasis"><em>department</em></span>. Here you can add fields for name, address and so on. Then add the publication type 
+  	<span class="emphasis"><em>employee</em></span>. Here you can add fields for name, telephone, email and so on. Add one field of the type
+  	<span class="emphasis"><em>Publication</em></span>, call it <span class="emphasis"><em>department</em></span>, and click on the button labeled "..." to edit
+  	the extra type information of this field. In this popup window you then select the publication type this field will relate to.
+  	(in this case <span class="emphasis"><em>Department</em></span>).</p><div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3>You have to select a publication type in the extra type information popup window, 
+    otherwise pagesetter will not now which 
+  	publications to list. Therefore it is best to create the publication type you like to relate to first.</div><p>The complete set of steps you need to go through are:</p><div class="orderedlist"><ol type="1"><li>Create parent publication type A.</li><li>Create child publication type B.</li><li>Add a "Publication" field on the child publication type and connect it to the parent type.</li></ol></div><p>Having done this you can begin editing. First add a few departments. Then add some employees. You will see that they
+  	have a select-list where you can choose which department they work in.</p><p>But how do you address these relations? The answer is simple: Everywhere pagesetter makes use of filters (see <a href="#linkingfiltering" title="Filtering">the section called &#8220;Filtering&#8221;</a>),
+  	you can address your related publications via a filter expression. In this example you could use "department:eq:9" to filter all 
+  	employees related to the department with th publication type ID 9.</p></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="relationsrelation"></a>Relating to multiple publication instances</h2></div></div></div><p>This type of relationship is quite a bit more complex than the parent-child relations, so be prepared for
+    some more work when setting it up (in database terms, this
+  	is a <span class="emphasis"><em>NxM-relation</em></span>, just in case someone is interested). 
+    Basically, you have to add a field of the type "Relation" 
+  	to both of the publication types involved. Then you have to tell pagesetter how the relationship is established
+    between these two.</p><p>Take our previous company as an example. This company has grown a bit more complex
+    while we were discussing the Parent-Child relations : Due to an increase in departments, it has become 
+  	necessary to assign employees to multiple departments. So we must now improve the relationships we already have
+    setup for our company.</p><p>In the <span class="emphasis"><em>Department</em></span> publication type,
+    add a field named	"employees" of the type "Relation", but do not enter any extra type data yet. 
+    Now alter the publication type <span class="emphasis"><em>Employee</em></span>.
+  	Add a field "departments" with the type "Relation" (or alter the existing field from the former example). 
+    Now click on "..." to edit the extra type data. Here you then select the publication type 
+    (<span class="emphasis"><em>Department</em></span>) and the specific field (<span class="emphasis"><em>employees</em></span>) 
+  	this field relates to (and some other parameters like appearance of the relationship editor).
+  	The extra type information of the related field in the <span class="emphasis"><em>Department</em></span> publication 
+    type is changed automatically.</p><div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3>You have to select a publication type for pagesetter to know which publications to show in the 
+    relation field. Additionally, you can
+  	select a corresponding relation field. You are clearly advised to do so, 
+    otherwise you will not establish a proper NxM-relation! (See a more brief
+  	explanation of this issue under <a href="#relationsbrief" title="Some pitfalls concerning the relationship feature">the section called &#8220;Some pitfalls concerning the relationship feature&#8221;</a>.</div><p>Now you have established a relation between the publication type <span class="emphasis"><em>department</em></span>, field <span class="emphasis"><em>employees</em></span> and the 
+  	publication type <span class="emphasis"><em>employee</em></span>, field <span class="emphasis"><em>department</em></span>. Changes you do to the field <span class="emphasis"><em>departments</em></span> will
+  	affect the field <span class="emphasis"><em>employees</em></span> and vice versa. If you add an employee and relate him to a specific department, he will also
+  	show up in the list of this department</p><p>The complete set of steps you need to go through are:</p><div class="orderedlist"><ol type="1"><li>Create publication type A.</li><li>Add relation fields to A but do not yet associate them with another publication.</li><li>Create publication type B.</li><li>Add relation fields to B and connect them to the respective fields in A. The reverse connection is 
+      done automatically.</li></ol></div><p>Displaying this relationship in your templates is quite simple and is done via filter statements. 
+    Use the special filter operator "rel" for this purpose. A filter like "department:rel:9"
+  	will select all employees related to the department with the publication ID 9. 
+    See also <a href="#templatemanytomanyexample" title="Example 7.4. Many-to-Many relations.">Example 7.4, &#8220;Many-to-Many relations.&#8221;</a>.</p></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="relationsbrief"></a>Some pitfalls concerning the relationship feature</h2></div></div></div><p>The complexity of the relationship feature can make it rather difficult to understand.
+    The most obvious pitfall is to overlook that the relations are
+  	established between two specific fields and not just between publications. For this reason you should always
+    add a relations-field in both of the related publication types and relate them to each other.</p><div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3>Although it is possible to relate a field to just a publication type and not to a specific relations-field, 
+    it is important that you know	what you are doing: By leaving the related field specification empty, you will just 
+    build something like am multiple pointer to a publication. Only	by connecting two relations fields you take advantage
+    of the fact that changing relations in one field will affect the fields of the corresponding 
+  	publication.</div><p>What is the benefit of this complexity? By relating fields, not just publications, you can establish relations 
+    between the same publication types which have different meanings. In our example company, you could add a field for 
+    "team leaders" in <span class="emphasis"><em>department</em></span>
+  	and a field "leading" in <span class="emphasis"><em>employee</em></span> and relate them to each other. Now you can maintain seperate 
+    lists of employees in a department and team leaders, based on the same publication types!</p><p>Another pitfall is something like the chicken and the egg-problem: When creating your first publication type, 
+    neither the field nor the publication type you like to relate to are created. So what to select in the extra types data? 
+    The solution is simple: Just leave the fields empty. Then create the second publication
+  	type and its relation field. Here you can select the first publication type and the connected relation field. 
+    Pagesetter will then make sure the extra
+  	type data of the corresponding field is changed properly, so you do not have to return to change the settings 
+    of the first publication type.</p></div></div><div class="chapter" lang="en-US"><div class="titlepage"><div><div><h2 class="title"><a name="chap_postnukefeatures"></a>Chapter 9. PostNuke Features</h2></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#pnfeatureswaiting">Waiting Block</a></span></dt><dt><span class="section"><a href="#pnfeatureslistblock">List Block</a></span></dt><dt><span class="section"><a href="#pnfeaturesoldstories">Old Stories Block</a></span></dt><dt><span class="section"><a href="#pnfeaturespubblock">Publication Block</a></span></dt><dt><span class="section"><a href="#pnfeaturesrandomblock">Random Publication Block</a></span></dt><dt><span class="section"><a href="#pnfeaturescatbased">Category Based Menu Block</a></span></dt><dt><span class="section"><a href="#pnfeatureshooks">PostNuke Hooks</a></span></dt><dt><span class="section"><a href="#pnfeaturessearch">PostNuke Searching</a></span></dt><dt><span class="section"><a href="#pnfeaturesshorturls">Short URLs</a></span></dt><dt><span class="section"><a href="#pnfeaturescaching">Caching in pnRender</a></span></dt><dt><span class="section"><a href="#pnfeaturesfolder">Organizing Publications</a></span></dt></dl></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="pnfeatureswaiting"></a>Waiting Block</h2></div></div></div><p>This block displays submitted publications waiting for approval.
+    Since "waiting for approval" is a term that cannot be hardwired into the
+    system, due to the flexible workflow system, you must configure which
+    workflow states that should be considered "waiting". For each publication
+    type you will find a list of checkboxes representing workflow
+    states&#8212;each of these can be checked to mark that state as a
+    "waiting" state.</p><p>You can create multiple Waiting blocks with different definitions of
+    waiting states. By using PostNuke's permission system for the blocks you
+    can then have different Waiting block setups for different groups of
+    users.</p><p>Besides checking the normal permissions for Pagesetter, this block
+    also checks for read access to the component "pagesetter:Waitingblock:"
+    and instance "Block title:Block Id:Type Id". The "Type Id" is the
+    publication type Id.</p></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="pnfeatureslistblock"></a>List Block</h2></div></div></div><p>This block shows the title of the top N publications of a specific
+    type&#8212;for instance the last ten News items. The list is the same as
+    shown when using Pagesetter as the frontpage module and the ordering as
+    well as number of items depends on the publication type.</p><p>The List block uses the template named 
+    <code class="filename">TypeName-block-list.html</code> (for instance 
+    <code class="filename">News-block-list.html</code>) to render each of the publications.
+    If this template does not exist then <code class="filename">Default-block-list.html</code>
+    is tried and if even this is non-existent then
+    <code class="filename">Default.html</code> is used.</p><div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3><p>The list block cannot yet handle single template lists and <span class="emphasis"><em>must</em></span> have both
+      a header and a footer.</p><p>By default, for a publication with the template set to "News", the block looks 
+      for <code class="filename">News-block-list.html</code>. If you don't write anything then this is the file 
+      you must create. You must also supply <code class="filename">News-block-list-header.html</code> and 
+      <code class="filename">News-block-list-footer.html</code> in this case.</p><p>If you want something different then you must write a "format" name&#8212;for 
+      instance "other". Then the block will look for <code class="filename">News-other.html</code>, 
+      <code class="filename">News-other-header.html</code> and <code class="filename">News-other-footer.html</code>.
+      </p></div><p>Besides checking the normal permissions for Pagesetter, this block
+    also checks for read access to the component "pagesetter:Listblock:" and
+    instance "Block title:Block Id:Type Id". The "Type Id" is the publication
+    type Id.</p><p>The list block supplies the header and footer templates with a simplfied
+    <code class="varname">$core</code> template variable. This variable contains <code class="varname">tid</code>
+    as the publication type ID, <code class="varname">title</code> as the title of the publication type, and 
+    <code class="varname">blockTitle</code> as the title of the block.
+    </p></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="pnfeaturesoldstories"></a>Old Stories Block</h2></div></div></div><p>You can setup a block for "old stories" using the "List" block
+    described above. The idea is that the front page normaly shows N items, so
+    the "old stories" block should show the next X items after N. To do so you
+    set the field "First publication number" to N and "Number of publications"
+    to X. To style the list closer to the original PostNuke "old stories"
+    block, you can specify the template to use as <code class="filename">list-old-block</code>,
+    which is a
+    supplied Pagesetter template for PN-News publications.</p></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="pnfeaturespubblock"></a>Publication Block</h2></div></div></div><p>This block shows a specific publication using a template of your own
+    choice. You need to select a publication type to show and then write the
+    publication type ID yourself (so far no point-and-click selection). The
+    template name must not include publication name and .html extension. So
+    for a "News" publication you should just write "full" to use the
+    "News-full.html" template.</p><p>Besides checking the normal permissions for Pagesetter, this block
+    also checks for read access to the component "pagesetter:Pubblock:" and
+    instance "Block title:Block Id:Publication Id". The "Publication Id" is
+    what is normaly referred to as "pid".</p></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="pnfeaturesrandomblock"></a>Random Publication Block</h2></div></div></div><p>This block displays a randomly selected publication on each page load. All
+    you have to do is to select a publication type and a template. Then Pagesetter
+    selectes random publications from the type you have chosen.</p></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="pnfeaturescatbased"></a>Category Based Menu Block</h2></div></div></div><p>The category based menu block generates a nested list of menu
+    entries based on the items in a specific category. Clicking on a menu item
+    takes the user to a list of all publications associated with that category
+    item <span class="emphasis"><em>or any sub-category item</em></span>. Besides checking the
+    normal permissions for Pagesetter, this block also checks for read access
+    to the component "pagesetter:Listmenublock:" and instance "Block
+    title:Block Id:Type Id". The "Type Id" is the publication type Id.</p><div class="figure"><a name="id4706572"></a><p class="title"><b>Figure 9.1. Example menu block based on a category setup</b></p><div class="mediaobject"><img src="img/categoryBlock.jpg" alt="Example menu block based on a category setup"></div></div><p>Configuring To set up the menu you need to specify the following
+    attributes</p><div class="variablelist"><dl><dt><span class="term">Publication type</span></dt><dd>
+            The publication type that this menu should show items
+            from.
+          </dd><dt><span class="term">Category field to base menu on</span></dt><dd>
+            This is the name of the publication field that this menu is
+            based on. The field must be an existing field and be associated
+            with some category. No error checking is done on this
+            input.
+          </dd><dt><span class="term">Top item ID</span></dt><dd>
+            If you consider the nested category structure as a tree then
+            this is the ID of the category item that will be used as the root
+            item for the menu. This allows you to only show a sub-set of the
+            items. No error checking is done on this input. Leave it empty to
+            get all items.
+          </dd><dt><span class="term">Maximum numbers of sub-levels to show</span></dt><dd>
+            This specify how deep a nesting into the category structure
+            the menu will show items from.
+          </dd><dt><span class="term">CSS class name for list</span></dt><dd>
+            Any CSS class name of your choice. It will only be added to
+            the top level <span class="markup">&lt;ul&gt;</span> HTML tag. You can find sample CSS rules
+            in <code class="filename">pagesetter/examples/News/styles.css</code>.
+          </dd></dl></div></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="pnfeatureshooks"></a>PostNuke Hooks</h2></div></div></div><p>Pagesetter is fully hook aware (with hooks for both display,
+    transformation, create and delete). This means you can enable auto links,
+    comments, rating and other nice hooks for your publications. To enable
+    hooks you must do three things:</p><div class="orderedlist"><ol type="1"><li>First hooks must be enabled for Pagesetter
+      in general. This can be done in the standard Admin::Modules section where
+      you click "edit" for Pagesetter. This will bring you to the hooks
+      enabling.</li><li>The next thing is to enable hooks for your publication type.
+      This is done in the checkbox "PN-Hooks" found in the publication type
+      configuration.</li><li><p>The last thing to do is to insert a little code-snippet in your templates:</p><pre class="programlisting">
+&lt;!--[if $core.useDisplayHooks]--&gt;
+&lt;!--[pnmodurl modname=pagesetter func=viewpub tid=$core.tid pid=$core.pid assign=viewUrl]--&gt;
+&lt;!--[pnmodcallhooks hookobject=item hookaction=display hookid=$core.uniqueId module=pagesetter returnurl=$viewUrl]--&gt;
+&lt;!--[/if]--&gt;
+</pre><p>This code-snippet is inserted automatically when generating templates from Pagesetter.</p></li></ol></div><div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3><p>Hooks are <span class="emphasis"><em>not</em></span> applied to publication lists! If they
+      were then we would end up having comments applied to the various
+      overview lists. Unfortunately this also means we don't get other
+      interesting hooks applied.</p><p>I do although assume that it can be done with proper use of the pnmodcallhooks plugin.</p></div></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="pnfeaturessearch"></a>PostNuke Searching</h2></div></div></div><p>Pagesetter complies to the standard interface for PostNuke
+    searching, which means you can search any of your publication fields for
+    "all" words in a query as well as "any" word in a query. You may have to
+    install the search file yourself (this depends on the zip-file structure).
+    Copy the file <code class="filename">html/modules/pagesetter/pnsearch/pagesetter.php</code> into
+    <code class="filename">html/includes/search</code> and you are ready to use the standard 
+    search module.</p><p>Search expressions may contain quotes to specify sentenses. You can for instance
+    search for either &gt;the yellow dog&lt; or &gt;"the yellow dog"&lt;. The first 
+    version will find any publication that contains one or more of the words, whereas the second
+    version looks for the exact sentence "the yellow dog".</p><p>One of the things you often see in a PostNuke theme is a small search
+    input field in the top bar. If you want to enable Pagesetter in this you
+    must add a (hidden) input field in the web form with the properties type
+    set to "hidden", name set to "active_pagesetter", and value set to
+    "1".</p><div class="example"><a name="id4705314"></a><p class="title"><b>Example 9.1. Example of search form taken from the standard PostNukeSilver theme.</b></p><pre class="programlisting">echo  '&lt;form action="modules.php" method="post"&gt;'
+       .'&lt;input type="hidden" name="name" value="Search"&gt;'
+       .'&lt;input type="hidden" name="file" value="index"&gt;'
+       .'&lt;input type="hidden" name="op" value="modload"&gt;'
+       .'&lt;input type="hidden" name="action" value="search"&gt;'
+       .'&lt;input type="hidden" name="overview" value="1"&gt;'
+       .'&lt;input type="hidden" name="active_stories" value="1"&gt;'
+       .'&lt;input type="hidden" name="active_pagesetter" value="1"&gt;'
+       .'&lt;input type="hidden" name="bool" value="AND"&gt;'
+       .'&lt;input name="q" type="text" size="15"&gt;'
+       .'&lt;/form&gt;';</pre></div></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="pnfeaturesshorturls"></a>Short URLs</h2></div></div></div><p>It can be a bit difficult to get HTMLArea working with short URLs since
+    it's popups are refering directly to the directories on the web server. For
+    instance <code class="filename">modules/pagesetter/guppy/HTMLArea/plugins/link.html</code>.</p><p>To avoid this problem you must tell the URL rewwriter that the HTMLArea URLs
+    should be ignored. This can be done with the following rewrite rule:</p><pre class="programlisting">
+    RewriteRule ^(.+)guppy/HTMLArea30beta(.+)$ - [L,NC,NS]
+    </pre><p>The use of filters in the URL can also be a bit troublesome since the colons of
+    the filter expressions ruins the browser's interpration of the URL. For this reason
+    both hats (^) and colons (:) can be used in filters. Hopefully this helps.</p></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="pnfeaturescaching"></a>Caching in pnRender</h2></div></div></div><p>If you want improved performance from Pagesetter then make sure caching is enabled
+    in pnRender. Go to "Admin - pnRender" and enable caching.</p></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="pnfeaturesfolder"></a>Organizing Publications</h2></div></div></div><p>With the help of a separate module "Folder", found on elfisk.dk, you
+    can organize your publications in a hierarchical folder structure. It is further
+    more possible to import all of your existing Pagesetter publications into
+    that module.</p><p>To import your publications you must first define folders and sub-folders
+    for each of the publication types. <span class="emphasis"><em>Then make sure you have spelled the
+    sub-folder template correctly</em></span>&#8212;for instance by creating a few
+    publications from within Pagesetter and verifying that they end up in the
+    expected sub-folders. After that go to Pagesetter's admin page :: Tools ::
+    Export Data and transfer all the items.</p></div></div><div class="chapter" lang="en-US"><div class="titlepage"><div><div><h2 class="title"><a name="chap_extrafeatures"></a>Chapter 10. Extra Features</h2></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#extrafeaturesrssfeeds">RSS Feeds</a></span></dt><dt><span class="section"><a href="#extrafeaturestitlehack">Title-Hack</a></span></dt><dt><span class="section"><a href="#extrafeaturesfeproc">FEProc Integration</a></span></dt><dd><dl><dt><span class="section"><a href="#extrafeaturesfeprocstart">FEProc Integration</a></span></dt><dt><span class="section"><a href="#extrafeaturesfeprochandler">Pagesetter FEProc Handler</a></span></dt><dt><span class="section"><a href="#extrafeaturesfeexample">Example - An Event Registration Setup</a></span></dt></dl></dd></dl></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="extrafeaturesrssfeeds"></a>RSS Feeds</h2></div></div></div><p>Pagesetter can generate RSS feeds using the XML dumper and an
+    appropriate template. The URL for this is:
+    .../index.php?module=pagesetter&amp;func=xmllist&amp;tid=T&amp;tpl=RSS
+    This assumes the RSS template is in the file <code class="filename">Name-RSS.html</code>. An example
+    template <code class="filename">PN-News-RSS.html</code> is supplied with Pagesetter. This file needs
+    some modifications related to the feed title, image and description.</p></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="extrafeaturestitlehack"></a>Title-Hack</h2></div></div></div><p>It is possible to get the title of a Pagesetter publication put into
+    the browser window's title bar with the use of the pagesetter_Title plugin, but
+    only with Xantia themes.</p><p>It is also possible to do this using Jöerg's "Title-hack". Read more at
+    <a href="http://sourceforge.net/projects/lottasophie" target="_top">http://sourceforge.net/projects/lottasophie</a>.</p></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="extrafeaturesfeproc"></a>FEProc Integration</h2></div></div></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h3 class="title"><a name="extrafeaturesfeprocstart"></a>FEProc Integration</h3></div></div></div><p>FEProc is a PostNuke module for processing of forms data. It
+      depends on FormExpress for the creation of web forms and then allows the
+      admin to process the incoming data using various back-end handlers.
+      FEProc comes with built-in handlers for e-mail notification, data
+      transformations, validation rules, and much more&#8212;except a generic
+      database API. With a Pagesetter handler for FEProc that problem is now
+      solved.</p><div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3>Users that needs to submit something through
+      FormExpress/FEProc needs to have "Author" permissions to Pagesetter.
+      This will enable them to submit new publications but it will not allow
+      them to access other publications.</div><p>With the combination of FEProc/Pagesetter you can use FEProc 
+      for data input and validation and Pagesetter for storing the
+      result. This can for instance be used in a setup where users can
+      register for some event using FormExpress, get an acknowledge mail sent
+      using FEProc, while at the same time you store a copy of the
+      registration in Pagesetter.</p><p>In FEProc you combine various
+      <span class="emphasis"><em>handlers</em></span> by stringing them together to form a
+      <span class="emphasis"><em>data pipe-line</em></span> or <span class="emphasis"><em>set</em></span> as FEProc calls it. Each
+      instance of the handlers is called a <span class="emphasis"><em>stage</em></span> and you
+      may configure the stages in various ways depending on what kind of
+      handler it is an instance of. A mail handler may let you define the
+      recipient address, a display handler may let you define a template, and
+      so on.</p><p>When data flows through the various stages it may be modified or
+      transmitted to some external handler and then passed further on to the
+      next stage. Each stage defines two ancestor stages&#8212;a
+      <span class="emphasis"><em>success stage</em></span> and a <span class="emphasis"><em>failure
+      stage</em></span>. Depending on the result of the current stage, data may
+      be transferred to either the first or the second ancestor stage.</p></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h3 class="title"><a name="extrafeaturesfeprochandler"></a>Pagesetter FEProc Handler</h3></div></div></div><p>The Pagesetter handler lets you store previously entered data from
+      a web form in a new publication instance of any type. The handler lets
+      you pre-configure the publication type, the author name, a topic, and
+      the workflow state for the new instance. The rest of the core attributes
+      are hard-coded. All of the user defined fields are taken from any forms
+      data entered before the Pagesetter handler is executed. To get the data
+      from a web form you need to name the form fields <span class="emphasis"><em>
+      exactly</em></span> like the Pagesetter field you want it to
+      be stored in.</p><div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Important</h3>Remember to use FEProc's import manager to
+      first import the Pagesetter handler before you can use
+      it.</div><p>Here is a list of the attributes you can set for a Pagesetter
+      FEProc stage:</p><div class="variablelist"><dl><dt><span class="term">Pagesetter type ID</span></dt><dd>
+            The ID of
+            the publication type you want to create an instance of when storing
+            the FEProc data. Remember you must have an exact one-to-one match
+            between the Pagesetter field names and your FormExpress field
+            names.
+          </dd><dt><span class="term">Topic ID</span></dt><dd>
+            The ID of the topic
+            you want you publication associated with. This is currently hardcode
+            and cannot be set from any form data. Use -1 for no topic.
+          </dd><dt><span class="term">Author</span></dt><dd>
+            The name you want to
+            store as the author for the created publication. This can be edited
+            in the publication later on. The stored Publisher name/ID will be
+            the PostNuke user ID of the person who initialized the publication
+            creation through FEProc.
+          </dd><dt><span class="term">Author</span></dt><dd>
+            The ID of the
+            workflow state that the new publication should be placed in. The ID
+            can be found in the state definition of the workflow definition
+            file. A suitable works-for-all would be 'approved'.
+          </dd></dl></div></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h3 class="title"><a name="extrafeaturesfeexample"></a>Example - An Event Registration Setup</h3></div></div></div><div class="informalfigure"><div class="mediaobject"><img src="img/feprocSetup.jpg"></div></div><p>In this example we want our users to register for our "Advanced
+      PostNuke" course. To do so they must submit their name and level of
+      experience with Pagesetter. The level can be "Novice", "Administrator",
+      or "Developer", which we want submitted as a Pagesetter list value. For
+      this we create a publication type named "Registration" with the fields
+      "Name" and "Expirence", but to do so we must also create a category type,
+      which we will name "Experience". The category setup should be like
+      this:</p><div class="informalfigure"><div class="mediaobject"><img src="img/experienceList.jpg"></div></div><p>The publication setup should be:</p><div class="informalfigure"><div class="mediaobject"><img src="img/registrationSetup.jpg"></div></div><p>So now we have somewhere to store the registration. Next thing is
+      to create a FormExpress form. Open FormExpress' admin part and create a
+      form with a text input named "name", and a dropdown input named
+      "experience". The values of the dropdown field must be the category IDs for the
+      Pagesetter category items (14, 15, and 16). The setup should be as in the
+      following screen shots. Here is the FormExpress setup:</p><div class="informalfigure"><div class="mediaobject"><img src="img/formExpressSetup.jpg"></div></div><p>Here is the FormExpress dropdown field setup:</p><div class="informalfigure"><div class="mediaobject"><img src="img/feExperience.jpg"></div></div><p>Now we have all we need to string a complete FEProc pipe-line
+      together. Open FEProc's admin part and create a new set. This set should
+      contain the following stages:</p><div class="informalfigure"><div class="mediaobject"><img src="img/feprocSet.jpg"></div></div><p>This can be obtained as follows:</p><div class="orderedlist"><ol type="1"><li>
+          Create the Error Display stage. The template should contain a
+          reference to ${message:error} in order to show Pagesetter error
+          messages.
+        </li><li>
+          Create the Success Display stage.
+        </li><li>
+          Create the Pagesetter Store stage. Set "next success" stage to
+          stage 2. Set "next error" stage to stage 1.
+        </li><li>
+          Create the Mail stage. Set "next success" stage to stage 3.
+          Set "next error" stage to stage 1.
+        </li><li>
+          Create the FormExpress Input stage. Set "next success" stage
+          to stage 4. Set "next error" stage to stage 1.
+        </li></ol></div><p>Now you are ready to accept registrations for your course!</p></div></div></div><div class="chapter" lang="en-US"><div class="titlepage"><div><div><h2 class="title"><a name="chap_extratools"></a>Chapter 11. Extra Tools</h2></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#extraimport">Importing Data</a></span></dt><dd><dl><dt><span class="section"><a href="#importnews">Importing From PostNuke News</a></span></dt><dt><span class="section"><a href="#extraimportce">Importing From ContentExpress</a></span></dt><dt><span class="section"><a href="#extraimportpc">Importing From PostCalendar</a></span></dt><dt><span class="section"><a href="#extraimporting">Importing Pagesetter Publication Types</a></span></dt></dl></dd><dt><span class="section"><a href="#extraexporting">Exporting Pagesetter Publication Types</a></span></dt></dl></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="extraimport"></a>Importing Data</h2></div></div></div><p>Pagesetter offers a small set of tools to import data from other modules.
+    You find these tools in the Tools::Import menu link which will take you to the 
+    window shown below.</p><div class="figure"><a name="id4699705"></a><p class="title"><b>Figure 11.1. Various import tools.</b></p><div class="mediaobject"><img src="img/import.jpg" alt="Various import tools."></div></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h3 class="title"><a name="importnews"></a>Importing From PostNuke News</h3></div></div></div><p>Pagesetter offers the possibility to import all of your existing
+    news items into a new publication type. Select Tools::Import from the menu.
+    Then click on the "Import News" button and you are done! You can check the
+    "Add image field" in order to get a selectable image and image text
+    associated with your news items.</p><div class="caution" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Caution</h3>If you have many (really many) news items then you may
+    have trouble doing the import in the time allocated for your PHP script on
+    the web server. If you have any influence on this factor then make sure
+    your script have enough time. Otherwise, just try and see what happens, it
+    probably works.</div><p>The new publication type will be named PN-News, comes with a full
+    set of predefined templates named accordingly, and have the main text
+    field converted to a multi-page field. The import does not import news
+    categories. If your new(s) items do not show up in the list, then check
+    the language, "include in lists", approval state, and online status of the
+    missing items. You must also set the publication list ordering in order to
+    sort descending by creation date. <span class="emphasis"><em>The import cannot import the
+    comments. This is impossible since Pagesetter have no notion of a
+    "comment". It only knows "Hooks" which can be used, among other things,
+    for comments.</em></span></p></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h3 class="title"><a name="extraimportce"></a>Importing From ContentExpress</h3></div></div></div><p>Pagesetter also offers the possibility to import all of your
+    ContentExpress pages into a new publication type. Select Tools::Import from
+    the menu. Then click on the "Import ContentExpress" button and you are
+    done! The new publication type will be named CE, comes with some
+    predefined templates (<span class="emphasis"><em>full</em></span> and
+    <span class="emphasis"><em>print</em></span>) named accordingly, and have the main text
+    field converted to a multi-page field. The import does not import
+    categories. If your new items do not show up in the list, then check the
+    language, "include in lists", approval state, and online status of the
+    missing items.</p></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h3 class="title"><a name="extraimportpc"></a>Importing From PostCalendar</h3></div></div></div><p>The PostCalendar import is still a bit experimental. It can copy most of the
+      data from PostCalendar into Pagesetter, except for the categories, which you
+      will have to add afterwards. The templates can be found in 
+      <code class="filename">pagesetter/examples/postcalendar</code>. It has only been tested with
+      PostCalendar version 4.1.0.
+      </p></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h3 class="title"><a name="extraimporting"></a>Importing Pagesetter Publication Types</h3></div></div></div><p>Pagesetter can read a publication type configuration from an
+    uploaded XML file and create a new publication type based on that data.
+    Beware that a <span class="emphasis"><em>new</em></span> publication type is created from the
+    file, and any categories found in the XML file will also be created as
+    <span class="emphasis"><em>new</em></span> categories. So the current implementation does
+    not allow you to update an existing publication type. Select Tools::Import
+    from the menu. Then select an XML schema file to upload and click "Import
+    XML Schema".</p></div></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="extraexporting"></a>Exporting Pagesetter Publication Types</h2></div></div></div><p>With Pagesetter you can export the setup of a publication type as an
+    XML file. This file will be self-containing with both the publication
+    setup and the categories needed for it. Select Tools::Export to create the
+    export file.</p></div></div><div class="chapter" lang="en-US"><div class="titlepage"><div><div><h2 class="title"><a name="chap_workflows"></a>Chapter 12. Workflows</h2></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#wfdefinition">Definition</a></span></dt><dt><span class="section"><a href="#wfstandardwfstart">Standard workflows</a></span></dt></dl></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="wfdefinition"></a>Definition</h2></div></div></div><p>The online Encyclopedia "Wikipedia" describes a workflow like
+    this:</p><div class="blockquote"><blockquote class="blockquote">Workflow is the operational aspect of a work procedure:
+    how tasks are structured, who performs them, what their relative order is,
+    how they are synchronized, how information flows to support the tasks and
+    how tasks are being tracked. [WikiPedia <a href="http://www.wikipedia.org/" target="_top">www.wikipedia.org</a>]</blockquote></div><p>In Pagesetter we can control where in the workflow a publication is
+    located, what kind of actions you can perform on it, when it can be done,
+    and who can do it. The location is defined by the publication's state,
+    which for instance can be "Preview" for something in preview for an
+    editor. The state is something visible and can always be seen on the
+    editor's list. The actions can be things like "Submit", "Accept", or
+    "Reject", all of which triggers some code that modifies the publication. A
+    publication can only change state as a result of a workflow action. You
+    never edit the state directly.</p><p>Each of the workflows may have some <span class="emphasis"><em>configuration
+    settings</em></span> that can be set through the menu
+    Configuration::Workflow. The standard settings are things related to
+    notification mails to be sent when a publication changes state during the
+    workflow. The most obvious of these are the mail addresses of the editors
+    and moderators that should be informed of new content arrivals.</p><p>The workflow system has been designed to let the administrator add
+    his own workflow without modifying the existing ones. This is done through
+    an XML file in the "workflows/custom" directory. A thorough description of
+    how this is done can be found in the Workflow Manual bundled with this
+    manual.</p><p><span class="emphasis"><em>Remember that, no matter how clever a workflow you might
+    create, everything begins and ends with your editors. The workflow in it
+    self is only a technology, it is not and will never be a substitute for
+    good writers.</em></span></p></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="wfstandardwfstart"></a>Standard workflows</h2></div></div></div><div class="variablelist"><dl><dt><span class="term">None</span></dt><dd><p>Allows Authors to create pre-approved documents. Not much to
+          this one.</p></dd><dt><span class="term">Standard</span></dt><dd><p>Allows Authors to submit a publication. It then requires an
+          Editor to approve it.</p></dd><dt><span class="term">Enterprise</span></dt><dd><p>Adds an additional approval step to the Standard workflow. An
+          Author submits. An Editor accepts or rejects. A Moderator approves
+          or rejects. A Moderator can also take publications offline and then
+          put them back online.</p></dd><dt><span class="term">Wiki</span></dt><dd><p>This workflow gives Authors full access to the publications.
+          Every time someone updates a publication, a new version is built and
+          a notification email is sent. All changes to all publications are
+          logged. Every document is pre-approved. The use of Wiki for the name
+          refers to the "edit-by-all" and revision control features. There is
+          no support for the normal Wiki notations like using !/!!/!!! for
+          headlines .</p></dd><dt><span class="term">MyWiki</span></dt><dd><p>This workflow gives Authors full access to <span class="emphasis"><em>their
+          own</em></span> publications only. Every time someone updates a
+          publication, a new version is built. All changes to all publications
+          are logged. Every document is pre-approved. No reason to mail
+          someone since it is assumed that you edit your own pages only. This
+          is the workflow you should use if you want to allow your users to
+          have their own set of pages they can manage. If for instance you
+          have a home-garden site and want you users to present their gardens
+          on your site then do as follows:</p><div class="orderedlist"><ol type="1"><li><p>Create a publication type named "Gardens" (or similar) and
+              add the fields you need.</p></li><li><p>Assign the "MyWiki" workflow to this publication
+              type.</p></li><li><p>Check (enable) the access to editing of own pages.</p></li><li><p>Make sure your users have "author" access to this
+              publication type. This can be done with a permission line in
+              PostNuke like this: "YourGroup | pagesetter:: | T:: | Edit"
+              (where T = type ID).</p></li></ol></div><p>With this setup your users should be able to create new pages
+          as well as edit their own pages only. You need to give them a URL to
+          the "edit publication" feature (see the <a href="#chap_linking" title="Chapter 6. Linking">linking</a> section).</p></dd></dl></div></div></div><div class="chapter" lang="en-US"><div class="titlepage"><div><div><h2 class="title"><a name="chap_customisation"></a>Chapter 13. Customisation</h2></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#custcss">Style Sheets</a></span></dt><dt><span class="section"><a href="#custinputforms">Input Forms Layout</a></span></dt><dt><span class="section"><a href="#customplugin">Input plugins</a></span></dt><dt><span class="section"><a href="#custhtmlarea">HTMLArea Editor</a></span></dt><dt><span class="section"><a href="#id4707674">Internal templates</a></span></dt><dt><span class="section"><a href="#custpostsubmit">Post Submit Handler</a></span></dt></dl></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="custcss"></a>Style Sheets</h2></div></div></div><p>The Guppy input forms CSS files are located in
+    <code class="filename">pagesetter/guppy/themes/YourThemeName/style.css</code>. If you
+    do not write your own then the file
+    <code class="filename">pagesetter/guppy/themes/guppy/style.css</code> will be used.</p></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="custinputforms"></a>Input Forms Layout</h2></div></div></div><p>Pagesetter does not only let you define your own publication types
+    and their presentation. It also lets you define both workflows, as
+    described in the previous chapter, as well as the input forms used for
+    editing your publications.</p><p>Different input form layouts can in fact be associated with 
+    different workflow states. To do so you must create an XML
+    layout file with a name related to the workflow name and place it in a
+    publication type specific directory.</p><p>The filename must be made up like
+    <code class="filename">&lt;StateName&gt;/FormLayout.xml</code> and be placed in 
+    a directory named <code class="filename">publications/&lt;PubTypeFormName&gt;</code>. 
+    The "PubTypeFormName" is the "Form name" field of the publication type setup.
+    The filename used for a new instance of a publication
+    (yet without a workflow state associated with it) is 
+    <code class="filename">newFormLayout.xml</code>.</p><p>So to specify the form layout for the "waiting" state of a "PN-News"
+    publication you would have to create a file named
+    <code class="filename">publications/PN-News/waitingFormLayout.xml</code>. 
+    The structure of the layout
+    XML file is described in the Guppy Development manual located in the same
+    directory as this manual. The Guppy manual is meant to be a
+    complete Guppy manual, but for customizing input forms layout, you only need 
+    to read the chapter on "Form
+    Layout"&#8212;the rest can be ignored.</p><p>In the examples directory you can
+    find a <code class="filename">newFormLayout.xml</code> example file to use for 
+    standard PN-News items.
+    Just copy it to <code class="filename">publications/PN-News</code> (you probably 
+    need to create the layout directory yourself).</p></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="customplugin"></a>Input plugins</h2></div></div></div><p>The Guppy forms system allows the administrator to develop new simple types of
+    inputs. Currently the "datetime", "e-mail", and "url" inputs are made this way.
+    See the Guppy manual for further information.</p></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="custhtmlarea"></a>HTMLArea Editor</h2></div></div></div><p>The editor can be customized with a callback JavaScript file placed
+    in the publication type specific directory. The filename must be named
+    <code class="filename">editorsetup.js</code> and be placed in a directory named
+    <code class="filename">publications/&lt;PubTypeFormName&gt;</code>. For instance
+    <code class="filename">publications/PN-News/editorsetup.js</code>.</p><p>In the callback file you can place two
+    callback functions named <code class="function">HTMLAreaConfigSetup</code> and 
+    <code class="function">HTMLAreaEditorSetup</code>. The
+    first one will be called when the configuration object has been loaded by
+    Pagesetter (and passed the config object). The second one will be called
+    when the editor object has been created (and passed that object).</p><div class="example"><a name="id4707661"></a><p class="title"><b>Example 13.1. Adding a CSS class selector to HTMLArea's right-click
+    context menu.</b></p><pre class="programlisting">  // Load various plugins on load of the setup script
+HTMLArea.loadPlugin("ContextMenu");
+HTMLArea.loadPlugin("CSS");
+
+
+  // This function is called (if it exists) after the editor 
+  // configuration is created, but before the editor 
+  // itself is created
+function HTMLAreaConfigSetup(config)
+{
+    // Here you can call config.registerButton, change the toolbar, 
+    // and much more ... see HTMLArea's own documentation
+}
+
+
+  // This is called with the editor right after 
+  // it has been created
+function HTMLAreaEditorSetup(editor)
+{
+    // Register the plugins
+  editor.registerPlugin(ContextMenu);
+  editor.registerPlugin(CSS, { combos: [{label:"CSS", 
+                               options:{a:"classA", b:"classB"}}] } );
+}</pre></div></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id4707674"></a>Internal templates</h2></div></div></div><p>Some of the internal windows are rendered via pnRender&#8212;especially the
+     error messages that are displayed via <code class="filename">pagesetter_error.html</code>.
+     This means you can redesign the layout of the error messages.</p></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="custpostsubmit"></a>Post Submit Handler</h2></div></div></div><p>In some cases it might be usefull to modify the data submitted after
+    editing a publication. This can be accomplished with the addition of a
+    single extra custom workflow operation. Please check the workflow manual
+    for further instructions (it is not possible to modify/add data before
+    opening the editor).</p></div></div><div class="part" lang="en-US"><div class="titlepage"><div><div><h1 class="title"><a name="appendix"></a>Appendix</h1></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="appendix"><a href="#chap_credits">A. Useful Hints</a></span></dt><dt><span class="appendix"><a href="#chap_credits">B. Credits</a></span></dt><dt><span class="appendix"><a href="#gfdl">C. GNU Free Documentation License</a></span></dt><dd><dl><dt><span class="section"><a href="#gfdl-0">PREAMBLE</a></span></dt><dt><span class="section"><a href="#gfdl-1">APPLICABILITY AND DEFINITIONS</a></span></dt><dt><span class="section"><a href="#gfdl-2">VERBATIM COPYING</a></span></dt><dt><span class="section"><a href="#gfdl-3">COPYING IN QUANTITY</a></span></dt><dt><span class="section"><a href="#gfdl-4">MODIFICATIONS</a></span></dt><dt><span class="section"><a href="#gfdl-5">COMBINING DOCUMENTS</a></span></dt><dt><span class="section"><a href="#gfdl-6">COLLECTIONS OF DOCUMENTS</a></span></dt><dt><span class="section"><a href="#gfdl-7">AGGREGATION WITH INDEPENDENT WORKS</a></span></dt><dt><span class="section"><a href="#gfdl-8">TRANSLATION</a></span></dt><dt><span class="section"><a href="#gfdl-9">TERMINATION</a></span></dt><dt><span class="section"><a href="#gfdl-10">FUTURE REVISIONS OF THIS LICENSE</a></span></dt><dt><span class="section"><a href="#gfdl-addendum">ADDENDUM: How to use this License for
+  your documents</a></span></dt></dl></dd></dl></div><div class="appendix" lang="en-US"><div class="titlepage"><div><div><h2 class="title"><a name="chap_credits"></a>Appendix A. Useful Hints</h2></div></div></div><p>It is our hope that this manual some day becomes available on the
+  internet with the ability to comment on the individual chapters. 
+  This appendix is meant for collecting all those comments that does not
+  fit elsewhere.</p></div><div class="appendix" lang="en-US"><div class="titlepage"><div><div><h2 class="title"><a name="chap_credits"></a>Appendix B. Credits</h2></div></div></div><div class="itemizedlist"><ul type="disc"><li>
+      Thanks to Carsten Kollmeier, Tony Jensen, Jörg Napp, Sebastian Schürmann, Thomas
+      Smiatek, Claus Parkhoi for lots of ideas, help, and code snippets.
+    </li><li>
+      Thanks to Axel Guckelsberger for conversion of the original plain HTML
+      manual to DocBook XML.
+    </li><li>
+      Many thanks to the guys at <a href="http://www.interactivetools.com/" target="_top">interactivetools.com</a> who
+      made the HTML editor "htmlArea"&#8212;it's a very cool product.
+    </li><li>
+      Also lots of thanks to the guys at <a href="http://smarty.php.net/" target="_top">smarty.php.net</a> who made the Smarty
+      templating engine.
+    </li><li>
+      Thanks goes also to <a href="http://dynarch.com/mishoo/home.epl" target="_top">Mihai Bazon</a> who made
+      the really nice date picker.
+    </li><li>
+      I have of course also been looking at <a href="http://www.xexpress.org/" target="_top">ContentExpress</a> and <a href="http://canvas.anubix.net/" target="_top">PagEd</a> as well as scores
+      of other programs for inspiration.
+    </li></ul></div></div><div class="appendix" lang="en-US"><div class="titlepage"><div><div><h1 class="title"><a name="gfdl"></a>GNU Free Documentation License</h1></div><div><p class="releaseinfo">Version 1.2, November 2002</p></div><div><p class="copyright">Copyright © 2000,2001,2002 Free Software Foundation, Inc.</p></div><div><div class="legalnotice"><a name="gfdl-legalnotice"></a><div class="address"><p>Free Software Foundation, Inc.<br>
+ <span class="street">59 Temple Place, Suite 330</span>,<br>
+ <span class="city">Boston</span>,<br>
+ <span class="state">MA</span><br>
+ <span class="postcode">02111-1307</span><br>
+ <span class="country">USA</span><br>
+ </p></div><p>Everyone is permitted to copy and distribute verbatim copies
+ of this license document, but changing it is not allowed.</p></div></div><div><p class="pubdate">Version 1.2, November 2002</p></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#gfdl-0">PREAMBLE</a></span></dt><dt><span class="section"><a href="#gfdl-1">APPLICABILITY AND DEFINITIONS</a></span></dt><dt><span class="section"><a href="#gfdl-2">VERBATIM COPYING</a></span></dt><dt><span class="section"><a href="#gfdl-3">COPYING IN QUANTITY</a></span></dt><dt><span class="section"><a href="#gfdl-4">MODIFICATIONS</a></span></dt><dt><span class="section"><a href="#gfdl-5">COMBINING DOCUMENTS</a></span></dt><dt><span class="section"><a href="#gfdl-6">COLLECTIONS OF DOCUMENTS</a></span></dt><dt><span class="section"><a href="#gfdl-7">AGGREGATION WITH INDEPENDENT WORKS</a></span></dt><dt><span class="section"><a href="#gfdl-8">TRANSLATION</a></span></dt><dt><span class="section"><a href="#gfdl-9">TERMINATION</a></span></dt><dt><span class="section"><a href="#gfdl-10">FUTURE REVISIONS OF THIS LICENSE</a></span></dt><dt><span class="section"><a href="#gfdl-addendum">ADDENDUM: How to use this License for
+  your documents</a></span></dt></dl></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="gfdl-0"></a>PREAMBLE</h2></div></div></div><p>The purpose of this License is to make a manual, textbook, or
+other functional and useful document "free" in the sense of freedom: to
+assure everyone the effective freedom to copy and redistribute it, with
+or without modifying it, either commercially or noncommercially.
+Secondarily, this License preserves for the author and publisher a way
+to get credit for their work, while not being considered responsible for
+modifications made by others.</p><p>This License is a kind of "copyleft", which means that derivative
+works of the document must themselves be free in the same sense.  It
+complements the GNU General Public License, which is a copyleft license
+designed for free software.</p><p>We have designed this License in order to use it for manuals for
+free software, because free software needs free documentation: a free
+program should come with manuals providing the same freedoms that the
+software does.  But this License is not limited to software manuals; it
+can be used for any textual work, regardless of subject matter or
+whether it is published as a printed book.  We recommend this License
+principally for works whose purpose is instruction or reference.</p></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="gfdl-1"></a>APPLICABILITY AND DEFINITIONS</h2></div></div></div><p><a name="gfdl-doc"></a>This License applies to any manual or other work, in
+any medium, that contains a notice placed by the copyright holder saying
+it can be distributed under the terms of this License.  Such a notice
+grants a world-wide, royalty-free license, unlimited in duration, to use
+that work under the conditions stated herein.  The "Document", below,
+refers to any such manual or work.  Any member of the public is a
+licensee, and is addressed as "you".  You accept the license if you
+copy, modify or distribute the work in a way requiring permission under
+copyright law.</p><p><a name="gfdl-mod-ver"></a>A "Modified Version" of the Document means any
+work containing the Document or a portion of it, either copied verbatim,
+or with modifications and/or translated into another language.</p><p><a name="gfdl-secnd-sect"></a>A "Secondary Section" is a named appendix or
+a front-matter section of the Document that deals exclusively with the
+relationship of the publishers or authors of the Document to the
+Document's overall subject (or to related matters) and contains nothing
+that could fall directly within that overall subject.  (Thus, if the
+Document is in part a textbook of mathematics, a Secondary Section may
+not explain any mathematics.)  The relationship could be a matter of
+historical connection with the subject or with related matters, or of
+legal, commercial, philosophical, ethical or political position
+regarding them.</p><p><a name="gfdl-inv-sect"></a>The "Invariant Sections" are certain Secondary
+Sections whose titles are designated, as being those of Invariant
+Sections, in the notice that says that the Document is released under
+this License.  If a section does not fit the above definition of
+Secondary then it is not allowed to be designated as Invariant.  The
+Document may contain zero Invariant Sections.  If the Document does not
+identify any Invariant Sections then there are none.</p><p><a name="gfdl-cov-text"></a>The "Cover Texts" are certain short passages of
+text that are listed, as Front-Cover Texts or Back-Cover Texts, in the
+notice that says that the Document is released under this License.  A
+Front-Cover Text may be at most 5 words, and a Back-Cover Text may be at
+most 25 words.</p><p><a name="gfdl-transparent"></a>A "Transparent" copy of the Document means a
+machine-readable copy, represented in a format whose specification is
+available to the general public, that is suitable for revising the
+document straightforwardly with generic text editors or (for images
+composed of pixels) generic paint programs or (for drawings) some widely
+available drawing editor, and that is suitable for input to text
+formatters or for automatic translation to a variety of formats suitable
+for input to text formatters.  A copy made in an otherwise Transparent
+file format whose markup, or absence of markup, has been arranged to
+thwart or discourage subsequent modification by readers is not
+Transparent.  An image format is not Transparent if used for any
+substantial amount of text.  A copy that is not "Transparent" is called
+"Opaque".</p><p>Examples of suitable formats for Transparent copies include plain
+ASCII without markup, Texinfo input format, LaTeX input format, SGML or
+XML using a publicly available DTD, and standard-conforming simple HTML,
+PostScript or PDF designed for human modification.  Examples of
+transparent image formats include PNG, XCF and JPG.  Opaque formats
+include proprietary formats that can be read and edited only by
+proprietary word processors, SGML or XML for which the DTD and/or
+processing tools are not generally available, and the machine-generated
+HTML, PostScript or PDF produced by some word processors for output
+purposes only.</p><p><a name="gfdl-title-page"></a>The "Title Page" means, for a printed book,
+the title page itself, plus such following pages as are needed to hold,
+legibly, the material this License requires to appear in the title page.
+For works in formats which do not have any title page as such, "Title
+Page" means the text near the most prominent appearance of the work's
+title, preceding the beginning of the body of the text.</p><p><a name="gfdl-entitled"></a>A section "Entitled XYZ" means a named subunit
+of the Document whose title either is precisely XYZ or contains XYZ in
+parentheses following text that translates XYZ in another language.
+(Here XYZ stands for a specific section name mentioned below, such as
+"Acknowledgements", "Dedications", "Endorsements", or "History".)  To
+"Preserve the Title" of such a section when you modify the Document
+means that it remains a section "Entitled XYZ" according to this
+definition.</p><p>The Document may include Warranty Disclaimers next to the notice
+which states that this License applies to the Document.  These Warranty
+Disclaimers are considered to be included by reference in this License,
+but only as regards disclaiming warranties: any other implication that
+these Warranty Disclaimers may have is void and has no effect on the
+meaning of this License.</p></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="gfdl-2"></a>VERBATIM COPYING</h2></div></div></div><p>You may copy and distribute the Document in any medium, either
+commercially or noncommercially, provided that this License, the
+copyright notices, and the license notice saying this License applies to
+the Document are reproduced in all copies, and that you add no other
+conditions whatsoever to those of this License.  You may not use
+technical measures to obstruct or control the reading or further copying
+of the copies you make or distribute.  However, you may accept
+compensation in exchange for copies.  If you distribute a large enough
+number of copies you must also follow the conditions in section 3.
+</p><p>You may also lend copies, under the same conditions stated above,
+and you may publicly display copies.</p></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="gfdl-3"></a>COPYING IN QUANTITY</h2></div></div></div><p>If you publish printed copies (or copies in media that commonly
+have printed covers) of the Document, numbering more than 100, and the
+Document's license notice requires Cover Texts, you must enclose the
+copies in covers that carry, clearly and legibly, all these Cover Texts:
+Front-Cover Texts on the front cover, and Back-Cover Texts on the back
+cover.  Both covers must also clearly and legibly identify you as the
+publisher of these copies.  The front cover must present the full title
+with all words of the title equally prominent and visible.  You may add
+other material on the covers in addition.  Copying with changes limited
+to the covers, as long as they preserve the title of the Document and
+satisfy these conditions, can be treated as verbatim copying in other
+respects.</p><p>If the required texts for either cover are too voluminous to fit
+legibly, you should put the first ones listed (as many as fit
+reasonably) on the actual cover, and continue the rest onto adjacent
+pages.</p><p>If you publish or distribute Opaque copies of the Document
+numbering more than 100, you must either include a machine-readable
+Transparent copy along with each Opaque copy, or state in or with each
+Opaque copy a computer-network location from which the general
+network-using public has access to download using public-standard
+network protocols a complete Transparent copy of the Document, free of
+added material.  If you use the latter option, you must take reasonably
+prudent steps, when you begin distribution of Opaque copies in quantity,
+to ensure that this Transparent copy will remain thus accessible at the
+stated location until at least one year after the last time you
+distribute an Opaque copy (directly or through your agents or retailers)
+of that edition to the public.</p><p>It is requested, but not required, that you contact the authors of
+the Document well before redistributing any large number of copies, to
+give them a chance to provide you with an updated version of the
+Document.</p></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="gfdl-4"></a>MODIFICATIONS</h2></div></div></div><p>You may copy and distribute a Modified Version of the Document
+under the conditions of sections 2 and 3 above, provided that you
+release the Modified Version under precisely this License, with the
+Modified Version filling the role of the Document, thus licensing
+distribution and modification of the Modified Version to whoever
+possesses a copy of it.  In addition, you must do these things in the
+Modified Version:</p><div class="orderedlist"><a name="gfdl-modif-cond"></a><p class="title"><b>GNU FDL Modification Conditions</b></p><ol type="A"><li>Use in the Title Page (and on the covers, if any) a
+  title distinct from that of the Document, and from those of previous
+  versions (which should, if there were any, be listed in the History
+  section of the Document).  You may use the same title as a previous
+  version if the original publisher of that version gives permission.
+</li><li>List on the Title Page, as authors, one or more
+  persons or entities responsible for authorship of the modifications in
+  the Modified Version, together with at least five of the principal
+  authors of the Document (all of its principal authors, if it has fewer
+  than five), unless they release you from this requirement.
+</li><li>State on the Title page the name of the publisher of
+  the Modified Version, as the publisher.</li><li>Preserve all the copyright notices of the Document.
+</li><li>Add an appropriate copyright notice for your
+  modifications adjacent to the other copyright notices.
+</li><li>Include, immediately after the copyright notices, a
+  license notice giving the public permission to use the Modified
+  Version under the terms of this License, in the form shown in the
+  <a href="#gfdl-addendum" title="ADDENDUM: How to use this License for
+  your documents">Addendum</a> below.
+</li><li>Preserve in that license notice the full lists of
+  Invariant Sections and required Cover Texts given in the Document's
+  license notice.</li><li>Include an unaltered copy of this License.
+</li><li>Preserve the section Entitled "History", Preserve its
+  Title, and add to it an item stating at least the title, year, new
+  authors, and publisher of the Modified Version as given on the Title
+  Page.  If there is no section Entitled "History" in the Document,
+  create one stating the title, year, authors, and publisher of the
+  Document as given on its Title Page, then add an item describing the
+  Modified Version as stated in the previous sentence.
+</li><li>Preserve the network location, if any, given in the
+  Document for public access to a Transparent copy of the Document, and
+  likewise the network locations given in the Document for previous
+  versions it was based on.  These may be placed in the "History"
+  section.  You may omit a network location for a work that was
+  published at least four years before the Document itself, or if the
+  original publisher of the version it refers to gives permission.
+</li><li>For any section Entitled "Acknowledgements" or
+  "Dedications", Preserve the Title of the section, and preserve in the
+  section all the substance and tone of each of the contributor
+  acknowledgements and/or dedications given therein.
+</li><li>Preserve all the Invariant Sections of the Document,
+  unaltered in their text and in their titles.  Section numbers or the
+  equivalent are not considered part of the section titles.
+</li><li>Delete any section Entitled "Endorsements".
+  Such a section may not be included in the Modified Version.
+</li><li>Do not retitle any existing section to be Entitled
+  "Endorsements" or to conflict in title with any Invariant Section.
+</li><li>Preserve any Warranty Disclaimers.
+</li></ol></div><p>If the Modified Version includes new front-matter sections or
+appendices that qualify as Secondary Sections and contain no material
+copied from the Document, you may at your option designate some or all
+of these sections as invariant.  To do this, add their titles to the
+list of Invariant Sections in the Modified Version's license notice.
+These titles must be distinct from any other section titles.</p><p>You may add a section Entitled "Endorsements", provided it
+contains nothing but endorsements of your Modified Version by various
+parties--for example, statements of peer review or that the text has
+been approved by an organization as the authoritative definition of a
+standard.</p><p>You may add a passage of up to five words as a Front-Cover Text,
+and a passage of up to 25 words as a Back-Cover Text, to the end of the
+list of Cover Texts in the Modified Version.  Only one passage of
+Front-Cover Text and one of Back-Cover Text may be added by (or through
+arrangements made by) any one entity.  If the Document already includes
+a cover text for the same cover, previously added by you or by
+arrangement made by the same entity you are acting on behalf of, you may
+not add another; but you may replace the old one, on explicit permission
+from the previous publisher that added the old one.</p><p>The author(s) and publisher(s) of the Document do not by this
+License give permission to use their names for publicity for or to
+assert or imply endorsement of any Modified Version.</p></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="gfdl-5"></a>COMBINING DOCUMENTS</h2></div></div></div><p>You may combine the Document with other documents released under
+this License, under the terms defined in <a href="#gfdl-4" title="MODIFICATIONS">section
+4</a> above for modified versions, provided that you include in the
+combination all of the Invariant Sections of all of the original
+documents, unmodified, and list them all as Invariant Sections of your
+combined work in its license notice, and that you preserve all their
+Warranty Disclaimers.</p><p>The combined work need only contain one copy of this License, and
+multiple identical Invariant Sections may be replaced with a single
+copy.  If there are multiple Invariant Sections with the same name but
+different contents, make the title of each such section unique by adding
+at the end of it, in parentheses, the name of the original author or
+publisher of that section if known, or else a unique number.  Make the
+same adjustment to the section titles in the list of Invariant Sections
+in the license notice of the combined work.</p><p>In the combination, you must combine any sections Entitled
+"History" in the various original documents, forming one section
+Entitled "History"; likewise combine any sections Entitled
+"Acknowledgements", and any sections Entitled "Dedications".  You must
+delete all sections Entitled "Endorsements".</p></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="gfdl-6"></a>COLLECTIONS OF DOCUMENTS</h2></div></div></div><p>You may make a collection consisting of the Document and other
+documents released under this License, and replace the individual copies
+of this License in the various documents with a single copy that is
+included in the collection, provided that you follow the rules of this
+License for verbatim copying of each of the documents in all other
+respects.</p><p>You may extract a single document from such a collection, and
+distribute it individually under this License, provided you insert a
+copy of this License into the extracted document, and follow this
+License in all other respects regarding verbatim copying of that
+document.</p></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="gfdl-7"></a>AGGREGATION WITH INDEPENDENT WORKS</h2></div></div></div><p>A compilation of the Document or its derivatives with other
+separate and independent documents or works, in or on a volume of a
+storage or distribution medium, is called an "aggregate" if the
+copyright resulting from the compilation is not used to limit the legal
+rights of the compilation's users beyond what the individual works
+permit.  When the Document is included in an aggregate, this License does
+not apply to the other works in the aggregate which are not themselves
+derivative works of the Document.</p><p>If the Cover Text requirement of section 3 is applicable to these
+copies of the Document, then if the Document is less than one half of
+the entire aggregate, the Document's Cover Texts may be placed on covers
+that bracket the Document within the aggregate, or the electronic
+equivalent of covers if the Document is in electronic form.  Otherwise
+they must appear on printed covers that bracket the whole
+aggregate.</p></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="gfdl-8"></a>TRANSLATION</h2></div></div></div><p>Translation is considered a kind of modification, so you may
+distribute translations of the Document under the terms of section 4.
+Replacing Invariant Sections with translations requires special
+permission from their copyright holders, but you may include
+translations of some or all Invariant Sections in addition to the
+original versions of these Invariant Sections.  You may include a
+translation of this License, and all the license notices in the
+Document, and any Warranty Disclaimers, provided that you also include
+the original English version of this License and the original versions
+of those notices and disclaimers.  In case of a disagreement between the
+translation and the original version of this License or a notice or
+disclaimer, the original version will prevail.</p><p>If a section in the Document is Entitled "Acknowledgements",
+"Dedications", or "History", the requirement (section 4) to Preserve its
+Title (section 1) will typically require changing the actual
+title.</p></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="gfdl-9"></a>TERMINATION</h2></div></div></div><p>You may not copy, modify, sublicense, or distribute the Document
+except as expressly provided for under this License.  Any other attempt
+to copy, modify, sublicense or distribute the Document is void, and will
+automatically terminate your rights under this License.  However,
+parties who have received copies, or rights, from you under this License
+will not have their licenses terminated so long as such parties remain
+in full compliance.</p></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="gfdl-10"></a>FUTURE REVISIONS OF THIS LICENSE</h2></div></div></div><p>The Free Software Foundation may publish new, revised versions of
+the GNU Free Documentation License from time to time.  Such new versions
+will be similar in spirit to the present version, but may differ in
+detail to address new problems or concerns.  See
+http://www.gnu.org/copyleft/.</p><p>Each version of the License is given a distinguishing version
+number.  If the Document specifies that a particular numbered version of
+this License "or any later version" applies to it, you have the option
+of following the terms and conditions either of that specified version
+or of any later version that has been published (not as a draft) by the
+Free Software Foundation.  If the Document does not specify a version
+number of this License, you may choose any version ever published (not
+as a draft) by the Free Software Foundation.</p></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="gfdl-addendum"></a>ADDENDUM: How to use this License for
+  your documents</h2></div></div></div><p>To use this License in a document you have written, include a copy
+of the License in the document and put the following copyright and
+license notices just after the title page:</p><div class="blockquote"><a name="copyright-sample"></a><blockquote class="blockquote"><div class="blockquote-title"><p><b>Sample Invariant Sections list</b></p></div><p>
+    Copyright (c)  YEAR  YOUR NAME.
+    Permission is granted to copy, distribute and/or modify this document
+    under the terms of the GNU Free Documentation License, Version 1.2
+    or any later version published by the Free Software Foundation;
+    with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
+    A copy of the license is included in the section entitled "GNU
+    Free Documentation License".
+</p></blockquote></div><p>If you have Invariant Sections, Front-Cover Texts and Back-Cover
+Texts, replace the "with...Texts." line with this:</p><div class="blockquote"><a name="inv-cover-sample"></a><blockquote class="blockquote"><div class="blockquote-title"><p><b>Sample Invariant Sections list</b></p></div><p>
+    with the Invariant Sections being LIST THEIR TITLES, with the
+    Front-Cover Texts being LIST, and with the Back-Cover Texts being LIST.
+</p></blockquote></div><p>If you have Invariant Sections without Cover Texts, or some other
+combination of the three, merge those two alternatives to suit the
+situation.</p><p>If your document contains nontrivial examples of program code, we
+recommend releasing these examples in parallel under your choice of free
+software license, such as the GNU General Public License, to permit
+their use in free software.</p></div></div></div></div></body></html>

@@ -1,0 +1,74 @@
+<!--[* $Id: pagesetter_admin_import.html,v 1.10 2006/04/20 16:44:32 jornlind Exp $* ]-->
+<!--[pagesetter_adminmenu]-->
+
+<div class="pn-title"><!--[pnml name="_PGIMPORTPUBLICATIONS"]--></div>
+
+
+<p>
+<form action="<!--[pnmodurl modname="pagesetter" type="admin" func="importnews"]-->" method="post">
+  <input type="submit" name="dummy" value="<!--[pnml name="_PGIMPORTNEWS"]-->">&nbsp;
+  <input type="checkbox" name="image" value="1">
+  <em><!--[pnml name="_PGIMPORTNEWSEXTRA"]--></em><br>
+  <!--[pnml name="_PGIMPORTNEWSDESC"]-->
+</form>
+<br></p>
+
+<p>
+<form action="<!--[pnmodurl modname="pagesetter" type="admin" func="importce"]-->" method="post">
+  <input type="submit" name="dummy" value="<!--[pnml name="_PGIMPORTCE"]-->"><br>
+  <!--[pnml name="_PGIMPORTCEDESC"]-->
+</form>
+<br></p>
+
+
+<p>
+<form action="<!--[pnmodurl modname="pagesetter" type="admin" func="importpc"]-->" method="post">
+  <input type="submit" name="dummy" value="<!--[pnml name="_PGIMPORTPC"]-->"><br>
+  <!--[pnml name="_PGIMPORTPCDESC"]-->
+</form>
+<br></p>
+
+
+<p>
+<form action="<!--[pnmodurl modname="pagesetter" type="admin" func="importXMLSchema"]-->"
+      method="post" enctype="multipart/form-data">
+  <!--[pnml name="_PGIMPORTXMLSCHEMAFILE"]-->: <input type="file" name="xmlfile" accept="text/xml" size="80"><br>
+  <input type="submit" name="dummy" value="<!--[pnml name="_PGIMPORTXMLSCHEMA"]-->"><br>
+  <!--[pnml name="_PGIMPORTXMLSCHEMADESC"]-->
+</form>
+<br/></p>
+
+
+<p>
+<form action="<!--[pnmodurl modname="pagesetter" type="admin" func="importfileupload"]-->" method="post">
+  <input type="submit" name="dummy" value="<!--[pnml name="_PGIMPORTFILEUPLOAD"]-->"><br>
+  <!--[pnml name="_PGIMPORTFILEUPLOADDESC"]-->
+</form>
+<br></p>
+
+
+<p>
+<form action="<!--[pnmodurl modname="pagesetter" type="admin" func="importarticle"]-->" method="post">
+  <input type="submit" name="dummy" value="<!--[pnml name="_PGIMPORTARTICLE"]-->"><br>
+  <!--[pnml name="_PGIMPORTARTICLEDESC"]-->
+</form>
+<br></p>
+
+
+<p>
+<form action="<!--[pnmodurl modname="pagesetter" type="admin" func="importimage"]-->" method="post">
+  <input type="submit" name="dummy" value="<!--[pnml name="_PGIMPORTIMAGE"]-->"><br>
+  <!--[pnml name="_PGIMPORTIMAGEDESC"]-->
+</form>
+<br></p>
+
+
+<p>
+<form action="<!--[pnmodurl modname="pagesetter" type="admin" func="importnote"]-->" method="post">
+  <input type="submit" name="dummy" value="<!--[pnml name="_PGIMPORTNOTE"]-->"><br>
+  <!--[pnml name="_PGIMPORTNOTEDESC"]-->
+</form>
+<br></p>
+
+
+<a href="<!--[pnmodurl modname="pagesetter" type="admin"]-->"><!--[pnml name="_PGBTCANCEL"]--></a>

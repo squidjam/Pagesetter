@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+
+<components>
+
+ <component name="export" kind="card" title="_PGEXPORTFORM">
+  <fields>
+    <field name="tid"               title="_PGPUBTYPE"      type="select" options="pubTypes" mandatory="true"/>
+    <field name="includeCategories" title="_PGINCLUDECAT"   type="bool"/>
+    <field name="exportSchemaOnly"  title="_PGEXPORTSCHEMA" type="bool"/>
+  </fields>
+  <actions>
+    <action name="export"   kind="submit" title="_PGEXPORT"/>
+    <action name="cancel"   kind="cancel" title="_PGCANCEL"/>
+  </actions>
+ </component>
+
+</components>

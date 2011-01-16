@@ -1,0 +1,31 @@
+<!--[* Smarty *]-->
+<!--[pagesetter_title title=$core.title]-->
+<h1><!--[$title]--></h1>
+<div class="pn-sub">By: <!--[$core.author]--> <!--[$core.lastUpdated|date_format:"%Y.%m.%d"]--></div><br/>
+
+
+<!--[if $image != "" ]-->
+ <div style="float: right; width: 200px">
+   <img src="<!--[$image]-->" width="200px" alt="<!--[$imagetext]-->" title="<!--[$imagetext]-->"><br/>
+   <i><!--[$imageText]--></i>
+ </div>
+<!--[/if]-->
+
+<!--[if $core.pageCount > 1 ]-->
+(Page <!--[$core.page+1]--> of <!--[$core.pageCount]-->)<br/>
+<!--[/if]-->
+<!--[$text[$core.page]]-->
+
+<br clear="all"/>
+
+<!--[if $core.pageCount > 1 ]-->
+Page: <!--[pagesetter_pager]-->
+<!--[/if]-->
+
+<hr/>
+<!--[$core.printThis]--> | <!--[$core.sendThis]--> | Hits: <!--[nocache]--><!--[$core.hitCount]--><!--[/nocache]--> | <!--[nocache]--><!--[$core.editInfo]--><!--[/nocache]-->
+
+<!--[if $core.useDisplayHooks]-->
+<!--[pnmodurl modname=pagesetter func=viewpub tid=$core.tid pid=$core.pid assign=viewUrl]-->
+<!--[pnmodcallhooks hookobject=item hookaction=display hookid=$core.uniqueId module=pagesetter returnurl=$viewUrl]-->
+<!--[/if]-->

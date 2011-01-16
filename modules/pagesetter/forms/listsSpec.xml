@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<components>
+
+ <component name="lists" kind="table" title="_PGLISTLIST">
+  <fields>
+    <field name="id"          title="_PGID"           type="int"     readonly="yes"/>
+    <field name="title"       title="_PGTITLE"        type="string"  readonly="yes"/>
+    <field name="author"      title="_PGAUTHOR"       type="string"  readonly="yes"/>
+    <field name="created"     title="_PGCREATEDDATE"  type="date"    readonly="yes"/>
+  </fields>
+  <actions>
+    <action name="edit" kind="submit" title="_PGEDIT"/>
+    <action name="new"  kind="submit" title="_PGNEWLIST"/>
+  </actions>
+  <rowOperations insert="no" deleteConfirm="_PGCONFIRMLISTDELETE"/>
+ </component>
+
+</components>

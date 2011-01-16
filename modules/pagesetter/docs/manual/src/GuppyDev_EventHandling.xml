@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+"http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd">
+<chapter id="chap_introduction">
+  <!-- $Id: GuppyDev_EventHandling.xml,v 1.1 2004/12/08 00:29:30 jornlind Exp $ -->
+
+  <title>Event Handling</title>
+
+  <section id="guppyeventstart">
+    <title>Event Handling</title>
+
+    <para>All usage of Guppy starts with a call to guppy_decode to see if the
+    script has been initiated from Guppy or from else-where. If the script is
+    not started as a result of a Guppy event then guppy_decode will return the
+    boolean value true. If it is a result of a Guppy event then it will return
+    an associative array with the following elements.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>action</term>
+
+        <listitem>
+          <para>This is an array that describes the current event. See below
+          for sub-properties.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>data</term>
+
+        <listitem>
+          <para>This is an array identical to the data array passed to
+          guppy_open, but including whatever changes the user may have
+          done.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>extra</term>
+
+        <listitem>
+          <para>This is an array with the values passed in the "extra"
+          property of the array passed to guppy_open. This part of the data
+          can be used freely to store any extra data needed to handle the
+          form.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>The action object contains the following properties:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>kind</term>
+
+        <listitem>
+          <para>A string that describes the event kind. This list is rather
+          long and can be found in the next section. Most of the time the
+          action kind is identical to the name of the method that handles the
+          event.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>component</term>
+
+        <listitem>
+          <para>Name of the component from which the action was initiated,
+          e.g., the component in which a button is located.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>rowIndex</term>
+
+        <listitem>
+          <para>Row index for an action that influences a table or tree
+          component.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>button</term>
+
+        <listitem>
+          <para>Name of activated button.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>buttonKind</term>
+
+        <listitem>
+          <para>Kind of activated button.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>action</term>
+
+        <listitem>
+          <para>Name of activated action.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>clickHeader</term>
+
+        <term>menuAction</term>
+
+        <term>treeXXX</term>
+
+        <listitem>
+          <para>... lots of different actions.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </section>
+</chapter>

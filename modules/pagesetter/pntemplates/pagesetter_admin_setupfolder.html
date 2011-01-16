@@ -1,0 +1,57 @@
+<!--[pagesetter_adminmenu]-->
+
+<h1><!--[pnml name=_PGSETUPFOLDER]--></h1>
+
+<form action="<!--[pnmodurl modname=pagesetter type=admin func=transferfolders]-->" method="post">
+
+<br/><br/>
+<table>
+<tr>
+  <th><!--[pnml name=_PGTRANSFER]--></th>
+  <th><!--[pnml name=_PGTYPE]--></th>
+  <th><!--[pnml name=_PGFOLDERDEFAULT]--></th>
+  <th><!--[pnml name=_PGFOLDERSUBDEFAULT]--></th>
+</tr>
+
+<!--[foreach item=pubType from=$publications]-->
+<tr>
+<!--[if $pubType.publication.defaultFolder > 0  ||  $pubType.publication.defaultFolder == 0 && $pubType.publication.defaultSubFolder != '']-->
+ <td>
+  <input type="checkbox" name="transfer-<!--[$pubType.publication.id]-->" value="1" <!--[$pubType.folder.disabled]-->/>
+ </td>
+ <td>
+  <!--[$pubType.publication.title|escape]-->
+ </td>
+ <td>
+  <!--[$pubType.folder.title]-->
+ </td>
+ <td>
+  <!--[if $pubType.publication.defaultSubFolder == '']-->
+    <em><!--[pnml name=_PGNODEFAULTSUBFOLDER]-->
+  <!--[else]-->
+    <!--[$pubType.publication.defaultSubFolder]-->
+  <!--[/if]-->
+ </td>
+
+<!--[else]-->
+
+ <td>
+  <input type="checkbox" name="transfer-<!--[$pubType.publication.id]-->" disabled="1"/>
+ </td>
+ <td>
+  <!--[$pubType.publication.title|escape]-->
+ </td>
+ <td colspan="2">
+  <!--[pnml name=_PGSETUPFOLDERNONESEL]-->
+ </td>
+<!--[/if]-->
+</tr>
+
+<!--[/foreach]-->
+</table>
+
+<br/>
+<input type="submit" value="<!--[pnml name=_PGTRANSFER]-->"/>
+<input type="submit" value="<!--[pnml name=_PGCANCEL]-->"/>
+
+</form>

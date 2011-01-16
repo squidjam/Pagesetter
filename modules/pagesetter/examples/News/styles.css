@@ -1,0 +1,44 @@
+/* Style sheet settings for a flat (non-indented) list menu block */
+
+  /* Override a few anchor settings in the menu */
+ul.newsMenu a
+{
+  color: black;
+  text-decoration: none;
+
+    /* Padding should be added around the content of the list items - in this case the anchors.
+       Padding on the list items gives some problems with the background coloring. */
+  padding: 1px 0px 1px 2px;
+}
+
+ul.newsMenu a:hover
+{
+  color: #C02020;
+}
+
+  /* This only applies to the top list items in the menu - but only because of the next rule */
+ul.newsMenu li
+{
+  background-color: #CCCCCC;
+}
+
+  /* This applies to all non-top list items since we refer to list items inside other items.
+     This overrides the above rule so we can have different settings for the various nesting levels */
+ul.newsMenu li li
+{
+  background-color: white;
+  padding-left: 0.4em;
+}
+
+
+ul.newsMenu,
+ul.newsMenu ul,
+{
+    /* Margin and padding for the lists are set to zero in order to get a straight vertical list with
+       no indentation. */
+  margin: 0;
+  padding: 0;
+
+    /* We do not want any bullets */
+  list-style-type: none;
+}

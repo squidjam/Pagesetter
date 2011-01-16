@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+
+<components>
+
+ <component name="wfcfg" kind="card" title="_PGWFCFG">
+  <fields>
+    <field name="pubType"  title="_PGPUBTYPE" type="string" readonly="yes"/>
+    <field name="workflow" title="_PGWFWORKFLOW" type="string" readonly="yes"/>
+  </fields>
+  <actions>
+    <!--<action name="preview" kind="submit" title="_PGBTSAVEPREVIEW" hint="_PGHINTSAVEPREVIEW"/>-->
+    <!--<action name="update"  kind="submit" title="_PGBTUPDATE" hint="_PGHINTUPDATE"/>-->
+    <action name="save"    kind="submit" title="_PGBTSAVE"/>
+    <action name="cancel"  kind="cancel" title="_PGBTCANCEL"/>
+  </actions>
+ </component>
+
+</components>

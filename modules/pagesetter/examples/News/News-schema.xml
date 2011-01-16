@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<publicationSchema xmlns="www.postnuke.com/pagesetter" version="1.0">
+ <category id="24">
+  <title>News Category</title>
+  <description>Categorization of News items</description>
+  <items>
+   <item id="114">
+    <title>News</title>
+    <fullTitle>News</fullTitle>
+    <value>News</value>
+    <description></description>
+    <indent>0</indent>
+   </item>
+   <item id="103">
+    <title>National</title>
+    <fullTitle>News:National</fullTitle>
+    <value>National</value>
+    <description></description>
+    <indent>1</indent>
+   </item>
+   <item id="115">
+    <title>International</title>
+    <fullTitle>News:International</fullTitle>
+    <value>International</value>
+    <description></description>
+    <indent>1</indent>
+   </item>
+   <item id="116">
+    <title>Business</title>
+    <fullTitle>News:Business</fullTitle>
+    <value>Business</value>
+    <description></description>
+    <indent>1</indent>
+   </item>
+   <item id="104">
+    <title>Sport</title>
+    <fullTitle>Sport</fullTitle>
+    <value>Sport</value>
+    <description></description>
+    <indent>0</indent>
+   </item>
+   <item id="105">
+    <title>Soccer</title>
+    <fullTitle>Sport:Soccer</fullTitle>
+    <value>Soccer</value>
+    <description></description>
+    <indent>1</indent>
+   </item>
+   <item id="106">
+    <title>Basketball</title>
+    <fullTitle>Sport:Basketball</fullTitle>
+    <value>Basketball</value>
+    <description></description>
+    <indent>1</indent>
+   </item>
+   <item id="112">
+    <title>Life Style</title>
+    <fullTitle>Life Style</fullTitle>
+    <value>LifeStyle</value>
+    <description></description>
+    <indent>0</indent>
+   </item>
+   <item id="107">
+    <title>Travel</title>
+    <fullTitle>Life Style:Travel</fullTitle>
+    <value>Travel</value>
+    <description></description>
+    <indent>1</indent>
+   </item>
+   <item id="113">
+    <title>Fashion</title>
+    <fullTitle>Life Style:Fashion</fullTitle>
+    <value>Fashion</value>
+    <description></description>
+    <indent>1</indent>
+   </item>
+  </items>
+ </category>
+ <publication>
+  <title>News</title>
+  <template>News</template>
+  <description>Example publication type for News handling</description>
+  <author>Admin</author>
+  <created>2004-01-05</created>
+  <listCount>10</listCount>
+  <sortField1>pg_created</sortField1>
+  <sortDesc1>1</sortDesc1>
+  <sortField2>pg_field173</sortField2>
+  <sortDesc2>0</sortDesc2>
+  <sortField3></sortField3>
+  <sortDesc3>0</sortDesc3>
+  <enableHooks>1</enableHooks>
+  <workflow>standard</workflow>
+  <fields>
+   <field id="173">
+    <name>headline</name>
+    <title>Headline</title>
+    <description>Article headline</description>
+    <type>0</type>
+    <isTitle>1</isTitle>
+    <isPageable>0</isPageable>
+    <isSearchable>1</isSearchable>
+   </field>
+   <field id="174">
+    <name>teaser</name>
+    <title>Teaser</title>
+    <description>Short summary of article to be shown in overview list</description>
+    <type>2</type>
+    <isTitle>0</isTitle>
+    <isPageable>0</isPageable>
+    <isSearchable>1</isSearchable>
+   </field>
+   <field id="324">
+    <name>category</name>
+    <title>Category</title>
+    <description>Categorization of this article</description>
+    <type>124</type>
+    <isTitle>0</isTitle>
+    <isPageable>0</isPageable>
+    <isSearchable>0</isSearchable>
+   </field>
+   <field id="175">
+    <name>text</name>
+    <title>Text</title>
+    <description>The actual article text (multi paged)</description>
+    <type>2</type>
+    <isTitle>0</isTitle>
+    <isPageable>1</isPageable>
+    <isSearchable>1</isSearchable>
+   </field>
+   <field id="176">
+    <name>notes</name>
+    <title>Notes</title>
+    <description>Optional notes for the author or administrator</description>
+    <type>1</type>
+    <isTitle>0</isTitle>
+    <isPageable>0</isPageable>
+    <isSearchable>0</isSearchable>
+   </field>
+   <field id="177">
+    <name>image</name>
+    <title>Image</title>
+    <description>Optional image URL</description>
+    <type>8</type>
+    <isTitle>0</isTitle>
+    <isPageable>0</isPageable>
+    <isSearchable>0</isSearchable>
+   </field>
+   <field id="178">
+    <name>imageText</name>
+    <title>Image text</title>
+    <description>Optional image text</description>
+    <type>0</type>
+    <isTitle>0</isTitle>
+    <isPageable>0</isPageable>
+    <isSearchable>0</isSearchable>
+   </field>
+  </fields>
+ </publication>
+</publicationSchema>

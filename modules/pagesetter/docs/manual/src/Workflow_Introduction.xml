@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+"http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd">
+<chapter id="chap_workflows">
+  <!-- $Id: Workflow_Introduction.xml,v 1.2 2004/12/15 22:02:03 jornlind Exp $ -->
+
+  <title>Workflows</title>
+
+  <section id="wfdefinition">
+    <title>Definition</title>
+
+    <para>The online Encyclopedia "Wikipedia" describes a workflow like
+    this:</para>
+
+    <blockquote>Workflow is the operational aspect of a work procedure:
+    how tasks are structured, who performs them, what their relative order is,
+    how they are synchronized, how information flows to support the tasks and
+    how tasks are being tracked. [WikiPedia <ulink
+    url="http://www.wikipedia.org/">www.wikipedia.org</ulink>]</blockquote>
+
+    <para>In Pagesetter we can control where in the workflow a publication is
+    located, what kind of actions you can perform on it, when it can be done,
+    and who can do it. The location is defined by the publication's state,
+    which for instance can be "Preview" for something in preview for an
+    editor. The state is something visible and can always be seen on the
+    editor's list. The actions can be things like "Submit", "Accept", or
+    "Reject", all of which triggers some code that modifies the publication. A
+    publication can only change state as a result of a workflow action. You
+    never edit the state directly.</para>
+
+    <para>Each of the workflows may have some <emphasis>configuration
+    settings</emphasis> that can be set through the menu
+    Configuration::Workflow. The standard settings are things related to
+    notification mails to be sent when a publication changes state during the
+    workflow. The most obvious of these are the mail addresses of the editors
+    and moderators that should be informed of new content arrivals.</para>
+
+    <para>The workflow system has been designed to let the administrator add
+    his own workflow without modifying the existing ones. This is done through
+    an XML file in the "workflows/custom" directory. A thorough description of
+    how this is done can be found in the Workflow Manual bundled with this
+    manual.</para>
+
+    <para><emphasis>Remember that, no matter how clever a workflow you might
+    create, everything begins and ends with your editors. The workflow in it
+    self is only a technology, it is not and will never be a substitute for
+    good writers.</emphasis></para>
+  </section>
+
+  <section id="wfstandardwfstart">
+    <title>Standard workflows</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>None</term>
+
+        <listitem>
+          <para>Allows Authors to create pre-approved documents. Not much to
+          this one.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Standard</term>
+
+        <listitem>
+          <para>Allows Authors to submit a publication. It then requires an
+          Editor to approve it.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Enterprise</term>
+
+        <listitem>
+          <para>Adds an additional approval step to the Standard workflow. An
+          Author submits. An Editor accepts or rejects. A Moderator approves
+          or rejects. A Moderator can also take publications offline and then
+          put them back online.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Wiki</term>
+
+        <listitem>
+          <para>This workflow gives Authors full access to the publications.
+          Every time someone updates a publication, a new version is built and
+          a notification email is sent. All changes to all publications are
+          logged. Every document is pre-approved. The use of Wiki for the name
+          refers to the "edit-by-all" and revision control features. There is
+          no support for the normal Wiki notations like using !/!!/!!! for
+          headlines .</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>MyWiki</term>
+
+        <listitem>
+          <para>This workflow gives Authors full access to <emphasis>their
+          own</emphasis> publications only. Every time someone updates a
+          publication, a new version is built. All changes to all publications
+          are logged. Every document is pre-approved. No reason to mail
+          someone since it is assumed that you edit your own pages only. This
+          is the workflow you should use if you want to allow your users to
+          have their own set of pages they can manage. If for instance you
+          have a home-garden site and want you users to present their gardens
+          on your site then do as follows:</para>
+
+          <orderedlist>
+            <listitem>
+              <para>Create a publication type named "Gardens" (or similar) and
+              add the fields you need.</para>
+            </listitem>
+
+            <listitem>
+              <para>Assign the "MyWiki" workflow to this publication
+              type.</para>
+            </listitem>
+
+            <listitem>
+              <para>Check (enable) the access to editing of own pages.</para>
+            </listitem>
+
+            <listitem>
+              <para>Make sure your users have "author" access to this
+              publication type. This can be done with a permission line in
+              PostNuke like this: "YourGroup | pagesetter:: | T:: | Edit"
+              (where T = type ID).</para>
+            </listitem>
+          </orderedlist>
+
+          <para>With this setup your users should be able to create new pages
+          as well as edit their own pages only. You need to give them a URL to
+          the "edit publication" feature (see the <link
+          linkend="chap_linking">linking</link> section).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </section>
+</chapter>

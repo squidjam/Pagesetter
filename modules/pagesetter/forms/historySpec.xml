@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+
+<components>
+
+<component name="historyHeader" kind="card" title="_PGHISTORYHEADER">
+  <fields>
+    <field name="pubType"  title="_PGPUBTYPE" type="string"   readOnly="yes"/>
+    <field name="pid"      title="_PGID"      type="string"   readOnly="yes"/>
+  </fields>
+  <actions>
+    <action name="back" kind="submit" title="_PGBTBACKTOLIST"/>
+  </actions>
+</component>
+
+ <component name="historyList" kind="table" title="_PGHISTORYLIST">
+  <fields>
+    <field name="id"            title="_PGID"            kind="input" type="int"    readonly="yes"/>
+    <field name="title"         title="_PGFTPUBTITLE"    kind="input" type="string" readonly="yes"/>
+    <field name="revision"      title="_PGREVISION"      kind="input" type="int"    readonly="yes"/>
+    <field name="prevRevision"  title="_PGPREVREVISION"  kind="input" type="int"    readonly="yes"/>
+    <field name="user"          title="_PGUSER"          kind="input" type="string" readonly="yes"/>
+    <field name="timestamp"     title="_PGTIMESTAMP"     kind="input" type="string" readonly="yes"/>
+    <field name="approvalTitle" title="_PGAPPROVALSTATE" kind="input" type="string" readonly="yes"/>
+    <field name="online"        title="_PGFTONLINE"      kind="input" type="bool"   readonly="yes"/>
+    <field name="inDepot"       title="_PGINDEPOT"       kind="input" type="bool"   readonly="yes"/>
+  </fields>
+  <actions>
+    <action name="view"  kind="submit" title="_PGBTVIEW"/>
+    <action name="move"  kind="submit" title="_PGBTMOVEFROMDEPOT"/>
+    <action name="erase" kind="submit" title="_PGBTERASE"/>
+  </actions>
+  <rowOperations insert="no" delete="no"/>
+ </component>
+
+</components>

@@ -1,0 +1,21 @@
+<div class="pane">
+</div>
+
+<div class="folder-item padding">
+  <h2><!--[$core.title]--></h2>
+  [Version <!--[$core.revision]--><!--[if $core.online]-->, online<!--[/if]-->]
+  <br/>Added <!--[$core.created|date_format:"%Y.%m.%d"]--> by <!--[$core.author]--> 
+  (modified <!--[$core.lastUpdated|date_format:"%Y.%m.%d"]-->)
+  <br/><br/>
+  <!--[nocache]-->
+    <!--[pnsecauthaction realm="0" comp="pagesetter::" inst="::" level="ACCESS_EDIT" assign="auth"]-->
+    <!--[if $auth]-->
+      <!--[$core.editThis]-->
+    <!--[/if]-->
+  <!--[/nocache]-->
+</div>
+
+<!--[if $core.useDisplayHooks]-->
+<!--[pnmodurl modname=pagesetter func=viewpub tid=$core.tid pid=$core.pid assign=viewUrl]-->
+<!--[pnmodcallhooks hookobject=item hookaction=display hookid=$core.uniqueId module=pagesetter returnurl=$viewUrl]-->
+<!--[/if]-->

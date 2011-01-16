@@ -1,0 +1,2 @@
+chmod 666 ../PagesetterManual.html
+xsltproc --stringparam html.stylesheet docbook.css --nonet --novalid --xinclude /cygdrive/c/etc/docbook-xsl-1.67.2/html/docbook.xsl PagesetterManual.xml > ../PagesetterManual.html

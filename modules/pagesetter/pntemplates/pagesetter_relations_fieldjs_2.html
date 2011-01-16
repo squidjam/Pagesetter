@@ -1,0 +1,32 @@
+<!-- Javascript for relations field (style 2) -->
+
+<script language="JavaScript" type="text/javascript">
+function SubmitIt()
+{
+	var checkbox = document.getElementsByName('<!--[$name]-->[]');
+	var textfield = document.getElementById('<!--[$id]-->_text');
+	textfield.value = checkboxGetText(checkbox);
+}
+  
+function checkboxGetText(src)
+{
+  var srcSize = src.length;
+  var result = "";
+
+  for (var i=0; i<srcSize; ++i)
+  {
+    if (src[i].checked)
+    { 
+      srcText = document.getElementById('<!--[$id]-->_text_'+i);
+      if (result == "")
+        result += srcText.value;
+      else
+        result += ", " + srcText.value;
+    }
+  }
+  return result;
+}
+
+
+</script>
+  

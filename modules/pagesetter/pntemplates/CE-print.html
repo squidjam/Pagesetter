@@ -1,0 +1,13 @@
+<div class="pn-pagetitle"><!--[$title]--></div>
+<div class="pn-sub">By: <!--[$core.author]--> <!--[$core.lastUpdated|date_format:"%Y.%m.%d"]--></div><p>
+
+<!--[if $image != "" ]-->
+ <div class="floatRight">
+  <img src="<!--[$image]-->" width="200" alt="<!--[$imageText]-->" title="<!--[$imageText]-->"><br>
+  <i><!--[$imageText]--></i>
+ </div>
+<!--[/if]-->
+
+<!--[foreach from=$text item=p]-->
+<!--[$p]-->
+<!--[/foreach]-->

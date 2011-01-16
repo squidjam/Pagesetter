@@ -1,0 +1,821 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+"http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd"
+[
+<!ENTITY mdash "&#x2014;">
+<!ENTITY hellip "&#x2026;">
+]>
+
+<chapter id="chap_templates">
+  <!-- $Id: Templates.xml,v 1.16 2006/05/18 20:39:04 jornlind Exp $ -->
+
+  <title>Templates</title>
+
+  <section id="templatesintro">
+    <title>Templates</title>
+
+    <para>The output templating system uses a set of template files for each
+    publication type and depends on the PostNuke .75 pnRender system (see
+    installation guide).</para>
+
+    <note>
+      You can read a lot more about the Smarty templating system (that pnRender
+      builds on, and thereby Pagesetter) on 
+      <ulink url="http://smarty.php.net/">smarty.php.net</ulink>.
+    </note>
+    
+    <para>The template files are stored in <filename>pagesetter/pntemplates/...</filename>
+    and they are named after the publication template name
+    like "<emphasis>template</emphasis>-<emphasis>format</emphasis>.html" where
+    <emphasis>template</emphasis> is specified in the publication setup and
+    <emphasis>format</emphasis> depends on the situation.</para>
+    
+    <para>Pagesetter uses the
+    following formats in various situations (here an example filename is shown in the
+    parenthesis):</para>
+    
+    <variablelist>
+        <varlistentry>
+          <term>list (News-list.html)</term>
+
+          <listitem>
+            The compact view of a publication when shown in a list.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>list-header (News-list-header.html)</term>
+
+          <listitem>
+            A template shown before a list.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>list-footer (News-list-footer.html)</term>
+
+          <listitem>
+            A template shown after a list.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>list-single (News-list-single.html)</term>
+
+          <listitem>
+            This single template takes the place of list, list-header,
+            and list-footer in case no list-header template is found. This
+            kind of list templates gives you more control over the layout,
+            but disables caching of the list output.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>full (News-full.html)</term>
+
+          <listitem>
+            The full view of a publication.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>print (News-print.html)</term>
+
+          <listitem>
+            The full view of a publication when shown as "Print this"
+            without PostNuke frames.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>xml (News-xml.html)</term>
+
+          <listitem>
+            Full view of publication as XML. Used for the xmllist and
+            xmlpub functions that adds a "Content-Type: text/xml" to the HTTP
+            header.
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+    <important>
+      <para>1) Remember to make <filename>pagesetter/pntemplates</filename> writeable
+      by the webserver if you want to use Pagesetter automatic generation of templates.</para>
+
+      <para>2) You always specify a format (like "RSS") when asked to supply a template in a block
+      or URL. <emphasis>You do not specify a full filename!</emphasis></para>
+
+      <para>3) If a list display cannot find a template header, for instance 
+      <filename>News-list-header.html</filename> then it assumes a
+      single template list is used and looks for the format "list-single" instead,
+      for instance <filename>News-list-single.html</filename>.</para>
+    </important>
+  </section>
+
+  <section id="templatesvarstart">
+    <title>Template Variables</title>
+
+    <para>The templates may refer to all of the user defined fields and most
+    of the core meta data (author etc.). Template variables are inserted using
+    {$name} or &lt;!--[$name]--&gt; where "name" is the name of a variable. The
+    braces can be used for simplicity but the best solution is to use the
+    HTML comments style since this is compatible with various HTML editors.
+    The user defined fields are simply refered to by their field name, whereas
+    the meta data is refered to through the "core" object as {$core.name}
+    where "name" may be any of the following core fields:</para>
+    
+    <variablelist>
+        <varlistentry>
+          <term>id</term>
+
+          <listitem>
+            A unique integer value identifying the publication.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>tid*</term>
+
+          <listitem>
+            The publication type ID.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>format*</term>
+
+          <listitem>
+            The template format name, e.g., "list" in
+            <filename>News-list-header.html</filename>.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>author</term>
+
+          <listitem>
+            Name of the author as set in the publication editor.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>title</term>
+
+          <listitem>
+            Copy of the value from the specified title field.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>topic</term>
+
+          <listitem>
+            Associated topic description. This is a struct with the
+            following fields: id, name, text, and image. Use for instance like
+            <markup>&lt;!--[$core.topic.name]--&gt;</markup>.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>creator</term>
+
+          <listitem>
+            Name of the person who actually created the
+            publication.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>created</term>
+
+          <listitem>
+            The time stamp of when the publication was created. Time stamps
+            are stored as seconds since 1970 (or what ever internal format the
+            SQL servers uses) and needs to be formatted for printing. For this
+            you can write <markup>&lt;--[$core.created|date_format:"%d/%m/%Y"]--&gt;.</markup>
+            as an example format that generates DD/MM/YYYY.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>lastUpdated</term>
+
+          <listitem>
+            The time stamp of when the publication was last updated. Check
+            <varname>created</varname> for a description of time stamps.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>fullURL</term>
+
+          <listitem>
+            The URL to the full display of the publication.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>printThis</term>
+
+          <listitem>
+            A complete link to "Print this" with description.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>printThisURL</term>
+
+          <listitem>
+            The URL to "Print this".
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>sendThis</term>
+
+          <listitem>
+            A complete link to "Send this" with description.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>sendThisURL</term>
+
+          <listitem>
+            The URL to "Send this".
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>listItemNo</term>
+
+          <listitem>
+            This variable indicates the item number in the list template. The first publication will have
+            this set to 0, the next 1 and so on.
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+    <para>The items marked with * are also available in list headers and
+    footers.</para>
+
+    <section id="templatesvarlistitems">
+    <title>Using Categories</title>
+
+    <para>When refering to a category item you must further specify
+    which property of the item you want. You can choose between the
+    title, the qualified title (with parent items prefixed), the value, or the
+    description. The properties are accessed as sub-values of the field (just
+    like the properties of the core variable or a topic field). The possible category properties
+    are:</para>
+    
+    <variablelist>
+        <varlistentry>
+          <term>title</term>
+
+          <listitem>
+            Item title.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>fullTitle</term>
+
+          <listitem>
+            Qualified item title. The parent item titles are prefixed
+            with colon as separator. For instance Fiction:Fantasy.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>value</term>
+
+          <listitem>
+            Item value.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>description</term>
+
+          <listitem>
+            Item description.
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+    <para>For instance, say you have a category field in your publication type
+    called bookType. It is defined as a category called typesOfBooks. To add the
+    title of the category field to your template use
+    <markup>&lt;!--[$bookType.title]--&gt;</markup>.</para>
+
+    <para>If you need to generate a select-box for a specific category field then
+    you can use the <function>pagesetter_listSelector</function> Smarty plugin 
+    like this:</para>
+    
+    <programlisting>&lt;form action="..."&gt;
+ Select Category: &lt;!--[pagesetter_listSelector 
+ name="categoryInput" field="category"]--&gt;
+ ...
+&lt;/form&gt;</programlisting>
+
+    <para>This will produce an HTML "select" input with the name "categoryInput" based
+    on the field "category". The select input will show item titles and use
+    item IDs as values.</para>
+    </section>
+
+    <section id="templatesvarpageable">
+    <title>Using Pageable Fields</title>
+
+    <para>A field that has been enabled for multiple pages is accessed as an
+    array of pages, so you will have to specify which page to show. The page
+    number is passed in the URL as the query variable <varname>page</varname> 
+    which can be accessed like <varname>$core.page</varname>. You can get the 
+    number of pages as <varname>$core.pageCount</varname>. The template system 
+    offers a "pager" generator function
+    named <function>pagesetter_pager</function>. The pnRender module already offers different kinds
+    of pagers, but I never got them to work with Pagesetter. Besides that this
+    one is easier to use with Pagesetter items. To insert the pager you add
+    <markup>&lt;!--[pagesetter_pager]--&gt;</markup> to the template. The function accepts the
+    following parameters:</para>
+    
+    <variablelist>
+        <varlistentry>
+          <term>page</term>
+
+          <listitem>
+            The current page number&mdash;zero based for look-up in page
+            array. If left out then <varname>$core.page</varname> is used.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>pageCount</term>
+
+          <listitem>
+            The number of pages available. If left out then
+            <varname>$core.pageCount</varname> is used.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>baseURL</term>
+
+          <listitem>
+            The base URL of the view (link to page). If left out then
+            <varname>$core.baseURL</varname> is used.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>next</term>
+
+          <listitem>
+            A piece of HTML to insert as the "Next page" link. Default
+            is "&gt;"
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>prev</term>
+
+          <listitem>
+            A piece of HTML to insert as the "Prev page" link. Default
+            is "&lt;"
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>separator</term>
+
+          <listitem>
+            A piece of HTML to insert as the separator between page
+            number. Default is &amp;nbsp;
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>pageClass</term>
+
+          <listitem>
+            A CSS class name to include in the anchors of the prev/next
+            links.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>thisPageClass</term>
+
+          <listitem>
+            A CSS class name to put the current page number into using a
+            &lt;span&gt; tag.
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+    <para>Example template:</para>
+
+    <programlisting>Page &lt;!--[$core.page+1]--&gt;&lt;br&gt;
+&lt;!--[pagesetter_pager]--&gt;</programlisting>
+    
+    <para>and a bit more advanced
+    example:</para>
+
+    <programlisting>Page &lt;!--[$core.page+1]--&gt; of &lt;!--[$core.pageCount]--&gt;&lt;br&gt;
+&lt;!--[pagesetter_pager prev="&lt;img src='leftArrow.gif'&gt;"
+                      next="&lt;img src='rightArrow.gif'&gt;"]--&gt;</programlisting>
+  
+    </section>
+
+    <section>
+      <title>Using upload fields</title>
+
+      <para>When refering to upload fields you must specify one of the following
+      properties:</para>
+
+      <variablelist>
+        <varlistentry>
+          <term>url</term>
+      
+          <listitem>Complete URL for inline display of document/image.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>downloadUrl</term>
+      
+          <listitem>Complete URL for downloading of document/image.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>thumbnailUrl</term>
+        
+          <listitem>Complete URL to thumbnail of image (only available for
+          image uploads).</listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>size</term>
+        
+          <listitem>Size of document in bytes.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>type</term>
+        
+          <listitem>MIME type of document.
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <example>
+        <title>Example template with upload field (named "document").</title>
+        <programlisting>
+        <![CDATA[
+<dt>
+  <a href="<!--[$document.url]-->"><!--[$core.title]--></a>
+  (<!--[$document.size]--> bytes)
+</dt>
+<dd>
+  <!--[$description]-->
+  <span class="pn-sub">
+  [<a href="<!--[$core.fullURL]-->">details</a>]</span>
+</dd>
+        ]]>
+        </programlisting>
+      </example>
+
+    </section>
+  </section>
+
+  <section id="templatesvarhitcounts">
+    <title>Showing Hit Counts</title>
+
+    <para>Hit counts can be displayed in your publications by inserting
+    <varname>&lt;!--[$core.hitCount]--&gt;</varname>. But you need to do something to avoid caching
+    of the output, otherwise the value would always stay the same (even though
+    the actual hit count is incremented anyway). For this purpose Smarty adds
+    the "nocache" tag. So the complete piece of code you need to insert is:</para>
+
+    <programlisting>
+    <![CDATA[<!--[nocache]--><!--[$core.hitCount]--><!--[/nocache]-->
+    ]]>
+    </programlisting>
+  </section>
+
+  <section id="templatesvaredit">
+    <title>Showing "Edit This" Link</title>
+
+    <para>Such a link can be added by inserting <varname>&lt;!--[$core.editThis]--&gt;</varname> 
+    or <varname>&lt;!--[$core.editInfo]--&gt;</varname>, where the
+    first one takes you directly to the edit page, whereas the second adds
+    a little popup with some publication info and links to editing and
+    creation of new publications. As with the hit counts you must add
+    a "nocache" tag around the code:</para>
+    <programlisting>
+    <![CDATA[<!--[nocache]--><!--[$core.editThis]--><!--[/nocache]-->
+    ]]>
+    </programlisting>
+    or
+    <programlisting>
+    <![CDATA[<!--[nocache]--><!--[$core.editInfo]--><!--[/nocache]-->
+    ]]>
+    </programlisting>
+  </section>
+
+  <section id="templatessinglemultiplestart">
+    <title>Single and Multiple List Templates</title>
+
+    <para>The list view used in Pagesetter allows you to display a set of
+    publications through a template. This can be done with either a single
+    template, in which you must iterate through the elements yourself, or with
+    a header/list/footer combination of templates that allows you to display
+    one publication alone in a template, which is then invoked by Pagesetter
+    multiple times.</para>
+
+  <section id="templatessingle">
+    <title>Single Template</title>
+
+    <para>If a template named <filename>x-list-header.html</filename> can be found then
+    <filename>x-list-single.html</filename> will be used instead. This template will be passed an
+    array named <varname>publications</varname> which contains one entry for each publication in
+    the list. Each array entry contains exactly the same variables as the ones
+    passed to the multiple list template. This allows you to fine tune the
+    exact positioning of the publications, at the cost of some performance
+    since the complete list output cannot be cached. Checking on existence of
+    <filename>x-list-header.html</filename> instead <filename>of x-list-single.html</filename>
+    makes it possible to
+    specify different template formats than "single".</para>
+
+    <para>Example:</para>
+
+    <programlisting>&lt;h1&gt;My Frontpage&lt;/h1&gt;
+
+&lt;table style="width: 70%"&gt;
+  &lt;tr&gt;
+    &lt;td style="width: 50%"&gt;
+      &lt;h2&gt;&lt;!--[$publications[0].core.title]--&gt;&lt;/h2&gt;
+      &lt;!--[$publications[0].teaser]--&gt;
+    &lt;/td&gt;
+    &lt;td style="width: 50%"&gt;
+      &lt;h2&gt;&lt;!--[$publications[1].core.title]--&gt;&lt;/h2&gt;
+      &lt;!--[$publications[1].teaser]--&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td style="width: 50%"&gt;
+      &lt;h2&gt;&lt;!--[$publications[2].core.title]--&gt;&lt;/h2&gt;
+      &lt;!--[$publications[2].teaser]--&gt;
+    &lt;/td&gt;
+    &lt;td style="width: 50%"&gt;
+      &lt;h2&gt;&lt;!--[$publications[3].core.title]--&gt;&lt;/h2&gt;
+      &lt;!--[$publications[3].teaser]--&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</programlisting>
+  </section>
+
+  <section id="templatesmultiple">
+    <title>Multiple Templates</title>
+
+    <para>If a template named <filename>x-list-header.html</filename> can be found then this will
+    be displayed first. After this the template named <filename>x-list.html</filename> will be
+    displayed one time for each publication in the list. At last the template
+    named <filename>x-list-footer.html</filename> will be displayed. This reduces the possibilities
+    for finetuning the layout, but it improves performance since the output of
+    each of the publications can be cached.</para>
+  </section>
+
+  </section>
+
+  <section id="templatesthemespecific">
+    <title>Theme Specific Templates</title>
+
+    <para>With the pnRender system it is possible to specifiy theme specific
+    templates. Just place your templates in the structure shown here (the top
+    theme directory is PostNuke's main theme directory):</para>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="img/ThemeDirectoryStructure.gif" />
+      </imageobject>
+    </mediaobject>
+  </section>
+
+  <section id="templatesoperations">
+    <title>Template Operations</title>
+
+    <para>You can do a bunch of stuff with the Smarty template system. Please
+    read the documentation at <ulink
+    url="http://smarty.php.net/">smarty.php.net</ulink> as well as the
+    pnRender documentation when it becomes available.</para>
+
+    <para>Here's anyway a few examples:</para>
+
+    <programlisting>  &lt;!-- Uppercase the title --&gt;
+&lt;h2&gt;&lt;!--[$title|upper]--&gt;&lt;/h2&gt;
+
+  &lt;!-- Truncate the topic to 40 characters 
+       use ... at the end --&gt;
+Topic: &lt;!--[$topic|truncate:40:"..."]--&gt;
+
+  &lt;!-- Produce category bread crumbs using "separator.png"
+       image as separator instead of colons in the qualified
+       title of a list item --&gt;
+Genre: &lt;!--[$genre.fullTitle|replace:":":" 
+            &lt;img src='separator.png'&gt; "]--&gt;
+
+  &lt;!-- format a literal string --&gt;
+&lt;!--[$"now"|date_format:"%Y/%m/%d"]--&gt; </programlisting>
+  </section>
+
+  <section id="templatesauto">
+    <title>Auto Generated Templates</title>
+
+    <para>It is possible to auto generate missing templates. Go to
+    "Publications:Create Templates" in the menu. Here you find a list of your
+    publications and the possibility to mark which templates to generate. The
+    new templates are based on the templates named __template-... so you can
+    modify these to suite your own needs.</para>
+
+    <caution>You need to make the pntemplates directory writable by all
+    for this to work!</caution>
+  </section>
+
+  <section id="templatespnrenderplugins">
+    <title>pnRender Plugins</title>
+
+    <para>If you look into the pagesetter/pntemplates/plugins directory you
+    will find a set of predefined plugins for Pagesetter. You will have to
+    read the PHP code to get the documentation so far. But here's a short
+    list:</para>
+    
+    <variablelist>
+        <varlistentry>
+          <term>pagesetter_pager</term>
+
+          <listitem>
+            Generates a "&lt;&lt; 1,2,3, ..., &gt;&gt;" set of links for
+            selecting a page in a multipaged publication.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>pagesetter_ezcommentsCount</term>
+
+          <listitem>
+            Counts associated EZComments items.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>pagesetter_listBrowser</term>
+
+          <listitem>
+            Generates a tree based on a category field. Just like the
+            category based menu block. A more correct name would be
+            "categoryBrowser".
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>pagesetter_inlinePubList</term>
+
+          <listitem>
+            Creates a templated list of publications to be inserted on
+            your page.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>pagesetter_listSelector</term>
+
+          <listitem>
+            Generates a HTML select tag for selection of items from a
+            category field.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>pagesetter_pubPager</term>
+
+          <listitem>
+            Generates a prev/next link set for browsing through a list
+            of publications.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>pagesetter_createFilter</term>
+
+          <listitem>
+            Creates a filter for input to the Pagesetter API function
+            getPubList.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>var</term>
+
+          <listitem>
+            Internally used to auto-create templates.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>bool_format</term>
+
+          <listitem>
+            Formats a bool value as one of two strings.
+          </listitem>
+        </varlistentry>
+      </variablelist>
+  </section>
+
+  <section id="templatesrelations">
+    <title>Relating Items to Each Other</title>
+
+    <para>You can relate publications to each other in different ways, but common
+    for them all is that you use the pnRender plugin 
+    <varname>pagesetter_inlinePubList</varname> to display the related items
+    inside the template. You can relate publications by topic, category and much
+    more, as well as making parent/child relations using a "Publication" field
+    to specify the parent publication when editing. You can even make
+    many-to-many relations with the Relation input field.</para>
+
+    <para>The <varname>pagesetter_inlinePubList</varname> is typically used like this:</para>
+
+    <example>
+      <title>Relating items by topic.</title>
+      <programlisting>
+      <![CDATA[
+<!--[nocache]-->
+<!--[pagesetter_createFilter filter=topic:eq:`$core.topic`
+                             assign=filter]-->
+<!--[pagesetter_inlinePubList tid=18 filter=$filter]-->
+<!--[/nocache]-->
+      ]]>
+      </programlisting>
+    </example>
+
+    <para>First you create a filter and then you apply this to the inline list as well
+    as you specify which publication type ID to select from.</para>
+
+    <para>Parent/child relations can be made in exactly the same way:</para>
+
+    <example>
+      <title>Parent/child relations.</title>
+      <programlisting>
+      <![CDATA[
+<!--[nocache]-->
+<!--[pagesetter_createFilter filter=parent:eq:`$core.pid`
+                             assign=filter]-->
+<!--[pagesetter_inlinePubList tid=T filter=$filter]-->
+<!--[/nocache]-->
+      ]]>
+      </programlisting>
+    </example>
+
+    <para>In this example you apply a filter that selects all the publications that
+    has the current publication set as their parent ("T" is a publication type ID).
+    </para>
+
+    <para>Many-to-many relations are displayed using the filter operator "rel"
+    (relates-to):</para>
+
+    <example id="templatemanytomanyexample">
+      <title>Many-to-Many relations.</title>
+      <programlisting>
+      <![CDATA[
+<!--[nocache]-->
+<!--[pagesetter_createFilter filter="department:rel:`$core.pid`" assign=filter]-->
+<!--[pagesetter_inlinePubList tid=T filter=$filter]--><br/>
+<!--[/nocache]-->
+      ]]>
+      </programlisting>
+    </example>
+
+    <para>In this example we show all publications of type "T" that relates to the
+    current publication through the "department" field.</para>
+
+  </section>
+
+  <section id="templatesfolder">
+    <title>Folder Templates</title>
+
+    <para>If you choose to organize your Pagesetter publications with the Folder
+    module then you might want to create your own templates for this purpose. If you
+    do not create any templates then the default templates <filename>folder.view.html</filename>
+    and <filename>folder.select.html</filename> will be used for displaying items in the
+    folder system and selecting items in the folder system respectively.</para>
+
+    <para>You can design your own templates and name them 
+    <filename><emphasis>PubTypeName</emphasis>-folder.view.html</filename> and
+    <filename><emphasis>PubTypeName</emphasis>-folder.select.html</filename> respectively.
+    You can use <filename>Image-folder.view.html</filename> or 
+    <filename>FileUpload.view.html</filename> for inspiration.</para>
+  </section>
+
+</chapter>

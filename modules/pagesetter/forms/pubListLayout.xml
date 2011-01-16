@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+
+<layout>
+
+  <row>
+    <component name="pubListHeader">
+      <layout>
+        <row>
+          <field kind="title" name="tid"/>
+          <field kind="title" name="title"/>
+          <field kind="title" name="author"/>
+          <field kind="title" name="topic"/>
+          <field kind="title" name="approvalState"/>
+          <field kind="title" name="language"/>
+          <field kind="title" name="showDeleted"/>
+        </row>
+        <row>
+          <field name="tid"           title="no"/>
+          <field name="title"         title="no"/>
+          <field name="author"        title="no"/>
+          <field name="topic"         title="no"/>
+          <field name="approvalState" title="no"/>
+          <field name="language"      title="no"/>
+          <field name="showDeleted"   title="no"/>
+        </row>
+      </layout>
+      <buttonsBottom>
+        <button name="update"/>
+        <button name="clear"/>
+        <button name="new"/>
+      </buttonsBottom>
+    </component>
+  </row>
+
+  <row>
+    <text id="introtext"><![CDATA[
+      <div class="pagesetter-helptext">
+        $_PGPUBLISTHELP$
+      </div>]]>
+    </text>
+  </row>
+
+  <row>
+    <component name="pubList">
+      <columns>
+        <field name="pid" width="25"/>
+        <field name="title" width="180"/>
+        <field name="approvalState" width="100"/>
+        <field name="revision" width="40"/>
+        <field name="online"/>
+        <field name="author" width="70"/>
+        <field name="topic" width="90"/>
+        <field name="edit"    kind="action"/>
+        <field name="view"    kind="action"/>
+        <field name="history" kind="action"/>
+        <field name="move"    kind="action" width="65"/>
+      </columns>
+      <buttonsBottom>
+        <button name="prev"/>
+        <button name="next"/>
+      </buttonsBottom>
+    </component>
+  </row>
+
+</layout>

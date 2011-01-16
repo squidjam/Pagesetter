@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+
+<layout>
+
+  <row>
+    <component name="pubedit">
+      <layout>
+        <row><field name="title" mandatory="true" width="400"/></row>
+        <row><field name="text" width="400" height="50" view="html"/></row>
+      </layout>
+      <buttonsBottom>
+        <button name="corePreview"/>
+        <button name="coreCancel"/>
+      </buttonsBottom>
+    </component>
+  </row>
+
+</layout>

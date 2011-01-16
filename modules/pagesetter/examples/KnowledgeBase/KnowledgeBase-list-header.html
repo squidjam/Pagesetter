@@ -1,0 +1,21 @@
+<div class="pn-pagetitle">Knowledge Base</div>
+<div  class="pn-sub">[<a href="<!--[pnmodurl modname="pagesetter" type="user" func="pubedit" tid=$core.tid]-->">Submit new item</a>]</div>
+
+<br/><br/>
+
+<form action="<!--[pnmodurl modname="pagesetter" tid=$core.tid]-->" method="POST">
+ Keyword: <input type="text" name="keyword">
+ Title:   <input type="text" name="title">
+ Text:    <input type="text" name="text">
+ <input type="hidden" name="filter" value="title:like:$title,keywords:like:$keyword,text:like:$text">
+ <input type="submit" value="Filter">
+</form>
+<br>
+
+<table>
+ <tr><td class="pn-title">Categories</td><td></td><td class="pn-title">Items</td></tr>
+ <tr valign="top">
+  <td><!--[pagesetter_listBrowser field="category" listClass="kb1"]--></td>
+  <td width="20px"></td>
+  <td>
+   <ul class="kb2">

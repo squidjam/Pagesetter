@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+"http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd"
+[
+<!ENTITY mdash "&#x2014;">
+<!ENTITY hellip "&#x2026;">
+]>
+
+<chapter id="chap_plugins">
+  <!-- $Id: GuppyDev_Plugins.xml,v 1.3 2006/04/06 17:37:30 jornlind Exp $ -->
+
+  <title>Plugins</title>
+
+  <section id="pluginintro">
+    <title>Introduction</title>
+
+    <para>The Guppy system allows anybody with some PHP and OO programming experience to
+    add extra input types in addition to those that already exists. The system is based on
+    ideas from Smarty and ASP.NET, but not yet complete in anyway. It has already been
+    used to implement the "datetime", "e-mail", and "url" inputs available in Pagesetter.
+    </para>
+
+    <para>The Guppy/Pagesetter combination has not been separated completely, so the plugins
+    support both callback methods for Guppy and Pagesetter. Guppy in itself does not restrict
+    the plugins much in terms of what they can do, but Pagesetter imposes some restrictions.
+    </para>
+
+    <para>The idea is to instantiate a class, named like the plugin name, for each of the
+    inputs that are plugin based, and then call various methods on these objects for
+    different puposes. This can be rendering, decoding, and validation.</para>
+
+  </section>
+
+  <section id="pluginstructure">
+    <title>Plugin Structure</title>
+
+    <para>The structure of a plugin is as follows, where all variables and methods
+    are inherited from GuppyInput:</para>
+
+    <programlisting>
+class GuppyInput_MyPlugin extends GuppyInput
+{
+  var $ID;          // HTML document ID
+  var $name;        // Base name for form elements
+  var $title;       // Title (label) as specified in XML files
+  var $value;       // Free place to store result of decoding
+  var $typeData;    // Free place to store and read extra type-
+                    // specific parameters.
+  var $mandatory;   // Mandatory setting as specified in XML files
+  var $readonly;    // Readonly setting as specified in XML files
+  var $hint;        // Hint setting as specified in XML files
+  var $width;       // Width setting as specified in XML files
+  var $height;      // Height setting as specified in XML files
+  var $error;       // Free place to store error message
+
+  function render($guppy)
+  {
+    // Use echo, print, and similar to output whatever 
+    // HTML is needed for your plugin.
+  }
+
+  function decode()
+  {
+    // Read POST variables and return a single value representing
+    // what the user has entered.
+  }
+
+  function validate()
+  {
+    // Return true or false depending on whether or not
+    // the input was valid
+  }
+
+  function getErrorMessage()
+  {
+    // Return error message in case validate() returns false
+  }
+}
+    </programlisting>
+
+    <para>What happens is as follows:</para>
+
+    <orderedlist>
+      <listitem>Guppy renders tables and other internal stuff. Every time it needs to render
+      a plugin, it calls $plugin-&gt;render() for the selected plugin. Only one instance
+      of the plugin class is created for each input during the rendering phase.</listitem>
+
+      <listitem>The user inputs something and submits the forms. Guppy decodes all the inputs
+      and calls $plugin-&gt;decode() to get the values of from the plugins.
+      Only one instance of the plugin class is created for each input 
+      during the decode phase. The decode() function must return the decoded value.</listitem>
+
+      <listitem>Right after the decoding, Guppy calls $plugin-&gt;validate() on the same
+      plugin instance. If it returns true then everything is fine. If it returns false
+      then $plugin->getErrorMessage() is called to retrieve the error.</listitem>
+    </orderedlist>
+
+    <para>Check the <filename>guppy/plugins</filename> directory for examples.</para>
+
+  <section>
+    <title>Pagesetter Methods</title>
+
+    <para>Pagesetter depends the following methods of the plugins:</para>
+
+    <programlisting>
+class GuppyInput_MyPlugin extends GuppyInput
+{
+  // ... Guppy stuff before this ...
+
+
+  function active()
+  {
+    // Return true or false indicating whether or not this plugin
+    // should be used in Pagesetter.
+  }
+
+  function useExtraTypeInfo()
+  {
+    // Return true or false indicating whether or not this plugin
+    // uses extra type parameters.
+  }
+
+  function getTitle()
+  {
+    // Return title for this plugin
+  }
+
+  function getSqlType()
+  {
+    // Return MySQL type definition for a database column where
+    // the data from this plugin can be stored
+  }
+
+  function getSqlFormat()
+  {
+    // Return SQL expression for selection of data for this plugin.
+    // Use "$columnName" as placeholde for the columnName
+    // Return NULL if no special attention is needed.
+  }
+}
+    </programlisting>
+
+    <para>Please note that Pagesetter can only use *one* database column
+    for the data of your plugin.</para>
+  </section>
+
+
+  <section id="guppyPluginParams">
+    <title>Type Specific Parameters</title>
+
+    <para>In some cases a plugin needs to store configuration data for itself. The best example of
+    this is the "Publication" plugin that allows you to select a Pagesetter publication from a
+    specific publication type. The publication type X can be selected by the admin when setting
+    up another publication type Y. This can for instance be used to select among company departments
+    when editing an employee. Without type parameters you would have to create one plugin for each
+    of the types you wanted to be able to select from.</para>
+
+    <para>Lets see how this works from the admin's point of view:</para>
+
+    <orderedlist>
+      <listitem>A publication type "Department" is created with fields for
+      department name and location.</listitem>
+      <listitem>A publication type "Employee" is created.
+        <orderedlist>
+          <listitem>An input field of type "Publication" is added for the
+          "parent" department selection.</listitem>
+          <listitem>This opens the "click for more" button right next to the
+          type selector.</listitem>
+          <listitem>A click on the button brings up the type parameter window
+          where you can select a publication type from which the "parent"
+          field will select it's values. Here we choose "Department" and
+          click "Ok".</listitem>
+          <listitem>Now the "parent" input field knows that it should allow
+          the user to select publications from the "Department" type.</listitem>
+        </orderedlist>
+      </listitem>
+    </orderedlist>
+
+    <para>All of this is done with a few extra JavaScript and PHP files for the "Publication"
+    input. To make your own plugin that can use extra type parameters you need to follow the
+    steps here:</para>
+
+    <orderedlist>
+      <listitem>Make sure the plugin method <function>useExtraTypeInfo()</function> returns
+      true. This makes it possible to access the type specific parameters window.</listitem>
+      
+      <listitem>Add a file to the plugin directory named <filename>typeextra.PluginName.php</filename>
+      and make sure it implements the function <function>typeextra_PluginName_render()</function>.
+      The purpose of this function is to render the content of the type parameter 
+      editor&mdash;which is something you completely control. The render function must return whatever 
+      HTML it needs for the output&mdash;like for instance a dropdown selector that lets you
+      select between different publication types.</listitem>
+      
+      <listitem>The HTML of the type parameter editor <emphasis>must</emphasis> generate a 
+      JavaScript function named <function>typeextra_submit()</function>. This function
+      will be called when you users clicks "Ok" and it must return the exact value that
+      the plugin wants to be stored as an extra type specific parameter. This could for
+      instance by the type ID of the selected publication type. If you need to store
+      multiple values then these must be colon separated. The max. length of the value
+      is 255 characters.</listitem>
+
+      <listitem>The plugin methods may access the extra type parameters 
+      as <varname>$this-&gt;typeData</varname>.</listitem>
+
+    </orderedlist>
+
+    <para>Please take a good look at the "Publication" plugin for a commented example.</para>
+  </section>
+
+  <section id="guppyPluginEvents">
+    <title>Extended Event Handlers</title>
+
+    <para>The plugins may also implement the functions below. If you need further documentation
+    then please contact the author (I don't expect many, if any, to use these).</para>
+
+    <programlisting>
+function OnPublicationCreated(&$pubData, $action) { ... }
+
+function OnPublicationUpdated(&$pubData, $action) { ... }
+
+function OnPublicationDeleted(&$pubData, $action) { ... }
+
+function OnFieldUpdated($id, &$args) { ... }
+
+function OnFieldAdded($id,&$args) { ... }
+
+function OnFieldDeleted($id,&$args) { ... }
+    </programlisting>
+
+  </section>
+
+  </section>
+</chapter>

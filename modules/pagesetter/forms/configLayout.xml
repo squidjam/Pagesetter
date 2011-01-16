@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+
+<layout>
+
+  <row>
+    <component name="config">
+      <layout>
+        <row>
+          <island title="_PGCONFIGGENERAL">
+            <row><field name="pubType" initialFocus="true"/></row>
+            <row><field name="autofillPublishDate"/></row>
+          </island>
+        </row>
+        <!-- row>
+          <island title="_PGCONFIGEDITOR">
+            <row><field name="htmlAreaStyled"/></row>
+            <row><field name="htmlAreaUndo"/></row>
+            <row><field name="htmlAreaWordKill"/></row>
+            <row><field name="htmlAreaEnabled"/></row>
+          </island>
+        </row -->
+        <row>
+          <island title="_PGCONFIGUPLOAD">
+            <row><field name="PagesetterBaseDir" width="300" readOnly="yes"/></row>
+            <row><field name="uploadDir"         width="300"/></row>
+            <row><field name="uploadDirDocs"     width="300"/></row>
+          </island>
+        </row>
+      </layout>
+      <buttonsBottom>
+        <button name="save"/>
+      </buttonsBottom>
+    </component>
+  </row>
+
+</layout>

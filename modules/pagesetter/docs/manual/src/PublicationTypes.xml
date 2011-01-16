@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+"http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd"
+[
+<!ENTITY mdash "&#x2014;">
+<!ENTITY hellip "&#x2026;">
+]>
+
+<chapter id="chap_pubtypes">
+  <!-- $Id: PublicationTypes.xml,v 1.14 2006/05/03 17:28:00 jornlind Exp $ -->
+
+  <title>Publication Types</title>
+
+  <section id="pubtypesstart">
+    <title>Publication Types</title>
+
+    <para>Everything in Pagesetter begins with the declaration of a
+    <emphasis>publication type</emphasis>. The publication type defines the
+    set of fields that a publication may have, the name of the publication
+    type, and a bunch of other things.</para>
+
+    <para>Pagesetter comes without any publication types pre-installed, so you
+    will have to create your own. But a set of output templates for a News
+    type is supplied—see the <link
+    linkend="chap_tutorial">tutorial</link>.</para>
+
+    <para>The publication type setup window looks like this:</para>
+
+    <figure>
+      <title>Publication type editing.</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="img/pubTypeEdit.jpg" />
+        </imageobject>
+      </mediaobject>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="img/pubTypeEditFields.jpg" />
+        </imageobject>
+      </mediaobject>
+    </figure>
+
+    <para>The upper part lets you configure various things about the
+    publication type as a whole. The lower part lets you add one or more
+    fields to store publication data in. The fields in the upper part
+    are:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>Publisher</term>
+
+        <listitem>
+           The name of the user who created this publication type. 
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Title</term>
+
+        <listitem>
+           The name of this publication type.
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Template</term>
+
+        <listitem>
+           The template base name for this publication type. 
+           It is used to locate output templates that contains the name as part of the template file name.
+           For this reason you must select a name that can be used as a file name. 
+           It will default to the publication type title.
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Form name</term>
+
+        <listitem>
+          Name of the directory to look into for customized input forms. Leave it empty if you do not expect
+          to create your own forms. It will default to the publication template value.
+          See the <link linkend="chap_customisation">customization chapter</link> for further information.
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Description</term>
+
+        <listitem>
+           A short description of the publication type. It is not used for any but a note on this window. 
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Enable PN-Hooks</term>
+
+        <listitem>
+           Checking this checkbox will force Pagesetter to run it's output through PostNuke's hooks system. This enables commenting, scoring and other hook based features. Unfortunately you cannot specify which hooks to apply. 
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Workflow</term>
+
+        <listitem>
+           The workflow configuration lets you define how complex a process you need for proof reading and approval of your publications. Pagesetter comes with three predefined workflows: "None", "Standard", and "Enterprise". The "None" workflow has no proofing or anything—publications are simply approved immediately upon submission. The "Standard" workflow is a two-step procedure with a moderator, and the "Enterprise" workflow is a three-step procedure with both editors and moderators. You can read more on workflows in the <link linkend="chap_workflows">workflow chapter</link>. 
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Number of publications to show in list</term>
+
+        <listitem>
+           This lets you define how many publications you want to show up when this publication type is displayed on your PostNuke frontpage. It also applies to various blocks used by Pagesetter. 
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Sorting keys</term>
+
+        <listitem>
+           These lets you define the default sorting order and direction of the publication lists. You must have committed your choice of fields before they are available in the key selections. 
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Default filter</term>
+
+        <listitem>
+           This is a filter expression to be used when no other filter is supplied on the URL.
+           For instance "category:eq:5" to display all items with the field "category" set to category item ID 5.
+           Se <link linkend="linkingfiltering">Filtering</link>.
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Default folder</term>
+      
+        <listitem>To use this field you must first install the "Folder" module separately.
+        This field indicates where new publications should be located in the folder structure. If you do not select
+        a folder then Pagesetter won't use the Folder module.</listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Default sub-folder</term>
+      
+        <listitem><para>To use this field you must first install the "Folder" module separately.
+        If you want more control over the location of new publications then specify a sub-folder name here. The name
+        may include references to values in the publication which means you can create sub-folders on the fly by, for
+        instance, including either topic name, created date or even both in the sub-folder name!</para>
+
+        <para>The syntax is whatever Smarty uses (just like the templates) except that you <emphasis>must</emphasis> use curly braces
+        to indicate Smarty variables. Besides that you can refer to any publication data in exactly the same way
+        as you would do in a template. The sub-folder name can include slashes to indicate sub-sub-...-sub-folders.
+        None of the sub-folders need to exist prior to creating a publication.</para>
+
+        <para>Example: to create a sub-folder based on the topic name and current year and month you could write
+        <filename>{$core.topic.name}/{$core.created|date_format:"%Y/%m"}</filename>. In this case you would
+        get a sub-folder named <filename>Linux/2005/06</filename> for a publication created in June 2005.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Default topic</term>
+      
+        <listitem>This is the topic which will be assigned to any dynamically created sub-folders.</listitem>
+      </varlistentry>
+    </variablelist>
+  </section>
+
+  <section id="pubtypesfieldtypes">
+    <title>Field Types</title>
+
+    <para>Each field in a publication must have a type associated with it.
+    Field types can be any of the following kinds:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>string</term>
+
+        <listitem>
+           A simple text string with no formatting. Text is entered in a one-line input field. 
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>text</term>
+
+        <listitem>
+           A simple text string with no formatting. Text is entered in a multi-line input field. 
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>html</term>
+
+        <listitem>
+           An HTML formatted text input. Text is entered via a what-you-see-is-what-you-get editor (on the Internet Explorer and Mozilla). 
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>bool</term>
+
+        <listitem>
+           A checkbox. 
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>int</term>
+
+        <listitem>
+           Text field with validation for integers. 
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>real</term>
+
+        <listitem>
+           Text field with validation for real numbers. 
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>time</term>
+
+        <listitem>
+           Text field with validation for time (HH:MM). 
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>date</term>
+
+        <listitem>
+           Text field with validation for dates (YYYY-MM-DD). Uses a JavaScript date picker. 
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>User defined category</term>
+
+        <listitem>
+           Dropdown field with the items from the category. 
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>image (url)</term>
+
+        <listitem>
+           The URL to a Photoshare image. The URL may either be entered manually or selected from any of Photoshare's albums. 
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Image (HTML)</term>
+
+        <listitem>The complete HTML for a Photoshare image. The HTML may either be edited manually or
+        inserted from Photoshare with a popup button.</listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Image upload</term>
+
+        <listitem>
+           Field for uploading an image. Pagesetter automatically generates 
+           thumbnails and download/display links for use in the templates. 
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Any upload</term>
+
+        <listitem>
+           Field for uploading of any kind of file (also images). 
+           Pagesetter automatically generates download links for use in the templates. 
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Media (url)</term>
+
+        <listitem>
+           The URL to a multimedia file from Mediashare. The URL may either be entered manually or selected from any of 
+           Mediashare's albums. 
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>E-Mail</term>
+
+        <listitem>Text field with validation for E-mails and "mailto:" link in
+        input formular.</listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Hyperlink</term>
+
+        <listitem>Text field with facilities for verifying URL when editing.</listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Currency</term>
+
+        <listitem>Text field validation for numbers (identical to "real" but future versions
+        may add more semantics to this type.</listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Publication</term>
+
+        <listitem>
+        <para>Dropdown field that allows you to select a publication from a specific
+        publication type. Can be used to make related publications, like company
+        departments with related employees. For that example you could use a Publication
+        field on the employee to select among the different departments, thereby
+        linking the employee to the department.</para>
+
+        <para>The Publication input requires you to specify what publication type
+        to choose from. <emphasis>This is done by clicking on the popup button next to the
+        field type selector.</emphasis>. Please read the <link linkend="chap_relations">Relations</link>
+        chapter for further information.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Relation</term>
+      
+        <listitem>A field that allows you to relate different publications to each other. Unlike
+        the Publication field mentioned above, you can make many-to-many relationships with this
+        kind of input field. Please read the <link linkend="chap_relations">Relations</link>
+        chapter for further information.</listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>Some examples of fields could be a headline (text), some
+    instructions (html), payment (real), the starting date of some event
+    (date) and so on. There is no restriction to how many fields you may
+    choose to use.</para>
+
+    <section>
+      <title>Upload handling</title>
+
+      <para>Upload fields are just, from an abstract point of view, data
+      fields like all the other ones&mdash;you can have as many upload fields you
+      want in one publication and uploads are also handled correctly by the
+      revision control system.</para>
+
+      <para>When editing a publication with upload fields, you only need to
+      upload your files <emphasis>once</emphasis>&mdash;even when editing and
+      previewing your input. Any uploaded file is stored temporarily until you
+      submit your publication, after which the uploaded file is permanently
+      stored with the publication.</para>
+
+      <para>Uploads are stored as files on the web server and only references
+      to these files are stored in the upload fields. You must configure the
+      location of the files in Pagesetter's admin panel (goto
+      administration::configuration::general). The upload directory must be
+      writable by the webserver for this to work.</para>
+
+      <para>Uploaded files are accessed via PostNuke's standard <filename>index.php</filename>
+      file and thereby through Pagesetter. This has two implications 1) files
+      are <emphasis>always</emphasis> subject to the same access control as the publication
+      it is stored with, and 2) data must be streamed through PHP, generating
+      a performance overhead comparing to linking directly to the files.
+      <emphasis>It is the developers opinion that complete access control 
+      is more important than performance in this case.</emphasis></para>
+
+      <caution>
+        You should <emphasis>never</emphasis> store your uploads in a directory
+        accessible through the web server since this makes it possible to 
+        download the files without access control. Unfortunately this cannot
+        be avoided in some hosting environments, in which case you should name
+        your upload directory something unguessable.
+      </caution>
+
+      <section>
+        <title>Changing or deleting upload fields</title>
+
+        <para>Pagesetter does not automatically delete uploads
+        associated with a publication type when an upload field is either
+        changed to another type or deleted.</para>
+
+        <para>Therefore you must manually delete the uploaded files
+        when you decide they are not in use anymore.</para>
+
+        <para>Uploaded files are named <filename>TxPxRxF.dat</filename> where
+        T is publication type, P is publication ID, R is revision and F
+        is field name. So if you remove field "document" on publication type 5
+        then you should delete all files named <filename>5x*document.dat</filename>.
+        </para>
+      </section>
+    </section>
+  </section>
+
+  <section id="pubtypespubsetup">
+    <title>Publication Setup</title>
+
+    <para>See the <link linkend="chap_tutorial">tutorial</link>.</para>
+  </section>
+
+  <section id="pubtypescategories">
+    <title>Categories</title>
+
+    <para>It is possible to define categories to be used as dropdown elements
+    in the input. An example of a category could be a selection of music
+    media, for instance "CD", "DVD", "Tape", or "LP". A categorization could
+    also be book genres: "Fiction", "Art", "History", and so on. Categories
+    can even be nested, so for instance you can define sub-genres for books
+    "Fiction:Science Fiction" and "Fiction:Fantasy". The categories are
+    defined in this window:</para>
+
+    <figure>
+      <title>Editing categories</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="img/listEdit.jpg" />
+        </imageobject>
+      </mediaobject>
+    </figure>
+
+    <para>It should be relatively simple; create a new category and then add
+    the items you want in it. When all is as expected you commit the setup to
+    the database. The category fields are:<variablelist>
+        <varlistentry>
+          <term>Title</term>
+
+          <listitem>
+             A displayable value that can be shown to the user. 
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Value</term>
+
+          <listitem>
+             Any text string for your own use. The value field need not to be used, but can for instance help with sorting or selecting category items. 
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Description</term>
+
+          <listitem>
+             Help field which can be displayed as extra information about the category. Currently not used, but may in a future version of Pagesetter be used to generate automatic online help. 
+          </listitem>
+        </varlistentry>
+      </variablelist></para>
+
+    <para>The category can afterwards be used for one or more fields in the
+    publication types. Just select the category from the field type dropdown
+    in the publication setup window.</para>
+  </section>
+</chapter>

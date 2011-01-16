@@ -1,0 +1,20 @@
+<!--[* Smarty *]-->
+
+<div class="pn-title"><!--[$title]--></div>
+<div class="pn-sub">By: <!--[$core.author]--> (<!--[$core.creator]-->) <!--[$core.lastUpdated|date_format:"%Y.%m.%d"]--></div><p>
+
+<table>
+ <tr>
+  <td valign="top">
+   <!--[foreach from=$text item=p]-->
+   <!--[$p]-->
+   <!--[/foreach]-->
+  </td>
+  <td valign="top">
+   <!--[if $image != "" ]-->
+     <img src="<!--[$image]-->" width="200" alt="<!--[$imagetext]-->" title="<!--[$imagetext]-->"><br>
+     <i><!--[$imagetext]--></i>
+   <!--[/if]-->
+  </td>
+ </tr>
+</table>

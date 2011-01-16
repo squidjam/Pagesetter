@@ -1,0 +1,21 @@
+<div class="pane">
+</div>
+
+<div class="folder-item padding">
+  <h2><!--[$core.title]--></h2>
+  <p><!--[$text]--></p>
+</div>
+
+<script>
+function folderModuleSpecificSelect(selector)
+{
+  var a = '???';
+  if (selector.mode == 'html')
+    a = '<a href="<!--[$core.pubURL]-->"><!--[$core.title]--></a>';
+  else if (selector.mode == 'url')
+    a = '<!--[$core.pubURL]-->';
+  else if (selector.mode == 'key')
+    a = '<!--[$core.title]-->';
+  selector.insert(a);
+}
+</script>

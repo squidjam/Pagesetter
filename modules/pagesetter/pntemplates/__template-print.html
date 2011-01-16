@@ -1,0 +1,5 @@
+<h1><!--[var name="core.title]--></h1>
+
+<!--[foreach item=field from=$fields]-->
+<!--[$field.title]-->: <!--[varFull name=$field.name pageable=$field.isPageable]--><br />
+<!--[/foreach]-->

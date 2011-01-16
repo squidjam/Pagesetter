@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+"http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd"
+[
+<!ENTITY mdash "&#x2014;">
+<!ENTITY hellip "&#x2026;">
+]>
+
+<chapter id="chap_introduction">
+  <!-- $Id: Introduction.xml,v 1.9 2005/07/10 20:53:07 jornlind Exp $ -->
+
+  <title>Introduction</title>
+
+  <section id="introductionstart">
+    <title>Introduction</title>
+
+    <para>Pagesetter is a publishing
+    module that allows the PostNuke users to create web pages from structured data, with the data structure
+    and output templates defined by the PostNuke administrator. The goal is
+    ultimately to be able to define all the kinds of publications that
+    normally require different PostNuke modules. The list includes:</para>
+
+    <itemizedlist>
+      <listitem>
+        <emphasis>News</emphasis> items with a headline, teaser text,
+        news text, and an associated image.
+      </listitem>
+
+      <listitem>
+        <emphasis>FAQ</emphasis> items consisting of a question and an
+        answer.
+      </listitem>
+
+      <listitem>
+        <emphasis>Recipes</emphasis> with a title, a list of
+        ingredients, and instructions.
+      </listitem>
+
+      <listitem>
+        <emphasis>Task lists</emphasis>
+      </listitem>
+
+      <listitem>
+        <emphasis>Course descriptions</emphasis>
+      </listitem>
+
+      <listitem>
+        <emphasis>Music collections</emphasis>
+      </listitem>
+
+      <listitem>
+        <para>&hellip; and so on.</para>
+      </listitem>
+    </itemizedlist>
+
+    <figure>
+      <title>Screenshot illustrating a News item constructed with Pagesetter</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="img/pubTemplate.jpg" />
+        </imageobject>
+      </mediaobject>
+    </figure>
+
+    <para>See the <filename>readme.txt</filename> for installation instructions.</para>
+  </section>
+
+  <section id="introductionfeatures">
+    <title>Features</title>
+
+    <itemizedlist>
+      <listitem>
+        User defined publication types with a variable number of input
+        fields of many different kinds.
+      </listitem>
+
+      <listitem>
+        Templatable output lets the adminstrator layout the publications
+        in almost any way he want using PostNuke's pnRender system.
+      </listitem>
+
+      <listitem>
+        The what-you-see-is-what-you-get (WYSIWYG) editor htmlArea
+        simplifies input&mdash;no need for knowing HTML codes.
+      </listitem>
+
+      <listitem>
+        Multiple nested categories can be created and used for input fields.
+      </listitem>
+
+      <listitem>
+        Multi-page entries.
+      </listitem>
+
+      <listitem>
+        Flexible workflow system with plugins to extend it.
+      </listitem>
+
+      <listitem>
+        Revision control&mdash;Pagesetter stores the complete history of
+        all changes to any publication.
+      </listitem>
+
+      <listitem>
+        File uploads can be associated with all publications. With this
+        feature you can design your own document management system,
+        complete with workflows and revision control, or just upload
+        images with your News items.
+      </listitem>
+
+      <listitem>
+        Dates can be selected with a built-in date picker.
+      </listitem>
+
+      <listitem>
+        Top performance with cached output.
+      </listitem>
+
+      <listitem>
+        Two level approval control of publishing.
+      </listitem>
+
+      <listitem>
+        Publications can be timed with a start and end date.
+      </listitem>
+
+      <listitem>
+        PostNuke homepage can be set to show any list of publications
+        you want.
+      </listitem>
+
+      <listitem>
+        Pagesetter is PostNuke hooks compatible which means you can
+        enable comments, scoring, Auto-links and many other features with just
+        a few clicks.
+      </listitem>
+    </itemizedlist>
+  </section>
+
+  <section id="introductioninstallation">
+    <title>Installation</title>
+
+    <para>Please read the "install.txt" file for instructions.</para>
+
+  </section>
+
+  <section id="introductionfolder">
+    <title>Organizing Publications</title>
+
+    <para>Pagesetter publications can be organized in a folder structure with the
+    help of another module "Folder" from www.elfisk.dk. Without this module you
+    can browse through linear lists of publications with Pagesetter itself.</para>
+
+    <link linkend="pnfeaturesfolder">Read more in the PostNuke Features chapter</link>.
+  </section>
+
+  <section id="introductionprinting">
+    <title>Printing This Manual</title>
+
+    <para>The CSS styles in the HTML version has been carefully selected to generate
+    a nicely formatted printout. This has although only been tested on the
+    Internet Explorer 6.0. If you choose to print the manual then please
+    remember to set the paper format to A4 portrait. You should have left and
+    right margins set to 5mm.</para>
+  </section>
+</chapter>

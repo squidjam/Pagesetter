@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+
+<layout>
+
+  <row>
+    <component name="wfcfgList">
+      <columns>
+        <field name="title" width="200"/>
+        <field name="edit"  kind="action"/>
+      </columns>
+      <buttonsBottom>
+        <button name="back"/>
+      </buttonsBottom>
+    </component>
+  </row>
+
+</layout>

@@ -1,0 +1,23 @@
+<div class="pane">
+</div>
+
+<div class="folder-item padding">
+  <h2><!--[$core.title]--></h2>
+  Added <!--[$core.created|date_format:"%Y.%m.%d"]--> by <!--[$core.author]--> 
+  (modified <!--[$core.lastUpdated|date_format:"%Y.%m.%d"]-->)
+  <br/><br/>
+</div>
+
+<script>
+function folderModuleSpecificSelect(selector)
+{
+  var a = '???';
+  if (selector.mode == 'html')
+    a = '<a href="<!--[$core.pubURL|escape]-->"><!--[$core.title|escape]--></a>';
+  else if (selector.mode == 'url')
+    a = '<!--[$core.pubURL]-->';
+  else if (selector.mode == 'key')
+    a = '<!--[$core.title]-->';
+  selector.insert(a);
+}
+</script>

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+
+<components>
+
+ <component name="wfcfgList" kind="table" title="_PGWFCFGLIST">
+  <fields>
+    <field name="title" title="_PGFTPUBTITLE" kind="input" type="string" readonly="yes"/>
+  </fields>
+  <actions>
+    <action name="back" kind="submit" title="_PGBTBACKTOPUBLIST"/>
+    <action name="edit" kind="submit" title="_PGBTEDIT"/>
+  </actions>
+  <rowOperations insert="no" delete="no"/>
+ </component>
+
+</components>

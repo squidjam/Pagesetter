@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+"http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd">
+<chapter id="chap_introduction">
+  <!-- $Id: Workflow_QuickStartGuide.xml,v 1.1 2004/12/08 00:29:30 jornlind Exp $ -->
+
+  <title>Quick Start Guide</title>
+
+  <para>This will answer the question "How do I get my existing Publication
+  Types working with Workflow?". The reason for this is that every publication
+  type now needs a workflow attached to it. If it does not, you will receive
+  an error.</para>
+
+  <section id="wfquicksteps">
+    <title>The Steps</title>
+
+    <procedure>
+      <step>
+        <para>Edit your publication type and assign a workflow to it. If you
+        are not sure which one to use, use the Standard workflow. It mimics
+        the Postnuke News module which most people should be familiar with.
+        Check also the workflow list in the previous section of this
+        manual.</para>
+      </step>
+
+      <step>
+        <para>Go to Configuration::Workflow and edit your publication type.
+        This allows you to set up the needed workflow information specific to
+        your publication type.</para>
+      </step>
+
+      <step>
+        <para>Start using it. Play around with it. Create a new publication.
+        Work with a few that already exist. It should start making sense
+        quickly.</para>
+      </step>
+    </procedure>
+  </section>
+</chapter>

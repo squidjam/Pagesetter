@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<publicationSchema xmlns="www.postnuke.com/pagesetter" version="1.0">
+ <publication>
+  <title>PostCalendar</title>
+  <template>PostCalendar</template>
+  <form>PostCalendar</form>
+  <description>Imported PostCalendar items</description>
+  <author>Admin</author>
+  <created>2005-04-04</created>
+  <listCount>10</listCount>
+  <sortField1></sortField1>
+  <sortDesc1>0</sortDesc1>
+  <sortField2></sortField2>
+  <sortDesc2>0</sortDesc2>
+  <sortField3></sortField3>
+  <sortDesc3>0</sortDesc3>
+  <defaultFilter>startDate:ge:@now</defaultFilter>
+  <enableHooks>1</enableHooks>
+  <workflow>standard</workflow>
+  <enableRevisions>1</enableRevisions>
+  <fields>
+   <field id="68">
+    <name>title</name>
+    <title>Title</title>
+    <description></description>
+    <type>0</type>
+    <isTitle>1</isTitle>
+    <isPageable>0</isPageable>
+    <isSearchable>1</isSearchable>
+   </field>
+   <field id="69">
+    <name>text</name>
+    <title>Text</title>
+    <description></description>
+    <type>2</type>
+    <isTitle>0</isTitle>
+    <isPageable>0</isPageable>
+    <isSearchable>1</isSearchable>
+   </field>
+   <field id="70">
+    <name>startDate</name>
+    <title>Start date</title>
+    <description></description>
+    <type>datetime</type>
+    <isTitle>0</isTitle>
+    <isPageable>0</isPageable>
+    <isSearchable>0</isSearchable>
+   </field>
+   <field id="71">
+    <name>endDate</name>
+    <title>End date</title>
+    <description></description>
+    <type>datetime</type>
+    <isTitle>0</isTitle>
+    <isPageable>0</isPageable>
+    <isSearchable>0</isSearchable>
+   </field>
+   <field id="72">
+    <name>location</name>
+    <title>Location</title>
+    <description></description>
+    <type>0</type>
+    <isTitle>0</isTitle>
+    <isPageable>0</isPageable>
+    <isSearchable>1</isSearchable>
+   </field>
+   <field id="73">
+    <name>address1</name>
+    <title>Address</title>
+    <description></description>
+    <type>0</type>
+    <isTitle>0</isTitle>
+    <isPageable>0</isPageable>
+    <isSearchable>1</isSearchable>
+   </field>
+   <field id="74">
+    <name>address2</name>
+    <title>Address</title>
+    <description></description>
+    <type>0</type>
+    <isTitle>0</isTitle>
+    <isPageable>0</isPageable>
+    <isSearchable>1</isSearchable>
+   </field>
+   <field id="75">
+    <name>city</name>
+    <title>City/Town</title>
+    <description></description>
+    <type>0</type>
+    <isTitle>0</isTitle>
+    <isPageable>0</isPageable>
+    <isSearchable>1</isSearchable>
+   </field>
+   <field id="76">
+    <name>state</name>
+    <title>State/Province</title>
+    <description></description>
+    <type>0</type>
+    <isTitle>0</isTitle>
+    <isPageable>0</isPageable>
+    <isSearchable>1</isSearchable>
+   </field>
+   <field id="77">
+    <name>postalcode</name>
+    <title>Zip/Postal code</title>
+    <description></description>
+    <type>0</type>
+    <isTitle>0</isTitle>
+    <isPageable>0</isPageable>
+    <isSearchable>0</isSearchable>
+   </field>
+   <field id="78">
+    <name>name</name>
+    <title>Contact name</title>
+    <description></description>
+    <type>0</type>
+    <isTitle>0</isTitle>
+    <isPageable>0</isPageable>
+    <isSearchable>1</isSearchable>
+   </field>
+   <field id="79">
+    <name>phonenumber</name>
+    <title>Phone number</title>
+    <description></description>
+    <type>0</type>
+    <isTitle>0</isTitle>
+    <isPageable>0</isPageable>
+    <isSearchable>1</isSearchable>
+   </field>
+   <field id="80">
+    <name>email</name>
+    <title>Email</title>
+    <description></description>
+    <type>email</type>
+    <isTitle>0</isTitle>
+    <isPageable>0</isPageable>
+    <isSearchable>1</isSearchable>
+   </field>
+   <field id="81">
+    <name>website</name>
+    <title>Website</title>
+    <description></description>
+    <type>url</type>
+    <isTitle>0</isTitle>
+    <isPageable>0</isPageable>
+    <isSearchable>0</isSearchable>
+   </field>
+   <field id="82">
+    <name>fee</name>
+    <title>Fee</title>
+    <description></description>
+    <type>4</type>
+    <isTitle>0</isTitle>
+    <isPageable>0</isPageable>
+    <isSearchable>0</isSearchable>
+   </field>
+  </fields>
+ </publication>
+</publicationSchema>

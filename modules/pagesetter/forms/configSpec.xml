@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+
+<components>
+
+ <component name="config" kind="card" title="_PGCONFIGURATION">
+  <fields>
+    <field name="pubType"             title="_PGDEFAULTPUBTYPE" type="select" options="pubTypes"/>
+    <!-- field name="htmlAreaStyled"      title="_PGCONFIGEDITORSTYLED" type="bool"/ -->
+    <!-- field name="htmlAreaUndo"        title="_PGCONFIGEDITORUNDO" type="bool"/ -->
+    <!-- field name="htmlAreaWordKill"    title="_PGCONFIGEDITORWORDKILL" type="bool"/ -->
+    <!-- field name="htmlAreaEnabled"     title="_PGCONFIGEDITORENABLED" type="bool"/ -->
+    <field name="autofillPublishDate" title="_PGCONFIGAUTOFILLPUBDATE" type="bool"/>
+    <field name="PagesetterBaseDir"   title="_PGPAGESETTERBASEDIR" type="string"/>
+    <field name="uploadDir"           title="_PGUPLOADDIR" type="string"/>
+    <field name="uploadDirDocs"       title="_PGUPLOADDIRDOCS" type="string"/>
+  </fields>
+  <actions>
+    <action name="save"   kind="submit" title="_PGBTSAVE"/>
+  </actions>
+ </component>
+
+</components>

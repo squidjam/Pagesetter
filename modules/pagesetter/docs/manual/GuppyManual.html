@@ -1,0 +1,320 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Guppy Manual</title><link rel="stylesheet" href="docbook.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.67.2"><meta name="description" content="This manual documents how the web forms system Guppy can be configured and used in Pagesetter."><style type="text/css">
+body { background-image: url('http://docbook.sourceforge.net/release/images/draft.png');
+       background-repeat: no-repeat;
+       background-position: top left;
+       /* The following properties make the watermark "fixed" on the page. */
+       /* I think that's just a bit too distracting for the reader... */
+       /* background-attachment: fixed; */
+       /* background-position: center center; */
+     }</style><meta name="keywords" content="Pagesetter, PostNuke, Web forms"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="book" lang="en-US"><div class="titlepage"><div><div><h1 class="title"><a name="id4690107"></a>Guppy Manual</h1></div><div><div class="authorgroup"><div class="author"><h3 class="author"><span class="firstname">Jørn</span> <span class="surname">Lind-Nielsen</span></h3></div><p class="othercredit"><span class="contrib">DocBook conversion</span>: <span class="firstname">Axel</span> <span class="surname">Guckelsberger</span></p></div></div><div><p class="releaseinfo">Version 6.0-1</p></div><div><p class="copyright">Copyright © 2005 The Pagesetter Development Team</p></div><div><div class="legalnotice"><a name="id4690850"></a><p>Permission is granted to copy, distribute and/or modify this
+      document under the terms of the GNU Free Documentation License, Version
+      1.2 or any later version published by the Free Software Foundation, with
+      no Invariant Sections, no Front-Cover Texts and no Back-Cover Texts. A
+      copy of the license can be obtained from the <a href="http://www.gnu.org/licenses/fdl.txt" target="_top">Free Software
+      foundation</a></p></div></div><div><div class="abstract"><p class="title"><b>Abstract</b></p><p>This manual documents how the web forms system Guppy can be configured and used in Pagesetter.</p></div></div></div><hr></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="chapter"><a href="#chap_introduction">1. Introduction</a></span></dt><dd><dl><dt><span class="section"><a href="#guppyintrostart">Introduction</a></span></dt></dl></dd><dt><span class="chapter"><a href="#chap_introduction">2. Programming Model</a></span></dt><dt><span class="chapter"><a href="#chap_introduction">3. Form Specification</a></span></dt><dt><span class="chapter"><a href="#chap_introduction">4. Form Layout</a></span></dt><dd><dl><dt><span class="section"><a href="#guppyformlayintro">Introduction</a></span></dt><dt><span class="section"><a href="#guppyformlayref">Reference</a></span></dt></dl></dd><dt><span class="chapter"><a href="#chap_introduction">5. Event Handling</a></span></dt><dd><dl><dt><span class="section"><a href="#guppyeventstart">Event Handling</a></span></dt></dl></dd><dt><span class="chapter"><a href="#chap_plugins">6. Plugins</a></span></dt><dd><dl><dt><span class="section"><a href="#pluginintro">Introduction</a></span></dt><dt><span class="section"><a href="#pluginstructure">Plugin Structure</a></span></dt><dd><dl><dt><span class="section"><a href="#id4693087">Pagesetter Methods</a></span></dt><dt><span class="section"><a href="#guppyPluginParams">Type Specific Parameters</a></span></dt></dl></dd></dl></dd><dt><span class="chapter"><a href="#chap_introduction">7. Internals</a></span></dt></dl></div><div class="chapter" lang="en-US"><div class="titlepage"><div><div><h2 class="title"><a name="chap_introduction"></a>Chapter 1. Introduction</h2></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#guppyintrostart">Introduction</a></span></dt></dl></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="guppyintrostart"></a>Introduction</h2></div></div></div><p>The Guppy framework is a web forms handling system that adds a few
+    extra features to the standard HTML forms handling. It allows the
+    programmer to specify a web form using a few XML files&#8212;two for each
+    form (plus an additional PHP handler file). The use of a relatively simple
+    XML specification removes the burden of creating a lot of complex HTML and
+    JavaScript from the programmer at the cost of design flexibility.</p><p>With Guppy one can design different <span class="emphasis"><em>components</em></span>:
+    <span class="emphasis"><em>cards</em></span> that show a single record,
+    <span class="emphasis"><em>tables</em></span> that show multiple records, and
+    <span class="emphasis"><em>trees</em></span> that shows multiple nested records. Each kind
+    of component may contain one or more <span class="emphasis"><em>fields</em></span> of
+    different kinds. Fields can currently only be <span class="emphasis"><em>input</em></span>
+    fields with support for booleans (checkboxes), integers, reals, dates,
+    times, strings, html, and selectors. Most of the input fields can be
+    marked as mandatory which forces the user to enter something in the
+    field.</p><p>The benefits of Guppy are:</p><div class="itemizedlist"><ul type="disc"><li><p>Simpler code generation at the cost of design flexibility. There
+        is although some overhead when creating a new form. It does require
+        the programmer to create three new files for each form.</p></li><li><p>Automatic input validation.</p></li><li><p>Automatic handling of multi-record entries with insertion and
+        deletion af new rows.</p></li><li><p>Automatic handling of multi-record nested entries in a tree
+        structure.</p></li><li><p>Wysiwyg HTML input using HtmlArea.</p></li><li><p>Date selection using a nice little JavaScript date
+        picker.</p></li><li><p>Separation of form specification and layout enabling "untrusted"
+        users to change the layout without being able to influence the actual
+        functionality.</p></li><li><p>Consistent look and feel in all web forms.</p></li></ul></div></div></div><div class="chapter" lang="en-US"><div class="titlepage"><div><div><h2 class="title"><a name="chap_introduction"></a>Chapter 2. Programming Model</h2></div></div></div><p>The Guppy system is <span class="emphasis"><em>event based</em></span>. The programmer
+  supplies a form <span class="emphasis"><em>specification</em></span> XML file, a
+  <span class="emphasis"><em>layout</em></span> XML file, and a <span class="emphasis"><em>handler</em></span> PHP
+  object. The framework then renders the HTML and based on the user input it
+  calls various event methods in the PHP handler.</p><p>The event handler object must inherit from the GuppyDecodeHandler
+  class. It's event handling methods are passed an event object describing the
+  current event. The inheritance from GuppyDecodeHandler ensures that $this
+  has a reference to a Guppy <span class="emphasis"><em>command handler</em></span> (the
+  "commander") which must handle all output from any event handler.</p></div><div class="chapter" lang="en-US"><div class="titlepage"><div><div><h2 class="title"><a name="chap_introduction"></a>Chapter 3. Form Specification</h2></div></div></div><p>To be written ... this will descript how a Guppy form is specified
+  (without layout information).</p></div><div class="chapter" lang="en-US"><div class="titlepage"><div><div><h2 class="title"><a name="chap_introduction"></a>Chapter 4. Form Layout</h2></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#guppyformlayintro">Introduction</a></span></dt><dt><span class="section"><a href="#guppyformlayref">Reference</a></span></dt></dl></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="guppyformlayintro"></a>Introduction</h2></div></div></div><p>This section deals with the format of the layout definition file.
+    The layout XML is a recursive structure that allows you to place your
+    components in a grid structure (a table) much like done in a normal HTML
+    table. A layout begins and ends with the tag "layout":</p><pre class="programlisting">&lt;?xml version="1.0"?&gt;
+
+&lt;layout&gt;
+  ... layout ...
+&lt;/layout&gt;</pre><p>The layout tag begins a grid (in the same way
+    as a table tag does it in HTML) so the content must define the rows of
+    this grid. This is done with the row tag: </p><pre class="programlisting">&lt;?xml version="1.0"?&gt;
+
+&lt;layout&gt;
+  &lt;row&gt;
+    ... row layout ...
+  &lt;/row&gt;
+&lt;/layout&gt;</pre><p>Now we are ready to put some content in the
+    rows. The most import tag is the component tag which specifies where a
+    component should be placed. The component tag <span class="emphasis"><em>must</em></span>
+    specify which component it refers to. In the examples here we use the
+    Pagesetter "edit publication" form which defines only one component named
+    "pubedit". If we drop the initial xml tag we now get:</p><pre class="programlisting">&lt;layout&gt;
+  &lt;row&gt;
+    &lt;component name="pubedit"&gt;
+      .. component layout ...
+    &lt;/component&gt;
+  &lt;/row&gt;
+&lt;/layout&gt;</pre><p>Inside the component tags we can sprinkle out
+    field tags where ever we want to place one of the input fields available
+    for the component. But before we do that we must first setup a layout
+    structure for the component. Again we use the layout tag which places the
+    layout in grid mode, so we must also add rows to place our fields
+    in:</p><pre class="programlisting">&lt;layout&gt;
+  &lt;row&gt;
+    &lt;component name="pubedit"&gt;
+      &lt;layout&gt;
+        &lt;row&gt;&lt;field name="title"/&gt;&lt;/row&gt;
+        &lt;row&gt;&lt;field name="text"/&gt;&lt;/row&gt;
+      &lt;/layout&gt;
+    &lt;/component&gt;
+  &lt;/row&gt;
+&lt;/layout&gt;</pre><p>As you can see you must also supply a field
+    name that refers to one of the fields specified for that component. You
+    need not consider what kind of field it is since Guppy already nows that
+    and will create what ever is needed. Almost. You do need to specify how
+    you want a text field to display. It can be displayed as a one line text
+    input field, a textarea tag, or as an HTML editor using HTMLArea. Use the
+    view attribute on the field tag for this. In our example we want the
+    "text" field to be shown as an HTML editor. Let us resize the input field
+    a bit at the same time by setting a height attribute: </p><pre class="programlisting">&lt;layout&gt;
+  &lt;row&gt;
+    &lt;component name="pubedit"&gt;
+      &lt;layout&gt;
+        &lt;row&gt;&lt;field name="title"/&gt;&lt;/row&gt;
+        &lt;row&gt;&lt;field name="text" view="html" height="300"/&gt;&lt;/row&gt;
+      &lt;/layout&gt;
+    &lt;/component&gt;
+  &lt;/row&gt;
+&lt;/layout&gt;</pre><p>It further more seems sensible to require that
+    the title must be entered. So we mark the "title" field as mandatory, and
+    set the width to 400 pixels at the same time: </p><pre class="programlisting">&lt;layout&gt;
+  &lt;row&gt;
+    &lt;component name="pubedit"&gt;
+      &lt;layout&gt;
+        &lt;row&gt;&lt;field name="title" mandatory="true" width="400"/&gt;&lt;/row&gt;
+        &lt;row&gt;&lt;field name="text" view="html" height="300"/&gt;&lt;/row&gt;
+      &lt;/layout&gt;
+    &lt;/component&gt;
+  &lt;/row&gt;
+&lt;/layout&gt;</pre><p>At last we also want to be able to interact
+    with out form, so we must add some buttons. In this example we add the
+    three core buttons that Pagesetter supplies&#8212;the preview, Update, and
+    Cancel buttons. </p><pre class="programlisting">&lt;layout&gt;
+  &lt;row&gt;
+    &lt;component name="pubedit"&gt;
+      &lt;layout&gt;
+        &lt;row&gt;&lt;field name="title" mandatory="true" width="400"/&gt;&lt;/row&gt;
+        &lt;row&gt;&lt;field name="text" view="html" height="300"/&gt;&lt;/row&gt;
+      &lt;/layout&gt;
+      &lt;buttonsBottom&gt;
+        &lt;button name="corePreview"/&gt;
+        &lt;button name="coreUpdate"/&gt;
+        &lt;button name="coreCancel"/&gt;
+      &lt;/buttonsBottom&gt;
+    &lt;/component&gt;
+  &lt;/row&gt;
+&lt;/layout&gt;</pre><p>Beware that this is the only way to position
+    the specific Pagesetter buttons. You must not move them to any other place
+    in the structure. This is to allow Pagesetter to insert dynamic workflow
+    actions (for which the location is hardcoded).</p></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="guppyformlayref"></a>Reference</h2></div></div></div><div class="variablelist"><dl><dt><span class="term">button</span></dt><dd><p>The button tag places a single button in the layout. You
+            must at least specifiy the name of the button using the name
+            attribute.</p><p>Attributes</p><div class="variablelist"><dl><dt><span class="term">name</span></dt><dd><p>Name of the referenced button.</p></dd><dt><span class="term">title</span></dt><dd><p>Title for this button. If no title is supplied then
+                    the one defined in the specification is used.</p></dd><dt><span class="term">hint</span></dt><dd><p>A hint describing what the button is for. If no hint
+                    is supplied then the one defined in the specification is
+                    used. The hint is used as a "title" attribute in the
+                    generated HTML.</p></dd></dl></div></dd><dt><span class="term">buttonsBottom</span></dt><dd><p>The buttonsBottom tag defines a singe-row container for
+            buttons. It must be placed inside a component tag. Buttons placed
+            inside the buttonsBottom tag will be placed below the associated
+            component pane.</p></dd><dt><span class="term">buttonsTop</span></dt><dd><p>The buttonsTop tag defines a singe-row container for
+            buttons. It must be placed inside a component tag. Buttons placed
+            inside the buttonsTop tag will be placed above the associated
+            component pane.</p></dd><dt><span class="term">field</span></dt><dd><p>The field tag places a single input field in the
+            layout.</p><p>Attributes</p><div class="variablelist"><dl><dt><span class="term">kind</span></dt><dd><p>The kind of field. Defaults to "input" but can also
+                    be "action" to reference an action.</p></dd><dt><span class="term">name</span></dt><dd><p>Name of the referenced field.</p></dd><dt><span class="term">title</span></dt><dd><p>Title for this input field. This will be used as a
+                    label placed in a separate title tag immediately before
+                    the input field. If no title is supplied then the one
+                    defined in the specification is used.</p></dd><dt><span class="term">width</span></dt><dd><p>The width of the field in pixels.</p></dd><dt><span class="term">height</span></dt><dd><p>The height of the field in pixels.</p></dd><dt><span class="term">colspan</span></dt><dd><p>Column span as for a HTML td tag.</p></dd><dt><span class="term">view</span></dt><dd><p>Defines how the field should be displayed. Can be
+                    "string" (default), "text", or "html". The result is
+                    either a simple one line input (string), a textarea
+                    (text), or an HTML editor (html).</p><p><span class="bold"><strong>You must specifier either "text" or
+                    "html" explicitely in the layout for fields of those 
+                    types.</strong></span></p></dd><dt><span class="term">hint</span></dt><dd><p>A hint describing what the input field is for. The
+                    exact rendering of the hint is not yet defined.</p></dd><dt><span class="term">mandatory</span></dt><dd><p>Forces the user to enter something in the field.
+                    Must be set to "true" or "yes".</p></dd><dt><span class="term">readonly</span></dt><dd><p>Inhibits the user from entering something in the
+                    field. Must be set to "true" or "yes".</p></dd><dt><span class="term">initialFocus</span></dt><dd><p>Set to true if you want the field to have initial focus when 
+                    the form loads. Must be set to "true" or "yes".</p></dd></dl></div></dd><dt><span class="term">island</span></dt><dd><p>The island element is a grid container that adds a visual
+            box around it's contained elements.</p><p>Attributes</p><div class="variablelist"><dl><dt><span class="term">title</span></dt><dd><p>Title for this button. If no title is supplied then
+                    the one defined in the specification is used.</p></dd><dt><span class="term">colspan</span></dt><dd><p>Column span as for a HTML td tag.</p></dd></dl></div></dd><dt><span class="term">cell</span></dt><dd><p>The cell element is a grid container that works
+            just like the island except that it there is no
+            visible frame around it. A cell is for grouping only.</p><p>Attributes</p><div class="variablelist"><dl><dt><span class="term">colspan</span></dt><dd><p>Column span as for a HTML td tag.</p></dd></dl></div></dd><dt><span class="term">layout</span></dt><dd><p>The layout element defines a grid container in which rows
+            must be placed.</p></dd><dt><span class="term">row</span></dt><dd><p>The row element defines a single row in a grid and must
+            contain cell elements like the component tag or a nested
+            layout.</p></dd><dt><span class="term">title</span></dt><dd><p>The title element adds a label for some input field. To do
+            so it must refer to an input element by name. The title of that
+            element is then placed where the title element is. All input
+            fields automatically expands to a title element followed by an
+            input element unless otherwise specified.</p><p>Attributes</p><div class="variablelist"><dl><dt><span class="term">title</span></dt><dd><p>Title for this button. If no title is supplied then
+                    the one defined in the specification is used.</p></dd><dt><span class="term">colspan</span></dt><dd><p>Column span as for a HTML td tag.</p></dd></dl></div></dd><dt><span class="term">text</span></dt><dd><p>Inserts exactly what is written between the opening and closing
+            text tags. Can be used to add help text and such like. You may even
+            include HTML inside the text tags <span class="emphasis"><em>but only if it is valid
+            XML</em></span>. To simplify matters you can use the XML &lt;![CDATA[ 
+            element.</p><p>Example:</p><pre class="programlisting">
+              &lt;text&gt;&lt;![CDATA[
+                &lt;div class="abc"&gt;Some &lt;em&gt;info&lt;/em&gt;.&lt;/div&gt;
+              ]]&gt;&lt;/text&gt;
+            </pre></dd></dl></div></div></div><div class="chapter" lang="en-US"><div class="titlepage"><div><div><h2 class="title"><a name="chap_introduction"></a>Chapter 5. Event Handling</h2></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#guppyeventstart">Event Handling</a></span></dt></dl></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="guppyeventstart"></a>Event Handling</h2></div></div></div><p>All usage of Guppy starts with a call to guppy_decode to see if the
+    script has been initiated from Guppy or from else-where. If the script is
+    not started as a result of a Guppy event then guppy_decode will return the
+    boolean value true. If it is a result of a Guppy event then it will return
+    an associative array with the following elements.</p><div class="variablelist"><dl><dt><span class="term">action</span></dt><dd><p>This is an array that describes the current event. See below
+          for sub-properties.</p></dd><dt><span class="term">data</span></dt><dd><p>This is an array identical to the data array passed to
+          guppy_open, but including whatever changes the user may have
+          done.</p></dd><dt><span class="term">extra</span></dt><dd><p>This is an array with the values passed in the "extra"
+          property of the array passed to guppy_open. This part of the data
+          can be used freely to store any extra data needed to handle the
+          form.</p></dd></dl></div><p>The action object contains the following properties:</p><div class="variablelist"><dl><dt><span class="term">kind</span></dt><dd><p>A string that describes the event kind. This list is rather
+          long and can be found in the next section. Most of the time the
+          action kind is identical to the name of the method that handles the
+          event.</p></dd><dt><span class="term">component</span></dt><dd><p>Name of the component from which the action was initiated,
+          e.g., the component in which a button is located.</p></dd><dt><span class="term">rowIndex</span></dt><dd><p>Row index for an action that influences a table or tree
+          component.</p></dd><dt><span class="term">button</span></dt><dd><p>Name of activated button.</p></dd><dt><span class="term">buttonKind</span></dt><dd><p>Kind of activated button.</p></dd><dt><span class="term">action</span></dt><dd><p>Name of activated action.</p></dd><dt><span class="term">clickHeader, </span><span class="term">menuAction, </span><span class="term">treeXXX</span></dt><dd><p>... lots of different actions.</p></dd></dl></div></div></div><div class="chapter" lang="en-US"><div class="titlepage"><div><div><h2 class="title"><a name="chap_plugins"></a>Chapter 6. Plugins</h2></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#pluginintro">Introduction</a></span></dt><dt><span class="section"><a href="#pluginstructure">Plugin Structure</a></span></dt><dd><dl><dt><span class="section"><a href="#id4693087">Pagesetter Methods</a></span></dt><dt><span class="section"><a href="#guppyPluginParams">Type Specific Parameters</a></span></dt></dl></dd></dl></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="pluginintro"></a>Introduction</h2></div></div></div><p>The Guppy system allows anybody with some PHP and OO programming experience to
+    add extra input types in addition to those that already exists. The system is based on
+    ideas from Smarty and ASP.NET, but not yet complete in anyway. It has already been
+    used to implement the "datetime", "e-mail", and "url" inputs available in Pagesetter.
+    </p><p>The Guppy/Pagesetter combination has not been separated completely, so the plugins
+    support both callback methods for Guppy and Pagesetter. Guppy in itself does not restrict
+    the plugins much in terms of what they can do, but Pagesetter imposes some restrictions.
+    </p><p>The idea is to instantiate a class, named like the plugin name, for each of the
+    inputs that are plugin based, and then call various methods on these objects for
+    different puposes. This can be rendering, decoding, and validation.</p></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="pluginstructure"></a>Plugin Structure</h2></div></div></div><p>The structure of a plugin is as follows, where all variables and methods
+    are inherited from GuppyInput:</p><pre class="programlisting">
+class GuppyInput_MyPlugin extends GuppyInput
+{
+  var $ID;          // HTML document ID
+  var $name;        // Base name for form elements
+  var $title;       // Title (label) as specified in XML files
+  var $value;       // Free place to store result of decoding
+  var $typeData;    // Free place to store and read extra type-
+                    // specific parameters.
+  var $mandatory;   // Mandatory setting as specified in XML files
+  var $readonly;    // Readonly setting as specified in XML files
+  var $hint;        // Hint setting as specified in XML files
+  var $width;       // Width setting as specified in XML files
+  var $height;      // Height setting as specified in XML files
+  var $error;       // Free place to store error message
+
+  function render($guppy)
+  {
+    // Use echo, print, and similar to output whatever 
+    // HTML is needed for your plugin.
+  }
+
+  function decode()
+  {
+    // Read POST variables and return a single value representing
+    // what the user has entered.
+  }
+
+  function validate()
+  {
+    // Return true or false depending on whether or not
+    // the input was valid
+  }
+
+  function getErrorMessage()
+  {
+    // Return error message in case validate() returns false
+  }
+}
+    </pre><p>What happens is as follows:</p><div class="orderedlist"><ol type="1"><li>Guppy renders tables and other internal stuff. Every time it needs to render
+      a plugin, it calls $plugin-&gt;render() for the selected plugin. Only one instance
+      of the plugin class is created for each input during the rendering phase.</li><li>The user inputs something and submits the forms. Guppy decodes all the inputs
+      and calls $plugin-&gt;decode() to get the values of from the plugins.
+      Only one instance of the plugin class is created for each input 
+      during the decode phase. The decode() function must return the decoded value.</li><li>Right after the decoding, Guppy calls $plugin-&gt;validate() on the same
+      plugin instance. If it returns true then everything is fine. If it returns false
+      then $plugin-&gt;getErrorMessage() is called to retrieve the error.</li></ol></div><p>Check the <code class="filename">guppy/plugins</code> directory for examples.</p><div class="section" lang="en-US"><div class="titlepage"><div><div><h3 class="title"><a name="id4693087"></a>Pagesetter Methods</h3></div></div></div><p>Pagesetter depends the following methods of the plugins:</p><pre class="programlisting">
+class GuppyInput_MyPlugin extends GuppyInput
+{
+  // ... Guppy stuff before this ...
+
+
+  function active()
+  {
+    // Return true or false indicating whether or not this plugin
+    // should be used in Pagesetter.
+  }
+
+  function useExtraTypeInfo()
+  {
+    // Return true or false indicating whether or not this plugin
+    // uses extra type parameters.
+  }
+
+  function getTitle()
+  {
+    // Return title for this plugin
+  }
+
+  function getSqlType()
+  {
+    // Return MySQL type definition for a database column where
+    // the data from this plugin can be stored
+  }
+
+  function getSqlFormat()
+  {
+    // Return SQL expression for selection of data for this plugin.
+    // Use "$columnName" as placeholde for the columnName
+    // Return NULL if no special attention is needed.
+  }
+}
+    </pre><p>Please note that Pagesetter can only use *one* database column
+    for the data of your plugin.</p></div><div class="section" lang="en-US"><div class="titlepage"><div><div><h3 class="title"><a name="guppyPluginParams"></a>Type Specific Parameters</h3></div></div></div><p>In some cases a plugin needs to store configuration data for itself. The best example of
+    this is the "Publication" plugin that allows you to select a Pagesetter publication from a
+    specific publication type. The publication type X can be selected by the admin when setting
+    up another publication type Y. This can for instance be used to select among company departments
+    when editing an employee. Without type parameters you would have to create one plugin for each
+    of the types you wanted to be able to select from.</p><p>Lets see how this works from the admin's point of view:</p><div class="orderedlist"><ol type="1"><li>A publication type "Department" is created with fields for
+      department name and location.</li><li>A publication type "Employee" is created.
+        <div class="orderedlist"><ol type="a"><li>An input field of type "Publication" is added for the
+          "parent" department selection.</li><li>This opens the "click for more" button right next to the
+          type selector.</li><li>A click on the button brings up the type parameter window
+          where you can select a publication type from which the "parent"
+          field will select it's values. Here we choose "Department" and
+          click "Ok".</li><li>Now the "parent" input field knows that it should allow
+          the user to select publications from the "Department" type.</li></ol></div></li></ol></div><p>All of this is done with a few extra JavaScript and PHP files for the "Publication"
+    input. To make your own plugin that can use extra type parameters you need to follow the
+    steps here:</p><div class="orderedlist"><ol type="1"><li>Make sure the plugin method <code class="function">useExtraTypeInfo()</code> returns
+      true. This makes it possible to access the type specific parameters window.</li><li>Add a file to the plugin directory named <code class="filename">typeextra.PluginName.php</code>
+      and make sure it implements the function <code class="function">typeextra_PluginName_render()</code>.
+      The purpose of this function is to render the content of the type parameter 
+      editor&#8212;which is something you completely control. The render function must return whatever 
+      HTML it needs for the output&#8212;like for instance a dropdown selector that lets you
+      select between different publication types.</li><li>The HTML of the type parameter editor <span class="emphasis"><em>must</em></span> generate a 
+      JavaScript function named <code class="function">typeextra_submit()</code>. This function
+      will be called when you users clicks "Ok" and it must return the exact value that
+      the plugin wants to be stored as an extra type specific parameter. This could for
+      instance by the type ID of the selected publication type. If you need to store
+      multiple values then these must be colon separated. The max. length of the value
+      is 255 characters.</li><li>The plugin methods may access the extra type parameters 
+      as <code class="varname">$this-&gt;typeData</code>.</li></ol></div><p>Please take a good look at the "Publication" plugin for a commented example.</p></div></div></div><div class="chapter" lang="en-US"><div class="titlepage"><div><div><h2 class="title"><a name="chap_introduction"></a>Chapter 7. Internals</h2></div></div></div><p>Parsing of the XML files for forms specification and layout is handled
+  in guppy_parser.php. The code here creates a large associative array that
+  describes the form. The data is stored in a PHP session variable. New
+  attributes for the XML structure must be parsed here.</p><p>Rendering of the HTML and handling of user input is done in guppy.php.
+  New attributes returned from the XML parser must be handled here.</p><p>99% of the stuff that is PostNuke related is implemented in
+  guppy_postnuke.php in the hope that this makes it possible to reuse Guppy in
+  another framework.</p></div></div></body></html>

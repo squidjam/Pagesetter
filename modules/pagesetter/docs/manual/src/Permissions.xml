@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+"http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd">
+<chapter id="chap_permissions">
+  <!-- $Id: Permissions.xml,v 1.5 2005/04/12 15:25:57 jornlind Exp $ -->
+
+  <title>Permissions</title>
+
+  <section id="permissionsintro">
+    <title>Permissions</title>
+
+    <para>Pagesetter works with five different access levels:<variablelist>
+        <varlistentry>
+          <term>Readers</term>
+
+          <listitem>
+            Users who are allowed to read Pagesetter
+            publications.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Authors</term>
+
+          <listitem>
+            Users who are allowed to submit new publications but do not
+            have access to the list of existing publications.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Editors</term>
+
+          <listitem>
+            Users who are allowed to submit new publications and have
+            access to the list of publications.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Moderators</term>
+
+          <listitem>
+            Users who are allowed to submit and delete publications, as
+            well as moving them back and forth to the depot.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Administrators</term>
+
+          <listitem>
+            Users who are allowed to create new publication types as
+            well as performing other administrative Pagesetter tasks.
+          </listitem>
+        </varlistentry>
+      </variablelist></para>
+
+    <para>On top of the raw PostNuke
+    permission system, Pagesetter adds it's own <emphasis>workflow</emphasis> system.
+    Through this it is possible to specify who has access to what and when.
+    The workflow system is able to handle such diverse setups as a <ulink
+    url="http://en.wikipedia.org/wiki/Wiki">Wiki</ulink> framework (well,
+    something that simulates it to a certain degree) and an enteprise level
+    workflow with authors, editors and moderators. Read more in the <link
+    linkend="chap_workflows">workflow chapter</link>.</para>
+
+    <para>The Pagesetter permission levels are mapped into the PostNuke
+    permissions like this:</para>
+
+    <table>
+      <title>Permission levels</title>
+
+      <tgroup cols="4">
+        <tbody>
+          <row>
+            <entry><emphasis role="bold">Group</emphasis></entry>
+
+            <entry><emphasis role="bold">Component</emphasis></entry>
+
+            <entry><emphasis role="bold">Instance</emphasis></entry>
+
+            <entry><emphasis role="bold">Permission</emphasis></entry>
+          </row>
+
+          <row>
+            <entry>readers</entry>
+
+            <entry>pagesetter::</entry>
+
+            <entry><emphasis>tid:pid:</emphasis></entry>
+
+            <entry>Read</entry>
+          </row>
+
+          <row>
+            <entry>authors</entry>
+
+            <entry>pagesetter::</entry>
+
+            <entry><emphasis>tid:pid:</emphasis></entry>
+
+            <entry>Edit</entry>
+          </row>
+
+          <row>
+            <entry>editors</entry>
+
+            <entry>pagesetter::</entry>
+
+            <entry><emphasis>tid:pid:</emphasis></entry>
+
+            <entry>Add</entry>
+          </row>
+
+          <row>
+            <entry>moderators</entry>
+
+            <entry>pagesetter::</entry>
+
+            <entry><emphasis>tid:pid:</emphasis></entry>
+
+            <entry>Delete</entry>
+          </row>
+
+          <row>
+            <entry>admins</entry>
+
+            <entry>pagesetter::</entry>
+
+            <entry><emphasis>tid:pid:</emphasis></entry>
+
+            <entry>Admin</entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
+
+    <para>In the table <emphasis>tid</emphasis> is used as the publication
+    type ID and <emphasis>pid</emphasis> as the publication (instance) ID. You
+    can use these to give access to specific subsets of the publications. The
+    special instance is '::' which matches <emphasis>both</emphasis> all
+    publications <emphasis>and</emphasis> the generic test for access to the
+    Pagesetter module. Here is a few examples:</para>
+
+    <table>
+      <title>Examples for permission setups</title>
+
+      <tgroup cols="5">
+        <tbody>
+          <row>
+            <entry><emphasis role="bold">Group</emphasis></entry>
+
+            <entry><emphasis role="bold">Component</emphasis></entry>
+
+            <entry><emphasis role="bold">Instance</emphasis></entry>
+
+            <entry><emphasis role="bold">Permission</emphasis></entry>
+
+            <entry><emphasis role="bold">Result</emphasis></entry>
+          </row>
+
+          <row>
+            <entry>All groups</entry>
+
+            <entry>pagesetter::</entry>
+
+            <entry>::</entry>
+
+            <entry>Read</entry>
+
+            <entry>Read access for all groups to all publications.</entry>
+          </row>
+
+          <row>
+            <entry>Unregistered</entry>
+
+            <entry>pagesetter::</entry>
+
+            <entry>4::</entry>
+
+            <entry>None</entry>
+
+            <entry>Deny access for unregistered users to all publications of
+            type 4</entry>
+          </row>
+
+          <row>
+            <entry>Group A</entry>
+
+            <entry>pagesetter::</entry>
+
+            <entry>3::</entry>
+
+            <entry>Edit</entry>
+
+            <entry>Edit access to publication type 3 for all in group
+            A</entry>
+          </row>
+
+          <row>
+            <entry>Group B</entry>
+
+            <entry>pagesetter::</entry>
+
+            <entry>2:(1|5|19):</entry>
+
+            <entry>Edit</entry>
+
+            <entry>Edit access to publications 1,5 and 19 of type 2 for all in
+            group B</entry>
+          </row>
+
+          <row>
+            <entry>My page admin</entry>
+
+            <entry>pagesetter::</entry>
+
+            <entry>1::</entry>
+
+            <entry>Admin</entry>
+
+            <entry>Admin access for "My page admin" group to publication type
+            1</entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
+
+    <caution>Remember that the order of the permission
+    items is significant. PostNuke reads permissions from the top and
+    downwards until it finds a match. Permission instances are specified with
+    regular expressions!</caution>
+
+  </section>
+
+  <section id="permissionstopic">
+    <title>Topic Based Permissions</title>
+
+    <para>Pagesetter supports topic based access control through the stand-alone
+    module "TopicAccess" which you can download from <ulink url="http://www.elfisk.dk">
+    www.elfisk.dk</ulink>. The TopicAccess module lets the administrator define
+    read/write access to Pagesetter based on the topic selected for a
+    publication.</para>
+
+    <para>Topic based permission control follows these rules:</para>
+
+    <itemizedlist>
+      <listitem>Users can only select from those topics they have write access to
+      when writing a new publication.</listitem>
+
+      <listitem>Users can only edit a publication if they have write access to
+      the topic it is associated with.</listitem>
+
+      <listitem>Users can only view a publication if they have read access to
+      the topic it is associated with.</listitem>
+    </itemizedlist>
+
+  </section>
+
+  <section id="permissionssingle">
+    <title>Permissions for Single Publications</title>
+
+    <para>The way that Pagesetter (and most other modules) uses the permission
+    system can in some instances make it quite difficult to figure out a way
+    to grant access to one single publication. For a publication ID
+    <emphasis>P</emphasis> of type <emphasis>T</emphasis> you would expect to
+    be able to match "pagesetter::" and "T:P:" for <emphasis>read</emphasis>
+    and then follow it by a "pagesetter::" and "T::" for
+    <emphasis>none</emphasis>, meaning "grant read access to specific
+    publication and deny access to the remaining". This could for instance be
+    a News publication (item 7 og type 1) where you want a specific welcome
+    message on the front page available for all unregistered users. But you do
+    not want them to be able to read the rest. For this one would think of the
+    following:</para>
+
+    <informaltable>
+      <tgroup cols="4">
+        <tbody>
+          <row>
+            <entry><emphasis role="bold">Group</emphasis></entry>
+
+            <entry><emphasis role="bold">Component</emphasis></entry>
+
+            <entry><emphasis role="bold">Instance</emphasis></entry>
+
+            <entry><emphasis role="bold">Permission</emphasis></entry>
+          </row>
+
+          <row>
+            <entry>Unregistered</entry>
+
+            <entry>pagesetter::</entry>
+
+            <entry>1:7:</entry>
+
+            <entry>Read</entry>
+          </row>
+
+          <row>
+            <entry>Unregistered</entry>
+
+            <entry>pagesetter::</entry>
+
+            <entry>1::</entry>
+
+            <entry>None</entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+
+    <para>But this would <emphasis>not</emphasis> work! Pagesetter first
+    checks with an empty publication item for access to the publication type
+    as a whole. This means it tries to match "pagesetter::" and "1::" before
+    any thing else. This does not match the first line, so access is denied
+    even before we check for access to the single item. What you must do
+    is:</para>
+
+    <table>
+      <title>Permission setup for access to a single publication item.</title>
+      <tgroup cols="4">
+        <tbody>
+          <row>
+            <entry><emphasis role="bold">Group</emphasis></entry>
+
+            <entry><emphasis role="bold">Component</emphasis></entry>
+
+            <entry><emphasis role="bold">Instance</emphasis></entry>
+
+            <entry><emphasis role="bold">Permission</emphasis></entry>
+          </row>
+
+          <row>
+            <entry>Unregistered</entry>
+
+            <entry>pagesetter::</entry>
+
+            <entry>1:7:</entry>
+
+            <entry>Read</entry>
+          </row>
+
+          <row>
+            <entry>Unregistered</entry>
+
+            <entry>pagesetter::</entry>
+
+            <entry>1:.+:</entry>
+
+            <entry>None</entry>
+          </row>
+
+          <row>
+            <entry>Unregistered</entry>
+
+            <entry>pagesetter::</entry>
+
+            <entry>1::</entry>
+
+            <entry>Read</entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
+
+    <para>The third line ensures access to the publication type as a whole.
+    The second line denies access to all item specific checks (those with
+    something in between the colons). The first line grants access to the
+    specific item.</para>
+  </section>
+</chapter>

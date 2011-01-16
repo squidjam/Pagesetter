@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+
+<layout>
+
+  <row>
+    <component name="list">
+      <layout>
+        <row><field name="author"/><field name="created"/></row>
+        <row><field name="title" colspan="3"/></row>
+        <row><field name="description" width="400" colspan="3"/></row>
+      </layout>
+      <buttonsBottom>
+        <button name="commit"/>
+        <button name="cancel"/>
+      </buttonsBottom>
+    </component>
+  </row>
+
+  <row>
+    <component name="listItems">
+      <layout>
+        <row><field name="title"        width="100"/></row>
+        <row><field name="value"        width="100"/></row>
+        <row><field name="description"  width="350"/></row>
+      </layout>
+    </component>
+  </row>
+
+</layout>

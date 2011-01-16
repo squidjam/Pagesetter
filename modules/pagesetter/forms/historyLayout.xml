@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+
+<layout>
+
+  <row>
+    <component name="historyHeader">
+      <layout>
+        <row>
+          <field name="pubType"/>
+          <field name="pid"/>
+        </row>
+      </layout>
+      <buttonsBottom>
+        <button name="back"/>
+      </buttonsBottom>
+    </component>
+  </row>
+
+  <row>
+    <component name="historyList">
+      <columns>
+        <field name="id" width="25"/>
+        <field name="title"/>
+        <field name="revision" width="40"/>
+        <field name="prevRevision" width="40"/>
+        <field name="user" width="40"/>
+        <field name="timestamp" width="110"/>
+        <field name="approvalTitle"/>
+        <field name="online"/>
+        <field name="inDepot"/>
+        <field name="view"  kind="action"/>
+        <field name="move"  kind="action"/>
+        <field name="erase" kind="action"/>
+      </columns>
+    </component>
+  </row>
+
+</layout>

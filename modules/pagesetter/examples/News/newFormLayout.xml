@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+
+<layout>
+
+  <row>
+    <component name="pubedit">
+      <layout>
+        <row>
+          <island title="_FGFTPUBLICATION" colspan="2">
+            <row><field name="title" mandatory="true" width="400"/></row>
+            <row><field name="teaser" width="600" height="100"/></row>
+            <row><field name="text" mandatory="true" view="html" height="300"/></row>
+            <row><field name="notes" width="600" height="100"/></row>
+          </island>
+        </row>
+        <row>
+          <island title="_PGFTLOCATION">
+            <row><field name="core_topic"/></row>
+            <row><field name="core_language"/></row>
+          </island>
+        </row>
+      </layout>
+      <buttonsBottom>
+        <button name="corePreview"/>
+        <button name="coreUpdate"/>
+        <button name="coreCancel"/>
+      </buttonsBottom>
+    </component>
+  </row>
+
+</layout>

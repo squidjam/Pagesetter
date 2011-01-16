@@ -1,0 +1,33 @@
+  /* Knowledge base 
+     - class "kb1" relates to the category menu
+     - class "kb2" relates to the publication list 
+     Both can although be changed in the templates. 
+   */
+
+  /* Add some spacing between the publication titles */
+ul.kb2 li
+{
+  margin-bottom: 3pt;
+}
+
+
+  /* Highlight the current category item */
+ul.kb1 li.current
+{
+  font-weight: bold;
+}
+
+
+  /* Don't highlight sub-category items of the current */
+ul.kb1 li.current li
+{
+  font-weight: normal;
+}
+
+
+  /* Don't add underlining to anchors in the lists */
+ul.kb1 a,
+ul.kb2 a
+{
+  text-decoration: none;
+}

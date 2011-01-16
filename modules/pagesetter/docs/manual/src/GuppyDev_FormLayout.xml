@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+"http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd"
+[
+<!ENTITY mdash "&#x2014;">
+<!ENTITY hellip "&#x2026;">
+]>
+
+<chapter id="chap_introduction">
+  <!-- $Id: GuppyDev_FormLayout.xml,v 1.7 2005/12/10 21:42:13 jornlind Exp $ -->
+
+  <title>Form Layout</title>
+
+  <section id="guppyformlayintro">
+    <title>Introduction</title>
+
+    <para>This section deals with the format of the layout definition file.
+    The layout XML is a recursive structure that allows you to place your
+    components in a grid structure (a table) much like done in a normal HTML
+    table. A layout begins and ends with the tag "layout":<programlisting>&lt;?xml version="1.0"?&gt;
+
+&lt;layout&gt;
+  ... layout ...
+&lt;/layout&gt;</programlisting>The layout tag begins a grid (in the same way
+    as a table tag does it in HTML) so the content must define the rows of
+    this grid. This is done with the row tag: <programlisting>&lt;?xml version="1.0"?&gt;
+
+&lt;layout&gt;
+  &lt;row&gt;
+    ... row layout ...
+  &lt;/row&gt;
+&lt;/layout&gt;</programlisting>Now we are ready to put some content in the
+    rows. The most import tag is the component tag which specifies where a
+    component should be placed. The component tag <emphasis>must</emphasis>
+    specify which component it refers to. In the examples here we use the
+    Pagesetter "edit publication" form which defines only one component named
+    "pubedit". If we drop the initial xml tag we now get:<programlisting>&lt;layout&gt;
+  &lt;row&gt;
+    &lt;component name="pubedit"&gt;
+      .. component layout ...
+    &lt;/component&gt;
+  &lt;/row&gt;
+&lt;/layout&gt;</programlisting>Inside the component tags we can sprinkle out
+    field tags where ever we want to place one of the input fields available
+    for the component. But before we do that we must first setup a layout
+    structure for the component. Again we use the layout tag which places the
+    layout in grid mode, so we must also add rows to place our fields
+    in:<programlisting>&lt;layout&gt;
+  &lt;row&gt;
+    &lt;component name="pubedit"&gt;
+      &lt;layout&gt;
+        &lt;row&gt;&lt;field name="title"/&gt;&lt;/row&gt;
+        &lt;row&gt;&lt;field name="text"/&gt;&lt;/row&gt;
+      &lt;/layout&gt;
+    &lt;/component&gt;
+  &lt;/row&gt;
+&lt;/layout&gt;</programlisting>As you can see you must also supply a field
+    name that refers to one of the fields specified for that component. You
+    need not consider what kind of field it is since Guppy already nows that
+    and will create what ever is needed. Almost. You do need to specify how
+    you want a text field to display. It can be displayed as a one line text
+    input field, a textarea tag, or as an HTML editor using HTMLArea. Use the
+    view attribute on the field tag for this. In our example we want the
+    "text" field to be shown as an HTML editor. Let us resize the input field
+    a bit at the same time by setting a height attribute: <programlisting>&lt;layout&gt;
+  &lt;row&gt;
+    &lt;component name="pubedit"&gt;
+      &lt;layout&gt;
+        &lt;row&gt;&lt;field name="title"/&gt;&lt;/row&gt;
+        &lt;row&gt;&lt;field name="text" view="html" height="300"/&gt;&lt;/row&gt;
+      &lt;/layout&gt;
+    &lt;/component&gt;
+  &lt;/row&gt;
+&lt;/layout&gt;</programlisting>It further more seems sensible to require that
+    the title must be entered. So we mark the "title" field as mandatory, and
+    set the width to 400 pixels at the same time: <programlisting>&lt;layout&gt;
+  &lt;row&gt;
+    &lt;component name="pubedit"&gt;
+      &lt;layout&gt;
+        &lt;row&gt;&lt;field name="title" mandatory="true" width="400"/&gt;&lt;/row&gt;
+        &lt;row&gt;&lt;field name="text" view="html" height="300"/&gt;&lt;/row&gt;
+      &lt;/layout&gt;
+    &lt;/component&gt;
+  &lt;/row&gt;
+&lt;/layout&gt;</programlisting>At last we also want to be able to interact
+    with out form, so we must add some buttons. In this example we add the
+    three core buttons that Pagesetter supplies&mdash;the preview, Update, and
+    Cancel buttons. <programlisting>&lt;layout&gt;
+  &lt;row&gt;
+    &lt;component name="pubedit"&gt;
+      &lt;layout&gt;
+        &lt;row&gt;&lt;field name="title" mandatory="true" width="400"/&gt;&lt;/row&gt;
+        &lt;row&gt;&lt;field name="text" view="html" height="300"/&gt;&lt;/row&gt;
+      &lt;/layout&gt;
+      &lt;buttonsBottom&gt;
+        &lt;button name="corePreview"/&gt;
+        &lt;button name="coreUpdate"/&gt;
+        &lt;button name="coreCancel"/&gt;
+      &lt;/buttonsBottom&gt;
+    &lt;/component&gt;
+  &lt;/row&gt;
+&lt;/layout&gt;</programlisting>Beware that this is the only way to position
+    the specific Pagesetter buttons. You must not move them to any other place
+    in the structure. This is to allow Pagesetter to insert dynamic workflow
+    actions (for which the location is hardcoded).</para>
+  </section>
+
+  <section id="guppyformlayref">
+    <title>Reference</title>
+
+    <para><variablelist>
+        <varlistentry>
+          <term>button</term>
+
+          <listitem>
+            <para>The button tag places a single button in the layout. You
+            must at least specifiy the name of the button using the name
+            attribute.</para>
+
+            <para>Attributes<variablelist>
+                <varlistentry>
+                  <term>name</term>
+
+                  <listitem>
+                    <para>Name of the referenced button.</para>
+                  </listitem>
+                </varlistentry>
+
+                <varlistentry>
+                  <term>title</term>
+
+                  <listitem>
+                    <para>Title for this button. If no title is supplied then
+                    the one defined in the specification is used.</para>
+                  </listitem>
+                </varlistentry>
+
+                <varlistentry>
+                  <term>hint</term>
+
+                  <listitem>
+                    <para>A hint describing what the button is for. If no hint
+                    is supplied then the one defined in the specification is
+                    used. The hint is used as a "title" attribute in the
+                    generated HTML.</para>
+                  </listitem>
+                </varlistentry>
+              </variablelist></para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>buttonsBottom</term>
+
+          <listitem>
+            <para>The buttonsBottom tag defines a singe-row container for
+            buttons. It must be placed inside a component tag. Buttons placed
+            inside the buttonsBottom tag will be placed below the associated
+            component pane.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>buttonsTop</term>
+
+          <listitem>
+            <para>The buttonsTop tag defines a singe-row container for
+            buttons. It must be placed inside a component tag. Buttons placed
+            inside the buttonsTop tag will be placed above the associated
+            component pane.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>field</term>
+
+          <listitem>
+            <para>The field tag places a single input field in the
+            layout.</para>
+
+            <para>Attributes<variablelist>
+                <varlistentry>
+                  <term>kind</term>
+
+                  <listitem>
+                    <para>The kind of field. Defaults to "input" but can also
+                    be "action" to reference an action.</para>
+                  </listitem>
+                </varlistentry>
+
+                <varlistentry>
+                  <term>name</term>
+
+                  <listitem>
+                    <para>Name of the referenced field.</para>
+                  </listitem>
+                </varlistentry>
+
+                <varlistentry>
+                  <term>title</term>
+
+                  <listitem>
+                    <para>Title for this input field. This will be used as a
+                    label placed in a separate title tag immediately before
+                    the input field. If no title is supplied then the one
+                    defined in the specification is used.</para>
+                  </listitem>
+                </varlistentry>
+
+                <varlistentry>
+                  <term>width</term>
+
+                  <listitem>
+                    <para>The width of the field in pixels.</para>
+                  </listitem>
+                </varlistentry>
+
+                <varlistentry>
+                  <term>height</term>
+
+                  <listitem>
+                    <para>The height of the field in pixels.</para>
+                  </listitem>
+                </varlistentry>
+
+                <varlistentry>
+                  <term>colspan</term>
+
+                  <listitem>
+                    <para>Column span as for a HTML td tag.</para>
+                  </listitem>
+                </varlistentry>
+
+                <varlistentry>
+                  <term>view</term>
+
+                  <listitem>
+                    <para>Defines how the field should be displayed. Can be
+                    "string" (default), "text", or "html". The result is
+                    either a simple one line input (string), a textarea
+                    (text), or an HTML editor (html).</para>
+                    <para><emphasis role="bold">You must specifier either "text" or
+                    "html" explicitely in the layout for fields of those 
+                    types.</emphasis></para>
+                  </listitem>
+                </varlistentry>
+
+                <varlistentry>
+                  <term>hint</term>
+
+                  <listitem>
+                    <para>A hint describing what the input field is for. The
+                    exact rendering of the hint is not yet defined.</para>
+                  </listitem>
+                </varlistentry>
+
+                <varlistentry>
+                  <term>mandatory</term>
+
+                  <listitem>
+                    <para>Forces the user to enter something in the field.
+                    Must be set to "true" or "yes".</para>
+                  </listitem>
+                </varlistentry>
+
+                <varlistentry>
+                  <term>readonly</term>
+
+                  <listitem>
+                    <para>Inhibits the user from entering something in the
+                    field. Must be set to "true" or "yes".</para>
+                  </listitem>
+                </varlistentry>
+
+                <varlistentry>
+                  <term>initialFocus</term>
+
+                  <listitem>
+                    <para>Set to true if you want the field to have initial focus when 
+                    the form loads. Must be set to "true" or "yes".</para>
+                  </listitem>
+                </varlistentry>
+
+              </variablelist></para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>island</term>
+
+          <listitem>
+            <para>The island element is a grid container that adds a visual
+            box around it's contained elements.</para>
+
+            <para>Attributes<variablelist>
+                <varlistentry>
+                  <term>title</term>
+
+                  <listitem>
+                    <para>Title for this button. If no title is supplied then
+                    the one defined in the specification is used.</para>
+                  </listitem>
+                </varlistentry>
+
+                <varlistentry>
+                  <term>colspan</term>
+
+                  <listitem>
+                    <para>Column span as for a HTML td tag.</para>
+                  </listitem>
+                </varlistentry>
+              </variablelist></para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>cell</term>
+
+          <listitem>
+            <para>The cell element is a grid container that works
+            just like the island except that it there is no
+            visible frame around it. A cell is for grouping only.</para>
+
+            <para>Attributes<variablelist>
+                <varlistentry>
+                  <term>colspan</term>
+
+                  <listitem>
+                    <para>Column span as for a HTML td tag.</para>
+                  </listitem>
+                </varlistentry>
+              </variablelist></para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>layout</term>
+
+          <listitem>
+            <para>The layout element defines a grid container in which rows
+            must be placed.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>row</term>
+
+          <listitem>
+            <para>The row element defines a single row in a grid and must
+            contain cell elements like the component tag or a nested
+            layout.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>title</term>
+
+          <listitem>
+            <para>The title element adds a label for some input field. To do
+            so it must refer to an input element by name. The title of that
+            element is then placed where the title element is. All input
+            fields automatically expands to a title element followed by an
+            input element unless otherwise specified.</para>
+
+            <para>Attributes<variablelist>
+                <varlistentry>
+                  <term>title</term>
+
+                  <listitem>
+                    <para>Title for this button. If no title is supplied then
+                    the one defined in the specification is used.</para>
+                  </listitem>
+                </varlistentry>
+
+                <varlistentry>
+                  <term>colspan</term>
+
+                  <listitem>
+                    <para>Column span as for a HTML td tag.</para>
+                  </listitem>
+                </varlistentry>
+              </variablelist></para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>text</term>
+
+          <listitem>
+            <para>Inserts exactly what is written between the opening and closing
+            text tags. Can be used to add help text and such like. You may even
+            include HTML inside the text tags. To simplify matters you can use 
+            the XML &lt;![CDATA[ element.</para>
+
+            <para>Example:</para>
+
+            <programlisting>
+              &lt;text&gt;&lt;![CDATA[
+                &lt;div class="abc"&gt;Some &lt;em&gt;info&lt;/em&gt;.&lt;/div&gt;
+              ]]&gt;&lt;/text&gt;
+            </programlisting>
+
+            <para>You can use language defines like $_LANGDEFINE$.</para>
+
+          </listitem>
+        </varlistentry>
+      </variablelist></para>
+  </section>
+</chapter>

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+
+<layout>
+
+  <row>
+    <component name="mail">
+      <layout>
+        <row><field name="mailTo" width="300"/></row>
+        <row><field name="nameTo" width="300"/></row>
+        <row><field name="mailFrom" width="300" readOnly="true"/></row>
+        <row><field name="nameFrom" width="300"/></row>
+        <row><field name="subject" width="400"/></row>
+        <row><field name="text" view="text" width="400" height="300"/></row>
+      </layout>
+      <buttonsBottom>
+        <button name="send"/>
+        <button name="cancel"/>
+      </buttonsBottom>
+    </component>
+  </row>
+
+</layout>

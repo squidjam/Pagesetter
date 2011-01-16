@@ -1,0 +1,17 @@
+<!--[* Smarty *]-->
+<!--[pagesetter_title title=$core.title]-->
+<h1><!--[$title]--></h1>
+<div class="pn-sub">By: <!--[$core.author]--> <!--[$core.lastUpdated|date_format:"%Y.%m.%d"]--></div><br/>
+
+
+<!--[if $image != "" ]-->
+ <div style="float: right; width: 200px">
+   <img src="<!--[$image]-->" width="200px" alt="<!--[$imagetext]-->" title="<!--[$imagetext]-->"><br/>
+   <i><!--[$imageText]--></i>
+ </div>
+<!--[/if]-->
+
+<!--[foreach from=$text item=t]-->
+<p><!--[$t]--></p>
+<!--[/foreach]-->
+

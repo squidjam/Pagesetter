@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+
+<components>
+
+ <component name="list" kind="card" title="_PGLISTEDIT">
+  <fields>
+    <field name="title"       title="_PGTITLE"       type="string" mandatory="true"/>
+    <field name="description" title="_PGDESCRIPTION" type="string"/>
+    <field name="created"     title="_PGCREATEDDATE" type="date"    readonly="yes"/>
+    <field name="author"      title="_PGPUBLISHER"   type="string"  readonly="yes"/>
+  </fields>
+  <actions>
+    <action name="commit" kind="submit" title="_PGCOMMIT"/>
+    <action name="cancel" kind="cancel" title="_PGBTCANCEL"/>
+  </actions>
+ </component>
+
+ <component name="listItems" kind="tree" title="_PGLISTITEMS" titleField="title">
+  <fields>
+    <field name="title"       title="_PGTITLE"       type="string" mandatory="true"/>
+    <field name="value"       title="_PGVALUE"       type="string" mandatory="true"/>
+    <field name="description" title="_PGDESCRIPTION" type="string"/>
+  </fields>
+ </component>
+
+</components>

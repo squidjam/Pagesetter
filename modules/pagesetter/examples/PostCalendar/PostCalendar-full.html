@@ -1,0 +1,48 @@
+<!--[* Smarty *]-->
+<!--[pagesetter_title title=$core.title]-->
+
+<div class="pgcalendar">
+
+<div class="header">
+  <img src="images/topics/<!--[$core.topic.image]-->" align="left"/>
+  <h1><!--[$core.title]--></h1>
+  <strong>Start</strong>: <!--[$startDate|date_format:"%d. %B %Y %H:%M"]--><br/>
+  <strong>End</strong>: <!--[$endDate|date_format:"%d. %B %Y %H:%M"]--><br/>
+  <br clear="both"/>
+</div>
+
+<div class="content">
+  <table>
+    <tr>
+
+    <td class="description">
+      <!--[$text]-->
+    </td>
+
+    <td class="information">
+      <h3>Location</h3>
+      <!--[$location]--><br/>
+      <!--[$address1]--><br/>
+      <!--[$address2]--><br/>
+      <!--[$postalcode]--> <!--[$city]--><br/>
+
+      <h3>Contact</h3>
+      <!--[$name]--><br/>
+      Telephone: <!--[$phonenumber]--><br/>
+      E-mail: <a href="mailto:<!--[$email]-->"><!--[$email]--></a><br/>
+      <br/>
+      Fee: <!--[$fee]-->.
+    </td>
+
+    </tr>
+  </table>
+</div>
+
+<br/>
+<p>
+<a href="<!--[$core.printThisURL]-->"><img src="images/global/print.gif" alt="Print" align="absmiddle"/> Printer friendly</a> |
+<a href="<!--[$core.sendThisURL]-->"><img src="images/global/email.gif" alt="Send to a friend" align="absmiddle"/> Send to a friend</a> |
+Hits: <!--[nocache]--><!--[$core.hitCount]--><!--[/nocache]--> | <!--[nocache]--><!--[$core.editThis]--><!--[/nocache]-->
+</p>
+
+</div>

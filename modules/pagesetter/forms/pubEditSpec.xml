@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+
+<components>
+
+ <component name="pubedit" kind="card" title="_PGPAGEDIT">
+  <fields>
+    <field name="core_approvalTitle"     title="_PGAPPROVALSTATE" type="string" readonly="yes"/>
+    <field name="core_online"            title="_PGFTONLINE"      type="bool" readonly="yes"/>
+    <field name="core_revision"          title="_PGREVISION"      type="int" readonly="yes"/>
+    <field name="core_topic"             title="_PGFTTOPIC"       type="select" options="topics" mandatory="true"/>
+    <field name="core_showInMenu"        title="_PGFTSHOWINMENU"  type="bool" readonly="yes"/>
+    <field name="core_showInList"        title="_PGFTSHOWINLIST"  type="bool"/>
+    <field name="core_creator"           title="_PGPUBLISHER"     type="string" readonly="yes"/>
+    <field name="core_author"            title="_PGAUTHOR"        type="string"/>
+    <field name="core_created"           title="_PGFTCREATEDDATE" type="datetime" readonly="yes"/>
+    <field name="core_lastUpdated"       title="_PGFTUPDATEDDATE" type="datetime" readonly="yes"/>
+    <field name="core_publishDate"       title="_PGFTPUBLISHDATE" type="datetime"/>
+    <field name="core_expireDate"        title="_PGFTEXPIREDATE"  type="datetime"/>
+    <field name="core_language"          title="_PGFTLANGUAGE"    type="select" options="language" mandatory="true"/>
+  </fields>
+  <actions>
+    <action name="corePreview" kind="submit" title="_PGBTSAVEPREVIEW" hint="_PGHINTSAVEPREVIEW"/>
+    <action name="coreUpdate"  kind="submit" title="_PGBTUPDATE" hint="_PGHINTUPDATE"/>
+    <action name="coreCancel"  kind="cancel" title="_PGBTCANCEL" hint="_PGHINTCANCEL"/>
+  </actions>
+ </component>
+
+</components>

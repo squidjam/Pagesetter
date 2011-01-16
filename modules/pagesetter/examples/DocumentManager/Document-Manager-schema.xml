@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<publicationSchema xmlns="www.postnuke.com/pagesetter" version="1.0">
+ <category id="24">
+  <title>DocMan Category</title>
+  <description>Categories for document manager</description>
+  <items>
+   <item id="130">
+    <title>Customers</title>
+    <fullTitle>Customers</fullTitle>
+    <value>customer</value>
+    <description></description>
+    <indent>0</indent>
+   </item>
+   <item id="131">
+    <title>Mac Duck</title>
+    <fullTitle>Customers:Mac Duck</fullTitle>
+    <value>macduck</value>
+    <description></description>
+    <indent>1</indent>
+   </item>
+   <item id="134">
+    <title>Mac Duck dept. a</title>
+    <fullTitle>Customers:Mac Duck:Mac Duck dept. a</fullTitle>
+    <value>mda</value>
+    <description></description>
+    <indent>2</indent>
+   </item>
+   <item id="135">
+    <title>Mac Duck dept. b</title>
+    <fullTitle>Customers:Mac Duck:Mac Duck dept. b</fullTitle>
+    <value>mdb</value>
+    <description></description>
+    <indent>2</indent>
+   </item>
+   <item id="132">
+    <title>Internal</title>
+    <fullTitle>Internal</fullTitle>
+    <value>internal</value>
+    <description></description>
+    <indent>0</indent>
+   </item>
+   <item id="133">
+    <title>Sales</title>
+    <fullTitle>Internal:Sales</fullTitle>
+    <value>sales</value>
+    <description></description>
+    <indent>1</indent>
+   </item>
+   <item id="136">
+    <title>Books</title>
+    <fullTitle>Internal:Sales:Books</fullTitle>
+    <value>books</value>
+    <description></description>
+    <indent>2</indent>
+   </item>
+   <item id="137">
+    <title>IT</title>
+    <fullTitle>Internal:IT</fullTitle>
+    <value>it</value>
+    <description></description>
+    <indent>1</indent>
+   </item>
+  </items>
+ </category>
+ <publication>
+  <title>Document Manager</title>
+  <template>DocMan</template>
+  <description>Document management system</description>
+  <author>Admin</author>
+  <created>2004-12-12</created>
+  <listCount>10</listCount>
+  <sortField1></sortField1>
+  <sortDesc1>0</sortDesc1>
+  <sortField2></sortField2>
+  <sortDesc2>0</sortDesc2>
+  <sortField3></sortField3>
+  <sortDesc3>0</sortDesc3>
+  <defaultFilter></defaultFilter>
+  <enableHooks>0</enableHooks>
+  <workflow>standard</workflow>
+  <enableRevisions>1</enableRevisions>
+  <fields>
+   <field id="103">
+    <name>title</name>
+    <title>Name</title>
+    <description>Name of document</description>
+    <type>0</type>
+    <isTitle>1</isTitle>
+    <isPageable>0</isPageable>
+    <isSearchable>1</isSearchable>
+   </field>
+   <field id="107">
+    <name>description</name>
+    <title>Description</title>
+    <description>Short description of the uploaded document</description>
+    <type>1</type>
+    <isTitle>0</isTitle>
+    <isPageable>0</isPageable>
+    <isSearchable>1</isSearchable>
+   </field>
+   <field id="104">
+    <name>keywords</name>
+    <title>Keywords</title>
+    <description>Optional set of keywords for searching</description>
+    <type>0</type>
+    <isTitle>0</isTitle>
+    <isPageable>0</isPageable>
+    <isSearchable>1</isSearchable>
+   </field>
+   <field id="105">
+    <name>category</name>
+    <title>Category</title>
+    <description>Category of document</description>
+    <type>124</type>
+    <isTitle>0</isTitle>
+    <isPageable>0</isPageable>
+    <isSearchable>0</isSearchable>
+   </field>
+   <field id="106">
+    <name>document</name>
+    <title>Document</title>
+    <description>Actual uploaded document</description>
+    <type>10</type>
+    <isTitle>0</isTitle>
+    <isPageable>0</isPageable>
+    <isSearchable>0</isSearchable>
+   </field>
+  </fields>
+ </publication>
+</publicationSchema>

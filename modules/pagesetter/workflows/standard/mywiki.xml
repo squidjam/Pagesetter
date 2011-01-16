@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- contributed by Jorn, based on tjreo's wiki -->
+
+
+<workflow>
+
+  <title>My Wiki</title>
+  <description>This workflow assumes that all publications are always approved, just like a Wiki.  Each time someone updates a
+               publication a new revision is created and all other revisions are removed from view. The workflow further more 
+               allows the owner to edit his own pages, even though he do not have more than "author" access.</description>
+
+  <configuration>
+  </configuration>
+
+  <states>
+
+    <state id="approved">
+      <title>Approved</title>
+      <description>Content is approved</description>
+    </state>
+
+    <state id="deleted">
+      <title>Deleted</title>
+      <description>Content has been removed from view</description>
+    </state>
+
+  </states>
+
+
+  <actions>
+
+      <!-- From initial state -->
+
+    <action id="new">
+      <title>Save</title>
+      <description>Save the new content</description>
+      <permission>author</permission>
+      <nextState>approved</nextState>
+
+      <operation online="1">createPublication</operation>
+    </action>
+
+      <!-- State: approved -->
+
+    <action id="update">
+      <title>Update</title>
+      <description>Update content</description>
+      <permission>author and owner or editor</permission>
+      <state>approved</state>
+
+      <operation>moveToDepot</operation>
+      <operation nextState="approved" online="1">createNewRevision</operation>
+    </action>
+
+    <action id="delete">
+      <title>Delete</title>
+      <description>Delete content</description>
+      <permission>author and owner or editor</permission>
+      <state>approved</state>
+
+      <online>0</online>
+      <operation nextState="deleted">moveToDepot</operation>
+      <operation>deletePublication</operation>
+    </action>
+
+  </actions>
+
+
+</workflow>

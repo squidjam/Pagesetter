@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+"http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd">
+<chapter id="chap_introduction">
+  <!-- $Id: Workflow_Background.xml,v 1.1 2004/12/08 00:29:30 jornlind Exp $ -->
+
+  <title>Background</title>
+
+  <section id="wfbackstart">
+    <title>Background</title>
+
+    <section id="wfbackfiles">
+      <title>Files and directories</title>
+
+      <para>In the pagesetter/workflows directory, there are two
+      subdirectories. Each of these have the same structure.</para>
+
+      <para>The <emphasis>standard</emphasis> directory contains workflow
+      information that comes standard with Pagesetter. The
+      <emphasis>custom</emphasis> directory contains workflow information that
+      you create. Because the Pagesetter workflows are stored in a different
+      directory than what you develop, you will never have to worry about an
+      upgrade to Pagesetter overwriting your workflow information.</para>
+
+      <para>In the root of the directories are the xml files that define each
+      workflow. Under that is an <emphasis>operations</emphasis> subdirectory.
+      This directory contains one file for each operation that can be used in
+      a workflow action.</para>
+    </section>
+
+    <section id="wfbackdepot">
+      <title>Depot</title>
+
+      <para>Old revisions of a publication is stored in the
+      <emphasis>depot</emphasis>. This revision control means you can always
+      go back and view the content of an earlier version of a publication.
+      Deleted publications are actually not deleted, but marked deleted and
+      then moved to the depot.</para>
+
+      <para>If you really want to delete a document then you can do that while
+      browsing the history of a publication, assuming you have admin
+      access.</para>
+    </section>
+
+    <section id="wfbackstates">
+      <title>States</title>
+
+      <para>The state of a publication marks the location of it in the
+      workflow process (or rather&mdash;the state machine that the workflow is
+      based upon.</para>
+    </section>
+
+    <section id="wfbackactions">
+      <title>Actions</title>
+
+      <para>Actions are business functions like Submit, Approve, Reject, and
+      Delete. They are verbs that can perform operations as well as move a
+      document from one state to another. Actions are composed of
+      <emphasis>operations</emphasis>.</para>
+    </section>
+
+    <section id="wfbackops">
+      <title>Operations</title>
+
+      <para>If Actions are business functions then Operations are technical
+      functions.</para>
+
+      <para>An operation is a unit of work. Examples are: sending an email,
+      deleting a document (moving it to the depot), creating a new revision,
+      update publication.</para>
+
+      <para>Operations are individual PHP files that represent one task. Any
+      number of these Operations can be used to perform an Action.</para>
+
+      <para>Operations are called from Actions and can be passed parameters if
+      necessary.</para>
+    </section>
+  </section>
+</chapter>

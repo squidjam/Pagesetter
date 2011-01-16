@@ -1,0 +1,24 @@
+<div class="pane">
+</div>
+
+<div class="folder-item padding">
+  <h2><!--[$core.title]--></h2>
+  <p><!--[pnml name=_PGFTCREATEDDATE]--> <!--[$core.created|date_format:"%Y.%m.%d"]--> <!--[pnml name=_BY]--> <!--[$core.author]--> 
+  (<!--[pnml name=_PGFTMODIFIEDDATE]--> <!--[$core.lastUpdated|date_format:"%Y.%m.%d"]-->)</p>
+  <p><em><!--[$description]--></em></p>
+  <p><a href="<!--[$file.url]-->"><!--[pnml name=_FILEUPLOADDOWNLOADDOC]--></a></p>
+</div>
+
+<script>
+function folderModuleSpecificSelect(selector)
+{
+  var a = '???';
+  if (selector.mode == 'html')
+    a = '<a href="<!--[$core.pubURL]-->"><!--[$core.title]--></a>';
+  else if (selector.mode == 'url')
+    a = '<!--[$core.pubURL]-->';
+  else if (selector.mode == 'key')
+    a = '<!--[$core.title]-->';
+  selector.insert(a);
+}
+</script>

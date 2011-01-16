@@ -1,0 +1,61 @@
+/* Styles for Pagesetter/PostCalendar emulator */
+
+div.pgcalendar div.header
+{
+  border: 1px solid black;
+  padding: 10px;
+}
+
+div.pgcalendar div.header img
+{
+  margin: 0px 10px 5px 0px;
+}
+
+div.pgcalendar div.header h1
+{
+  margin: 0px 0px 5px 0px;
+}
+
+div.pgcalendar div.content
+{
+  border: 1px solid black;
+  padding: 10px;
+}
+
+div.pgcalendar table
+{
+  width: 100%;
+}
+
+div.pgcalendar td.description
+{
+  vertical-align: top;
+}
+
+div.pgcalendar td.information
+{
+  padding-left: 20px;
+  width: 300px;
+  vertical-align: top;
+}
+
+/* List block */
+
+div.pgcalendar dl
+{
+  list-style-type: none;
+  margin: 0px;
+}
+
+
+div.pgcalendar dl dt
+{
+  font-weight: bold;
+}
+
+
+div.pgcalendar dl dd
+{
+  margin: 0px 0px 4px 10px;
+}
+

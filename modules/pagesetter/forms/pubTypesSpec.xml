@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+
+<components>
+
+ <component name="publicationTypes" kind="table" title="_PGPUBLICATIONTYPES">
+  <fields>
+    <field name="id"          title="_PGID"           kind="input" type="int"    readonly="true"/>
+    <field name="title"       title="_PGPUBTYPETITLE" kind="input" type="string" mandatory="true"/>
+    <field name="description" title="_PGDESCRIPTION"  kind="input" type="string"/>
+    <field name="created"     title="_PGCREATEDDATE"  kind="input" type="date"    readonly="yes"/>
+    <field name="author"      title="_PGPUBLISHER"    kind="input" type="string"  readonly="yes"/>
+  </fields>
+  <actions>
+    <action name="new"      kind="submit" title="_PGNEWPUBLICATIONTYPE"/>
+    <action name="edit"     kind="submit" title="_PGEDIT"/>
+    <action name="newpub"   kind="submit" title="_PGNEWPUBINSTANCE"/>
+    <action name="listpub"  kind="submit" title="_PGPUBLIST"/>
+  </actions>
+  <rowOperations insert="no" deleteConfirm="_PGCONFIRMPUBTYPEDELETE"/>
+ </component>
+
+</components>

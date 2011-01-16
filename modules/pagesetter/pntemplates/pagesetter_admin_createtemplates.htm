@@ -1,0 +1,53 @@
+<!--[*  $Id: pagesetter_admin_createtemplates.htm,v 1.3 2006/03/14 01:30:40 pndrak Exp $  *]-->
+<!--[pagesetter_adminmenu]-->
+
+<div class="pn-title"><!--[pnml name="_PGCREATETEMPLATES"]--></div>
+<p>
+
+<form action="index.php" method="post">
+  <input type="hidden" name="module" value="pagesetter">
+	<input type="hidden" name="type" value="admin">
+	<input type="hidden" name="func" value="do_createtemplates">
+
+  <div class="guppy">
+    <table class="component">
+      <tr>
+        <td>
+          <table width="100%" class="grid">
+            <tr>
+              <th>
+                <!--[pnml name="_PGPUBTYPETITLE"]--> 
+              </th>
+              <!--[foreach item=format from=$formats]-->
+              <th>
+                <!--[$format]-->
+              </th>
+              <!--[/foreach]-->
+            </tr>
+
+            <!--[foreach item=template from=$templates]-->
+            <tr>
+              <td>
+                <!--[$template.name]-->
+              </td>
+              <!--[foreach item=format from=$formats]-->
+              <td align="center">
+                <!--[if $template.$format]-->
+                <input type="checkbox" checked="checked" disabled="disabled" />
+                <!--[else]-->
+                <input type="checkbox" name="createme[]" id="createme[]" value="<!--[$template.id]-->.<!--[$format]-->"/>
+                <!--[/if]-->
+              </td>
+              <!--[/foreach]-->
+            </tr>
+            <!--[/foreach]-->
+          </table>
+        </td>
+      </tr>
+    </table>
+    <br />
+    <input type="submit">
+  </div>
+</form>
+
+<p><a href="<!--[pnmodurl modname="pagesetter" type="admin"]-->"><!--[pnml name="_PGBACKTOADMIN"]--></a></p>

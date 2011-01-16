@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+
+<layout>
+
+  <row>
+    <component name="publicationType">
+      <layout>
+        <row><field name="author"/><field name="created"/></row>
+        <row><field name="title" initialFocus="true"/><field name="filename"/></row>
+        <row><title colspan="2"/><field name="formname"/></row>
+        <row><field name="description" width="400" colspan="3"/></row>
+        <row><field name="enableHooks"             colspan="3"/></row>
+        <row><field name="workflow"                colspan="3"/></row>
+        <row><field name="enableRevisions"         colspan="3"/></row>
+        <row><field name="enableEditOwn"           colspan="3"/></row>
+        <row><field name="enableTopicAccess"       colspan="3"/></row>
+        <row>
+          <island title="_PGLISTSETUP" colspan="4">
+            <row><field name="listCount"/></row>
+            <row><field name="sortField1"/><field name="sortDesc1"/></row>
+            <row><field name="sortField2"/><field name="sortDesc2"/></row>
+            <row><field name="sortField3"/><field name="sortDesc3"/></row>
+            <row><field name="defaultFilter"/></row>
+          </island>
+        </row>
+        <row>
+          <island title="_PGFOLDERSETUP" colspan="4">
+            <row><field name="defaultFolder"/><field name="defaultFolderTopic"/></row>
+            <row><field name="defaultSubFolder" width="300" colspan="3"/></row>
+          </island>
+        </row>
+      </layout>
+    </component>
+  </row>
+
+  <row>
+    <component name="publicationFields">
+      <columns>
+        <field name="name"         width="65"/>
+        <field name="title"        width="65"/>
+        <field name="description"  width="250"/>
+        <field name="type"         width="100"/>
+        <field name="isTitle"      width="60"/>
+        <field name="isMandatory"  width="60"/>
+        <field name="isSearchable" width="60"/>
+        <field name="isPageable"   width="60"/>
+      </columns>
+            <buttonsBottom>
+        <button name="commit"/>
+        <button name="cancel"/>
+      </buttonsBottom>
+    </component>
+  </row>
+
+  <row>
+    <text>$_PGPUBTYPEEDITCOLINFO$</text>
+  </row>
+
+</layout>

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+"http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd">
+<chapter id="chap_introduction">
+  <!-- $Id: Workflow_PagesetterWorkflowStructure.xml,v 1.1 2004/12/08 00:29:30 jornlind Exp $ -->
+
+  <title>Pagesetter XML Workflow Structure</title>
+
+  <section id="wfstrucstart">
+    <title>Pagesetter XML Workflow Structure</title>
+
+    <para>This section describes the XML elements used in a workflow
+    definition. This definition will reside in an XML file in the
+    workflows/custom directory.</para>
+  </section>
+
+  <section>
+    <title>Title</title>
+
+    <para>A short title for the workflow. This will be used in drop-down
+    selection boxes. It will probably be a capitalized version of the xml
+    filename.</para>
+  </section>
+
+  <section>
+    <title>Description</title>
+
+    <para>A detailed description of what the workflow is and what it does. It
+    should explain under what circumstances someone would want to use this
+    workflow.</para>
+  </section>
+
+  <section>
+    <title>Configuration Settings</title>
+
+    <para>Any information required within this workflow. You will need to
+    define this information for each publication type that uses this workflow.
+    Examples of configuration settings are notification email addresses. The
+    configuration tag includes any number of setting tags. The setting tags
+    are defined with an id, title, type, width and height. The possible values
+    for the type are "bool", "int", "real", "string", "text" (long string),
+    "html" (long string with editor), "date", and "time".</para>
+  </section>
+
+  <section>
+    <title>States</title>
+
+    <para>A list of all possible states in this workflow. A state is defined
+    with an id attribute and the following children. All workflows should at
+    least include an 'approved' state with that exact ID.<variablelist>
+        <varlistentry>
+          <term>Title</term>
+
+          <listitem>
+            <para>A short title for the state (ex: Waiting, Approved). It is
+            usually a capitalized version of the state id.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Description</term>
+
+          <listitem>
+            <para>A sentence description of what action was taken to get to
+            this state and what action is being waited on (ex: Content has
+            been submitted and is waiting for acceptance).</para>
+          </listitem>
+        </varlistentry>
+      </variablelist></para>
+
+    <para></para>
+  </section>
+
+  <section>
+    <title>Actions</title>
+
+    <para>A list of all actions that are possible in each state of the
+    workflow. An action is defined with an id attribute and the following
+    children.<variablelist>
+        <varlistentry>
+          <term>Title</term>
+
+          <listitem>
+            <para>This title will be used on buttons or in action drop-down
+            lists. It is usually a capitalized version of the action
+            id.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Description</term>
+
+          <listitem>
+            <para>The action description. This will be available to the user
+            as a title (mouse over) text on the action button in the
+            publication edit window.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Permission</term>
+
+          <listitem>
+            <para>A boolean expression (predicate) that must evaluate to true
+            in order to enable the action. You can refer to the lowest
+            Pagesetter permission that is required in order to perform the
+            action ("author", "editor", or "moderator"), and you can refer to
+            the predicate "owner" which is true or false depending on whether
+            or not the current user owns the pubication. A simple permission
+            could be &lt;permission&gt;editor&lt;/permission&gt; whereas a
+            more advanced one could be &lt;permission&gt;(author and owner) or
+            editor&lt;/permission&gt;. The last one is used in the MyWiki
+            workflow and states that you must either have at least "editor"
+            access or have author access and be the owner of the publication.
+            It is possible to combine permission requirements with the usual
+            boolean connectors "and" and "or", use "!" for negation, and group
+            expressions with parenthetes.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>State</term>
+
+          <listitem>
+            <para>This action is only available when a publication is in this
+            state. This is the state id, not the state name.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Operation</term>
+
+          <listitem>
+            <para>This is a list of the Operations that need to take place in
+            order to fulfill the requirements of this Action. Parameters can
+            be passed to the operation as attributes of the operation's xml
+            element.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Online</term>
+
+          <listitem>
+            <para>The online element is used to change the online flag in the
+            document that was edited. It does not affect any new versions of
+            the document that are created due to the editing process. To
+            affect a new version, use the online="1" attribute when calling
+            the operation that creates the new version.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist></para>
+
+    <para></para>
+  </section>
+</chapter>

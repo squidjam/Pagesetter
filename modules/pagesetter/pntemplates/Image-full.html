@@ -1,0 +1,16 @@
+<h1><!--[$title]--></h1>
+<a href="<!--[$image.url]-->"><img src="<!--[$image.url]-->" alt="<!--[$core.title]-->" style="float: right;" width="300px"/></a>
+
+<div class="pn-sub"><!--[pnml name=_PGFTCREATEDDATE]--> <!--[$core.created|date_format:"%d/%m/%Y"]--> <!--[pnml name=_BY]--> <!--[$core.author]-->.<br/>
+<!--[pnml name=_PGFTMODIFIEDDATE]--> <!--[$core.lastUpdated|date_format:"%d/%m/%Y"]-->.</div><br/>
+
+<p><em><!--[$description]--></em></p>
+
+<p><a href="<!--[$image.downloadUrl]-->"><!--[pnml name=_FILEUPLOADDOWNLOADDOC]--></a></p>
+
+<p>
+  <!--[pnml name=_FILEUPLOADHITS]-->: <!--[nocache]--><!--[$core.hitCount]--><!--[/nocache]--> 
+  <br/><br/>
+  <!--[nocache]--><!--[$core.editInfo]--><!--[/nocache]-->
+</p>
+

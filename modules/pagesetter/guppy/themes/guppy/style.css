@@ -1,0 +1,442 @@
+/* Abriviated class names used:
+   .tl  title
+   .b   bool
+   .o   radio
+   .i   int
+   .r   real
+   .d   date
+   .t   time
+   .dtd datetime-day
+   .dth datetime-hour
+   .dtm datetime-min
+   .s   string
+   .m   image
+   .upl upload
+   .em  email
+   .url hyperlink
+
+   .ro    read-only
+   .mdt   mandatory (with data)
+   .mde   mandatory (empty)
+*/
+
+
+/*= General =================================================================*/
+
+.guppy .clickable
+{
+  cursor: pointer;  /* Correct name */
+  cursor: hand;     /* IE name */
+}
+
+
+.guppy span.clickable
+{
+  text-decoration: underline;
+}
+
+
+/*= Field settings ==========================================================*/
+
+.guppy span.tl
+{
+}
+
+.guppy input.b
+{
+  border: none;
+}
+
+.guppy input.i,
+.guppy input.r
+{
+  text-align: right;
+}
+
+.guppy input.dth,
+.guppy input.dtm
+{
+  text-align: right;
+}
+
+.guppy input.ro
+{
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #999;
+}
+
+
+.guppy input.mde
+{
+  background-image: url("mandatory.gif");
+  background-repeat: no-repeat;
+  background-position: center right;
+}
+
+
+.guppy input.mdt
+{
+}
+
+
+.guppy span.action
+{
+  margin: 2px 6px;
+}
+
+
+.guppy button
+{
+  font: verdana, sans-serif;
+  font-size: 8pt;
+  padding: 0px;
+}
+
+
+.guppy div.card table.guppy-pane div.guppy-htmlarea
+{
+  border: #999;
+}
+
+.guppy div.card table.guppy-pane div.guppy-htmlarea td
+{
+  padding: 0px;
+}
+
+.guppy div.card table.guppy-pane div.guppy-htmlarea div div
+{
+  border: none;
+}
+
+.guppy div.card table.guppy-pane div.guppy-htmlarea div.toolbar
+{
+  border-bottom: 1px solid #999;
+}
+
+
+/*= Error messages ==========================================================*/
+
+.guppy div.guppy-error
+{
+  width: 75%;
+  border: 2px solid #C33;
+  padding: 0px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.guppy div.guppy-error ul
+{
+  margin: 10px;
+}
+
+
+/*= Component settings ======================================================*/
+
+.guppy
+{
+  width: 100%;
+  padding: 0px;
+}
+
+.guppy table.guppy-pane
+{
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+
+.guppy div.component
+{
+  margin-bottom: 10px;
+}
+
+
+.guppy table.component td
+{
+  vertical-align: top;
+}
+
+
+.guppy div.component div.header
+{
+  border: 1px solid #666;
+  xborder-top: 1px solid #666;
+  background-color: #B0B0C0;
+  color: #000;
+  font-weight: bold;
+  padding: 0px;
+}
+
+
+  /* Component header (tab) */
+
+.guppy table.ctab
+{
+  width: 100%;
+}
+
+.guppy table.ctab
+{
+  border-collapse: collapse;
+  padding: 0;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.guppy table.ctab td
+{
+  padding: 2px 2px;
+}
+
+.guppy td.ctab1
+{
+  width: 5px;
+}
+
+  /* Body/content */
+
+.guppy div.content
+{
+  border-right: 1px solid #666;
+  border-left: 1px solid #666;
+  border-bottom: 1px solid #666;
+  background-color: #EEE;
+  padding: 4px;
+}
+
+  /* overwrite above div.content settings */
+.guppy div.grid
+{
+  border: none;
+  padding: 0px;
+}
+
+.guppy div.card table.guppy-pane td
+{
+  padding: 2px;
+}
+
+  /* Buttons */
+
+.guppy div.buttons select
+{
+  font: arial, sans-serif;
+  font-size: 9pt;
+}
+
+
+.guppy div.buttons
+{
+  border-left: 1px solid #666;
+  border-right: 1px solid #666;
+  border-bottom: 1px solid #666;
+  xborder: 1px solid #666;
+  background-color: #E1E1E1;
+  padding: 2px 0px 2px 5px;
+}
+
+
+.guppy div.buttons td
+{
+  vertical-align: baseline;
+}
+
+  /* Islands */
+
+.guppy fieldset
+{
+  margin-top: 10px;
+}
+
+.guppy legend
+{
+  color: #000;
+  font-weight: bold;
+}
+
+
+/*= Grid settings ===========================================================*/
+
+
+.guppy table.grid
+{
+  border-collapse: collapse;
+  border-left: 1px solid #666;
+  border-right: 1px solid #666;
+  border-bottom: 1px solid #666;
+  width: 100%;
+}
+
+
+.guppy .grid th
+{
+  border-bottom: 1px solid #666;
+  border-left: 1px solid #666;
+  border-right: 1px solid #666;
+  font: verdana, sans-serif;
+  font-size: 8pt;
+  background-color: #B0B0C0;
+  padding: 1px 3px;
+}
+
+
+  /* (must supply div.component to override earlier 'td' setting) */
+.guppy div.component .grid td
+{
+  border-top: 1px solid #999;
+  border-left: 1px solid #999;
+  border-right: 1px solid #999;
+  padding: 0px 2px;
+  vertical-align: top;
+  background-color: white;
+}
+
+
+.guppy .grid input
+{
+  border: 1px solid red; /* Bug in IE makes this necessary to enforce the "none" below ... */
+  border: none;
+  xbackground-color: white;
+}
+
+
+.guppy .grid button
+{
+  xvertical-align: middle;
+  font-size: 80%;
+  margin: 0px;
+}
+
+
+.guppy .grid span.action
+{
+  white-space: nowrap;
+}
+
+
+/*= Tree component ==========================================================*/
+
+div.tree-component
+{
+  margin: 6px;
+}
+
+table.tree
+{
+  margin: 0px;
+}
+
+  /* (must supply table.component to override earlier 'td' setting) */
+table.component table.tree td
+{
+  padding: 0px 4px ;
+}
+
+
+table.tree td.selected
+{
+  background-color: #E0E0E0;
+}
+
+/*= Menu settings ===========================================================*/
+
+.guppy div.guppy-toolbar
+{
+  border-collapse: collapse;
+  border: 1px solid black;
+  background-color: #B0B0C0;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+
+.guppy div.guppy-toolbar,
+.guppy div.guppy-toolbar td,
+{
+  padding: 0px;
+}
+
+
+.guppy .guppy-toolbar table.menu td
+{
+  padding: 2px 5px;
+  cursor: pointer;  /* Correct name */
+  cursor: hand;     /* IE name */
+}
+
+.guppy .guppy-toolbar table.menu td.normal
+{
+}
+
+
+.guppy .guppy-toolbar table.menu td.active
+{
+  color: white;
+  background-color: #8080A0;
+}
+
+
+/*=[ Menu handling ]==========================================================*/
+
+  /* Surrounding DIV tag */
+div.psmenu {
+  position: absolute;
+  visibility: hidden;
+  font: arial, sans-serif;
+  font-size: 10pt;
+
+  border-top:       1px solid #D0D0D0;
+  border-left:      1px solid #D0D0D0;
+  border-right:     1px solid black;
+  border-bottom:    1px solid black;
+  border-collapse:  collapse;
+}
+
+
+  /* Make sure there's no spacing between the rows in the menu (use padding instead) */
+div.psmenu table,
+div.psmenu tr,
+div.psmenu td {
+  border-collapse: collapse;
+  border: none;
+  margin: none;
+}
+
+  /* Menu item row (off) */
+.psmenu-menuItem {
+  cursor: pointer;
+  cursor: hand;
+}
+
+  /* Menu item row (on) 
+     - we could colorize the whole row here, but the icon graphics is not good on blue background */
+.psmenu-menuItemOn {
+  cursor: pointer;
+  cursor: hand;
+}
+
+
+  /* Some space around the icon */
+.guppy table.component td.psmenu-icon {
+  __padding: 2px 2px;
+  vertical-align: middle;
+  text-align: center;
+}
+
+  /* Colorize menu items */
+.psmenu-menuItemOn td.psmenu-title {
+  background-color: #8080A0;
+  color: white;
+  white-space: nowrap;
+}
+
+  /* Some space around the menu item title */
+div.psmenu td.psmenu-title {
+  padding: 2px 5px;
+  white-space: nowrap;
+}
+
+/*= Context menu settings ===================================================*/
+

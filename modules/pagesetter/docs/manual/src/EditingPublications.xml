@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+"http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd"
+[
+<!ENTITY mdash "&#x2014;">
+<!ENTITY hellip "&#x2026;">
+]>
+
+<chapter id="chap_editingpubs">
+  <!-- $Id: EditingPublications.xml,v 1.5 2005/01/15 17:10:58 jornlind Exp $ -->
+
+  <title>Editing Publications</title>
+
+  <section id="editpubsintro">
+    <title>Editing Publications</title>
+
+    <para>Instances of a publication type, for instance News items as shown in the
+    tutorial, are created and edited in the Edit window. This window consists
+    of two main parts&mdash;the publication specific fields, as defined by the
+    system administrator, and the meta data defined by Pagesetter. The
+    publication fields part looks somewhat like this:</para>
+
+    <figure>
+      <title>Editing publications - user data</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="img/pubEditData.jpg" />
+        </imageobject>
+      </mediaobject>
+    </figure>
+
+    <para>What you see is three different fields defined by the administrator
+    of the web site. It is up to you to write whatever you find fitting for
+    your kind of publication&mdash;in this case a News item describing some of
+    the pleasantries of hiking Bornholm.</para>
+
+    <para>The meta data fields looks like below.</para>
+    
+    <figure>
+      <title>Editing publications - meta data</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="img/pubEditMetaData.jpg" />
+        </imageobject>
+      </mediaobject>
+    </figure>
+
+
+  <section id="editpubsinformation">
+    <title>Publish information</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>Approval state</term>
+
+        <listitem>
+          The approval state is an information about where the
+          publication is located in the associated workflow. The possible
+          states depends on the workflow setup, but the standard workflows
+          uses states like "Preview" and "Approved" to denote the fact that
+          the publication is ready for preview (by an editor) or actually
+          approved by the moderator. The approval state can only be changed by
+          one of the workflow actions available at the bottom of the
+          page.
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Online setting</term>
+
+        <listitem>
+          This field indicates whether the publication is online or not,
+          and thereby if it is visible on any of the publication lists or can
+          be found by searching.
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Publish Date</term>
+
+        <listitem>
+          <para>This setting specifies the first day a publication goes
+          online. Normally this value is left empty, but you can get Pagesetter
+          to insert the current date for you. This feature is enabled in the
+          general configuration section ("Auto fill publish date").</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Expire Date</term>
+
+        <listitem>
+          <para>This setting specifies the day a publication goes offline (it
+          will not be available at the specified day).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </section>
+
+  <section id="editpubslocation">
+    <title>Location</title>
+
+    <para>These settings categorizes the publication and defines where to find
+    it.<variablelist>
+        <varlistentry>
+          <term>Topic</term>
+
+          <listitem>
+            <para>The PostNuke topic in which the publication belongs.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Show in lists</term>
+
+          <listitem>
+            <para>Specifies whether or not the publication should be shown in
+            the general list of this publication type. This can be usefull if
+            you want some publications to be accessible through a menu or
+            handcrafted URL only.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Language</term>
+
+          <listitem>
+            <para>The language in which the publication is written. The
+            language influences when the publication shows up in the various
+            lists and menus. The language must match the user's language in
+            order to show up&mdash;or be set to "All".</para>
+          </listitem>
+        </varlistentry>
+      </variablelist></para>
+  </section>
+
+  <section id="editpubsauthor">
+    <title>Author Information</title>
+
+    <para>These settings holds who has written the publication and
+    when.<variablelist>
+        <varlistentry>
+          <term>Publisher</term>
+
+          <listitem>
+            <para>The PostNuke user name of the user who created the
+            publication. This name cannot be changed.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Author</term>
+
+          <listitem>
+            <para>The name of the publication author. The creator's real name
+            is inserted here - but may at any later time be changed to
+            something else.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Created</term>
+
+          <listitem>
+            <para>The date of creation.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Last updated</term>
+
+          <listitem>
+            <para>Last updated date.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist></para>
+  </section>
+
+  <section id="editpubssetting">
+    <title>Setting Editor Defaults</title>
+
+    <para>It is possible to assign defaults for new publications via the URL
+    as shown in the <link linkend="chap_linking">linking
+    chapter</link>.</para>
+  </section>
+
+  </section>
+</chapter>

@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+
+<components>
+
+<component name="pubListHeader" kind="card" title="_PGPUBLISTHEADER">
+  <fields>
+    <field name="tid"     title="_PGPUBTYPE"  type="select" options="pubTypes" mandatory="yes"/>
+    <field name="title"   title="_PGFTPUBTITLE" type="string"/>
+    <field name="author"  title="_PGAUTHOR"     type="string"/>
+    <field name="topic"   title="_PGFTTOPIC"    type="select" options="topics"/>
+  </fields>
+  <actions>
+    <action name="update" kind="submit" title="_PGBTUPDATE"/>
+    <action name="clear"  kind="submit" title="_PGBTCLEAR"/>
+    <action name="cancel" kind="submit" title="_PGBTCANCEL"/>
+  </actions>
+</component>
+
+ <component name="pubList" kind="table" title="_PGPUBLIST" clickOnHeaders="true">
+  <fields>
+    <field name="title"         title="_PGFTPUBTITLE"      kind="input" type="string" readonly="yes"/>
+    <field name="approvalState" title="_PGAPPROVALSTATE"   kind="input" type="string" readonly="yes"/>
+    <field name="author"        title="_PGAUTHOR"          kind="input" type="string" readonly="yes"/>
+    <field name="topic"         title="_PGFTTOPIC"         kind="input" type="string" readonly="yes"/>
+    <field name="id"            title="_PGID"              kind="input" type="int"    readonly="yes"/>
+  </fields>
+  <actions>
+    <action name="insert" kind="submit" title="_PGBTINSERT"/>
+    <action name="next" kind="submit" title="_PGNEXT"/>
+    <action name="prev" kind="submit" title="_PGPREV"/>
+  </actions>
+  <rowOperations insert="no" delete="no"/>
+ </component>
+
+</components>

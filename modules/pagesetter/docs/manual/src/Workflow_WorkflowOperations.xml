@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+"http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd">
+<chapter id="chap_introduction">
+  <!-- $Id: Workflow_WorkflowOperations.xml,v 1.1 2004/12/08 00:29:30 jornlind Exp $ -->
+
+  <title>Workflow Operations</title>
+
+  <section id="wfopintro">
+    <title>Workflow Operations</title>
+
+    <para>Workflow operations are the technical bits of the workflow actions.
+    In the workflow specification file actions refers to various opearations
+    to get things done. An action like "approve" may for instance refer to the
+    operations <emphasis>createNewRevision</emphasis> and
+    <emphasis>mailToAuthor</emphasis>. Each of these individual operations
+    matches precisely one PHP file in the operations directory. The PHP
+    operation file is included and after that an interface function in that
+    file is called by Pagesetter. If the operation is named
+    <emphasis>createNewRevision</emphasis> then the PHP file must be named the
+    same&mdash;createNewRevision.php and contain the function
+    pagesetter_operation_createNewRevision.</para>
+
+    <para>The interface function is passed a reference to the publication user
+    data, a reference to some core data, and the arguments (attributes) of the
+    XML operation element in the workflow specification.</para>
+
+    <para>As an example we can take a look at the
+    <emphasis>mailNewContentMessage</emphasis> operation: <programlisting>function pagesetter_operation_mailNewContentMessage(&amp;$publication, $core, $args)
+{
+    // Standard PN-API call that creates a URL to the publication
+  $editURL = pnModUrl('pagesetter', 'user', 'pubedit',
+                      array('tid'    =&gt; $core['tid'],
+                            'id'     =&gt; $core['id'],
+                            'action' =&gt; 'edit'));
+
+    // Similar URL creation
+  $viewURL = pnModUrl('pagesetter', 'user', 'viewpub',
+                      array('tid'    =&gt; $core['tid'],
+                            'pid'    =&gt; $core['pid'],
+                            'id'     =&gt; $core['id']));
+
+    // Select the arguments specified in the operation tag:
+    // &lt;operation message="..." subject="..." recipient="..."&gt;mailNewContentMessage&lt;/operation&gt;
+  $message = $args['MESSAGE'] . "\n\nEdit: $editURL\nView: $viewURL";
+  $subject = $args['SUBJECT'];
+  $mailTo  = $args['RECIPIENT'];
+
+  if (!empty($mailTo))
+  {
+    $ok = mail($mailTo, $subject, $message);
+
+    if (!$ok)
+      return pagesetterWarningWorkflow("Mailing new content to '$mailTo' failed.");
+  }
+
+  return pagesetterWFOperationOk;
+}</programlisting></para>
+  </section>
+
+  <section id="wfoppub">
+    <title>The publication Object</title>
+
+    <para>The passed publication object contains the same data as the normal
+    templates, except that core values are referred to as core_xxx instead of
+    core.xxx.</para>
+  </section>
+
+  <section id="wfopcore">
+    <title>The core Object</title>
+
+    <para>The core object is not exactly the same as the core object used in
+    the templates. For workflows it only contains the tid, pid, id, and
+    creatorId values.</para>
+  </section>
+
+  <section id="wfopreturn">
+    <title>Return Values</title>
+
+    <para>Workflow operations must return one of three values used to inform
+    Pagesetter of the result:<variablelist>
+        <varlistentry>
+          <term>pagesetterWFOperationOk</term>
+
+          <listitem>
+            <para>Everything went okay, continue with the workflow
+            action.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>pagesetterWFOperationWarning</term>
+
+          <listitem>
+            <para>Something went wrong, but it was not critial, continue with
+            the workflow action. Could for instance be that a mail was not
+            sent.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>pagesetterWFOperationError</term>
+
+          <listitem>
+            <para>Something went so wrong that the workflow action should be
+            aborted.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist></para>
+
+    <para>In addition to this the operation can call pagesetterWarningWorkflow
+    as illustrated in the mail example above. This function sets a warning
+    message and returns pagesetterWFOperationWarning. The same goes for a call
+    to pagesetterErrorAPI which sets an error message.</para>
+  </section>
+</chapter>

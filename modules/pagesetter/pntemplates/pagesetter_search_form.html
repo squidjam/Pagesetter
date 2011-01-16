@@ -1,0 +1,20 @@
+<!--[* $Id: pagesetter_search_form.html,v 1.1 2005/09/29 21:40:55 jornlind Exp $ *]-->
+<!--[pnthemegetvar name=bgcolor2 assign=bgcolor2]-->
+
+<input type="hidden" name="pagesetter_startnum" value="0">
+<div style="padding-left: 3px; background-color: <!--[$bgcolor2]-->;">
+    <input type="checkbox" name="active_pagesetter" id="active_pagesetter" value="1" checked="checked">&nbsp;<label for="active_pagesetter"><!--[ pnml name='_PGSEARCH']--></label>
+</div>
+<div style="clear:both; padding: 4px;">
+   <div style="padding-top: 2px; float: left; width: 20%; text-align: right;">
+      <!--[pnml name='_PGSEARCHPUBTYPES']-->:    
+   </div>    
+   <div style="float: left; width: 70%; text-align: left;">
+      <select name="pagesetter_pubtypes[]" id="pagesetter_pubtypes[]" multiple="multiple" size="4">   
+      <!--[ foreach item=pubtype from=$pubtypes ]-->
+         <option value="<!--[$pubtype.value]-->" selected="selected"><!--[$pubtype.title]--></option>
+      <!--[ /foreach ]-->        
+      </select>
+   </div>
+</div>
+<div style="clear:both;"> </div>

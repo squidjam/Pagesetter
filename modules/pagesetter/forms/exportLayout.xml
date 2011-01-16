@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+
+<layout>
+
+  <row>
+    <component name="export">
+      <layout>
+        <row><field name="tid" initialFocus="true"/></row>
+        <!--
+        <row><field name="includeCategories"/></row>
+        <row><field name="exportSchemaOnly"/></row>
+        -->
+      </layout>
+      <buttonsBottom>
+        <button name="export"/>
+        <button name="cancel"/>
+      </buttonsBottom>
+    </component>
+  </row>
+
+</layout>

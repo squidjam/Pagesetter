@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+"http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd"
+[
+<!ENTITY mdash "&#x2014;">
+<!ENTITY hellip "&#x2026;">
+]>
+
+<chapter id="chap_customisation">
+  <!-- $Id: Customisation.xml,v 1.8 2005/04/12 15:25:57 jornlind Exp $ -->
+
+  <title>Customisation</title>
+
+  <section id="custcss">
+    <title>Style Sheets</title>
+
+    <para>The Guppy input forms CSS files are located in
+    <filename>pagesetter/guppy/themes/YourThemeName/style.css</filename>. If you
+    do not write your own then the file
+    <filename>pagesetter/guppy/themes/guppy/style.css</filename> will be used.</para>
+  </section>
+
+  <section id="custinputforms">
+    <title>Input Forms Layout</title>
+
+    <para>Pagesetter does not only let you define your own publication types
+    and their presentation. It also lets you define both workflows, as
+    described in the previous chapter, as well as the input forms used for
+    editing your publications.</para>
+    
+    <para>Different input form layouts can in fact be associated with 
+    different workflow states. To do so you must create an XML
+    layout file with a name related to the workflow name and place it in a
+    publication type specific directory.</para>
+    
+    <para>The filename must be made up like
+    <filename>&lt;StateName&gt;/FormLayout.xml</filename> and be placed in 
+    a directory named <filename>publications/&lt;PubTypeFormName&gt;</filename>. 
+    The "PubTypeFormName" is the "Form name" field of the publication type setup.
+    The filename used for a new instance of a publication
+    (yet without a workflow state associated with it) is 
+    <filename>newFormLayout.xml</filename>.</para>
+    
+    <para>So to specify the form layout for the "waiting" state of a "PN-News"
+    publication you would have to create a file named
+    <filename>publications/PN-News/waitingFormLayout.xml</filename>. 
+    The structure of the layout
+    XML file is described in the Guppy Development manual located in the same
+    directory as this manual. The Guppy manual is meant to be a
+    complete Guppy manual, but for customizing input forms layout, you only need 
+    to read the chapter on "Form
+    Layout"&mdash;the rest can be ignored.</para>
+    
+    <para>In the examples directory you can
+    find a <filename>newFormLayout.xml</filename> example file to use for 
+    standard PN-News items.
+    Just copy it to <filename>publications/PN-News</filename> (you probably 
+    need to create the layout directory yourself).</para>
+  </section>
+
+  <section id="customplugin">
+    <title>Input plugins</title>
+
+    <para>The Guppy forms system allows the administrator to develop new simple types of
+    inputs. Currently the "datetime", "e-mail", and "url" inputs are made this way.
+    See the Guppy manual for further information.</para>
+  </section>
+
+  <section id="custhtmlarea">
+    <title>HTMLArea Editor</title>
+
+    <para>The editor can be customized with a callback JavaScript file placed
+    in the publication type specific directory. The filename must be named
+    <filename>editorsetup.js</filename> and be placed in a directory named
+    <filename>publications/&lt;PubTypeFormName&gt;</filename>. For instance
+    <filename>publications/PN-News/editorsetup.js</filename>.</para>
+    
+    <para>In the callback file you can place two
+    callback functions named <function>HTMLAreaConfigSetup</function> and 
+    <function>HTMLAreaEditorSetup</function>. The
+    first one will be called when the configuration object has been loaded by
+    Pagesetter (and passed the config object). The second one will be called
+    when the editor object has been created (and passed that object).</para>
+    
+    <example>
+    <title>Adding a CSS class selector to HTMLArea's right-click
+    context menu.</title>    
+    <programlisting>  // Load various plugins on load of the setup script
+HTMLArea.loadPlugin("ContextMenu");
+HTMLArea.loadPlugin("CSS");
+
+
+  // This function is called (if it exists) after the editor 
+  // configuration is created, but before the editor 
+  // itself is created
+function HTMLAreaConfigSetup(config)
+{
+    // Here you can call config.registerButton, change the toolbar, 
+    // and much more ... see HTMLArea's own documentation
+}
+
+
+  // This is called with the editor right after 
+  // it has been created
+function HTMLAreaEditorSetup(editor)
+{
+    // Register the plugins
+  editor.registerPlugin(ContextMenu);
+  editor.registerPlugin(CSS, { combos: [{label:"CSS", 
+                               options:{a:"classA", b:"classB"}}] } );
+}</programlisting>
+</example>
+
+  </section>
+
+  <section>
+     <title>Internal templates</title>
+
+     <para>Some of the internal windows are rendered via pnRender&mdash;especially the
+     error messages that are displayed via <filename>pagesetter_error.html</filename>.
+     This means you can redesign the layout of the error messages.</para>
+  </section>
+
+  <section id="custpostsubmit">
+    <title>Post Submit Handler</title>
+
+    <para>In some cases it might be usefull to modify the data submitted after
+    editing a publication. This can be accomplished with the addition of a
+    single extra custom workflow operation. Please check the workflow manual
+    for further instructions (it is not possible to modify/add data before
+    opening the editor).</para>
+  </section>
+</chapter>

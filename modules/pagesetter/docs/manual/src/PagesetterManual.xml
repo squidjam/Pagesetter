@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+"http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd"
+[
+<!ENTITY mdash "&#151;">
+<!ENTITY copy "&#169;">
+<!ENTITY nbsp "&#160;">
+]>
+
+<book lang="en-US">
+  <!-- $Id: PagesetterManual.xml,v 1.10 2006/05/18 20:39:04 jornlind Exp $ -->
+
+  <title>Pagesetter 6.3 manual</title>
+
+  <bookinfo>
+    <authorgroup>
+      <author>
+        <firstname>Jørn</firstname>
+        <surname>Wildt</surname>
+      </author>
+
+      <othercredit>
+        <firstname>Axel</firstname>
+        <surname>Guckelsberger</surname>
+        <contrib>DocBook conversion</contrib>
+      </othercredit>
+    </authorgroup>
+
+    <abstract>
+      <para>This manual documents how the web publishing tool Pagesetter for PostNuke works. Pagesetter is a publishing
+      module that allows the PostNuke users to create web pages from structured data, with the data structure
+      and output templates defined by the PostNuke administrator.</para>
+    </abstract>
+
+    <copyright>
+      <year>2004</year>
+      <holder>The Pagesetter Development Team</holder>
+    </copyright>
+
+    <releaseinfo>Version 6.3-1</releaseinfo>
+
+    <date>$Date: 2006/05/18 20:39:04 $</date>
+
+    <legalnotice>
+      <para>Permission is granted to copy, distribute and/or modify this
+      document under the terms of the GNU Free Documentation License, Version
+      1.2 or any later version published by the Free Software Foundation, with
+      no Invariant Sections, no Front-Cover Texts and no Back-Cover Texts. A
+      copy of the license can be obtained from the <ulink
+      url="http://www.gnu.org/licenses/fdl.txt">Free Software
+      foundation</ulink></para>
+    </legalnotice>
+
+    <keywordset>
+      <keyword>Pagesetter</keyword>
+      <keyword>PostNuke</keyword>
+      <keyword>Publishing</keyword>
+    </keywordset>
+  </bookinfo>
+
+  <xi:include href="Introduction.xml"
+              xmlns:xi="http://www.w3.org/2003/XInclude" />
+
+  <xi:include href="Tutorial.xml" 
+              xmlns:xi="http://www.w3.org/2003/XInclude" />
+
+  <xi:include href="Permissions.xml"
+              xmlns:xi="http://www.w3.org/2003/XInclude" />
+
+  <xi:include href="EditingPublications.xml"
+              xmlns:xi="http://www.w3.org/2003/XInclude" />
+
+  <xi:include href="PublicationTypes.xml"
+              xmlns:xi="http://www.w3.org/2003/XInclude" />
+
+  <xi:include href="Linking.xml"
+              xmlns:xi="http://www.w3.org/2003/XInclude" />
+
+  <xi:include href="Templates.xml"
+              xmlns:xi="http://www.w3.org/2003/XInclude" />
+
+  <xi:include href="Relations.xml"
+              xmlns:xi="http://www.w3.org/2003/XInclude" />
+
+  <xi:include href="PostNukeFeatures.xml"
+              xmlns:xi="http://www.w3.org/2003/XInclude" />
+
+  <xi:include href="ExtraFeatures.xml"
+              xmlns:xi="http://www.w3.org/2003/XInclude" />
+
+  <xi:include href="ExtraTools.xml"
+              xmlns:xi="http://www.w3.org/2003/XInclude" />
+
+  <xi:include href="Workflow_Introduction.xml"
+              xmlns:xi="http://www.w3.org/2003/XInclude" />
+
+  <xi:include href="Customisation.xml"
+              xmlns:xi="http://www.w3.org/2003/XInclude" />
+
+
+  <part id="appendix">
+    <title>Appendix</title>
+
+    <xi:include href="UsefulHints.xml"
+                xmlns:xi="http://www.w3.org/2003/XInclude" />
+
+    <xi:include href="Credits.xml" xmlns:xi="http://www.w3.org/2003/XInclude" />
+
+    <xi:include href="GNUFreeDocumentationLicense.xml"
+                xmlns:xi="http://www.w3.org/2003/XInclude" />
+  </part>
+
+</book>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+"http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd"
+[
+<!ENTITY mdash "&#x2014;">
+<!ENTITY hellip "&#x2026;">
+]>
+
+<chapter id="chap_relations">
+  <!-- $Id: Relations.xml,v 1.5 2006/05/18 20:39:04 jornlind Exp $ -->
+
+  <title>Publication Relations</title>
+
+  <section id="relationsintro">
+    <para>In some cases you may want to relate different publications to each other. The simplest example
+    is to arrange songs in albums. In this case you would have one publication type
+    specifying albums and one publication type for the songs. Then you create a set of songs
+    and an album, and tell Pagesetter that these songs belong to that album. We call this for
+    parent-child relations. Parent-Child relations can also be used to describe employees relationships
+    to departments.</para>
+
+    <para>A more complex example is to arrange members in groups where each member can belong to more
+    than one group. We call this NxM relations (because N elements can be related to M other elements).</para>
+    
+    <para>For this purpose Pagesetter implements two different input field 
+    types: <emphasis>Publication</emphasis> and <emphasis>Relation</emphasis>. The first is an input field
+    for parent-child relations that allows you to select a single publication instance from a 
+    specific publication type, and then second NxM input allows you to select multiple instances.</para>
+  </section>
+  
+  <section id="relationspublication">
+  	<title>Parent-Child Relations&mdash;The Publication Field</title>
+  	<para>This is the simplest type. You just add a field of the type "publication" to your publication 
+  	type and then you tell pagesetter which publication type this field should point to.</para>
+  	
+  	<para>Let us use a company where every employee works in a specific department as an example. You will need 
+    two publication types: 
+  	One for the <emphasis>Department</emphasis>and one for the <emphasis>Employee</emphasis>. First add the publication type 
+  	<emphasis>department</emphasis>. Here you can add fields for name, address and so on. Then add the publication type 
+  	<emphasis>employee</emphasis>. Here you can add fields for name, telephone, email and so on. Add one field of the type
+  	<emphasis>Publication</emphasis>, call it <emphasis>department</emphasis>, and click on the button labeled "..." to edit
+  	the extra type information of this field. In this popup window you then select the publication type this field will relate to.
+  	(in this case <emphasis>Department</emphasis>).</para>
+  	
+  	<important>You have to select a publication type in the extra type information popup window, 
+    otherwise pagesetter will not now which 
+  	publications to list. Therefore it is best to create the publication type you like to relate to first.</important>
+
+    <para>The complete set of steps you need to go through are:</para>
+
+    <orderedlist>
+      <listitem>Create parent publication type A.</listitem>
+      <listitem>Create child publication type B.</listitem>
+      <listitem>Add a "Publication" field on the child publication type and connect it to the parent type.</listitem>
+    </orderedlist>
+  	
+  	<para>Having done this you can begin editing. First add a few departments. Then add some employees. You will see that they
+  	have a select-list where you can choose which department they work in.</para>
+  	
+  	<para>But how do you address these relations? The answer is simple: Everywhere pagesetter makes use of filters (see <xref linkend="linkingfiltering"/>),
+  	you can address your related publications via a filter expression. In this example you could use "department:eq:9" to filter all 
+  	employees related to the department with th publication type ID 9.</para>
+  </section>
+  
+  <section id="relationsrelation">
+  	<title>Relating to multiple publication instances</title>
+  	<para>This type of relationship is quite a bit more complex than the parent-child relations, so be prepared for
+    some more work when setting it up (in database terms, this
+  	is a <emphasis>NxM-relation</emphasis>, just in case someone is interested). 
+    Basically, you have to add a field of the type "Relation" 
+  	to both of the publication types involved. Then you have to tell pagesetter how the relationship is established
+    between these two.</para>
+  	
+  	<para>Take our previous company as an example. This company has grown a bit more complex
+    while we were discussing the Parent-Child relations : Due to an increase in departments, it has become 
+  	necessary to assign employees to multiple departments. So we must now improve the relationships we already have
+    setup for our company.</para>
+    
+    <para>In the <emphasis>Department</emphasis> publication type,
+    add a field named	"employees" of the type "Relation", but do not enter any extra type data yet. 
+    Now alter the publication type <emphasis>Employee</emphasis>.
+  	Add a field "departments" with the type "Relation" (or alter the existing field from the former example). 
+    Now click on "..." to edit the extra type data. Here you then select the publication type 
+    (<emphasis>Department</emphasis>) and the specific field (<emphasis>employees</emphasis>) 
+  	this field relates to (and some other parameters like appearance of the relationship editor).
+  	The extra type information of the related field in the <emphasis>Department</emphasis> publication 
+    type is changed automatically.</para>
+  	
+  	<important>You have to select a publication type for pagesetter to know which publications to show in the 
+    relation field. Additionally, you can
+  	select a corresponding relation field. You are clearly advised to do so, 
+    otherwise you will not establish a proper NxM-relation! (See a more brief
+  	explanation of this issue under <xref linkend="relationsbrief"/>.</important>
+  	
+  	<para>Now you have established a relation between the publication type <emphasis>department</emphasis>, field <emphasis>employees</emphasis> and the 
+  	publication type <emphasis>employee</emphasis>, field <emphasis>department</emphasis>. Changes you do to the field <emphasis>departments</emphasis> will
+  	affect the field <emphasis>employees</emphasis> and vice versa. If you add an employee and relate him to a specific department, he will also
+  	show up in the list of this department</para>
+
+    <para>The complete set of steps you need to go through are:</para>
+
+    <orderedlist>
+      <listitem>Create publication type A.</listitem>
+      <listitem>Add relation fields to A but do not yet associate them with another publication.</listitem>
+      <listitem>Create publication type B.</listitem>
+      <listitem>Add relation fields to B and connect them to the respective fields in A. The reverse connection is 
+      done automatically.</listitem>
+    </orderedlist>
+  	
+  	<para>Displaying this relationship in your templates is quite simple and is done via filter statements. 
+    Use the special filter operator "rel" for this purpose. A filter like "department:rel:9"
+  	will select all employees related to the department with the publication ID 9. 
+    See also <xref linkend="templatemanytomanyexample"/>.</para>
+  </section>
+  
+  <section id="relationsbrief">
+  	<title>Some pitfalls concerning the relationship feature</title>
+  	<para>The complexity of the relationship feature can make it rather difficult to understand.
+    The most obvious pitfall is to overlook that the relations are
+  	established between two specific fields and not just between publications. For this reason you should always
+    add a relations-field in both of the related publication types and relate them to each other.</para>
+  	
+  	<important>Although it is possible to relate a field to just a publication type and not to a specific relations-field, 
+    it is important that you know	what you are doing: By leaving the related field specification empty, you will just 
+    build something like am multiple pointer to a publication. Only	by connecting two relations fields you take advantage
+    of the fact that changing relations in one field will affect the fields of the corresponding 
+  	publication.</important>
+  	
+  	<para>What is the benefit of this complexity? By relating fields, not just publications, you can establish relations 
+    between the same publication types which have different meanings. In our example company, you could add a field for 
+    "team leaders" in <emphasis>department</emphasis>
+  	and a field "leading" in <emphasis>employee</emphasis> and relate them to each other. Now you can maintain seperate 
+    lists of employees in a department and team leaders, based on the same publication types!</para>
+  	
+  	<para>Another pitfall is something like the chicken and the egg-problem: When creating your first publication type, 
+    neither the field nor the publication type you like to relate to are created. So what to select in the extra types data? 
+    The solution is simple: Just leave the fields empty. Then create the second publication
+  	type and its relation field. Here you can select the first publication type and the connected relation field. 
+    Pagesetter will then make sure the extra
+  	type data of the corresponding field is changed properly, so you do not have to return to change the settings 
+    of the first publication type.</para>
+  </section>
+</chapter>

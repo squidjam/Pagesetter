@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+"http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd"
+[
+<!ENTITY mdash "&#x2014;">
+<!ENTITY hellip "&#x2026;">
+]>
+<chapter id="chap_extrafeatures">
+  <!-- $Id: ExtraFeatures.xml,v 1.3 2005/01/16 16:55:47 jornlind Exp $ -->
+
+  <title>Extra Features</title>
+
+  <section id="extrafeaturesrssfeeds">
+    <title>RSS Feeds</title>
+
+    <para>Pagesetter can generate RSS feeds using the XML dumper and an
+    appropriate template. The URL for this is:
+    .../index.php?module=pagesetter&amp;func=xmllist&amp;tid=T&amp;tpl=RSS
+    This assumes the RSS template is in the file <filename>Name-RSS.html</filename>. An example
+    template <filename>PN-News-RSS.html</filename> is supplied with Pagesetter. This file needs
+    some modifications related to the feed title, image and description.</para>
+  </section>
+
+  <section id="extrafeaturestitlehack">
+    <title>Title-Hack</title>
+
+    <para>It is possible to get the title of a Pagesetter publication put into
+    the browser window's title bar with the use of the pagesetter_Title plugin, but
+    only with Xantia themes.</para>
+
+    <para>It is also possible to do this using Jöerg's "Title-hack". Read more at
+    <ulink
+    url="http://sourceforge.net/projects/lottasophie">http://sourceforge.net/projects/lottasophie</ulink>.</para>
+  </section>
+
+  <section id="extrafeaturesfeproc">
+    <title>FEProc Integration</title>
+
+    <section id="extrafeaturesfeprocstart">
+      <title>FEProc Integration</title>
+
+      <para>FEProc is a PostNuke module for processing of forms data. It
+      depends on FormExpress for the creation of web forms and then allows the
+      admin to process the incoming data using various back-end handlers.
+      FEProc comes with built-in handlers for e-mail notification, data
+      transformations, validation rules, and much more&mdash;except a generic
+      database API. With a Pagesetter handler for FEProc that problem is now
+      solved.</para>
+
+      <important>Users that needs to submit something through
+      FormExpress/FEProc needs to have "Author" permissions to Pagesetter.
+      This will enable them to submit new publications but it will not allow
+      them to access other publications.</important>
+
+      <para>With the combination of FEProc/Pagesetter you can use FEProc 
+      for data input and validation and Pagesetter for storing the
+      result. This can for instance be used in a setup where users can
+      register for some event using FormExpress, get an acknowledge mail sent
+      using FEProc, while at the same time you store a copy of the
+      registration in Pagesetter.</para>
+      
+      <para>In FEProc you combine various
+      <emphasis>handlers</emphasis> by stringing them together to form a
+      <emphasis>data pipe-line</emphasis> or <emphasis>set</emphasis> as FEProc calls it. Each
+      instance of the handlers is called a <emphasis>stage</emphasis> and you
+      may configure the stages in various ways depending on what kind of
+      handler it is an instance of. A mail handler may let you define the
+      recipient address, a display handler may let you define a template, and
+      so on.</para>
+      
+      <para>When data flows through the various stages it may be modified or
+      transmitted to some external handler and then passed further on to the
+      next stage. Each stage defines two ancestor stages&mdash;a
+      <emphasis>success stage</emphasis> and a <emphasis>failure
+      stage</emphasis>. Depending on the result of the current stage, data may
+      be transferred to either the first or the second ancestor stage.</para>
+    </section>
+
+    <section id="extrafeaturesfeprochandler">
+      <title>Pagesetter FEProc Handler</title>
+
+      <para>The Pagesetter handler lets you store previously entered data from
+      a web form in a new publication instance of any type. The handler lets
+      you pre-configure the publication type, the author name, a topic, and
+      the workflow state for the new instance. The rest of the core attributes
+      are hard-coded. All of the user defined fields are taken from any forms
+      data entered before the Pagesetter handler is executed. To get the data
+      from a web form you need to name the form fields <emphasis>
+      exactly</emphasis> like the Pagesetter field you want it to
+      be stored in.</para>
+
+      <important>Remember to use FEProc's import manager to
+      first import the Pagesetter handler before you can use
+      it.</important>
+
+      <para>Here is a list of the attributes you can set for a Pagesetter
+      FEProc stage:</para>
+
+      <variablelist>
+        <varlistentry>
+          <term>Pagesetter type ID</term>
+
+          <listitem>
+            The ID of
+            the publication type you want to create an instance of when storing
+            the FEProc data. Remember you must have an exact one-to-one match
+            between the Pagesetter field names and your FormExpress field
+            names.
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Topic ID</term>
+
+          <listitem>
+            The ID of the topic
+            you want you publication associated with. This is currently hardcode
+            and cannot be set from any form data. Use -1 for no topic.
+          </listitem>
+        </varlistentry>
+        
+        <varlistentry>
+          <term>Author</term>
+
+          <listitem>
+            The name you want to
+            store as the author for the created publication. This can be edited
+            in the publication later on. The stored Publisher name/ID will be
+            the PostNuke user ID of the person who initialized the publication
+            creation through FEProc.
+          </listitem>
+        </varlistentry>
+        
+        <varlistentry>
+          <term>Author</term>
+
+          <listitem>
+            The ID of the
+            workflow state that the new publication should be placed in. The ID
+            can be found in the state definition of the workflow definition
+            file. A suitable works-for-all would be 'approved'.
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </section>
+
+    <section id="extrafeaturesfeexample">
+      <title>Example - An Event Registration Setup</title>
+
+      <informalfigure>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="img/feprocSetup.jpg" />
+          </imageobject>
+        </mediaobject>
+      </informalfigure>
+
+      <para>In this example we want our users to register for our "Advanced
+      PostNuke" course. To do so they must submit their name and level of
+      experience with Pagesetter. The level can be "Novice", "Administrator",
+      or "Developer", which we want submitted as a Pagesetter list value. For
+      this we create a publication type named "Registration" with the fields
+      "Name" and "Expirence", but to do so we must also create a category type,
+      which we will name "Experience". The category setup should be like
+      this:</para>
+
+      <informalfigure>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="img/experienceList.jpg" />
+          </imageobject>
+        </mediaobject>
+      </informalfigure>
+
+      <para>The publication setup should be:</para>
+
+      <informalfigure>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="img/registrationSetup.jpg" />
+          </imageobject>
+        </mediaobject>
+      </informalfigure>
+
+      <para>So now we have somewhere to store the registration. Next thing is
+      to create a FormExpress form. Open FormExpress' admin part and create a
+      form with a text input named "name", and a dropdown input named
+      "experience". The values of the dropdown field must be the category IDs for the
+      Pagesetter category items (14, 15, and 16). The setup should be as in the
+      following screen shots. Here is the FormExpress setup:</para>
+
+      <informalfigure>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="img/formExpressSetup.jpg" />
+          </imageobject>
+        </mediaobject>
+      </informalfigure>
+
+      <para>Here is the FormExpress dropdown field setup:</para>
+
+      <informalfigure>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="img/feExperience.jpg" />
+          </imageobject>
+        </mediaobject>
+      </informalfigure>
+
+      <para>Now we have all we need to string a complete FEProc pipe-line
+      together. Open FEProc's admin part and create a new set. This set should
+      contain the following stages:</para>
+
+      <informalfigure>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="img/feprocSet.jpg" />
+          </imageobject>
+        </mediaobject>
+      </informalfigure>
+
+      <para>This can be obtained as follows:</para>
+
+      <orderedlist>
+        <listitem>
+          Create the Error Display stage. The template should contain a
+          reference to ${message:error} in order to show Pagesetter error
+          messages.
+        </listitem>
+
+        <listitem>
+          Create the Success Display stage.
+        </listitem>
+
+        <listitem>
+          Create the Pagesetter Store stage. Set "next success" stage to
+          stage 2. Set "next error" stage to stage 1.
+        </listitem>
+
+        <listitem>
+          Create the Mail stage. Set "next success" stage to stage 3.
+          Set "next error" stage to stage 1.
+        </listitem>
+
+        <listitem>
+          Create the FormExpress Input stage. Set "next success" stage
+          to stage 4. Set "next error" stage to stage 1.
+        </listitem>
+      </orderedlist>
+
+      <para>Now you are ready to accept registrations for your course!</para>
+    </section>
+  </section>
+</chapter>

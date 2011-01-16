@@ -1,0 +1,21 @@
+<div class="pn-pagetitle"><!--[$title]--></div>
+<div class="pn-sub">By: <!--[$core.author]--> <!--[$core.lastUpdated|date_format:"%Y.%m.%d"]--></div><p>
+
+<!--[if $core.pageCount > 1 ]-->
+Page: <!--[pagesetter_pager]-->
+<!--[/if]-->
+
+<!--[if $image != "" ]-->
+ <div class="floatRight">
+  <img src="<!--[$image]-->" width="200" alt="<!--[$imageText]-->" title="<!--[$imageText]-->"><br>
+  <i><!--[$imageText]--></i>
+ </div>
+<!--[/if]-->
+<!--[$text[$core.page]]--><br>
+
+<!--[$core.printThis]--> | Hits: <!--[nocache]--><!--[$core.hitCount]--><!--[/nocache]--> | <!--[nocache]--><!--[$core.editInfo]--><!--[/nocache]-->
+
+<!--[if $core.useDisplayHooks]-->
+<!--[pnmodurl modname=pagesetter func=viewpub tid=$core.tid pid=$core.pid assign=viewUrl]-->
+<!--[pnmodcallhooks hookobject=item hookaction=display hookid=$core.uniqueId module=pagesetter returnurl=$viewUrl]-->
+<!--[/if]-->

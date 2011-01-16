@@ -1,0 +1,17 @@
+<!--[pagesetter_adminmenu]-->
+
+<h1>Database Configuration</h1>
+<!--[foreach item=pubType from=$publications]-->
+<h2><!--[$pubType.publication.title]--></h2>
+<table>
+ <tr><th>Title</th><th>Name</th><th>Column</th></tr>
+ <!--[foreach item=field from=$pubType.fields]-->
+ <tr>
+  <td><!--[$field.title]--></td>
+  <td><!--[$field.name]--></td>
+  <td><!--[$field.column]--></td>
+ </tr>
+ <!--[/foreach]-->
+ </tr>
+</table>
+<!--[/foreach]-->

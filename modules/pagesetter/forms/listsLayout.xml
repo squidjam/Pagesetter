@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+
+<layout>
+
+  <row>
+    <component name="lists">
+      <columns>
+        <field name="id" width="20"/>
+        <field name="title" width="200"/>
+        <field name="author"/>
+        <field name="created"/>
+        <field kind="action" name="edit"/>
+      </columns>
+      <buttonsBottom>
+        <button name="new"/>
+      </buttonsBottom>
+    </component>
+  </row>
+
+</layout>

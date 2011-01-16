@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- contributed by tjreo -->
+
+
+<workflow>
+
+  <title>Wiki</title>
+  <description>This workflow assumes that all publications are always approved, just like a Wiki.  Each time someone updates a
+               publication a new revision is created and all other revisions are removed from view.  Then a notification email 
+               is sent out to those in the notificationEmailAddresses configuration setting letting them know that the publication
+               has been updated.</description>
+
+  <configuration>
+
+    <setting id="notificationEmailAddresses" title="Notification Email Addresses" type="text" height="100" />
+    <setting id="notificationText"           title="Notification Email Message"   type="text" height="100" />
+    <setting id="notificationSubject"        title="Notification Email Subject"   type="string"/>
+
+  </configuration>
+
+  <states>
+
+    <state id="approved">
+      <title>Approved</title>
+      <description>Content is approved</description>
+    </state>
+
+    <state id="deleted">
+      <title>Deleted</title>
+      <description>Content has been removed from view</description>
+    </state>
+
+  </states>
+
+
+  <actions>
+
+      <!-- From initial state -->
+
+    <action id="save">
+      <title>Save</title>
+      <description>Save the new content</description>
+      <permission>author</permission>
+      <nextState>approved</nextState>
+
+      <operation online="1">createPublication</operation>
+    </action>
+
+      <!-- State: approved -->
+
+    <action id="update">
+      <title>Update</title>
+      <description>Update content</description>
+      <permission>author</permission>
+      <state>approved</state>
+
+      <operation>moveToDepot</operation>
+      <operation nextState="approved" online="1">createNewRevision</operation>
+      <operation recipient="$notificationEmailAddresses" message="$notificationText" subject="$notificationSubject">mailNewContentMessage</operation>
+    </action>
+
+    <action id="delete">
+      <title>Delete</title>
+      <description>Delete content</description>
+      <permission>author</permission>
+      <state>approved</state>
+
+      <online>0</online>
+      <operation nextState="deleted">moveToDepot</operation>
+    </action>
+
+  </actions>
+
+
+</workflow>
+
+
+
+<!--
+
+  [none]      save [author] == create new publication (online and current) == [approved]
+ 
+ 
+  [approved]  delete [author] == remove the publication == [approved]
+
+              update [author] == remove last revision, create new revision, notify email list == [approved]
+
+-->

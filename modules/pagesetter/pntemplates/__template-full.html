@@ -1,0 +1,15 @@
+<h1><!--[var name="core.title]--></h1>
+<!--[foreach item=field from=$fields]-->
+<!--[$field.title]-->: <!--[__field field=$field]--><br/>
+<!--[/foreach]-->
+
+<br/><br/>
+
+<!--[var name="core.printThis"]--> | <!--[var name="core.sendThis"]--> | Hits: <!--[var name="nocache" noDollar="1"]--><!--[var name="core.hitCount"]--><!--[var name="/nocache" noDollar="1"]--> | <!--[var name="nocache" noDollar="1"]--><!--[var name="core.editThis"]--><!--[var name="/nocache" noDollar="1"]-->
+
+<!--[literal]-->
+<!--[if $core.useDisplayHooks]-->
+<!--[pnmodurl modname=pagesetter func=viewpub tid=$core.tid pid=$core.pid assign=viewUrl]-->
+<!--[pnmodcallhooks hookobject=item hookaction=display hookid=$core.uniqueId module=pagesetter returnurl=$viewUrl]-->
+<!--[/if]-->
+<!--[/literal]-->

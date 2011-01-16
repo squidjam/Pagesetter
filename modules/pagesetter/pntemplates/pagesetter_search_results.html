@@ -1,0 +1,16 @@
+<!--[* $Id: pagesetter_search_results.html,v 1.1 2005/09/29 21:40:55 jornlind Exp $ *]-->
+<!--[if count($searchresults) neq 0]-->
+  <!--[pnml name='_PGSEARCHTITLE']-->: <!--[$items_count]--> <!--[pnml name='_PGSEARCHRESULTS']-->
+  <ul>
+  <!--[section name=item loop=$searchresults]-->
+    <li><a href="<!--[$searchresults[item].url|pnvarprepfordisplay]-->">    <strong><!--[$searchresults[item].pubTitle|pnvarprepfordisplay]--></strong>:&nbsp;<!--[$searchresults[item].title|pnvarprepfordisplay]--></a>
+    </li>
+  <!--[/section]-->
+  </ul>
+  <!--[ pager rowcount=$items_count limit=$perpage separator=" " posvar=pagesetter_startnum txt_prev="<<" txt_next=">>" ]-->
+<!--[else]-->
+  <!--[pnml name='_PGSEARCHNONEFOUND']-->
+<!--[/if]-->
+<br />
+<br />
+<br />

@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+"http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd"
+[
+<!ENTITY mdash "&#x2014;">
+<!ENTITY hellip "&#x2026;">
+]>
+
+<chapter id="chap_tutorial">
+  <!-- $Id: Tutorial.xml,v 1.8 2006/05/16 20:30:23 jornlind Exp $ -->
+
+  <title>Tutorial</title>
+
+  <section id="tutstart">
+    <title>Tutorial</title>
+
+    <para>Let us start with a quick tutorial showing how to setup your very
+    first Pagesetter publication. For this we use a News type as an example.
+    With this publication type we will be able to write News with a title,
+    a short header, full text, and an associated image selected from Mediashare</para>
+
+    <para>Make sure you have admin rights on your PostNuke site and then goto
+    the Pagesetter administration page. Here you will see a list of
+    publication types. It should look like this:</para>
+
+    <informalfigure>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="img/pubTypeList.jpg" />
+        </imageobject>
+      </mediaobject>
+    </informalfigure>
+
+    <para>Pagesetter has, as you can see, created a PN-News publication type
+    for you already. You can ignore this or use it as a reference for this tutorial.
+    When you are finished with the tutorial you should have a publication type more or
+    less identical to the predefined.</para>
+
+    <para>Now click "New Publication Type" which will bring you to this
+    window where you give a name to your new publication type and then create it:</para>
+
+    <informalfigure>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="img/pubTypeCreate1.jpg"/>
+        </imageobject>
+      </mediaobject>
+    </informalfigure>
+
+    <para>Click "Next" which will bring you to the window below where you can start adding
+    the input fields you want for your publication type:</para>
+
+    <informalfigure>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="img/pubTypeCreate2.jpg"/>
+        </imageobject>
+      </mediaobject>
+    </informalfigure>
+
+    <para>Use the green and red +/- symbols to add and delete fields. Make
+    sure you name everything exactly as you see it in the image (description
+    text is unimportant).</para>
+
+    <itemizedlist>
+      <listitem>The <emphasis>title</emphasis> radio button indicates which field to
+    use as title field in the various Pagesetter lists.</listitem>
+      <listitem>The <emphasis>mandatory (M)</emphasis> checkbox indicates that the user
+      <emphasis>must</emphasis> enter something in the data field.</listitem>
+      <listitem>The <emphasis>Searchable (S)</emphasis>
+    checkbox selectes which fields to use when searching for something on your
+    website.</listitem>
+      <listitem>The <emphasis>multiple
+    pages (MP)</emphasis> checkbox allows you to define which field the user may
+    insert page breaks in. <emphasis>Only one field may be selected for
+    multiple pages, but none need to be so.</emphasis> Page breaks can be
+    inserted using the editor button for it or inserted manually with a &lt;hr
+    class="pagebreak"/&gt; tag. The templating system then ensures the field
+    is split into pages separated by that tag.</listitem>
+    </itemizedlist>
+
+    <para>Click "Next" again and you will get to the last screen where you can select which
+    templates you want to create:</para>
+
+    <informalfigure>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="img/pubTypeCreate3.jpg"/>
+        </imageobject>
+      </mediaobject>
+    </informalfigure>
+
+    <important>UNCHECK ALL TEMPLATE CHECKBOXES (for this tutorial)!
+    Otherwise the nice default PN-News templates will be overwritten with boring autocreated
+    ones!</important>
+
+    <para>The "List Setup" settings
+    specify sorting order and such like for this publication type when an
+    overview is requested&mdash;for instance when Pagesetter is chosen as the
+    frontpage module in PostNuke's admin settings. The sequence of the fields
+    does also define the sequence in which they are presented when creating a
+    new publication instance. Now you are ready to submit the publication type
+    to the database. Press "Commit" and you are done.</para>
+  </section>
+
+  <section id="tutcreatinst">
+    <title>Creating a Publication Instance</title>
+
+    <para>Now that we have a publication type available (News) we should start
+    publishing something. Select the "New" link in the publication types
+    window:</para>
+
+    <informalfigure>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="img/pubTypeList_new.jpg" />
+        </imageobject>
+      </mediaobject>
+    </informalfigure>
+
+    <para>This will bring you to the "Publication Edit" window:</para>
+
+    <informalfigure>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="img/pubEditData.jpg" />
+        </imageobject>
+      </mediaobject>
+    </informalfigure>
+
+    <para>Entering the text should be straight forward. The image URL can be
+    selected from Mediashare (if installed) by clicking the "..." button. Now
+    press "Save" and you are done and will be brought to the publication
+    list:</para>
+
+    <informalfigure>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="img/pubList.jpg" />
+        </imageobject>
+      </mediaobject>
+    </informalfigure>
+
+    <para>If you have named all your fields correctly then you should be able
+    to view your new publication through the pre-installed templates. Click
+    the <emphasis>view</emphasis> action and you should see:</para>
+
+    <informalfigure>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="img/publication.jpg" />
+        </imageobject>
+      </mediaobject>
+    </informalfigure>
+
+
+    <important>
+      <para>You must enable images (with attributes!) and other HTML tags in PostNuke's setup
+      before you can display any images. If you forget this then you will only see the text "&lt;img ...&gt;"
+      instead of the actual image.</para>
+      <para>You must also enable popups for your site if you have any popup blockers installed, otherwise
+      HTMLArea and previewing won't work.</para>
+      <para>You must also have EZComments installed to get the News example running with the
+      templates in the examples directory.</para>
+    </important>
+
+  </section>
+
+  <section id="tuttemplates">
+    <title>Templates</title>
+
+    <para>The template used to display your data is named
+    <filename>PN-News-full.html</filename> and is located in the <filename>pntemplates</filename>
+    directory. As you can see the name consists of the
+    publication name concatenated with a dash and a template format name (in
+    this case "full"). If you open the file you will see something
+    like:</para>
+
+    <example>
+    <title>Example template for News item.</title>
+    <programlisting>
+// (the html presented is not the most correct with respect
+// to accessibility and xhtml compliancy)
+&lt;div style="width: 500px;"&gt;
+
+&lt;div class="pn-title"&gt;&lt;!--[$title]--&gt;&lt;/div&gt;
+&lt;div class="pn-sub"&gt;By: &lt;!--[$core.author]--&gt; 
+(&lt;!--[$core.creator]--&gt;) 
+&lt;!--[$core.lastUpdated|date_format:"%Y.%m.%d"]--&gt;&lt;/div&gt;&lt;p&gt;
+
+&lt;table&gt;
+ &lt;tr&gt;
+  &lt;td valign="top"&gt;
+   &lt;!--[$text[$core.page]]--&gt;&lt;br&gt;
+   &lt;!--[if $core.pageCount &gt; 1 ]--&gt;
+    Page: &lt;!--[pagesetter_pager]--&gt;
+   &lt;!--[/if]--&gt;
+  &lt;/td&gt;
+  &lt;td valign="top"&gt;
+   &lt;!--[if $image != "" ]--&gt;
+     &lt;img src="&lt;!--[$image]--&gt;" width="200" 
+          alt="&lt;!--[$imagetext]--&gt;" 
+          title="&lt;!--[$imagetext]--&gt;"&gt;&lt;br&gt;
+     &lt;i&gt;&lt;!--[$imagetext]--&gt;&lt;/i&gt;
+   &lt;!--[/if]--&gt;
+  &lt;/td&gt;
+ &lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;p&gt;
+
+&lt;table width="100%"&gt;&lt;tr&gt;
+&lt;td&gt;&lt;!--[$core.printThis]--&gt; | &lt;!--[$core.sendThis]--&gt; 
+| Hits: &lt;!--[nocache]--&gt;&lt;!--[$core.hitCount]--&gt;&lt;!--[/nocache]--&gt;
+| &lt;!--[nocache]--&gt;&lt;!--[$core.editInfo]--&gt;&lt;!--[/nocache]--&gt;&lt;/td&gt;
+&lt;!--[if $core.pageCount &gt; 1 ]--&gt;
+ &lt;td align="right"&gt;(Page &lt;!--[$core.page+1]--&gt; 
+ of &lt;!--[$core.pageCount]--&gt;)&lt;/td&gt;
+&lt;!--[/if]--&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;/div&gt;</programlisting>    
+    </example>
+
+    <para>The &lt;!--[ ]--&gt; HTML
+    comments contain code for the pnRender templating system. Basically you
+    can put $fieldName into them to show your publication fields, but more
+    complex stuff like switching statements and for-loops can be added too.
+    The variable name $core is predefined by Pagesetter and contains core
+    information about the publication like author and creation date.
+    <emphasis>Do not edit the template directly. Copy it instead to a theme
+    specific template and put it into your themes directory as described in
+    the template chapter.</emphasis> Read more about templates in the <link
+    linkend="chap_templates">Template chapter</link>.</para>
+  </section>
+
+  <section id="tutfrontpage">
+    <title>Putting the News on the Frontpage</title>
+
+    <para>If you want to show your News items on the frontpage of your
+    PostNuke installation, you need to find the admin section of PostNuke and
+    then go into the settings section. Here you find a dropdown somewhere
+    where you can select Pagesetter as the frontpage module. But before that
+    you need to tell Pagesetter which publication type to show on the
+    frontpage. Go to the general settings of Pagesetter:</para>
+
+    <informalfigure>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="img/menuGeneral.jpg" />
+        </imageobject>
+      </mediaobject>
+    </informalfigure>
+
+    <para>and select the News publication type for the frontpage:</para>
+
+    <informalfigure>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="img/configuration.jpg" />
+        </imageobject>
+      </mediaobject>
+    </informalfigure>
+
+    <para>If everything goes as expected you should be able to see the News
+    list on the frontpage (thanks to <ulink
+    url="http://www.postnuke.dk">www.postnuke.dk</ulink> for design
+    inspiration):</para>
+
+    <informalfigure>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="img/publications.jpg" />
+        </imageobject>
+      </mediaobject>
+    </informalfigure>
+
+  </section>
+</chapter>

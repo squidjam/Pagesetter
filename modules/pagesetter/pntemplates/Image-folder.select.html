@@ -1,0 +1,35 @@
+<div class="pane">
+</div>
+
+<div class="folder-item padding">
+  <h2><!--[$core.title]--></h2>
+  <p><!--[pnml name=_PGFTCREATEDDATE]--> <!--[$core.created|date_format:"%Y.%m.%d"]--> <!--[pnml name=_BY]--> <!--[$core.author]--> 
+  (<!--[pnml name=_PGFTMODIFIEDDATE]--> <!--[$core.lastUpdated|date_format:"%Y.%m.%d"]-->)</p>
+  <p><em><!--[$description]--></em></p>
+  <img src="<!--[$image.thumbnailUrl]-->" alt="<!--[$core.title]-->" style="float: right"/>
+  <select id="imageInsertType">
+    <option><!--[pnml name=_PGIMAGEINSERTFULL]--></option>
+    <option><!--[pnml name=_PGIMAGEINSERTTHUMBNAIL]--></option>
+  </select>
+</div>
+
+<script>
+function folderModuleSpecificSelect(selector)
+{
+  var txt = '???';
+  if (selector.mode == 'html')
+  {
+    var imageInsertType = document.getElementById("imageInsertType");
+    if (imageInsertType.selectedIndex == 0)
+      txt = '<img src="<!--[$image.url]-->" alt="<!--[$core.title]-->"/>';
+    else
+      txt = '<img src="<!--[$image.thumbnailUrl]-->" alt="<!--[$core.title]-->"/>';
+  }
+  else if (selector.mode == 'url')
+    txt = '<!--[$core.pubURL]-->';
+  else if (selector.mode == 'key')
+    txt = '<!--[$core.title]-->';
+
+  selector.insert(txt);
+}
+</script>

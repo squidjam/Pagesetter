@@ -1,0 +1,379 @@
+Pagesetter (C) 2003 Jorn Wildt
+==============================
+
+Version NEXT
+-------------
+  * Adding PostNuke .8 compliant search API.
+  * Bugfix: topic access check failed for PostNuke .8
+  * Bugfix: other topic problems for .8 (hopefully works with .7)
+
+
+Version 6.3.0
+-------------
+  * Adding new "Relation" input field type. Can be used to build
+    Many-to-Many relations. Huge thanks to Carsten Kollmeier for his work.
+  * Added new "Publication" input field type. Can be used to build
+    parent/child relations between publications.
+  * Restyling the interface.
+  * Making publication type creation more "Wizard" like. It now also
+    creates example templates for you, so you are up and running with
+    your first publication in a few clicks.
+  * Added pub type selector and paging to PN searching plugin.
+    Big thanks to jmvdrine for the code!!!
+  * Improved search expression analyzer. You can now use double quotes to enclose
+    words that must be next to each other.
+  * Adding counting in paged publication lists (until now you had to fetch everthing
+    and then count the size of that list). Improves performance.
+    API:  $pubCount = pnModAPIFunc('pagesetter', 'user', 'getPubList', 
+                                    array(..., 'countOnly'  => true, ...));
+  * Adding top-menu to a few extra pages (thanks to Drak).
+  * Updating German language files - not complete though.
+  * Category selector now displays "+ + C" instead of "A:B:C" (for category
+    C nested in B and A). This makes the selector a lot shorter.
+  * Language selector is now restricted to installed languages.
+  * Adding maxlength=X to all text-based inputs.
+  * Adding some helptext to the pub type list. Visible only with no types.
+  * Guppy XML layout now includes <text>...</text> to include any text or
+    HTML (which must be enclosed in CDATA elements).
+  * Guppy XML layout supports internationalization using $_LANGDEFINE$
+    inside <text> elements.
+  * Added "backurl" as a URL parameter. Used to specify redirection after edit.
+  * Workflow operation "mailNewContentMessage" can send links with both "pid"
+    and "id" references. It is defined as a parameter in the XML file.
+  * Publication IDs now start from 1 instead of 0.
+  * Removed a couple of unnecessary Photoshare references
+  * Bugfix: Serious file disclosure found by "SEC Consult Unternehmensberatung GmbH".
+  * Bugfix: random publication block selected inactive publications.
+  * Bugfix: approval state was shown wrong in some cases.
+  * Bugfix: list block failed to display items under certain circumstances.
+  * Bugfix: removing a bunch of warnings showing up when running
+    with E_ALL error reporting.
+  * Bugfix: "edit this" link is now included for publications that 
+    have enableEditOwn set
+  * Bugfix: editor button "insert pagesetter link" does not work
+  * Bugfix: [ 1542546 ] Problem with FF: PS 6.3.0 + Multihook 3.0
+  * Bugfix: [ 1581353 ] Transform Hooks should be applied before data is presented 
+  * Bugfix: [ 1261261 ] pubPager generates PHP warnings
+  * Bugfix: [ 1202537 ] revision=0 record not deleted from table
+  * Bugfix: [ 1541483 ] If no state checked, Edit This gives old document revision
+  * Bugfix: [ 1541482 ] Problem with upload field marked mandatory
+  * Bugfix: [ 1505617 ] Parse error: syntax error, unexpected '<'
+  * Bugfix: [ 1520021 ] unnescessary additional header
+  * Bugfix: [ 1525798 ] bug in countpubs-plugin
+  * Bugfix: [ 1563677 ] Special template on home page not working
+  * Bugfix: [ 1561707 ] Failed opening required 
+    'modules/pagesetter/guppy/plugins/input.pagesetterFieldTypeImage.php' 
+  * Bugfix: [ 1632116 ] forgotten guppy_translate call
+  * Bugfix: [ 1601123 ] SQL error "Incorrect integer value"
+  * Bugfix: [ 1599128 ] non-xhtml link tags
+  * Bugfix: missing function parameter in URLs (short URLs problem)
+
+
+Version 6.2.0
+-------------
+  * Added access control by topic, using a separate module "Topic Access".
+  * Added organization of publications in a folder structure, using
+    a separate module "Folder".
+  * Added support for creation of two similar publication types for use
+    with the Folder module: Generic file uploads and Image uploads
+  * Now using a version of Xinha, that supports Firefox, instead of HTMLArea
+  * Re-added a more extensive "edit this" information.
+    (there was an SQL call to fetch hitcount anyway)
+  * Added calendar defines to language files (deu/user.php needs translation) /cp
+  * Widen date input field for guppy plugin input.datetime.php /cp
+  * The publication list now remembers current page number when editing something
+  * Added revision number to publication edit window.
+  * Added language filter on publication list window.
+  * Added "no cache" HTTP directive to all input pages. This should improve chances
+    for the "back" button to work.
+  * Added URL variable "topicid" for default topic when creating new publication.
+  * pubPagerplus: added max-parameter to limit page numbers displayed /cp
+  * Disabled use of hooks in XML template
+  * Bugfix: searching now respects language settings
+  * Bugfix: the list block now respects language settings
+  * Bugfix: correct date/time calculation for Postcalendar import /cp
+  * Bugfix: mailing new content message did not work
+
+
+
+Version 6.1.0
+-------------
+  * Now possible to use a category field as title field.
+    Now possible to order by category field and category field property:
+    orderby=category will use the sequence defined for the category list
+    orderby=category.value will order by the assigned category value
+    These are the properties you can use: id, value, title, and fulltitle
+    - Thanks goes to Claus Parkhoi for the required code
+  * REMOVED $editThis$ and $hitCount$. These are replaced by:
+      <!--[nocache]--><!--[$core.editThis]--><!--[/nocache]-->
+      <!--[nocache]--><!--[$core.editInfo]--><!--[/nocache]--> NEW!
+      <!--[nocache]--><!--[$core.hitCount]--><!--[/nocache]-->
+      (EditInfo will include more stuff in version 6.2.0)
+  * Now possible to have "EditThis" links on the publication lists.
+    As a result you must change your stylesheet - check the upgrade instructions.
+    - Thanks goes to Claus Parkhoi for the required code.
+  * Now using the PostNuke Mailer module if available. This means this module
+    must have been configured for use before sending mails from Pagesetter.
+  * Added use of transform hooks to lists.
+  * Added new "Form name" field for the pub. type setup.
+    This specifies the directory where special input forms are stored.
+  * Performance improvements in lists and single publiation displays
+    (removed unnessary loading of the workflow system)
+  * Added Photoshare image HTML plugin.
+    [1173493] "Photoshare link" field
+  * Now also possible to preview image uploads.
+  * Added complete PostCalendar import (including templates). See examples directory.
+  * Added German translations for 6.0.
+  * Added "back to admin" link on "cannot use backbutton" error pages.
+  * Update/bugfix for PN .760 feature - user 'viewpub' and 'main'  now accepts $args parameters.
+    See http://www.elfisk.dk/modules.php?op=modload&name=XForum&file=viewthread&tid=1979#pid
+  * Bugfix: "ezcomments_count" plugin disabled caching. Now you have to add
+    <!--[nocache]--> tags around the result of ezcomment_counts.
+  * Bugfix: datetime inputs now remembers their value when something fails on the input form
+  * Bugfix: viewing publication by 'id' (in the history list for instance) did not
+    work for images.
+  * Bugfix: uploaded files were not deleted when erasing revisions from history.
+  * Bugfix: automatic template generation now uses the "template" value as filename.
+  * Bugfix: filter on core.pid failed
+  * Bugfix: [1176969] preview of an image doesn't work
+  * Bugfix: [1176979] Link to the informations about HTMLArea30beta doesn't work
+  * Bugfix: [1176955] guppy plugins missing
+  * Bugfix: [1169521] workflow mails are send by nobody (now using Mailer module)
+
+
+Version 6.0.1
+-------------
+  * Bugfix: image uploads were lost when updating a publication.
+
+
+Version 6.0.0
+-------------
+  * Added file upload as a field type.
+  * Added a plugin system for Guppy inputs.
+    Used this for e-mails, urls and date-time inputs.
+  * Changed HTML output in pagesetter_listBrowser, so sub-lists are now included in
+    the list items (<li>Name<ul>...</ul></li>) which I believe is more correct.
+  * Now "publish date" is auto completed with the current date if left empty.
+    - configurable in the general setup.
+  * Now both publish and expire dates include hours and minutes.
+  * Pasting of Pagesetter publication links into the editor will not overwrite
+    selected text with title of selected publication.
+  * Added some simplified $core info to header/footer of list block.
+  * Added new version (0.9.6) of the DHTML calendar. Fixed SF #916447.
+  * Integration API now returns $tid on schema import.
+  * Now also possible to use a hat ^ as operator delimiter for filters.
+  * Renamed "List" to "Category" for the earlier-known-as "list fields".
+    - English and Danish only.
+  * Made error message templatable (use "pagesetter_error.html").
+  * Added an admin.gif icon (thanks to Tom Sheehan).
+  * Improving pubPager and pubPagerPlus plugins with categories (and other url stuff).
+    Thanks to Claus Parkhoi for fixes.
+  * Authors (without access to pub. list) are now redirected to http-referer or 
+    just the frontpage after submission.
+  * Bugfix: "editorsetup.js" did not respect template file names, but used pub. title.
+  * Bugfix: checking for default publication type failed.
+  * Bugfix: improved sending of mail
+  * Bugfix: customized layouts were not loaded via publication type template (used title)
+  * Bugfix: setting default values in URL did not work (using "&set_xyz=abc").
+  * Bugfix: added missing language defines for "pub" block.
+  * Bugfix: the little "edit this" popup cannot display publication data when the
+            displayed data is cached (since the data is missing then). So that
+            information has been left out. A future version should implement some
+            kind of "on demand" loading of the data (using overlib?).
+  * Bugfix: the $core variable was not set globally for use in plugins used with
+            the "single list" template.
+  * Bugfix: some error messages had stopped working in Guppy.
+  * Bugfix: SourceForge [1103300].
+
+
+Version 5.2.0
+-------------
+  * Added default filter for each publication type.
+    - used if no filter is passed on the URL.
+  * Template name in pub. type is now derived from type title (if template is empty)
+  * Removed "toDepot" and "history" actions from pub. list when revision control is disabled.
+  * Bugfix: SQL injection was possible by setting topic=text on the list URL.
+  * Bugfix: Bugfix: if revision control was disabled then deleting a publication would always
+    delete pub. with ID 0 instead of the requested.
+  * Bugfix: caching did not work.
+  * Bugfix: "edited" and "created" date was set to 1970 when previewing a publication.
+  * Bugfix: read-only checkboxes was cleared on various occasions 
+    (mostly the "online" flag in the publication list).
+  * Bugfix: topic data was missing in the list-single templates.
+  * Bugfix: user defined bool fields now defaults to zero, and does not get null values.
+
+
+Version 5.1.0
+-------------
+  * Added new session handling and increased session size from "blob" to "mediumblob".
+    - Sessions (or "state") for the input forms are now stored in a Pagesetter specific
+      database table. This should increase performance *and* fix the "unknown window
+      data" bug.
+  * Added new "template" filename field in pubtype setup. Makes it possible to use templates 
+    with different names than the pubtype title.
+  * Added new pnRender plugins
+    - pagesetter_title: allows you to place content in the <title> tag (Xantia only).
+    - pagesetter_header: allows you to add anything to the <head> area (any theme).
+  * Bugfix: preview/display article did not work (removed escaping of a few ampersands too many).
+  * Bugfix: "send to friend" link in mail was wrong (removed escaping of a few ampersands too many).
+  * Bugfix: minor JavaScript error with popup window blockers
+    http://www.elfisk.dk/modules.php?op=modload&name=XForum&file=viewthread&tid=1483
+  * Bugfix (beta-1): code/syntax error fix.
+  * Bugfix (beta-1): uninstaller now also removes the Pagesetter session table.
+
+
+Version 5.0.1
+-------------
+  * Bugfix: [1031445] Topics not showing up (due to too much escaping of data).
+  * Bugfix: added escape of "&" to "&amp;" in pnRender plugins and various blocks.
+
+
+Version 5.0.0
+-------------
+  * Added robust and flexible workflow management, including support for untrusted submissions and revision control.
+    - removed the "update" button in the publication editor at the same time.
+  * Added new PostNuke block for showing waiting waiting for approval.
+  * Added support for editing own pages.
+  * Enabled "Word-code-kill on paste" and undo in html editor. Must be enabled in the general configuration setup.
+  * Added the possibility to customize HTMLArea even further with a callback JavaScript file.
+  * Added help icons on pub. edit page for input fields with a description on them.
+  * Added orderby parameter to "list" block.
+  * Added category comparison parameter to "listmenu" block.
+  * Added support for custom input forms layout depending on workflow state.
+  * Added a new template type called "list-single" which is a single template that takes the place of the other three 
+    (list, list-header, and list-footer). There is a performance hit due to it not being cached. It is invoked by 
+    adding &tpltype=single to the URL.
+  * added <meta http-equiv="Content-Type" content="text/html; charset="..."> to HTML header tag when printing.
+  * General configuration now suggests to use pnRender's cache directory as tmp. directory.
+  * Improving DHTML in various popup elements (menu).
+  * Does not check anymore for empty upload directory in configuration.
+  * Bugfix: displaying of publication list does not update hitcounts anymore.
+  * Bugfix: Using a "max sublevels" value of zero in the "listmenu" block now shows no sub-levels.
+  * Bugfix: could not access function pagesetterReplaceFilterVariable from plugins.
+  * Bugfix: [ 986572 ] Missing pnModAPILoad("admin")
+  * Bugfix: removed some important security flaws (one read-only SQL injection possibility).
+
+API changes:
+  * The inlinePubList plugin now accepts "orderby" instead of "orderBy" in order to baseline it with 
+    the URL parameters.
+  * The internal API functions now uses the user defined field names like "description" instead of "fieldN".
+    
+
+
+Version 4.0.1
+-------------
+  * Bugfix: a lot of debugging code was left in "guppy.php".
+  * Added template and offset parameters to "list" block. This makes it possible to add an "old stories" block.
+
+
+Version 4.0.0
+-------------
+  * Added standard PostNuke searching.
+  * Added URL filtering.
+  * Added FEProc/FormExpress support.
+  * Added single publication block. Thanks a lot to Tony (tjreo) for the submission.
+  * Added category based menu block.
+  * Added category field browser Smarty plugin.
+  * Added importing from ContentExpress.
+  * Added "mail to a friend" feature.
+  * Added publication type ID to core template data ($core.tid).
+  * Added XML export/import of publication types.
+  * Added previous/next browsing buttons on the editors list of publications.
+  * Added previous/next pager for readers publication list.
+  * Now possible to redefine ordering of publication lists using "orderby" on the URL.
+  * htmlArea can now be loaded with current PostNuke theme style sheet.
+  * htmlArea can now be disabled completely in the configuration part.
+  * Now possible to move category items up and down.
+  * Added pnRender plugin for EZComments counting.
+  * Added pnRender plugin for shwoing an inline list of publications.
+  * Added URL syntax for assigning default values to page editor.
+  * Now possible to select which publication type you are browsing through when selecting or editing publications.
+  * Made publication ID part of $core template variables.
+  * Added $core.baseURL, $core.morePages, and $core.page for the publication list headers and footers.
+! * API change: getPubList() now returns more, and *not backwards compatible*, information.
+  * Ensured "cancel" buttons are placed to the right in all forms.
+
+
+Version 3.1.0
+-------------
+  * Added support for popup images from Photoshare.
+
+
+Version 3.0.1
+-------------
+  * Bugfix: topics where not handled correct after a change introduced in 3.0.0.
+  * Fixed PN-News-list.html so it now allows you to click on topic image to filter by that.
+
+
+Version 3.0.0
+-------------
+  * Added htmlArea 3.0 beta
+  * Implemented multi-page feature.
+  * Added importing from PostNuke News.
+  * Added support for topic name, text, and image.
+  * Added template override in URL.
+  * Added various dumpers for XML and plain text (no surrounding HTML).
+  * Added RSS feeds (as an example template).
+  * Bugfix: the number of items per list (specified in publication setup) did influence too many places.
+
+
+Version 2.0.1
+-------------
+  * Bugfix: list block did not sort correctly.
+            http://www.elfisk.dk/modules.php?op=modload&name=XForum&file=viewthread&tid=430
+
+
+Version 2.0.0
+-------------
+  * Moved to use pnRender instead of own Smarty instance.
+  * Added admin defined list fields while allows the admin to create fields with a list of values to select from.
+  * Pagesetter is now PN-hooks enabled.
+  * Users with editor (delete) permissions are now allowed to view a publication even if it is 
+    either offline, unapproved or out of date.
+  * Added auto-generation of templates (based on templates!). Thanks to Jorg Napp for the code.
+    http://www.elfisk.dk/modules.php?op=modload&name=XForum&file=viewthread&tid=446
+  * Set font-size for <th> tags in the Guppy forms (apparently many themes do not set this to something usefull).
+  * The error messages does not contain filename and lineno anymore, except for admin users.
+  * Bugfix: the field "Number of publications to show in list" set for a publication type was ignored.
+  * Bugfix: list block now respects approval state so that no "unknown publication" messages pops up in the admin section.
+            http://www.elfisk.dk/modules.php?op=modload&name=XForum&file=viewthread&tid=430
+  * Bugfix: inserting of images and publication links now also works in fullscreen editor mode.
+            http://www.elfisk.dk/modules.php?op=modload&name=XForum&file=viewthread&tid=448
+  * Bugfix: the cache was not cleared when a publication was edited and saved.
+            http://www.elfisk.dk/modules.php?op=modload&name=XForum&file=viewthread&tid=401
+  * Bugfix: on some systems (Unix?) it was impossible to paste Pagesetter links into the editor.
+            http://www.elfisk.dk/modules.php?op=modload&name=XForum&file=viewthread&tid=386
+  * Bugfix: the action URL in the forms was missing after the first change to some data in the form.
+            This made it impossible to use the Safari browser.
+  * Bugfix: permission system did not work for the input forms.
+            http://www.elfisk.dk/modules.php?op=modload&name=XForum&file=viewthread&tid=381
+  * Bugfix: Mozilla now shows html input fields in correct size.
+            http://www.elfisk.dk/modules.php?op=modload&name=XForum&file=viewthread&tid=366
+  * Bugfix: deleting a publication now also clears the cached version.
+  * Bugfix: permission check for block was "BlockTitle::BlockID" and not "BlockTitle:BlockID:TypeID"
+  * Bugfix: modifying a publication type now also clears the cache.
+  * Bugfix: setting the expire or publish date for a publication now clears the cache if necessary.
+
+
+Version 1.0.0
+-------------
+  * Added a publication list block.
+  * Added Danish language.
+  * Fixed a few language related problems.
+  * Made it possible to run on SAFE_MODE servers.
+  * Added some checking for existence of Photoshare.
+  * Support for PHP servers with magic_quotes enabled.
+  * Fixed filter feature in publication list.
+  * Added Smarty 2.6.0-RC3
+
+
+Version 0.9.0.0
+---------------
+  * First beta release - for selected users.
+
+
+Version 0.0.0.0
+---------------
+  Demo release - functional but *not* upgradable.
+
+

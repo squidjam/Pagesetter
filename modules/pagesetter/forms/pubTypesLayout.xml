@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+
+<layout>
+
+  <row>
+    <text id="introtext"><![CDATA[
+      <div class="pagesetter-helptext">
+        $_PGPUBTYPESHELP$
+      </div>]]>
+    </text>
+  </row>
+  <row>
+    <component name="publicationTypes">
+      <columns>
+        <field name="id"      readonly="true" width="40"/>
+        <field name="title"   readonly="true" width="200"/>
+        <field name="author"  readonly="true"/>
+        <field name="created" readonly="true"/>
+        <field kind="action"  name="edit"/>
+        <field kind="action"  name="newpub"/>
+        <field kind="action"  name="listpub"/>
+      </columns>
+      <buttonsBottom>
+        <button name="new"/>
+      </buttonsBottom>
+    </component>
+  </row>
+
+</layout>

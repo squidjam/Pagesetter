@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+"http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd">
+<chapter id="chap_introduction">
+  <!-- $Id: GuppyDev_ProgrammingModel.xml,v 1.1 2004/12/08 00:29:30 jornlind Exp $ -->
+
+  <title>Programming Model</title>
+
+  <para>The Guppy system is <emphasis>event based</emphasis>. The programmer
+  supplies a form <emphasis>specification</emphasis> XML file, a
+  <emphasis>layout</emphasis> XML file, and a <emphasis>handler</emphasis> PHP
+  object. The framework then renders the HTML and based on the user input it
+  calls various event methods in the PHP handler.</para>
+
+  <para>The event handler object must inherit from the GuppyDecodeHandler
+  class. It's event handling methods are passed an event object describing the
+  current event. The inheritance from GuppyDecodeHandler ensures that $this
+  has a reference to a Guppy <emphasis>command handler</emphasis> (the
+  "commander") which must handle all output from any event handler.</para>
+</chapter>

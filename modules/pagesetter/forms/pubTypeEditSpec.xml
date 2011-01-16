@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+
+<components>
+
+ <component name="publicationType" kind="card" title="_PGPUBLICATIONTYPEEDIT">
+  <fields>
+    <field name="title"             title="_PGPUBTYPETITLE"      type="string" mandatory="true"/>
+    <field name="filename"          title="_PGPUBTYPEFILENAME"   type="string"/>
+    <field name="formname"          title="_PGPUBTYPEFORMNAME"  type="string"/>
+    <field name="description"       title="_PGDESCRIPTION"       type="string"/>
+    <field name="created"           title="_PGCREATEDDATE"       type="date"    readonly="yes"/>
+    <field name="author"            title="_PGPUBLISHER"         type="string"  readonly="yes"/>
+    <field name="listCount"         title="_PGLISTSHOWCOUNT"     type="int"/>
+    <field name="sortField1"        title="_PGSORTFIELD1"        type="select" options="pubFields"/>
+    <field name="sortDesc1"         title="_PGSORTDESC"          type="bool"/>
+    <field name="sortField2"        title="_PGSORTFIELD2"        type="select" options="pubFields"/>
+    <field name="sortDesc2"         title="_PGSORTDESC"          type="bool"/>
+    <field name="sortField3"        title="_PGSORTFIELD3"        type="select" options="pubFields"/>
+    <field name="sortDesc3"         title="_PGSORTDESC"          type="bool"/>
+    <field name="defaultFilter"     title="_PGDEFAULTFILTER"     type="string"/>
+    <field name="enableHooks"       title="_PGENABLEHOOKS"       type="bool"/>
+    <field name="workflow"          title="_PGWORKFLOW"          type="select" options="workflows" mandatory="yes"/>
+    <field name="enableRevisions"   title="_PGENABLEREVISIONS"   type="bool"/>
+    <field name="enableEditOwn"     title="_PGENABLEEDITOWN"     type="bool"/>
+    <field name="enableTopicAccess" title="_PGENABLETOPICACCESS" type="bool"/>
+    <field name="defaultFolder"     title="_PGFOLDERDEFAULT"     type="folder"/>
+    <field name="defaultSubFolder"  title="_PGFOLDERSUBDEFAULT"  type="string"/>
+    <field name="defaultFolderTopic" title="_PGFOLDERDEFAULTTOPIC"  type="topic"/>
+  </fields>
+  <actions>
+    <action name="commit" kind="submit" title="_PGCOMMIT"/>
+    <action name="cancel" kind="cancel" title="_PGBTCANCEL"/>
+  </actions>
+ </component>
+
+ <!-- FIELD TYPE DEPENDENCY (this comment for easy "grep") -->
+ <component name="publicationFields" kind="table" title="_PGPUBLICATIONFIELDS" lineno="yes">
+  <fields>
+    <field name="name"         title="_PGNAME"        kind="input" type="string" mandatory="yes"/>
+    <field name="title"        title="_PGTITLE"       kind="input" type="string"/>
+    <field name="description"  title="_PGDESCRIPTION" kind="input" type="string"/>
+    <field name="type"         title="_PGFIELDTYPE"        type="typeselect"/>
+    <field name="isTitle"      title="_PGFIELDISTITLE"     type="radio"/>
+    <field name="isPageable"   title="_PGFTMULTIPLEPAGES"  type="bool"/>
+    <field name="isSearchable" title="_PGFTSEARCHABLE"     type="bool"/>
+    <field name="isMandatory"  title="_PGFTMANDATORY"      type="bool"/>
+  </fields>
+
+  <actions>
+    <action name="commit" kind="submit" title="_PGCOMMIT"/>
+    <action name="cancel" kind="cancel" title="_PGBTCANCEL"/>
+  </actions>
+ </component>
+
+</components>
